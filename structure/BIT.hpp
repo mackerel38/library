@@ -22,7 +22,7 @@ struct BIT {
         }
     }
     void add(int p, T x) {
-        assert(0<=p && p < n);
+        assert(0<=p && p<n);
         for (int j=p+1; j<=n; j+=j&-j) {
             data[j] += x;
         }
