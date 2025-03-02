@@ -33,6 +33,7 @@ struct BIT {
         for (int j=p; 0<j; j-=j&-j) {
             re += data[j];
         }
+        return re;
     }
     T sum(int l, int r) {
         return sum(r) - sum(l);
