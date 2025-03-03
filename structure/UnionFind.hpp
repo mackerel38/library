@@ -41,7 +41,7 @@ struct UnionFind {
         }
         vector<vector<int>> re;
         for (int i=0; i<n; i++) {
-            if (0 < size(a[i])) {
+            if (0 < a[i].size()) {
                 re.push_back(a[i]);
             }
         }
