@@ -27,6 +27,9 @@ struct BIT {
             data[j] += x;
         }
     }
+    void set(int p, T x) {
+        add(int p, x - (sum(x+1) - sum(x)));
+    }
     T sum(int p) {
         assert(0<=p && p<=n);
         T re = T{};
