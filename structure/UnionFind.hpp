@@ -1,4 +1,7 @@
 #line 1 "structure/UnionFind.hpp"
+#pragma once
+#include <bits/stdc++.h>
+using namespace std;
 struct UnionFind {
     int n;
     vector<int> data;

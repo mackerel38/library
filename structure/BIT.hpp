@@ -1,4 +1,7 @@
 #line 1 "structure/BIT.hpp"
+#pragma once
+#include <bits/stdc++.h>
+using namespace std;
 template <class T>
 struct BIT {
     int n;
