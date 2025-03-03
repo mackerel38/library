@@ -19,7 +19,9 @@ struct UnionFind {
         }
     }
     int merge(int x, int y) {
-        if (same(x, y)) {
+        x = root(x);
+        y = root(y);
+        if (x == y) {
             return false;
         }
         if (data[x] < data[y]) {
