@@ -5,11 +5,11 @@ struct UnionFind {
     Unionfind(int _n) : n(_n), data(_n, -1) {}
     int root(int x) {
         assert(0<=x && x<n);
-        if (data[k] < 0) {
-            return k;
+        if (data[x] < 0) {
+            return x;
         } else {
-            data[k] = root(data[k]);
-            return data[k];
+            data[x] = root(data[x]);
+            return data[x];
         }
     }
     int merge(int x, int y) {
@@ -29,7 +29,7 @@ struct UnionFind {
         return merge(x, y);
     }
     int size(int x) {
-        return -data[root(k)];
+        return -data[root(x)];
     }
     int same(int x, int y) {
         return root(x) == root(y);
