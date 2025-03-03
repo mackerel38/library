@@ -1,4 +1,4 @@
-#define PROBLEM https://judge.yosupo.jp/problem/unionfind
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 #include<bits/stdc++.h>
 using namespace std;
 #line 1 "structure/UnionFind.hpp"
