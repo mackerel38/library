@@ -58,7 +58,7 @@ struct UnionFind {
 int main() {
     int n, q; cin >> n >> q;
     UnionFind uf(n);
-    while (--q) {
+    while (q--) {
         int x, y, z; cin >> x >> y >> z;
         if (x) {
             cout << uf.same(y, z) << endl;
