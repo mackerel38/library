@@ -2,7 +2,7 @@
 struct UnionFind {
     int n;
     vector<int> data;
-    Unionfind(int _n) : n(_n), data(_n, -1) {}
+    UnionFind(int _n) : n(_n), data(_n, -1) {}
     int root(int x) {
         assert(0<=x && x<n);
         if (data[x] < 0) {
