@@ -49,6 +49,7 @@ struct rollbackUnionFind {
     }
     // 指定した状態まで巻き戻し 巻き戻し回数をmとして、O(m)
     void rollback(int state) {
+        assert(state <= (int)history.size());
         while (state < (int)history.size()) {
             data[history.top().first] = history.top().second;
             history.pop();
