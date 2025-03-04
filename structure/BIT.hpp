@@ -47,5 +47,39 @@ struct BIT {
     T all_sum() {
         return sum(n);
     }
-    T operator[](int p) { return sum(p+1) - sum(p); }
+    T operator[](int p) {
+        return sum(p+1) - sum(p);
+    }
+    int lower_bound(T x) {
+        int re = 0;
+        int k = 1;
+        T y = T{};
+        while (k <= n) k *= 2;
+        for (k/=2; 0<k; k/=2;) {
+            if (n < re + k) {
+                continue;
+            }
+            if (y+data[re+k] < x) {
+                y += data[re+k];
+                re += k;
+            }
+        }
+        return re;
+    }
+    int upper_bound(T x) {
+        int re = 0;
+        int k = 1;
+        T y = T{};
+        while (k <= n) k *= 2;
+        for (k/=2; 0<k; k/=2;) {
+            if (n < re + k) {
+                continue;
+            }
+            if (y+data[re+k] <= x) {
+                y += data[re+k];
+                re += k;
+            }
+        }
+        return re;
+    }
 };
