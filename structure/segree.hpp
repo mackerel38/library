@@ -1,4 +1,7 @@
 #line 1 "strucuture/segtree.hpp"
+#pragma once
+#include <bits/stdc++.h>
+using namespace std;
 template <class S, auto op, auto e>
 struct segtree {
     int n, size, sz;
@@ -7,7 +10,7 @@ struct segtree {
     segtree(vector<S>& v) : n((int)size(v)) {
         size = 1;
         sz = 0;
-        while (n < size) {
+        while (size < n) {
             size *= 2;
             sz++;
         }
@@ -21,10 +24,34 @@ struct segtree {
     }
     void set(int p, S x) {
         assert(0<=p && p<n);
-        p += size;
-        data[p] = x;
-        for (int i=1; i<=log; i++) {
-            d[p>>i]
+        int q = p + size;
+        data[q] = x;
+        for (q/=2; 0<q; q/=2) {
+            data[q] = op(data[2*q], data[2*q+1]);
         }
+    }
+    S prod(int x, int y) {
+        assert(0<=x && x<=y && y<=n);
+        S rel = e(), rer = e();
+        int l = x + size;
+        int r = y + size;
+        while (l < r) {
+            if (l&1) {
+                rel = op(rel, data[l++]);
+            }
+            if (r&1) {
+                rer = op(data[--r], rer);
+            }
+            l /= 2;
+            r /= 2;
+        }
+        return op(rel, rer);
+    }
+    S all_prod() {
+        return data[1];
+    }
+    S operator[](int x) {
+        assert(0<=x && x<n);
+        return data[size+x];
     }
 };
