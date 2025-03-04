@@ -4,8 +4,9 @@
 using namespace std;
 struct UnionFind {
     int n;
+    int cnt;
     vector<int> data;
-    UnionFind(int _n) : n(_n), data(_n, -1) {}
+    UnionFind(int _n) : n(_n), cnt(_n), data(_n, -1) {}
     int root(int x) {
         assert(0<=x && x<n);
         if (data[x] < 0) {
@@ -28,6 +29,7 @@ struct UnionFind {
             data[y] += data[x];
             data[x] = y;
         }
+        cnt--;
         return true;
     }
     int unite(int x, int y) {
@@ -38,6 +40,9 @@ struct UnionFind {
     }
     int same(int x, int y) {
         return root(x) == root(y);
+    }
+    int conut() {
+        return cnt;
     }
     vector<vector<int>> groups() {
         vector<vector<int>> a(n);
