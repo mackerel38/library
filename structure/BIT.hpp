@@ -4,10 +4,19 @@
 using namespace std;
 template <class T>
 struct BIT {
-    int n;
+    int n, sz;
     vector<T> data;
-    BIT(int _n) : n(_n), data(_n+1, T{}) {}
+    BIT(int _n) : n(_n), data(_n+1, T{}) {
+        sz = 1;
+        while ((1<<sz) < n) {
+            sz++;
+        }
+    }
     BIT(vector<T>& v) : n((int)size(v)), data((int)size(v)+1, T{}) {
+        sz = 1;
+        while ((1<<sz) < n) {
+            sz++;
+        }
         for (int i=1; i<=n; i++) {
             data[i] = v[i-1];
         }
@@ -52,10 +61,9 @@ struct BIT {
     }
     int lower_bound(T x) {
         int re = 0;
-        int k = 1;
+        int k = sz;
         T y = T{};
-        while (k <= n) k *= 2;
-        for (k/=2; 0<k; k/=2;) {
+        for (; 0<k; k>>=1) {
             if (n < re + k) {
                 continue;
             }
@@ -68,10 +76,9 @@ struct BIT {
     }
     int upper_bound(T x) {
         int re = 0;
-        int k = 1;
+        int k = sz;
         T y = T{};
-        while (k <= n) k *= 2;
-        for (k/=2; 0<k; k/=2;) {
+        for (; 0<k; k>>=1) {
             if (n < re + k) {
                 continue;
             }
