@@ -11,7 +11,7 @@ struct segtree {
         size = 1;
         sz = 0;
         while (size < n) {
-            size *= 2;
+            size <<= 1;
             sz++;
         }
         data.assign(2*size, e());
@@ -26,7 +26,7 @@ struct segtree {
         assert(0<=p && p<n);
         int q = p + size;
         data[q] = x;
-        for (q/=2; 0<q; q/=2) {
+        for (q>>=1; 0<q; q>>=1) {
             data[q] = op(data[2*q], data[2*q+1]);
         }
     }
@@ -42,8 +42,8 @@ struct segtree {
             if (r&1) {
                 rer = op(data[--r], rer);
             }
-            l /= 2;
-            r /= 2;
+            l >>= 2;
+            r >>= 2;
         }
         return op(rel, rer);
     }
