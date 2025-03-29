@@ -6,8 +6,8 @@ struct segtree {
     int n, size, sz;
     S e;
     vector<S> data;
-    segtree(int _n, S _e=S{}) : e(_e) segtree(vector<S>(_n, _e)) {}
-    segtree(vector<S>& v, e=S{}) : n(v.size()) {
+    segtree(int _n, S _e=S{}) : segtree(vector<S>(_n, _e), _e) {}
+    segtree(vector<S>& v, _e=S{}) : n(v.size()), e(_e) {
         size = bit_ceil((unsigned int)n);
         sz = __builtin_ctz((unsigned int)size);
         data = vector<S>(2 * size, e);
