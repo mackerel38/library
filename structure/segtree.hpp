@@ -1,15 +1,16 @@
 #pragma once
 #include<bits/stdc++.h>
 using namespace std;
-template<class S, auto op, auto e>
+template<class S, auto op>
 struct segtree {
     int n, size, sz;
+    S e;
     vector<S> data;
-    segtree(int _n) : segtree(vector<S>(_n, e())) {}
-    segtree(vector<S>& v) : n(v.size()) {
+    segtree(int _n, S _e=S{}) : e(_e) segtree(vector<S>(_n, _e)) {}
+    segtree(vector<S>& v, e=S{}) : n(v.size()) {
         size = bit_ceil((unsigned int)n);
         sz = __builtin_ctz((unsigned int)size);
-        data = vector<S>(2 * size, e());
+        data = vector<S>(2 * size, e);
         for (int i=0; i<n; i++) data[size+i] = v[i];
         for (int i=size-1; 0<i; i--) update(i);
     }
@@ -23,7 +24,7 @@ struct segtree {
     }
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= n);
-        S ll = e(), rr = e();
+        S ll = e, rr = e;
         l += size;
         r += size;
         while (l < r) {
