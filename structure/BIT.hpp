@@ -44,7 +44,7 @@ struct BIT {
         return sum(n);
     }
     // [l, r) にx を加算する。一点取得はsum(p) で行う。O(log n)
-    T imos(int l, int r, T x) {
+    void imos(int l, int r, T x) {
         add(l, x);
         if (r < n) add(r, T{}-x);
     }
