@@ -33,7 +33,7 @@ struct mint {
     mint operator++(int) { mint r = *this; *this += 1; return r; }
     mint& operator--() { return *this -= 1; }
     mint operator--(int) { mint r = *this; *this -= 1; return r; }
-    // modpow を計算する。
+    // modpow を計算する。計算量O(log mod)
     mint pow(long long n) const {
         if (n != 0) n = ((n-2) % (modint_MOD-1) + modint_MOD) % (modint_MOD-1) + 1;
         mint r = 1, a = *this;
