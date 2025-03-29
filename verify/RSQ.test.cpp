@@ -92,7 +92,7 @@ int main() {
 
 void solve() {
     int n, q; cin >> n >> q;
-    BIT rsq(n);
+    BIT<int> rsq(n);
     while (q--) {
         int x, y, z; cin >> x >> y >> z;
         if (x == 0) {
