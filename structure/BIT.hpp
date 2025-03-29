@@ -37,7 +37,7 @@ struct BIT {
     }
     // p 番目の値を取得する。O(log n)
     T get(int p) {
-        return sum(p+1) - sum(p):
+        return sum(p+1) - sum(p);
     }
     // 全体の総和を取得する。O(log n)
     T all_sum() {
@@ -53,7 +53,7 @@ struct BIT {
         if (x <= 0) return 0;
         int re = 0, t = 1;
         while (t < n) t <<= 1;
-        while (r) {
+        while (t) {
             if (re + t < n && data[re+t] < x) {
                 x -= data[re+t];
                 re += t;
@@ -67,7 +67,7 @@ struct BIT {
         if (x < 0) return 0;
         int re = 0, t = 1;
         while (t < n) t <<= 1;
-        while (r) {
+        while (t) {
             if (re + t < n && data[re+t] <= x) {
                 x -= data[re+t];
                 re += t;
