@@ -18,7 +18,7 @@ struct BIT {
     }
     // p 番目の値をx にする。O(log n)
     void set(int p, T x) {
-        add(p, x - add(p));
+        add(p, x - get(p));
     }
     // [0, r) の総和を求める。O(log n)
     T sum(int r) {
