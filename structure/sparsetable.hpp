@@ -10,9 +10,9 @@ struct sparsetable {
         int m = 1;
         while (m < n) m <<= 1;
         data.assign(m, vector<T>(__lg(m)+1));
-        for (int i = 0; i < n; i++) data[i][0] = v[i];
-        for (int j = 1; j <= __lg(m); j++) {
-            for (int i = 0; i + (1 << j) <= n; i++) {
+        for (int i=0; i<n; i++) data[i][0] = v[i];
+        for (int j=1; j<=__lg(m); j++) {
+            for (int i=0; i+(1<<j)<=n; i++) {
                 data[i][j] = op(data[i][j-1], data[i+(1<<(j-1))][j-1]);
             }
         }
