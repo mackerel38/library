@@ -28,6 +28,7 @@ struct segtree {
         assert(0 <= p && p < n);
         return data[size+p];
     }
+    // p 番目の要素を取得する O(1)
     S operator[](int p) {
         return get(p);
     }
@@ -51,5 +52,17 @@ struct segtree {
     }
     void update(int p) {
         data[p] = op(data[2*p], data[2*p+1]);
+    }
+    // f(op([l, r)))=true となる最大のr を返す O(log n)
+    template<auto f>
+    int max_right(int l) {
+        assert(f(e()));
+        assert(0 <= l && l <= n);
+    }
+    // f(op([l, r)))=true となる最小のl を返す O(log n)
+    template<auto f>
+    int min_left(int r) {
+        assert(f(e()));
+        assert(0 <= r && r <= n);
     }
 };
