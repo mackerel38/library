@@ -1,11 +1,11 @@
 #pragma once
 #include<bits/stdc++.h>
 using namespace std;
-template<class T, auto op=min<T>>
+template<class T, auto op>
 struct sparsetable {
     int n;
     vector<vector<T>> data;
-    // 0-indexed で構築する O(n log n)
+    // sparsetable を構築 O(n log n)
     sparsetable(const vector<T>& v) : n(v.size()) {
         int m = 1;
         while (m < n) m <<= 1;
@@ -17,8 +17,8 @@ struct sparsetable {
             }
         }
     }
-    // [l, r) の値を取得する O(1)
-    T query(int l, int r) {
+    // op([l, r)) の値を取得 O(1)
+    T prod(int l, int r) {
         assert(0 <= l && l <= r && r <= n);
         if (l == r) return T{};
         int j = __lg(r-l);
