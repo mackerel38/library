@@ -26,6 +26,10 @@ struct UnionFind {
             return data[p];
         }
     }
+    // 親要素を取得 O(α(n))
+    int operator[](int p) {
+        return root(p);
+    }
     // 2 つの要素が同じ集合に含まれるか判定 O(α(n))
     bool same(int p, int q) {
         return root(p) == root(q);
