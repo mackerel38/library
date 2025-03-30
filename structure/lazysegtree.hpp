@@ -49,6 +49,7 @@ struct lazysegtree {
             update(k);
         }
     }
+    // p番目の値を取得する O(log n)
     S get(int p) {
         assert(0 <= p && p < n);
         p += size;
@@ -56,6 +57,10 @@ struct lazysegtree {
             update(p >> k);
         }
         return data[p];
+    }
+    // p番目の値を取得する O(log n)
+    S operator[](int p) {
+        return get(p);
     }
     // 区間[l, r)の値を取得 O(log n)
     S prod(int l, int r) {
