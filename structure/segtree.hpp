@@ -50,6 +50,11 @@ struct segtree {
     S all_prod() {
         return data[1];
     }
+    vector<S> values() {
+        vector<S> re(n);
+        for (int i=0; i<n; i++) re[i] = data[size+i];
+        return re;
+    }
     void update(int p) {
         data[p] = op(data[2*p], data[2*p+1]);
     }
