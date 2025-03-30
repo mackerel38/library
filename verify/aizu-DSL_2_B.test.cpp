@@ -78,7 +78,7 @@ const int dy[8]={1,0,-1,0,1,-1,1,-1};
 #define inf ((1<<30)-(1<<15))
 #define INF (1LL<<61)
 #define mod 998244353
-#include "structure/BIT.hpp"
+#include "BIT"
 
 void solve();
 int main() {
