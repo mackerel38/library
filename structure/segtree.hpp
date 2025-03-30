@@ -55,7 +55,7 @@ struct segtree {
     }
     // f(op([l, r)))=true となる最大のr を返す O(log n)
     template<auto f>
-    int max_right(int l) {
+    int max_right(int l=0) {
         assert(f(e));
         assert(0 <= l && l <= n);
         if (l == n) return l;
@@ -77,7 +77,7 @@ struct segtree {
     }
     // f(op([l, r)))=true となる最小のl を返す O(log n)
     template<auto f>
-    int min_left(int r) {
+    int min_left(int r=n) {
         assert(f(e));
         assert(0 <= r && r <= n);
         if (r == 0) return r;
@@ -96,15 +96,5 @@ struct segtree {
             s = op(data[r], s);
         } while(r != r & -r);
         return 0;
-    }
-    // f(op([0, r)))=true となる最大のr を返す O(log n)
-    template<auto f>
-    int max_right() {
-        return max_right<f>(0);
-    }
-    // f(op([l, n)))=true となる最小のl を返す O(log n)
-    template<auto f>
-    int min_left(int r) {
-        return min_left<f>(n);
     }
 };
