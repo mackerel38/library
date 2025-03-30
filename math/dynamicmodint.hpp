@@ -11,13 +11,15 @@ struct dmint {
         for (size_t i = 0; i < dynamicmodint_MOD.size(); ++i) val[i] = (x % dynamicmodint_MOD[i] + dynamicmodint_MOD[i]) % dynamicmodint_MOD[i];
     }
     dmint& operator+=(const dmint& a) { for (int i=0; i<dynamicmodint_MOD.size(); i++) val[i] = (val[i] + a.val[i]) % dynamicmodint_MOD[i]; return *this; }
-    dmint& operator-=(const dmint& a) { for (int i=0; i<dynamicmodint_MOD.size(); i++) val[i] = (val[i] - a.val[i]) % dynamicmodint_MOD[i]; return *this; }
+    dmint& operator-=(const dmint& a) { for (int i=0; i<dynamicmodint_MOD.size(); i++) val[i] = (val[i] - a.val[i] + dynamicmodint_MOD[i]) % dynamicmodint_MOD[i]; return *this; }
     dmint& operator*=(const dmint& a) { for (int i=0; i<dynamicmodint_MOD.size(); i++) val[i] = (val[i] * a.val[i]) % dynamicmodint_MOD[i]; return *this; }
     dmint& operator/=(const dmint& a) { return *this *= a.inv(); }
     dmint operator+(const dmint& a) const { return dmint(*this) += a; }
     dmint operator-(const dmint& a) const { return dmint(*this) -= a; }
     dmint operator*(const dmint& a) const { return dmint(*this) *= a; }
     dmint operator/(const dmint& a) const { return dmint(*this) /= a; }
+    bool operator==(const dmint& a) const { return val == a.val; }
+    bool operator!=(const dmint& a) const { return val != a.val; }    
     dmint& operator+=(int a) { return *this += dmint(a); }
     dmint& operator-=(int a) { return *this -= dmint(a); }
     dmint& operator*=(int a) { return *this *= dmint(a); }
@@ -38,15 +40,16 @@ struct dmint {
     dmint pow(long long n) const {
         dmint re = dmint(0);
         for (int i=0; i < dynamicmodint_MOD.size(); i++) {
-            int m = dynamicmodint_MOD[i];
-            if (n != 0) n = ((n-2) % (m-1) + m) % (m-1) + 1;
+            long long m = dynamicmodint_MOD[i];
+            long long nn = n;
+            if (nn != 0) nn = ((nn - 2) % (m - 1) + m) % (m - 1) + 1;
             long long r = 1, a = val[i];
-           while (n) {
-                if (n & 1) r = r * a % m;
+            while (nn) {
+                if (nn & 1) r = r * a % m;
                 a = a * a % m;
-                n >>= 1;
+                nn >>= 1;
             }
-            re.val[i] = r;
+            re.val[i] = r;        
         }
         return re;
     }

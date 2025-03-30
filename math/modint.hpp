@@ -17,6 +17,8 @@ struct mint {
     mint operator-(const mint& a) const { return mint(*this) -= a; }
     mint operator*(const mint& a) const { return mint(*this) *= a; }
     mint operator/(const mint& a) const { return mint(*this) /= a; }
+    bool operator==(const mint& a) const { return val == a.val; }
+    bool operator!=(const mint& a) const { return val != a.val; }
     mint& operator+=(int a) { return *this += mint(a); }
     mint& operator-=(int a) { return *this -= mint(a); }
     mint& operator*=(int a) { return *this *= mint(a); }
@@ -25,10 +27,14 @@ struct mint {
     mint operator-(int a) const { return mint(*this) -= a; }
     mint operator*(int a) const { return mint(*this) *= a; }
     mint operator/(int a) const { return mint(*this) /= a; }
+    bool operator==(int a) const { return val == mint(a).val; }
+    bool operator!=(int a) const { return val != mint(a).val; }
     friend mint operator+(int a,const mint& b) { return mint(a) + b; }
     friend mint operator-(int a,const mint& b) { return mint(a) - b; }
     friend mint operator*(int a,const mint& b) { return mint(a) * b; }
     friend mint operator/(int a,const mint& b) { return mint(a) / b; }
+    friend bool operator==(int a, const mint& b) { return mint(a) == b; }
+    friend bool operator!=(int a, const mint& b) { return mint(a) != b; }
     mint& operator++() { return *this += 1; }
     mint operator++(int) { mint r = *this; *this += 1; return r; }
     mint& operator--() { return *this -= 1; }
@@ -44,7 +50,7 @@ struct mint {
         }
         return r;
     }
-    mint inv() const { return pow(modint_MOD - 2); }
+    mint inv() const { return pow(-1); }
     friend ostream& operator<<(ostream&s, const mint& a) { return s << a.val; }
     friend istream& operator>>(istream&s, mint& a) { long long x; s >> x; a = mint(x); return s; }
 };
