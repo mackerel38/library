@@ -97,4 +97,14 @@ struct segtree {
         } while(r != r & -r);
         return 0;
     }
+    // f(op([0, r)))=true となる最大のr を返す O(log n)
+    template<auto f>
+    int max_right() {
+        return max_right<f>(0);
+    }
+    // f(op([l, n)))=true となる最小のl を返す O(log n)
+    template<auto f>
+    int min_left(int r) {
+        return min_left<f>(n);
+    }
 };
