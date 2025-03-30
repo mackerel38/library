@@ -39,11 +39,15 @@ struct BIT {
     T get(int p) {
         return sum(p+1) - sum(p);
     }
+    // p 番目の値を取得する O(log n)
+    T operator[](int p) {
+        return get(p);
+    }
     // 全体の総和を取得する O(log n)
     T all_sum() {
         return sum(n);
     }
-    // [l, r) にx を加算する 一点取得はsum(p) で行う O(log n)
+    // [l, r) にx を加算する 一点取得はsum(p) で行う 区間和クエリができなくなるので注意 O(log n)
     void imos(int l, int r, T x) {
         add(l, x);
         if (r < n) add(r, T{}-x);

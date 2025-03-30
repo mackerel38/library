@@ -28,6 +28,9 @@ struct segtree {
         assert(0 <= p && p < n);
         return data[size+p];
     }
+    S operator(int p) {
+        return get(p);
+    }
     // [l, r) の区間クエリに答える O(log n)
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= n);
