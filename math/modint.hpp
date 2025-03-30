@@ -53,12 +53,12 @@ vector<mint>fac, ifac;
 void buildfac(int n) {
     fac.resize(n + 1);
     ifac.resize(n + 1);
-    fac[0]=1;
-    for (int i=1; i<=n; i++) fac[i] = fac[i - 1] * i;
+    fac[0] = 1;
+    for (int i=1; i<=n; i++) fac[i] = fac[i-1] * i;
     ifac[n] = mint(1) / fac[n];
-    for (int i=n; 0<i; i--) ifac[i - 1] = ifac[i] * i;
+    for (int i=n; 0<i; i--) ifac[i-1] = ifac[i] * i;
 }
 // nCk を求める。buildfacの呼び出しが必須。O(1)
-mint comb(int n,int k) { return(0 <= k && k <= n ) ? fac[n] * ifac[k] * ifac[n - k] : 0; }
+mint comb(int n,int k) { return (0 <= k && k <= n ) ? fac[n] * ifac[k] * ifac[n-k] : 0; }
 // nPk を求める。buildfacの呼び出しが必須。O(1)
-mint perm(int n,int k) { return(0 <= k && k <= n ) ? fac[n] * ifac[n - k] : 0; }
+mint perm(int n,int k) { return (0 <= k && k <= n ) ? fac[n] * ifac[n-k] : 0; }
