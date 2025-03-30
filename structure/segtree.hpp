@@ -58,6 +58,21 @@ struct segtree {
     int max_right(int l) {
         assert(f(e()));
         assert(0 <= l && l <= n);
+        if (l == n) return l;
+        l += size;
+        S s = e;
+        do {
+            while (l & 1 == 0) l >>= 1;
+            if (!f(op(s, data[l]))) {
+                while (l < size) {
+                    l <<= 1;
+                    if (f(op(s, data[l]))) s = op(s, data[l++]);
+                }
+                return l - size;
+            }
+            s = op(s, data[l++]);
+        } while (l != l & -l);
+        return n;
     }
     // f(op([l, r)))=true となる最小のl を返す O(log n)
     template<auto f>
