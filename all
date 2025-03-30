@@ -1,0 +1,4 @@
+#include "allstructure"
+#include "allmath"
+#include "allgraph"
+#include "allstring"

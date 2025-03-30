@@ -3,3 +3,4 @@
 #include "structure/segtree.hpp"
 #include "structure/xorBIT.hpp"
 #include "structure/rollbackUnionFind.hpp"
+#include "structure/sparsetable.hpp"
