@@ -62,7 +62,7 @@ struct segtree {
         l += size;
         S s = e;
         do {
-            while (l & 1 == 0) l >>= 1;
+            while (l % 2 == 0) l >>= 1;
             if (!f(op(s, data[l]))) {
                 while (l < size) {
                     l <<= 1;
