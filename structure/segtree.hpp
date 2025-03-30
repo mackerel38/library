@@ -65,12 +65,13 @@ struct segtree {
             while (l % 2 == 0) l >>= 1;
             if (!f(op(s, data[l]))) {
                 while (l < size) {
-                    l <<= 1;
+                    l = 2 * l;
                     if (f(op(s, data[l]))) s = op(s, data[l++]);
                 }
                 return l - size;
             }
-            s = op(s, data[l++]);
+            s = op(s, data[l]);
+            l++;
         } while (l != l & -l);
         return n;
     }
@@ -79,5 +80,21 @@ struct segtree {
     int min_left(int r) {
         assert(f(e()));
         assert(0 <= r && r <= n);
+        if (r == 0) return r;
+        r += size;
+        S s = e;
+        do {
+            r--;
+            while (r % 2 == 1) r >>= 1;
+            if (!f(op(data[r], s))) {
+                while (r < size) {
+                    r = 2 * r + 1;
+                    if (f(op(data[r], s))) s = op(data[r--], s);
+                }
+                return (r + 1) - size;
+            }
+            s = op(data[r], s);
+        } while(r != r & -r);
+        return 0;
     }
 };
