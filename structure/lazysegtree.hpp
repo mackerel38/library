@@ -1,148 +1,104 @@
 #pragma once
 #include<bits/stdc++.h>
 using namespace std;
-template<class S, auto op, auto F, auto mapping, auto composition>
+template<class S, auto op, class F, auto mapping, auto composition>
 struct lazysegtree {
     int n, size, sz;
     S e;
     F id;
     vector<S> data;
-    vector<S> lazy;
-    // 遅延伝播セグメント木を構築 O(n)
-    lazysegtree(int n, S e(), F id()) : n(n), e(e), id(id) {
-        sz = 0;
-        while ((1 << sz) < n) sz++;
-        size = 1 << sz;
+    vector<F> lazy;
+    // 大きさn, 単位元e, id(省略するとS{}, F{} になる) のセグ木を構築 O(n)
+    lazysegtree(int _n, S _e = S{}, F _id = F{}) : n(_n), e(_e), id(_id) { build(vector<S>(_n, e)); }
+    // 大きさv.size(), 単位元e, id(省略するとS{}, F{} になる) のセグ木を構築 O(n)
+    lazysegtree(vector<S>& v, S _e = S{}, F _id = F{}) : n(v.size()), e(_e), id(_id) { build(v); }
+    void build(vector<S> v) {
+        size = __bit_ceil((unsigned int)n);
+        sz = __countr_zero(size);
         data.assign(2 * size, e);
-        lazy.assign(size, id);
-    }
-    // 遅延伝播セグメント木を構築 O(n)
-    lazysegtree(vector<S>& v, S e(), F id()) : lazysegtree(v.size(), e, id) {
-        for (int i=0; i<n; i++) data[size + i] = v[i];
-        for (int k=size-1; 0<k; k--) update(k);
+        lazy.assign(2 * size, id);
+        for (int i=0; i<n; i++) data[size+i] = v[i];
+        for (int i=size-1; 0<i; i--) update(i);
     }
     void update(int k) {
         data[k] = op(data[2*k], data[2*k+1]);
-        if (lazy[k] != id) {
-            data[k] = mapping(lazy[k], data[k]);
-            if (k < size) {
-                lazy[2*k] = composition(lazy[k], lazy[2*k]);
-                lazy[2*k+1] = composition(lazy[k], lazy[2*k+1]);
-            }
-            lazy[k] = id;
-        }
     }
-    // 遅延伝播を適用する O(log n)
-    void apply(int k, F x) {
-        assert(0 <= k && k < size);
-        data[k] = mapping(x, data[k]);
-        if (k < size) {
-            lazy[k] = composition(x, lazy[k]);
-        }
+    void all_apply(int k, F f) {
+        data[k] = mapping(f, data[k]);
+        if (k < size) lazy[k] = composition(f, lazy[k]);
     }
-    // 値の変更 O(log n)
+    void push(int k) {
+        all_apply(2*k, lazy[k]);
+        all_apply(2*k+1, lazy[k]);
+        lazy[k] = id;
+    }
+    // p 番目の要素をx にする O(log n)
     void set(int p, S x) {
         assert(0 <= p && p < n);
         p += size;
+        for (int i=sz; 0<i; i--) push(p >> i);
         data[p] = x;
-        for (int k=p>>1; 0<k; k>>=1) {
-            update(k);
-        }
+        for (int i=p>>1; 0<i; i>>=1) update(i);
     }
-    // p番目の値を取得する O(log n)
+    // p 番目の要素を取得する O(log n)
     S get(int p) {
         assert(0 <= p && p < n);
         p += size;
-        for (int k=sz; 0<k; k--) {
-            update(p >> k);
-        }
+        for (int i=sz; 0<i; i--) push(p >> i);
         return data[p];
     }
-    // p番目の値を取得する O(log n)
+    // p 番目の要素を取得する O(log n)
     S operator[](int p) {
         return get(p);
     }
-    // 区間[l, r)の値を取得 O(log n)
+    // [l, r) の区間クエリに答える O(log n)
     S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= n);
         if (l == r) return e;
         l += size;
         r += size;
-        for (int k=sz; 0<k; k--) {
-            if (((l >> k) << k) != l) update(l >> k);
-            if (((r >> k) << k) != r) update(r >> k);
-        }
-        S resl = e, resr = e;
+        for (int i=sz; 0<i; i--) if (((l >> i) << i) != l) push(l >> i);
+        for (int i=sz; 0<i; i--) if (((r >> i) << i) != r) push((r - 1) >> i);
+        S ll = e, rr = e;
         while (l < r) {
-            if (l & 1) resl = op(resl, data[l++]);
-            if (r & 1) resr = op(data[--r], resr);
+            if (l & 1) ll = op(ll, data[l++]);
+            if (r & 1) rr = op(data[--r], rr);
             l >>= 1;
             r >>= 1;
         }
-        return op(resl, resr);
+        return op(ll, rr);
     }
-    // 区間[l, r)に遅延伝播を適用する O(log n)
-    void apply(int l, int r, S x) {
+    // [0, n) のクエリに答える O(1)
+    S all_prod() {
+        return data[1];
+    }
+    // [0, n) の区間の値を取得する O(n)
+    vector<S> values() {
+        vector<S> re(n);
+        for (int i=0; i<size; i++) {
+            if (lazy[i] != id) push(i);
+        }
+        for (int i=0; i<n; i++) re[i] = data[size+i];
+        return re;
+    }
+    // [l, r) に対して f を適用する O(log n)
+    void apply(int l, int r, F f) {
         assert(0 <= l && l <= r && r <= n);
         if (l == r) return;
         l += size;
         r += size;
-        for (int k=sz; 0<k; k--) {
-            if (((l >> k) << k) != l) update(l >> k);
-            if (((r >> k) << k) != r) update(r >> k);
+        for (int i=sz; 0<i; i--) if (((l >> i) << i) != l) push(l >> i);
+        for (int i=sz; 0<i; i--) if (((r >> i) << i) != r) push((r - 1) >> i);
+        int ll = l, rr = r;
+        while (ll < rr) {
+            if (ll & 1) all_apply(ll++, f);
+            if (rr & 1) all_apply(--rr, f);
+            ll >>= 1;
+            rr >>= 1;
         }
-        while (l < r) {
-            if (l & 1) apply(l++, x);
-            if (r & 1) apply(--r, x);
-            l >>= 1;
-            r >>= 1;
+        for (int i=1; i<=sz; i++) {
+            if (((l >> i) << i) != l) update(l >> i);
+            if (((r >> i) << i) != r) update((r - 1) >> i);
         }
-    }
-    // 区間[0, n) の値を取得 O(1)
-    S all_prod() {
-        return data[1];
-    }
-    // f(op([l, r)))=true となる最大のr を返す O(log n)
-    template<auto f>
-    int max_right(int l) {
-        assert(f(e));
-        assert(0 <= l && l <= n);
-        if (l == n) return l;
-        l += size;
-        S s = e;
-        do {
-            while (l % 2 == 0) l >>= 1;
-            if (!f(op(s, data[l]))) {
-                while (l < size) {
-                    l = 2 * l;
-                    if (f(op(s, data[l]))) s = op(s, data[l++]);
-                }
-                return l - size;
-            }
-            s = op(s, data[l++]);
-        } while ((l & -l) != l);
-        return n;
-    }
-    // f(op([l, r)))=true となる最小のl を返す O(log n)
-    template<auto f>
-    int min_left(int r) {
-        assert(f(e));
-        assert(0 <= r && r <= n);
-        if (r == 0) return r;
-        r += size;
-        S s = e;
-        do {
-            r--;
-            while (r > 1 && r % 2 == 1) r >>= 1;
-            if (!f(op(data[r], s))) {
-                while (r < size) {
-                    if (f(op(data[2*r], s))) s = op(data[2*r], s);
-                    r = 2 * r + 1;
-                }
-                return r - size + 1;
-            }
-            s = op(data[r--], s);
-        } while ((r & -r) != r);
-        return 0;
     }
 };
