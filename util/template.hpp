@@ -79,4 +79,10 @@ const int dy[8]={1,0,-1,0,1,-1,1,-1};
 #define INF (1LL<<61)
 #define mod 998244353
 
+void IO() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout<<fixed<<setprecision(30);
+}
+
 void solve();
