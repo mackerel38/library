@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 // op(op(a, b), b) = op(a, b) が成り立つ必要がある(冪等性)
-template<class T, T (*op)(T, T)>
+template<class T, auto op>
 struct sparsetable {
     int n;
     vector<vector<T>> data;

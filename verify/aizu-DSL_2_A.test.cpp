@@ -90,11 +90,9 @@ int main() {
     while (T--) solve();
 }
 
-ll op(ll a, ll b) { return min(a, b); }
-
 void solve() {
     int n, q; cin >> n >> q;
-    segtree<ll, op> seg(n, (1LL<<31)-1);
+    segtree<ll, [](ll a, ll b) { return min(a, b); }> seg(n, (1LL<<31)-1);
     while (q--) {
         ll x, y, z; cin >> x >> y >> z;
         if (x == 0) {
