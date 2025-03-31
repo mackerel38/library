@@ -33,3 +33,16 @@ bool isprime(long long n) {
     }
     return true;
 }
+vector<int> primes;
+// n 以下の素数をprimes に列挙する O(n log log n)
+int enumprimes(int n) {
+    vector<bool> primeflag(n+1);
+    for (long long i=2; i<=n; i++) {
+        if (primeflag[i]) continue;
+        primes.push_back(i);
+        for (long long j=i*i; j<=n; j+=i) {
+            primeflag[j] = true;
+        }
+    }
+    return primes.size();
+}
