@@ -1,7 +1,8 @@
 #pragma once
 #include<bits/stdc++.h>
 using namespace std;
-template<class S, auto op>
+// op(op(a, b), c) = op(a, op(b, c)) が成り立つ必要がある(結合律)
+template<class S, S (*op)(S, S)>
 struct segtree {
     int n, size, sz;
     S e;
