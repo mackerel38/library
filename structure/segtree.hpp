@@ -4,7 +4,7 @@ using namespace std;
 // op(op(a, b), c) = op(a, op(b, c)) が成り立つ必要がある(結合律)
 template<class S, auto op>
 struct segtree {
-    int n, size, sz;
+    int n, size;
     S e;
     vector<S> data;
     // 大きさn, 単位元e(省略するとS{} になる) のセグ木を構築 O(n)
@@ -51,6 +51,7 @@ struct segtree {
     S all_prod() {
         return data[1];
     }
+    // [0, n) の区間の値を取得する O(n)
     vector<S> values() {
         vector<S> re(n);
         for (int i=0; i<n; i++) re[i] = data[size+i];
