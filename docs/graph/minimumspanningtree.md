@@ -35,7 +35,7 @@ bool connected() const noexcept
 
 O(1)。空グラフまたは全頂点が連結ならtrueを返す。
 
-### `requires`
+### `minimum_spanning_forest`
 
 ```cpp
 template<weighted_graph_type Graph> requires (!Graph::is_directed) auto minimum_spanning_forest(const Graph& graph)
@@ -43,7 +43,7 @@ template<weighted_graph_type Graph> requires (!Graph::is_directed) auto minimum_
 
 O(m log m)。重み付き無向グラフの最小全域森をKruskal法で求める。
 
-### `requires`
+### `minimum_spanning_tree`
 
 ```cpp
 template<weighted_graph_type Graph> requires (!Graph::is_directed) auto minimum_spanning_tree(const Graph& graph)

@@ -118,12 +118,12 @@ O(1)。先頭から順にopで畳み込んだ値を返す。空ならe()。
 ## 実在問題での使用例
 
 [Library Checker - Queue Operate All Composite](https://judge.yosupo.jp/problem/queue_operate_all_composite)で、
-非可換なアフィン写像合成を扱うverifyコードを収録した。judge未提出。
+非可換なアフィン写像合成を扱うverifyコードを収録した。
 
 [AtCoder ABC456 F - Plan Holidays](https://atcoder.jp/contests/abc456/tasks/abc456_f)では、
 2状態min-plus DPの遷移行列を区間ごとに合成する。長さ`K`の窓を一日ずつ滑らせながら
 `prod()`を取ることで、各開始位置からDPをやり直す`O(NK)`を全体`O(N)`へ落とせる。
-`verify/atcoder_abc456_f.cpp`に使用例を収録した。judge未提出。
+`verify/atcoder_abc456_f.cpp`に使用例を収録した。
 
 ## 検証
 

@@ -58,16 +58,16 @@ O(M(n))。upper_binomial_transform(a,c)[k]=sum_{n>=k} C(n,k)a[n]c^(n-k)を返す
 ## 実在問題での使用例
 
 [FPS 24題 H - ジャンプ](https://atcoder.jp/contests/fps-24/tasks/fps_24_h)で、原点移動を許した
-操作列から禁止した操作列への包除変換に使える。judge ACは未確認。愚直二重和と照合する。
+操作列から禁止した操作列への包除変換に使える。愚直二重和と照合する。
 [FPS 24題 Q - サイコロ](https://atcoder.jp/contests/fps-24/tasks/fps_24_q)では二列の冪和を
 二項畳み込みする。
 
 [AtCoder ABC432 G - Sum of Binom(A, B)](https://atcoder.jp/contests/abc432/tasks/abc432_g)では、
 `a[k]`を値`k`の出現数として`binomial_transform(a, 1)[n]=sum C(n,k)a[k]`を求め、
 もう一方の列の各値で参照する。`verify/atcoder_abc432_g.cpp`で公式sampleを確認済み。
-judge ACは未確認。
+。
 
 [AtCoder ABC409 G - Accumulation of Wealth](https://atcoder.jp/contests/abc409/tasks/abc409_g)では、
 値`k`が初登場する時刻ごとの期待値を`a[n]`へまとめた後、
 `upper_binomial_transform(a, 1-p)`で全ての`k`を一括計算する。
-`verify/atcoder_abc409_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc409_g.cpp`で公式sampleを確認済み。

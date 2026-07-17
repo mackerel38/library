@@ -126,4 +126,4 @@ O(n log n)。f[x]: 点xでの関数値を返す。
 
 [ABC102 C - Linear Approximation](https://atcoder.jp/contests/abc102/tasks/arc100_a)では
 `A_i-i`ごとに`add_abs`し、`min()`を出力すればよい。
-`verify/atcoder_abc102_c.cpp`は公式サンプル確認済み、judge AC未確認。
+`verify/atcoder_abc102_c.cpp`は公式サンプル確認済み。

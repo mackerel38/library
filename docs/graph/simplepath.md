@@ -25,7 +25,7 @@ documentation_of: //cp/graph/simplepath.hpp
 
 この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。
 
-### `requires`
+### `simple_path_length_counts`
 
 ```cpp
 template<undirected_graph_type Graph> requires (!Graph::is_weighted) std::vector<long long> simple_path_length_counts( const Graph& graph, int source, int sink )
@@ -45,4 +45,4 @@ auto count = poe::simple_path_length_counts(graph, 0, n - 1);
 for (int length = 1; length < n; ++length) cout << count[length] << ' ';
 ```
 
-`verify/atcoder_abc419_g.cpp`で公式3 sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc419_g.cpp`で公式3 sampleを確認済み。

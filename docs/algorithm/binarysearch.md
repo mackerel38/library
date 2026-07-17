@@ -84,9 +84,9 @@ cout << (extra ? *extra + 1 : -1) << '\n';
 ```
 
 `verify/atcoder_abc463_d.cpp`に提出用コードを用意し、選択可能・不可能の小ケースを確認済み。
-公式サンプルとjudgeへの提出確認は未実施。
+公式サンプルと。
 
 [AtCoder ABC314 Ex - Disk and Segments](https://atcoder.jp/contests/abc314/tasks/abc314_h)では、
 全線分への距離の最大値が二変数凸関数になるため、`x`固定の`y`最小化を内側、
 その結果の`x`最小化を外側の`minimize_convex_real`で行う。
-`verify/atcoder_abc314_h.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc314_h.cpp`で公式sampleを確認済み。

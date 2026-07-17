@@ -43,4 +43,4 @@ template <int mod = 998244353> staticmodint<mod> count_nonnegative_weighted_sum_
 ## 実在問題での使用例
 
 [AtCoder ABC436 G - Linear Inequation](https://atcoder.jp/contests/abc436/tasks/abc436_g)へ直接使える。
-`verify/atcoder_abc436_g.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc436_g.cpp`は公式サンプル一致を確認済み。

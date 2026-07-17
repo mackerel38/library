@@ -110,5 +110,5 @@ int answer = minimum_connected_grid_completion(required_masks, width);
 `O(R S 2^W W^2 log S)`時間が目安。`W<63`だが、実用上は一桁程度を想定する。
 
 [AtCoder ABC296 Ex - Unite](https://atcoder.jp/contests/abc296/tasks/abc296_h)で直接使える。
-`verify/atcoder_abc296_h.cpp`で公式sample 3件を確認済み。judge ACは未確認。
+`verify/atcoder_abc296_h.cpp`で公式sample 3件を確認済み。
 `tests/property/dp/connectgrid.cpp`では4x4以下の全superset連結判定と比較する。

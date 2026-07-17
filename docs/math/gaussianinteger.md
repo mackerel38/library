@@ -76,4 +76,4 @@ O(1)。各成分を[0,modulus)へ正規化する。
 
 [AtCoder ABC444 G - Kyoen](https://atcoder.jp/contests/abc444/tasks/abc444_g)では、
 `p=x^2+y^2`を`(x+yi)(x-yi)`へ分解し、法`C`で積の分布を追跡する。
-`verify/atcoder_abc444_g.cpp`で使用する。judge ACは未確認。
+`verify/atcoder_abc444_g.cpp`で使用する。

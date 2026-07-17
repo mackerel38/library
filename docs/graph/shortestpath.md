@@ -265,12 +265,12 @@ else for (int id : result.edge_path(target)) {
 
 [AtCoder ABC431 E - Reflection on Grid](https://atcoder.jp/contests/abc431/tasks/abc431_e)では、
 各マスと出射方向を状態にし、鏡を維持する遷移を0、変更する遷移を1として暗黙graph版を使う。
-`verify/atcoder_abc431_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc431_e.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC429 E - Hit and Away](https://atcoder.jp/contests/abc429/tasks/abc429_e)では、
 各危険頂点に近い異なる安全頂点2個への距離和を求める。
-`verify/atcoder_abc429_e.cpp`で公式sample 2件を確認済み。judge ACは未確認。
+`verify/atcoder_abc429_e.cpp`で公式sample 2件を確認済み。
 
 [AtCoder ABC424 C - New Skill Acquired](https://atcoder.jp/contests/abc424/tasks/abc424_c)では、
 前提skillから新skillへの有向辺を張り、仮想skill 0からの`bfs`到達頂点を数える。
-`verify/atcoder_abc424_c.cpp`に使用例を収録した。judge未提出。
+`verify/atcoder_abc424_c.cpp`に使用例を収録した。

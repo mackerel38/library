@@ -519,7 +519,7 @@ else std::cout << sets.same(left, right) << '\n';
 `verify/dsu.test.cpp`で2026-07-15に全ケースAC確認済み。
 
 [AOJ DSL_1_B - Weighted Union Find Trees](https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_B)用の
-`verify/aoj_dsl_1_b.cpp`も収録した。judge未提出。
+`verify/aoj_dsl_1_b.cpp`も収録した。
 
 `rollbackdsu`はoffline dynamic connectivityなどの時間分割と組み合わせて使う。
 [Library Checker - Dynamic Graph Vertex Add Component Sum](https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum)
@@ -528,8 +528,8 @@ else std::cout << sets.same(left, right) << '\n';
 [AtCoder ABC302 Ex - Ball Collector](https://atcoder.jp/contests/abc302/tasks/abc302_h)では、
 `score(vertices, edges)=min(vertices, edges)`を使い、根から各頂点へのpathに対応する辺集合を
 `root_path_rollback`で追加・取消する。`verify/atcoder_abc302_h.cpp`で公式sample 2件を確認済み。
-judge ACは未確認。
+。
 
 [AtCoder ABC451 F - Make Bipartite 3](https://atcoder.jp/contests/abc451/tasks/abc451_f)は
 各辺を`merge(u,v,1)`するだけで解ける。`verify/atcoder_abc451_f.cpp`で公式sampleを確認済み。
-judge ACは未確認。
+。

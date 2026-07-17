@@ -62,7 +62,7 @@ O(n^4)。重み0/1の一般無向グラフで完全matchingの最小重みを高
 
 [AtCoder ABC412 G - Degree Harmony](https://atcoder.jp/contests/abc412/tasks/abc412_g)では、
 頂点`i`を`A[i]`個に複製し、同じ元頂点間を重み0、元グラフの辺に対応する複製間を重み1で結ぶ。
-`verify/atcoder_abc412_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc412_g.cpp`で公式sampleを確認済み。
 
 ## 検証
 

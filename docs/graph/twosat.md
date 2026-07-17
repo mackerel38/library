@@ -128,4 +128,4 @@ if (!sat.satisfiable()) std::cout << "s UNSATISFIABLE\n";
 else for (bool value : sat.answer()) std::cout << value << ' ';
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

@@ -21,6 +21,13 @@ int main() {
     difference2d.build();
     assert(difference2d(2, 3) == 7);
 
+    poe::differencearray2d<int> initialized2d({{1, 2, 3}, {4, 5, 6}});
+    assert(initialized2d(1, 2) == 6);
+    initialized2d.add(0, 1, 2, 3, 10);
+    initialized2d.build();
+    assert(initialized2d.values()
+           == std::vector<std::vector<int>>({{1, 12, 13}, {4, 15, 16}}));
+
     poe::prefixsum<long long> sums({2, 5, -1, 4});
     assert(sums.size() == 4);
     assert(sums[2] == -1);

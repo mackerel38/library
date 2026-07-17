@@ -68,4 +68,4 @@ cout << result.first << ' ' << result.second << '\n';
 ```
 
 `verify/closest_pair.test.cpp`に提出用コードを用意している。property testでは愚直全点対との
-乱択照合を行っているが、judgeへの提出確認は未実施。
+乱択照合を行っているが。

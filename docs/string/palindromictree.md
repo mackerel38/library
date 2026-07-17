@@ -214,7 +214,7 @@ O(1)。元の列長を返す。
 
 [AtCoder ABC320 B - Longest Palindrome](https://atcoder.jp/contests/abc320/tasks/abc320_b)は、
 `longest_palindrome().length()`で答えられる。
-`verify/atcoder_abc320_b.cpp`を収録した。judge未提出。
+`verify/atcoder_abc320_b.cpp`を収録した。
 
 ## 検証
 

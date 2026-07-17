@@ -97,4 +97,4 @@ else for (int from = 0; from < n; ++from)
         if (result.reachable(from, to)) std::cout << result(from, to) << ' ';
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

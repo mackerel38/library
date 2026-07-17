@@ -74,7 +74,7 @@ O(1)。辺edge_idがその重み以下の部分グラフで不可欠な橋なら
 
 [AtCoder ABC301 Ex - Difference of Distance](https://atcoder.jp/contests/abc301/tasks/abc301_h)では、
 各queryを`sensitivity.increases(edge, source, target)`だけで処理する。
-`verify/atcoder_abc301_h.cpp`で公式sample 2件を確認済み。judge ACは未確認。
+`verify/atcoder_abc301_h.cpp`で公式sample 2件を確認済み。
 
 ## 検証
 

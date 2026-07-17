@@ -106,4 +106,4 @@ O(1)。left*right: rightの後にleftを適用する合成変換を返す。
 ## 実在問題での使用例
 
 [ABC189 E - Rotate and Flip](https://atcoder.jp/contests/abc189/tasks/abc189_e)の4種類の操作を直接表せる。
-verifyコードを用意し、サンプル確認済み・judge ACは未確認。
+verifyコードを用意し、サンプル確認済み・。

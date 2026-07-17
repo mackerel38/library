@@ -36,4 +36,4 @@ template <class T> T sum_cross_absolute(std::vector<T> left, const std::vector<T
 ## 実在問題での使用例
 
 [AtCoder ABC437 D - Sum of Differences](https://atcoder.jp/contests/abc437/tasks/abc437_d)の
-全組絶対差を直接計算できる。`verify/atcoder_abc437_d.cpp`は公式サンプル一致、judge未提出。
+全組絶対差を直接計算できる。`verify/atcoder_abc437_d.cpp`は公式サンプル一致。

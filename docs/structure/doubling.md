@@ -112,4 +112,4 @@ O(log step)。startからstep回進んだ到着頂点と、通過順に畳み込
 
 [AtCoder ABC438 E - Heavy Buckets](https://atcoder.jp/contests/abc438/tasks/abc438_e)では、
 人の移動を`next`、現在の人番号を一回分の`weight`として水量を集約する。
-`verify/atcoder_abc438_e.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc438_e.cpp`は公式サンプル一致を確認済み。

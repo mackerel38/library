@@ -117,7 +117,7 @@ O(log^2 n)。fromからtoへのpathに含まれる辺の値の総和を返す。
 ## 実在問題での使用例
 
 [AtCoder ABC294 G - Distance Queries on a Tree](https://atcoder.jp/contests/abc294/tasks/abc294_g)へ直接使える。
-`verify/atcoder_abc294_g.cpp`で公式sample 1から3を確認済み。judge ACは未確認。
+`verify/atcoder_abc294_g.cpp`で公式sample 1から3を確認済み。
 
 ## 検証
 

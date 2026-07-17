@@ -123,4 +123,4 @@ O(1)。全操作列の実行結果を返す。
 
 [AtCoder ABC434 G - Keyboard](https://atcoder.jp/contests/abc434/tasks/abc434_g)では、
 数字をpush、`B`をpopとしてそのまま使える。`verify/atcoder_abc434_g.cpp`で公式sampleを確認済み。
-judge ACは未確認。
+。

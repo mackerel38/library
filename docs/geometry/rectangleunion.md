@@ -100,8 +100,8 @@ O(n log n)。半開軸平行長方形群の和集合面積を返す。
 
 [AtCoder ABC449 F - Grid Clipping](https://atcoder.jp/contests/abc449/tasks/abc449_f)では、
 各黒マスを含む配置左上座標の長方形を作り、全配置数からそのunion areaを引く。
-`verify/atcoder_abc449_f.cpp`に提出用コードを用意し、公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc449_f.cpp`に提出用コードを用意し、公式sampleを確認済み。
 
 [AtCoder ABC432 D - Suddenly, A Tempest](https://atcoder.jp/contests/abc432/tasks/abc432_d)では、
 各変換で長方形を境界分割して平行移動し、最後に辺接触する長方形をDSUで併合する。
-`verify/atcoder_abc432_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc432_d.cpp`で公式sampleを確認済み。

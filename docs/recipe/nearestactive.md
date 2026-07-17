@@ -33,7 +33,7 @@ if (answer) cout << answer->vertex << ' ' << answer->distance << '\n';
 - `add` / `remove`: 有効化・無効化。状態が変わったなら`true`。
 - `set(vertex, enabled)`: 指定状態へ変更。
 - `toggle`: 状態を反転し、反転後の状態を返す。
-- `nearest`: 最寄り頂点と距離。距離が同じなら頂点番号が小さいもの。
+- `nearest`: 最寄り頂点と距離。距離が同じなら頂点番号が小さいも。
 - `distance`: 距離だけを返す。
 - `operator[]`: 現在の有効状態。
 
@@ -144,7 +144,7 @@ O(1)。頂点数を返す。
 
 [Codeforces 342E - Xenia and Tree](https://codeforces.com/problemset/problem/342/E)は、
 頂点の有効化と最寄り有効頂点までの距離queryを処理する代表問題である。
-`verify/codeforces_342_e.cpp`を収録した。judge未提出。
+`verify/codeforces_342_e.cpp`を収録した。
 
 ABC299 Eも「黒頂点までの最小距離」を扱うが、一般グラフ上で全queryがofflineな構成問題なので、
 この動的木recipeを使う問題ではない。

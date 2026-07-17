@@ -25,7 +25,7 @@ auto count = count_permutations_max_drop<998244353>(values, maximum_drop);
 `O(n log n)`時間、`O(n)`領域。`maximum_drop`は非負、`n < modulus`が必要。
 
 [AtCoder ABC431 F - Almost Sorted 2](https://atcoder.jp/contests/abc431/tasks/abc431_f)へ直接使える。
-`verify/atcoder_abc431_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc431_f.cpp`で公式sampleを確認済み。
 
 ## 1回swap後の列を辞書順に並べる
 
@@ -44,7 +44,7 @@ auto pairs = one_swap_lexicographic_pairs(values, ranks);
 `[0,n(n-1)/2)`でなければならない。
 
 [AtCoder ABC431 G - One Time Swap 2](https://atcoder.jp/contests/abc431/tasks/abc431_g)へ直接使える。
-`verify/atcoder_abc431_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc431_g.cpp`で公式sampleを確認済み。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -93,7 +93,7 @@ O(n)。隣接value間だけに前後制約がある順列で、各valueの可能
 - [AtCoder ABC431 G - One Time Swap 2](https://atcoder.jp/contests/abc431/tasks/abc431_g):
   query順位を0-indexedへ直して`one_swap_lexicographic_pairs`へ一括して渡す。
 
-どちらも公式sample確認済みで、judge ACは未確認。
+どちらも公式sample確認済みで。
 
 ## 有向path制約下の可能位置
 
@@ -110,7 +110,7 @@ auto result = path_order_positions(directions, [](char c) { return c == 'R'; });
 一般DAGの順序制約には使えない。
 
 [AtCoder ABC430 F - Back and Forth Filling](https://atcoder.jp/contests/abc430/tasks/abc430_f)へ直接使える。
-`verify/atcoder_abc430_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc430_f.cpp`で公式sampleを確認済み。
 
 ## 検証
 

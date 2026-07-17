@@ -123,4 +123,4 @@ O(1)。空ならtrueを返す。
 [AtCoder ABC435 G - Domino Arrangement](https://atcoder.jp/contests/abc435/tasks/abc435_g)では、
 各色に対応するDP値を、偶奇別の`affinemap`で管理する。二つ前の状態から全値を
 `x -> S-x`へ変換し、使用可能区間へ出入りする色だけを追加・削除することで全体`O((N+M)log M)`となる。
-`verify/atcoder_abc435_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc435_g.cpp`で公式sampleを確認済み。

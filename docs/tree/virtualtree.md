@@ -133,7 +133,7 @@ O(log n)。元の木における二頂点間の辺数を返す。
 
 [AtCoder ABC359 G - Sum of Tree Distance](https://atcoder.jp/contests/abc359/tasks/abc359_g)では、
 値が同じ頂点ごとにvirtual treeを作り、圧縮辺をまたぐ同色頂点対の個数を掛けて距離和を求める。
-`verify/atcoder_abc359_g.cpp`を収録した。judge未提出。
+`verify/atcoder_abc359_g.cpp`を収録した。
 
 ## 検証
 

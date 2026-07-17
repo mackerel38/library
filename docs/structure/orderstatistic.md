@@ -160,10 +160,10 @@ O(1)。全要素の総和を返す。
 [AtCoder ABC440 F - Egoism](https://atcoder.jp/contests/abc440/tasks/abc440_f)では、
 全体と丁寧さ2の馬の二つのmultisetを管理する。必要個数の最小和と、条件を満たさない場合の
 境界要素交換を`sum_smallest`と`kth`で計算できる。
-`verify/atcoder_abc440_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc440_f.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC432 E - Clamp](https://atcoder.jp/contests/abc432/tasks/abc432_e)では、
 一点更新を`erase`と`add`で処理し、各queryを`clamp_sum(l, r)`で直接求める。
-`verify/atcoder_abc432_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc432_e.cpp`で公式sampleを確認済み。
 
 property testでは`std::multiset`をソートした愚直列と各操作を照合している。

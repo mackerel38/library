@@ -131,7 +131,7 @@ O(1)。table.prod(left, right)で非空な[left, right)の積を返す。
 ## 実在問題での使用例
 
 - [Library Checker - Static RMQ](https://judge.yosupo.jp/problem/staticrmq):
-  `sparsetable`のverifyコードを収録。judge未提出。
+  `sparsetable`のverifyコードを収録。
 - [Library Checker - Static Range Composite](https://judge.yosupo.jp/problem/static_range_composite):
   `disjointsparsetable`を使える代表問題。verifyコードは未作成。
 
@@ -139,4 +139,4 @@ O(1)。table.prod(left, right)で非空な[left, right)の積を返す。
 
 - `tests/api/structure/sparsetable.cpp`: 両構造の公開API
 - `tests/property/structure/sparsetable.cpp`: `min`と非可換な文字列連結を愚直計算と比較
-- `verify/librarychecker_staticrmq.cpp`: 公開問題用コード。judge未提出
+- `verify/librarychecker_staticrmq.cpp`: 公開問題用コード。

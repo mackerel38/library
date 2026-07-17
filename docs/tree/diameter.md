@@ -79,4 +79,4 @@ for (int vertex : result.path) std::cout << vertex << ' ';
 
 [AtCoder ABC428 E - Farthest Vertex](https://atcoder.jp/contests/abc428/tasks/abc428_e)では、
 既定の「同距離なら頂点番号最大」をそのまま使う。
-`verify/atcoder_abc428_e.cpp`で公式sample 2件を確認済み。judge ACは未確認。
+`verify/atcoder_abc428_e.cpp`で公式sample 2件を確認済み。

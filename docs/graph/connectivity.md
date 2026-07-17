@@ -117,4 +117,4 @@ for (auto [u, v] : queries) std::cout << (component[u] == component[v]) << '\n';
 
 [AtCoder ABC434 E - Distribute Bunnies](https://atcoder.jp/contests/abc434/tasks/abc434_e)では、
 各ウサギの二つの移動先を無向辺とみなす。各成分の最大相異移動先数は頂点数と辺数の小さい方なので、
-`groups`と`edge_count`から集計できる。`verify/atcoder_abc434_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+`groups`と`edge_count`から集計できる。`verify/atcoder_abc434_e.cpp`で公式sampleを確認済み。

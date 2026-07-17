@@ -49,6 +49,6 @@ O(n log n+x log x)。valuesからpicks個重複選択した多重集合和を大
 
 [AtCoder ABC440 E - Cookies](https://atcoder.jp/contests/abc440/tasks/abc440_e)は、
 クッキー種類ごとの美味しさを`values`としてそのまま利用できる。
-`verify/atcoder_abc440_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc440_e.cpp`で公式sampleを確認済み。
 
 property testでは小さな入力の全多重集合列挙と、重複を含む出力列全体を比較している。

@@ -61,7 +61,7 @@ O((n+q)log n)頂点辺構築後Dijkstra。区間間のcost+座標距離遷移に
 
 [AtCoder ABC414 G - AtCoder Express 4](https://atcoder.jp/contests/abc414/tasks/abc414_g)では、
 乗車区間、降車区間、初乗り運賃をそのまま遷移へ渡す。
-`verify/atcoder_abc414_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc414_g.cpp`で公式sampleを確認済み。
 
 ## 検証
 

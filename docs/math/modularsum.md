@@ -45,7 +45,7 @@ O(log(n+m+a+b+mod))。sum base^((a*i+b) mod m), 0<=i<nをmodで返す。
 ## 実在問題での使用例
 
 [AtCoder ABC429 G - Sum of Pow of Mod of Linear](https://atcoder.jp/contests/abc429/tasks/abc429_g)へ
-直接使う。`verify/atcoder_abc429_g.cpp`に収録し、公式sample確認済み。judge ACは未確認。
+直接使う。`verify/atcoder_abc429_g.cpp`に収録し、公式sample確認済み。
 
 ## 検証
 

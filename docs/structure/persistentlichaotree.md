@@ -111,5 +111,5 @@ O(count)。node再確保を減らすため領域を予約する。
 
 [AtCoder ABC448 G - Conquest](https://atcoder.jp/contests/abc448/tasks/abc448_g)の公式解説にある別解では、
 prefix・suffixの永続動的Li Chao Treeにより、一本だけ除いた上包絡線を評価する。
-問題全体にはさらに零和ゲームの小次元LPが必要なため、本ヘッダ単独のjudge ACは未確認。
+問題全体にはさらに零和ゲームの小次元LPが必要なため、本ヘッダ単独。
 API testと各versionの全直線走査との固定seed比較を行う。

@@ -166,4 +166,4 @@ for (const auto& segment : tree.path(from, to)) {
 
 [AtCoder ABC460 G - Vertex Flip Query](https://atcoder.jp/contests/abc460/tasks/abc460_g)では、
 HLD区間上のFenwick Treeで同色祖先区間の上端を探し、木上区間加算・一点取得を行う。
-`verify/atcoder_abc460_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc460_g.cpp`で公式sampleを確認済み。

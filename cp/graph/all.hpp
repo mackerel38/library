@@ -13,6 +13,7 @@
 #include "graph/incrementalreachability.hpp"
 #include "graph/lowlink.hpp"
 #include "graph/matching.hpp"
+#include "graph/matrixgraph.hpp"
 #include "graph/maximumclique.hpp"
 #include "graph/maximumcut.hpp"
 #include "graph/minimumspanningtree.hpp"

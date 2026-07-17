@@ -46,4 +46,4 @@ template <class T, std::ranges::input_range Patterns, std::integral Symbol> T co
 
 [ABC458 F - Critical Misread](https://atcoder.jp/contests/abc458/tasks/abc458_f)では、
 英小文字alphabetと入力patternをそのまま渡せる。
-`verify/atcoder_abc458_f.cpp`で公式sample一致を確認している。judge ACは未確認。
+`verify/atcoder_abc458_f.cpp`で公式sample一致を確認している。

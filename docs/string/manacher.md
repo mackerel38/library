@@ -66,4 +66,4 @@ for (int center = 0; center < static_cast<int>(text.size()); ++center) {
 }
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

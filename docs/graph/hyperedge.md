@@ -56,4 +56,4 @@ template <graph_type Graph> std::vector<int> bfs_with_hyperedges(const Graph& gr
 
 [AtCoder ABC436 D - Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)では、
 同じ英小文字のマスを一つのグループにする。
-`verify/atcoder_abc436_d.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc436_d.cpp`は公式サンプル一致を確認済み。

@@ -83,4 +83,4 @@ O(1)。保持している相異なる状態数を返す。
 
 [AtCoder ABC444 G - Kyoen](https://atcoder.jp/contests/abc444/tasks/abc444_g)では、
 法`C`のガウス整数環における素数の冪を周期化し、最大`10^18`の指数分布を数える。
-`verify/atcoder_abc444_g.cpp`で使用する。judge ACは未確認。
+`verify/atcoder_abc444_g.cpp`で使用する。

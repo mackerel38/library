@@ -112,4 +112,4 @@ O(1)。点を昇順に保持するsetを返す。
 
 [AtCoder ABC430 D - Neighbor Distance](https://atcoder.jp/contests/abc430/tasks/abc430_d)では、
 最初に座標`0`を追加し、各入力座標の`add`後に`sum()`を出力する。
-`verify/atcoder_abc430_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc430_d.cpp`で公式sampleを確認済み。

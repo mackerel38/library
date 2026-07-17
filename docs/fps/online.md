@@ -90,8 +90,8 @@ O(M(n) log n)。convolution_recurrence(source,kernel): f=source+f*kernel、kerne
 ## 実在問題での使用例
 
 [FPS 24題 J - スゴロク](https://atcoder.jp/contests/fps-24/tasks/fps_24_j)の、禁止マスで到達確率を
-0へ確定するDPに使える。judge ACは未確認。愚直`O(n^2)`DPとのproperty testを行う。
+0へ確定するDPに使える。愚直`O(n^2)`DPとのproperty testを行う。
 
 [AtCoder ABC315 Ex - Typical Convolution Problem](https://atcoder.jp/contests/abc315/tasks/abc315_h)では、
 `append(F[n], F[n])`で自己畳み込みの次係数を受け取り、そのprefix和から次の`F`を決める。
-`verify/atcoder_abc315_h.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc315_h.cpp`で公式sampleを確認済み。

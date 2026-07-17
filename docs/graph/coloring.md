@@ -61,7 +61,7 @@ O(m^2 1.59^m)程度。30辺以下の単純無向graphのK彩色数を返す。
 ## 実在問題での使用例
 
 [AtCoder ABC294 Ex - K-Coloring](https://atcoder.jp/contests/abc294/tasks/abc294_h)へ直接使える。
-`verify/atcoder_abc294_h.cpp`で公式sample 5件を確認済み。judge ACは未確認。
+`verify/atcoder_abc294_h.cpp`で公式sample 5件を確認済み。
 
 ## 検証
 

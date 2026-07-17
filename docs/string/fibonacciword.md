@@ -76,4 +76,4 @@ O(log max_length)。十分大きいS_iの0-indexed position文字目を返す。
 
 [AtCoder ABC450 E - Fibonacci String](https://atcoder.jp/contests/abc450/tasks/abc450_e)では、
 `fibonacciword(X,Y,10^18)`を作り、各queryを`count(C,L-1,R)`で処理できる。
-`verify/atcoder_abc450_e.cpp`に提出用コードを用意し、公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc450_e.cpp`に提出用コードを用意し、公式sampleを確認済み。

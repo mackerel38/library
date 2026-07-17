@@ -48,4 +48,4 @@ long long answer = 1LL * text.size() * (text.size() + 1) / 2;
 answer -= std::accumulate(lcp.begin(), lcp.end(), 0LL);
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

@@ -200,15 +200,15 @@ O(LR^3)時間・O(LR^2)領域。要求次数を割当て可能な右頂点部分
 
 [AtCoder ABC091 C - 2D Plane 2N Points](https://atcoder.jp/contests/abc091/tasks/arc092_a)では、
 条件を満たす赤点と青点の間に辺を張り、最大matchingの大きさを答える。
-`verify/atcoder_abc091_c.cpp`を収録した。judge未提出。
+`verify/atcoder_abc091_c.cpp`を収録した。
 
 [AtCoder ABC461 G - Graph Problem 2026](https://atcoder.jp/contests/abc461/tasks/abc461_g)では、
 元の各頂点を左右に複製した二部グラフの最大独立集合サイズを使う。
-`verify/atcoder_abc461_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc461_g.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC424 G - Set list](https://atcoder.jp/contests/abc424/tasks/abc424_g)では、
 アイドルを左頂点、選択候補の曲を右頂点として`max_bipartite_degree_reward`を使う。
-`verify/atcoder_abc424_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc424_g.cpp`で公式sampleを確認済み。
 
 ## 検証
 

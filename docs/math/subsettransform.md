@@ -144,5 +144,5 @@ poe::subset_zeta(count);
 cout << divisibility_match_counts(y, periods)[m] << '\n';
 ```
 
-`verify/atcoder_abc423_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc423_f.cpp`で公式sampleを確認済み。
 小さい整数範囲を直接走査するproperty testも実施済み。

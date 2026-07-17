@@ -116,4 +116,4 @@ void suffix_max(long long slope, long long new_left)
 
 [ABC458 G - Children Yearn for the Evil Kindergarten](https://atcoder.jp/contests/abc458/tasks/abc458_g)の
 人数別最大メダルDPをこの列として持てる。`verify/atcoder_abc458_g.cpp`で公式sample一致を確認している。
-judge ACは未確認。
+。

@@ -147,7 +147,7 @@ O(hw)。上下左右4近傍で同期単調activationを行う。
 
 [AtCoder ABC425 D - Ulam-Warburton Automaton](https://atcoder.jp/contests/abc425/tasks/abc425_d)では、
 初期黒マスを有効とし、有効な4近傍がちょうど一つの白マスを一斉に有効化する。
-`verify/atcoder_abc425_d.cpp`で公式sample 3件一致、judge未提出。
+`verify/atcoder_abc425_d.cpp`で公式sample 3件一致。
 
 API testではpath graphのthreshold activationを確認し、property testでは小gridの全盤面について
 毎回全マスを走査する同期愚直法と照合する。

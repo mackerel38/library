@@ -146,8 +146,8 @@ O(n bits)。i<jかつvalues[i] xor values[j]<=limitとなる組数を返す。
 
 [AtCoder ABC451 G - Minimum XOR Walk](https://atcoder.jp/contests/abc451/tasks/abc451_g)では、
 閉路XORの線形基底で各頂点の木path XORを最小化した後、頂点対を本関数で数える。
-`verify/atcoder_abc451_g.cpp`に提出用コードを用意し、公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc451_g.cpp`に提出用コードを用意し、公式sampleを確認済み。
 
 [AtCoder ABC425 G - Sum of Min of XOR](https://atcoder.jp/contests/abc425/tasks/abc425_g)では、
 `sum_min_xor(values,M)`で`0<=x<M`の最近傍XOR距離をまとめて求める。
-`verify/atcoder_abc425_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc425_g.cpp`で公式sampleを確認済み。

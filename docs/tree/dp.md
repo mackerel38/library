@@ -51,4 +51,4 @@ mergeは結合則とidentityを持ち、add_edge(child_value, parent_to_child_ed
 ## 実在問題での使用例
 
 [EDPC P - Independent Set](https://atcoder.jp/contests/dp/tasks/dp_p)へ直接使える。
-`verify/atcoder_dp_p.cpp`は公式サンプル確認済み、judge AC未確認。
+`verify/atcoder_dp_p.cpp`は公式サンプル確認済み。

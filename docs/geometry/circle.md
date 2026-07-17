@@ -54,4 +54,4 @@ template<class T> circle minimum_enclosing_circle(std::vector<point<T>> points)
 ## 実在問題での使用例
 
 [ABC151 F - Enclose All](https://atcoder.jp/contests/abc151/tasks/abc151_f)は返された半径を出力すればよい。
-verifyコードを用意し、サンプル確認済み・judge ACは未確認。
+verifyコードを用意し、サンプル確認済み・。

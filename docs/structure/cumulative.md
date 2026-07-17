@@ -61,4 +61,4 @@ auto latest = multidimensional_cumulative(
 ```
 
 `verify/atcoder_abc464_e.cpp`に提出用コードを用意し、公式サンプル1との一致を確認済み。
-judgeへの提出確認は未実施。
+。

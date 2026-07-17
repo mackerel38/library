@@ -20,8 +20,13 @@ int main() {
 
     for (int trial = 0; trial < 200; ++trial) {
         const int height = 1 + random() % 12, width = 1 + random() % 12;
-        poe::differencearray2d<int> difference(height, width);
-        std::vector brute(height, std::vector<int>(width));
+        std::vector initial(height, std::vector<int>(width));
+        for (auto& row : initial) {
+            for (int& value : row) value = static_cast<int>(random() % 21) - 10;
+        }
+        poe::differencearray2d<int> difference(initial);
+        std::vector brute = initial;
+        assert(difference.values() == initial);
         for (int query = 0; query < 80; ++query) {
             int top = random() % (height + 1), bottom = random() % (height + 1);
             int left = random() % (width + 1), right = random() % (width + 1);
