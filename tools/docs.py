@@ -11,7 +11,6 @@ import os
 import re
 import shutil
 import sys
-import tempfile
 from pathlib import Path
 
 
@@ -213,100 +212,90 @@ def check() -> int:
 
 
 def build(jobs: int) -> int:
-    """公開対象だけをstagingし、oj-verify形式のMarkdownを生成する。"""
+    """repository上の公開対象からoj-verify形式のMarkdownを生成する。"""
     if check() != 0:
         return 1
 
-    with tempfile.TemporaryDirectory(prefix="poe-docs-") as temporary:
-        staging = Path(temporary)
-        # `verify/*.cpp`は本repo独自の提出用命名で、oj-verifyが要求する
-        # `*.test.cpp`ではない。含めても検証結果にならず生成だけ重くなるため除外する。
-        for directory in ("cp", "docs"):
-            shutil.copytree(ROOT / directory, staging / directory)
-        for filename in ("README.md", "library.json"):
-            shutil.copy2(ROOT / filename, staging / filename)
+    # pipxで導入されたoj-verifyのmoduleを、その実行fileと同じvenvから読む。
+    executable = shutil.which("oj-verify")
+    if executable is None:
+        raise RuntimeError("`oj-verify` is not installed")
+    environment = Path(executable).resolve().parents[1]
+    for site_packages in (environment / "lib").glob("python*/site-packages"):
+        sys.path.insert(0, str(site_packages))
+    import onlinejudge_verify.documentation.configure as configure
+    import onlinejudge_verify.documentation.main as documentation
+    import onlinejudge_verify.languages.cplusplus as cplusplus
+    import onlinejudge_verify.languages.list as language_list
+    import onlinejudge_verify.utils as verify_utils
 
-        helper = staging / ".verify-helper"
-        helper.mkdir()
-        shutil.copytree(ROOT / ".verify-helper" / "docs", helper / "docs")
-        shutil.copy2(ROOT / ".verify-helper" / "config.toml", helper / "config.toml")
-        for filename in ("timestamps.json", "timestamps.local.json"):
-            source = ROOT / ".verify-helper" / filename
-            if source.exists():
-                shutil.copy2(source, helper / filename)
+    cpp_language = language_list.get(Path("library.hpp"))
+    assert isinstance(cpp_language, cplusplus.CPlusPlusLanguage)
+    original_bundle = cpp_language.bundle
 
-        previous = Path.cwd()
-        os.chdir(staging)
-        try:
-            # pipxで導入されたoj-verifyのmoduleを、その実行fileと同じvenvから読む。
-            executable = shutil.which("oj-verify")
-            if executable is None:
-                raise RuntimeError("`oj-verify` is not installed")
-            environment = Path(executable).resolve().parents[1]
-            for site_packages in (environment / "lib").glob("python*/site-packages"):
-                sys.path.insert(0, str(site_packages))
-            import onlinejudge_verify.documentation.configure as configure
-            import onlinejudge_verify.documentation.main as documentation
-            import onlinejudge_verify.languages.cplusplus as cplusplus
-            import onlinejudge_verify.languages.list as language_list
-            import onlinejudge_verify.utils as verify_utils
+    def bundle_from_cp_root(path, *, basedir=Path.cwd(), options):
+        adjusted = dict(options)
+        adjusted["include_paths"] = [basedir / "cp", basedir]
+        return original_bundle(path, basedir=basedir, options=adjusted)
 
-            cpp_language = language_list.get(Path("library.hpp"))
-            assert isinstance(cpp_language, cplusplus.CPlusPlusLanguage)
-            original_bundle = cpp_language.bundle
+    cpp_language.bundle = bundle_from_cp_root
 
-            def bundle_from_cp_root(path, *, basedir=Path.cwd(), options):
-                adjusted = dict(options)
-                adjusted["include_paths"] = [basedir / "cp", basedir]
-                return original_bundle(path, basedir=basedir, options=adjusted)
+    # exclude設定はoj-verifyの依存解析後に適用されるため、解析対象を先にcpへ絞る。
+    # `verify/*.cpp`は提出用命名であり、oj-verifyの`*.test.cpp`ではない。
+    def find_public_source_paths(*, basedir: Path) -> list[Path]:
+        paths: list[Path] = []
+        for path in (basedir / "cp").rglob("*"):
+            if path.is_file() and language_list.get(path) is not None:
+                paths.append(path)
+        return paths
 
-            cpp_language.bundle = bundle_from_cp_root
+    def build_dependency_graph(paths: list[Path], *, basedir: Path):
+        depends_on = {(basedir / path).resolve(): [] for path in paths}
+        required_by = {(basedir / path).resolve(): [] for path in paths}
+        verified_with = {(basedir / path).resolve(): [] for path in paths}
 
-            def build_dependency_graph(paths: list[Path], *, basedir: Path):
-                depends_on = {(basedir / path).resolve(): [] for path in paths}
-                required_by = {(basedir / path).resolve(): [] for path in paths}
-                verified_with = {(basedir / path).resolve(): [] for path in paths}
+        def dependencies(path: Path) -> tuple[Path, list[Path]]:
+            language = language_list.get(path)
+            assert language is not None
+            try:
+                return path, language.list_dependencies(path, basedir=basedir)
+            except Exception as error:
+                logging.getLogger(__name__).exception(
+                    "failed to list dependencies of %s: %s", path, error
+                )
+                return path, []
 
-                def dependencies(path: Path) -> tuple[Path, list[Path]]:
-                    language = language_list.get(path)
-                    assert language is not None
-                    try:
-                        return path, language.list_dependencies(path, basedir=basedir)
-                    except Exception as error:
-                        logging.getLogger(__name__).exception(
-                            "failed to list dependencies of %s: %s", path, error
-                        )
-                        return path, []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as executor:
+            results = executor.map(dependencies, paths)
+            for source, dependencies_of_source in results:
+                absolute_source = (basedir / source).resolve()
+                relative_source = absolute_source.relative_to(basedir)
+                for destination in dependencies_of_source:
+                    absolute_destination = (basedir / destination).resolve()
+                    if absolute_source == absolute_destination:
+                        continue
+                    if absolute_destination not in depends_on:
+                        continue
+                    relative_destination = absolute_destination.relative_to(basedir)
+                    depends_on[absolute_source].append(relative_destination)
+                    if verify_utils.is_verification_file(relative_source, basedir=basedir):
+                        verified_with[absolute_destination].append(relative_source)
+                    else:
+                        required_by[absolute_destination].append(relative_source)
+        return depends_on, required_by, verified_with
 
-                with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as executor:
-                    results = executor.map(dependencies, paths)
-                    for source, dependencies_of_source in results:
-                        absolute_source = (basedir / source).resolve()
-                        relative_source = absolute_source.relative_to(basedir)
-                        for destination in dependencies_of_source:
-                            absolute_destination = (basedir / destination).resolve()
-                            if absolute_source == absolute_destination:
-                                continue
-                            if absolute_destination not in depends_on:
-                                continue
-                            relative_destination = absolute_destination.relative_to(basedir)
-                            depends_on[absolute_source].append(relative_destination)
-                            if verify_utils.is_verification_file(relative_source, basedir=basedir):
-                                verified_with[absolute_destination].append(relative_source)
-                            else:
-                                required_by[absolute_destination].append(relative_source)
-                return depends_on, required_by, verified_with
+    configure._find_source_code_paths = find_public_source_paths
+    configure._build_dependency_graph = build_dependency_graph
 
-            configure._build_dependency_graph = build_dependency_graph
-            documentation.main(jobs=jobs)
-        finally:
-            os.chdir(previous)
-
-        generated = helper / "markdown"
-        destination = ROOT / ".verify-helper" / "markdown"
-        if destination.exists():
-            shutil.rmtree(destination)
-        shutil.copytree(generated, destination)
+    destination = ROOT / ".verify-helper" / "markdown"
+    if destination.exists():
+        shutil.rmtree(destination)
+    previous = Path.cwd()
+    os.chdir(ROOT)
+    try:
+        documentation.main(jobs=jobs)
+    finally:
+        os.chdir(previous)
 
     print(f"PASS docs build: generated {destination}")
     return 0
