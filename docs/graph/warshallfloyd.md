@@ -1,5 +1,5 @@
 ---
-title: "`warshall_floyd`"
+title: "warshall_floyd"
 documentation_of: //cp/graph/warshallfloyd.hpp
 ---
 

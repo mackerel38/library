@@ -1,5 +1,5 @@
 ---
-title: "`flowgraph` / `costflowgraph`"
+title: "flowgraph / costflowgraph"
 documentation_of: //cp/flow/flowgraph.hpp
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "`lowlink` / 二辺連結成分"
+title: "lowlink / 二辺連結成分"
 documentation_of: //cp/graph/lowlink.hpp
 ---
 

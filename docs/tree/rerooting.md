@@ -1,5 +1,5 @@
 ---
-title: "`rerooting`"
+title: "rerooting"
 documentation_of: //cp/tree/rerooting.hpp
 ---
 

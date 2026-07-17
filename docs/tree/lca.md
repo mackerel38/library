@@ -1,5 +1,5 @@
 ---
-title: "`lcatree`"
+title: "lcatree"
 documentation_of: //cp/tree/lca.hpp
 ---
 

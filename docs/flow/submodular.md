@@ -1,5 +1,5 @@
 ---
-title: "`submodular`"
+title: "submodular"
 documentation_of: //cp/flow/submodular.hpp
 ---
 

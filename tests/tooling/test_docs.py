@@ -35,5 +35,27 @@ class LiquidProtectionTest(unittest.TestCase):
             self.assertEqual(plain.read_text(encoding="utf-8"), "no Front Matter\n")
 
 
+class TitleTest(unittest.TestCase):
+    def test_removes_inline_code_markers_from_front_matter_title(self) -> None:
+        self.assertEqual(
+            DOCS_TOOL.title_of("# `modint`\n", "fallback"),
+            "modint",
+        )
+        self.assertEqual(
+            DOCS_TOOL.title_of(
+                "# `directed_graph` / `undirected_graph`\n", "fallback"
+            ),
+            "directed_graph / undirected_graph",
+        )
+
+    def test_custom_static_files_disable_mathjax(self) -> None:
+        mathjax = (
+            REPOSITORY_ROOT
+            / ".verify-helper/docs/static/_includes/mathjax.html"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("MathJax.js", mathjax)
+        self.assertNotIn("text/x-mathjax-config", mathjax)
+
+
 if __name__ == "__main__":
     unittest.main()

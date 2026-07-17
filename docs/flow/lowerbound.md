@@ -1,5 +1,5 @@
 ---
-title: "`lowerboundflow`"
+title: "lowerboundflow"
 documentation_of: //cp/flow/lowerbound.hpp
 ---
 

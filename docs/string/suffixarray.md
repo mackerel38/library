@@ -1,5 +1,5 @@
 ---
-title: "`suffix_array`"
+title: "suffix_array"
 documentation_of: //cp/string/suffixarray.hpp
 ---
 

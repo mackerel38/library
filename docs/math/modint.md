@@ -1,5 +1,5 @@
 ---
-title: "`modint`"
+title: "modint"
 documentation_of: //cp/math/modint.hpp
 ---
 
