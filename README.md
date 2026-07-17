@@ -1,3 +1,5 @@
+このコードは Codex を用いて作成されています。
+
 # poe competitive library
 
 GNU++23 / AtCoder向けのAC-first競技プログラミングライブラリです。
