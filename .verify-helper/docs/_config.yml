@@ -1,0 +1,13 @@
+title: poe competitive library
+description: GNU++23向け競技プログラミングライブラリ
+lang: ja-JP
+show_downloads: false
+exclude:
+  - .agents
+  - .codex
+  - .github
+  - coverage
+  - recipes
+  - tests
+  - tools
+  - .tmp_intervaltest

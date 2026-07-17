@@ -1,0 +1,13 @@
+#pragma once
+#include "algorithm/all.hpp"
+#include "dp/all.hpp"
+#include "flow/all.hpp"
+#include "fps/all.hpp"
+#include "game/all.hpp"
+#include "geometry/all.hpp"
+#include "graph/all.hpp"
+#include "math/all.hpp"
+#include "string/all.hpp"
+#include "structure/all.hpp"
+#include "tree/all.hpp"
+#include "utility/all.hpp"

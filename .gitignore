@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+build/
+_site/
+.verify-helper/markdown/

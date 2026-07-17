@@ -1,0 +1,7 @@
+#pragma once
+#include "geometry/affine.hpp"
+#include "geometry/circle.hpp"
+#include "geometry/closestpair.hpp"
+#include "geometry/point.hpp"
+#include "geometry/polygon.hpp"
+#include "geometry/rectangleunion.hpp"
