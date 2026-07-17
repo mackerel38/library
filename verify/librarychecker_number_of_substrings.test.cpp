@@ -9,8 +9,8 @@ using namespace poe;
 int main() {
     string text;
     cin >> text;
-    const auto suffix_array = suffix_array(text);
-    const auto lcp = lcp_array(text, suffix_array);
+    const auto suffixes = suffix_array(text);
+    const auto lcp = lcp_array(text, suffixes);
     long long answer = 1LL * text.size() * (text.size() + 1) / 2;
     answer -= reduce(lcp.begin(), lcp.end(), 0LL);
     cout << answer << '\n';
