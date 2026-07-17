@@ -5,6 +5,19 @@ documentation_of: //cp/flow/mincost.hpp
 
 # `mincost` / `mincostslope`
 
+## 概要
+
+コスト付き残余グラフの最小費用流と供給需要輸送shortcutを扱う。
+
+## 厳密な定義
+
+- `mincostslope`: O(F(m+n log n))。費用の折れ点をlimitまで返す。各辺の初期費用は非負。
+- `mincost`: O(F(m+n log n))。sourceからsinkへlimitまで流した流量と最小費用を返す。
+- `costtransportedge`: mincost_transportへ渡す有向輸送辺。capacityとcostは非負。
+- `mincosttransportresult`: mincost_transportの結果。feasible()なら全需要を満たしcostが最小費用。
+- `mincost_transport`: O(F(m+n log n))。頂点ごとの供給上限から必須需要へ輸送する最小費用を返す。
+
+
 ## Include
 
 ```cpp

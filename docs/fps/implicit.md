@@ -5,15 +5,18 @@ documentation_of: //cp/fps/implicit.hpp
 
 # FPSの陰関数
 
-- Header: `cp/fps/implicit.hpp`
-- Symbol: `poe::newton_fps`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 未知の形式的冪級数`y`が`F(y)=0`を満たすとき、方程式と`y`に関する形式微分を渡して
 解をNewton法で求める。木の再帰的な構造、合成的クラス、自己参照する母関数を
 問題ごとにNewton更新から書き直さずに済む。
+
+## 厳密な定義
+
+- `newton_fps`: O((E(n)+M(n)) log n)。F(y)=0をNewton法で解き、y mod x^nを返す。 equation(y,n)はpair{F(y), dF/dy(y)}をそれぞれn項返す。constantはF(constant)=0 mod xを満たすこと。
+
+## Include
 
 ```cpp
 #include "fps/implicit.hpp"
@@ -53,4 +56,4 @@ equation(y,n)はpair{F(y), dF/dy(y)}をそれぞれn項返す。constantはF(con
 ## 実在問題での使用例
 
 [FPS 24題 S - 根付き木](https://atcoder.jp/contests/fps-24/tasks/fps_24_s)のtype 1で、
-勝敗条件を満たす根付き木の母関数`A=x exp(T-A)`として使う。verifyコードを用意し。
+勝敗条件を満たす根付き木の母関数`A=x exp(T-A)`として使う。

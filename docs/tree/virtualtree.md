@@ -5,20 +5,16 @@ documentation_of: //cp/tree/virtualtree.hpp
 
 # Virtual Tree
 
-- Status: experimental
-- Header: `cp/tree/virtualtree.hpp`
-- Symbol: `poe::virtualtree<Graph>`, `poe::virtualtreeresult<Distance>`
 
-## Include
-
-```cpp
-#include "tree/virtualtree.hpp"
-```
-
-## できること
+## 概要
 
 元の木から指定した`k`頂点と、それらを結ぶために必要なLCAだけを残した圧縮木を作る。
 同じ色の頂点だけで木DPする場合など、全頂点を色ごとに走査する処理を避けられる。
+
+## 厳密な定義
+
+- `virtualtreeresult`: virtual tree構築結果。local indexから元頂点・親・子・圧縮辺長を取得する。
+- `virtualtree`: 指定頂点と必要なLCAだけの木を作る: virtualtree builder(graph); buildはO(k log k log n)。
 
 ```cpp
 virtualtree compressed_tree(graph, root);
@@ -35,6 +31,12 @@ for (int node = tree.size() - 1; node > 0; --node) {
 `selected`を持つ。`index(original_vertex)`は含まれる元頂点のlocal index、なければ`-1`。
 
 入力頂点は重複してよい。空入力には空木を返す。根のlocal indexは、空でなければ常に`0`。
+
+## Include
+
+```cpp
+#include "tree/virtualtree.hpp"
+```
 
 ## 計算量
 

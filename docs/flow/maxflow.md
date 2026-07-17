@@ -5,6 +5,15 @@ documentation_of: //cp/flow/maxflow.hpp
 
 # `maxflow`
 
+## 概要
+
+Dinic法による最大流と最小カットを扱う。
+
+## 厳密な定義
+
+- `maxflow`: ACL互換の最大流: maxflow<long long> graph(n); 新規コードではflowgraphとdinicも使える。
+
+
 ## Include
 
 ```cpp

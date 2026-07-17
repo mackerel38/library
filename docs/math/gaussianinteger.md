@@ -5,14 +5,19 @@ documentation_of: //cp/math/gaussianinteger.hpp
 
 # ガウス整数
 
-- Header: `cp/math/gaussianinteger.hpp`
-- Symbol: `poe::gaussianinteger<T>`, `poe::gaussian_power`, `poe::gaussian_mod`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `a+bi`を`{a,b}`で持ち、加算・減算・乗算・共役・norm・二分累乗を行う。
 二平方和、格子円、複素数を使う回転、ガウス整数上の素因数分解に使える。
+
+## 厳密な定義
+
+- `gaussianinteger`: ガウス整数・複素数型: gaussianinteger<T>{real, imaginary}; 四則の加減乗算O(1)。
+- `gaussian_power`: O(log exponent)。ガウス整数baseの非負整数乗を返す。
+- `gaussian_mod`: O(1)。各成分を[0,modulus)へ正規化する。
+
+## Include
 
 ```cpp
 #include "math/gaussianinteger.hpp"

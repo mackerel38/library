@@ -5,18 +5,21 @@ documentation_of: //cp/tree/heavyrecursivedp.hpp
 
 # 重軽再帰DP
 
-- Header: `cp/tree/heavyrecursivedp.hpp`
-- Symbol: `poe::heavyrecursivedp`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 通常の木DPでは、各子のDP配列を畳み込むと容量二乗などの重い計算になることがある。
 一方、部分木が「外から受け取った一つの状態を、少数個の状態へ変換する作用」として書けるなら、
 変換を上から順に適用して畳み込みを避けられる。
 
+## 厳密な定義
+
+- `heavyrecursivedp`: O(f(n))。heavyrecursivedp<B>(graph, root, initial, transition, record)で分岐型部分木DPを実行する。 transition(vertex, states)はB個の状態を更新し、record(vertex, states)はinitial始点の各部分木結果を受け取る。
+
 `heavyrecursivedp<Branches>`は最も大きい子部分木への再帰を全branchで共有し、
 他の子だけbranchごとに再計算する重軽再帰DPの制御を担当する。
+
+## Include
 
 ```cpp
 #include "tree/heavyrecursivedp.hpp"

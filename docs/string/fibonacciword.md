@@ -5,14 +5,17 @@ documentation_of: //cp/string/fibonacciword.hpp
 
 # Fibonacci word
 
-- Header: `cp/string/fibonacciword.hpp`
-- Symbol: `poe::fibonacciword`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 二つの非空文字列を`S1`, `S2`とし、`Si=S(i-1)+S(i-2)`で作る巨大文字列のprefixを、
 実体化せずに扱う。文字の区間出現回数と添え字アクセスができる。
+
+## 厳密な定義
+
+- `fibonacciword`: 巨大Fibonacci wordの文字数・添字: fibonacciword word(first,second,max_length)。構築O(256 log max_length)。
+
+## Include
 
 ```cpp
 #include "string/fibonacciword.hpp"

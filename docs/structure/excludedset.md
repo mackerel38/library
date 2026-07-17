@@ -5,14 +5,17 @@ documentation_of: //cp/structure/excludedset.hpp
 
 # 除外整数集合
 
-- Header: `cp/structure/excludedset.hpp`
-- Symbol: `poe::excludedset`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 変更されない有限の整数集合を「使用禁止」とし、ある下限以上で使用可能な整数を
 小さい順に数える問題に使う。禁止集合は構築時にソート・重複除去される。
+
+## 厳密な定義
+
+- `excludedset`: 固定された除外整数集合: excludedset<long long> data(values)。
+
+## Include
 
 ```cpp
 #include "structure/excludedset.hpp"

@@ -5,6 +5,16 @@ documentation_of: //cp/geometry/closestpair.hpp
 
 # 最近点対
 
+## 概要
+
+分割統治による二次元最近点対と元の点番号を扱う。
+
+## 厳密な定義
+
+- `closestpairresult`: 最近点対の結果。first,secondは元の点番号、squared_distanceは距離の二乗。
+- `closest_pair`: O(n log n)。二次元点列の最近点対を元の点番号と距離の二乗付きで返す。
+
+
 ## Include
 
 ```cpp

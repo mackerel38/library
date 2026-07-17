@@ -5,6 +5,19 @@ documentation_of: //cp/dp/subset.hpp
 
 # 集合分割DP
 
+## 概要
+
+重複を除いた全削除順・最小費用集合分割・零和最大分割のbit DPを扱う。
+
+## 厳密な定義
+
+- `count_distinct_deletion_orders`: O(n 2^n)時間・O(2^n)空間。同じ残存列への削除を重複させず、全削除順の個数を返す。
+- `subsetpartitionresult`: 集合分割DPの結果。costが最小費用、groupsが選んだ非空部分集合のbit mask列。
+- `zerosumpartitionresult`: 零和集合分割の結果。groupsは和が0の非空部分集合bit mask列で、個数が最大。
+- `max_zero_sum_partition`: O(n 2^n)時間・O(2^n)空間。全体和が0なら零和部分集合への最大個数分割を復元する。
+- `subset_partition_min`: O(3^n)時間・O(2^n)空間。各非空部分集合の費用から、全要素を分割する最小費用と分割を返す。
+
+
 ## Include
 
 ```cpp
@@ -91,7 +104,7 @@ cout << result.cost << '\n';
 ```
 
 `verify/atcoder_abc187_f.cpp`に提出用コードを用意し、公式サンプル4件との一致を確認済み。
-。
+
 
 ## 重複を除いた全削除順
 
@@ -129,4 +142,3 @@ for (uint64_t group : result.groups) {
 [AtCoder ABC432 F - Candy Redistribution](https://atcoder.jp/contests/abc432/tasks/abc432_f)では、
 各所持数から平均を引いた偏差を最大個数の零和groupへ分けると、最小操作数は
 `n - groups.size()`になる。`verify/atcoder_abc432_f.cpp`で公式sampleの有効な最小解を確認済み。
-。

@@ -612,7 +612,7 @@ O(1)。全要素の和を返す。
 - [Library Checker - Static Range Sum](https://judge.yosupo.jp/problem/static_range_sum):
   `prefixsum<long long>`を使うverifyコードを収録。
 - [AtCoder ABC106 D - AtCoder Express 2](https://atcoder.jp/contests/abc106/tasks/abc106_d):
-  区間の両端を2次元表へ置く`prefixsum2d`の適用例。verifyコードは未作成。
+  区間の両端を2次元表へ置く`prefixsum2d`の適用例。
 - [AtCoder ABC465 F - Sjeltzer?](https://atcoder.jp/contests/abc465/tasks/abc465_f):
   10要素の軸を6本持つ格子へIDを置き、多次元累積和で各queryを`O(6*2^6)`処理する。
 - [AtCoder ABC462 D - Accomplice](https://atcoder.jp/contests/abc462/tasks/abc462_d):

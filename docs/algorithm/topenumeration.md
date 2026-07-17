@@ -5,14 +5,17 @@ documentation_of: //cp/algorithm/topenumeration.hpp
 
 # 上位解列挙
 
-- Header: `cp/algorithm/topenumeration.hpp`
-- Symbol: `poe::top_multiset_sums`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各種類を何回でも選べる値の集合から、ちょうど`picks`個選んだ多重集合の和を
 大きい順に`count`個まで列挙する。異なる種類は値が同じでも区別するため、同じ和も重複して返る。
+
+## 厳密な定義
+
+- `top_multiset_sums`: O(n log n+x log x)。valuesからpicks個重複選択した多重集合和を大きい順にcount個まで返す。
+
+## Include
 
 ```cpp
 #include "algorithm/topenumeration.hpp"

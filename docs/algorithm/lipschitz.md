@@ -5,14 +5,17 @@ documentation_of: //cp/algorithm/lipschitz.hpp
 
 # 離散Lipschitz下包絡
 
-- Header: `cp/algorithm/lipschitz.hpp`
-- Symbol: `poe::lipschitz_minorant`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各位置の上限`upper[i]`を超えず、隣接差の絶対値が`slope`以下となる列のうち、成分ごとに最大の列を返す。
 高さ制限の伝播、傾斜制約付き地形、距離変換`min_j(upper[j]+slope*abs(i-j))`に使える。
+
+## 厳密な定義
+
+- `lipschitz_minorant`: O(n)。upper以下で隣接差の絶対値がslope以下となる最大の列を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/lipschitz.hpp"

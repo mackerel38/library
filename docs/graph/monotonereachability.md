@@ -5,14 +5,17 @@ documentation_of: //cp/graph/monotonereachability.hpp
 
 # 単調に増える到達可能集合
 
-- Header: `cp/graph/monotonereachability.hpp`
-- Symbol: `poe::monotonereachability`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定有向グラフ上で始点だけが追加され、「追加済み始点のどれかからこの頂点へ到達できるか」を
 onlineで答える。すでに到達済みの頂点から辺を再探索しないため、query全体で各辺を高々一度見る。
+
+## 厳密な定義
+
+- `monotonereachability`: 始点追加だけを行う到達可能集合: monotonereachability reached(graph); reached.add_source(source);
+
+## Include
 
 ```cpp
 #include "graph/monotonereachability.hpp"

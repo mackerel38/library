@@ -5,14 +5,17 @@ documentation_of: //cp/tree/rootpath.hpp
 
 # 根から各頂点へのpath rollback
 
-- Header: `cp/tree/rootpath.hpp`
-- Symbol: `poe::root_path_rollback`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 木を一つの根から反復DFSし、根から現在頂点までのpathに対応する状態を全頂点で求める。
 状態型は`snapshot()`と`rollback(snapshot)`を持つ必要がある。
+
+## 厳密な定義
+
+- `root_path_rollback`: O(n+各callback)。stateを追加・rollbackし、根から各頂点へのpath状態を全頂点で評価する。
+
+## Include
 
 ```cpp
 #include "tree/rootpath.hpp"

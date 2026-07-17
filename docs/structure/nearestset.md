@@ -5,9 +5,17 @@ documentation_of: //cp/structure/nearestset.hpp
 
 # 数直線上の最寄り距離総和
 
-- Header: `cp/structure/nearestset.hpp`
-- Symbol: `poe::nearestset<T, Sum>`
-- Status: experimental
+## 概要
+
+数直線上の動的点集合における最寄り別点距離の総和を扱う。
+
+## 厳密な定義
+
+- `nearestset`: 数直線上の点集合: nearestset<long long> points; add/erase O(log n)、sum O(1)。
+
+
+
+## Include
 
 ```cpp
 #include "structure/nearestset.hpp"

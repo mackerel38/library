@@ -5,15 +5,21 @@ documentation_of: //cp/graph/activation.hpp
 
 # 同期単調activation
 
-- Header: `cp/graph/activation.hpp`
-- Symbol: `poe::activationresult`, `poe::synchronous_activation`,
   `poe::gridactivationresult`, `poe::grid_synchronous_activation`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定graphまたはgridで、無効な頂点が条件を満たすと有効になり、一度有効になった頂点は戻らない過程を扱う。
 各ラウンドの開始時点で条件を判定し、条件を満たした頂点を一斉に有効化する。
+
+## 厳密な定義
+
+- `activationresult`: 同期単調activationの結果。roundは初期頂点が0、未到達が-1。
+- `gridactivationresult`: grid同期単調activationの結果。round[row][column]は初期マスが0、未到達が-1。
+- `synchronous_activation`: O(n+m)。各round開始時にcan_activate(vertex,active近傍数)を満たす頂点を一斉に有効化する。
+- `grid_synchronous_activation`: O(hwK)。gridで各round開始時に条件を満たすマスをdirections近傍により一斉有効化する。
+
+## Include
 
 ```cpp
 #include "graph/activation.hpp"

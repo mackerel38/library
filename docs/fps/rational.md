@@ -5,15 +5,24 @@ documentation_of: //cp/fps/rational.hpp
 
 # 有理型母関数
 
-- Header: `cp/fps/rational.hpp`
-- Symbol: `poe::rationalfps`, `poe::rational_sum`, `poe::rational_product`,
   `poe::weightedsumvariable`, `poe::weighted_sum_rational`, `poe::count_weighted_sum`, `poe::power_sums`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 母関数が`P(x)/Q(x)`で表せるとき、複数の有理式の和・積、先頭項展開、非常に遠い一係数を扱う。
 `power_sums(values,n)`は`sum_i 1/(1-values[i]x)`を構築し、各値の0乗から`n-1`乗までの総和を返す。
+
+## 厳密な定義
+
+- `rationalfps`: rationalfps<mod>{p,q}: 有理型母関数p(x)/q(x)を表す。q[0]!=0。
+- `rational_sum`: O(M(S) log k)。rational_sum(terms): 有理式列の和を分割統治で返す。空和は0。
+- `rational_product`: O(M(S) log k)。rational_product(terms): 有理式列の積を分割統治で返す。空積は1。
+- `weightedsumvariable`: weighted_sum_rationalへ渡す変数。weight*xを加え、limit<0ならx>=0、他は0<=x<=limit。
+- `weighted_sum_rational`: O(M(S) log k)。独立な非負整数変数の重み付き和を数える母関数を制約から構築する。
+- `count_weighted_sum`: O(M(S) log k + M(S) log target)。sum weight[i]*x[i]=targetとなる制約付き非負整数組を数える。
+- `power_sums`: O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
+
+## Include
 
 ```cpp
 #include "fps/rational.hpp"
@@ -158,4 +167,4 @@ O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
 - [AtCoder ABC300 Ex - Fibonacci: Revisited](https://atcoder.jp/contests/abc300/tasks/abc300_h):
   K-bonacci母関数のsubmask係数和。
 
-。小次数の直接展開と比較するproperty testを行う。
+小次数の直接展開と比較するproperty testを行う。

@@ -5,6 +5,15 @@ documentation_of: //cp/structure/segtree.hpp
 
 # `segtree`
 
+## 概要
+
+モノイドの一点代入・区間積・境界二分探索を扱う。
+
+## 厳密な定義
+
+- `segtree`: モノイドの区間積を管理する: segtree<S, op, e> seg(values); 各操作O(log n)。
+
+
 ## Include
 
 ```cpp

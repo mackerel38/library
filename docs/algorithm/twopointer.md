@@ -5,17 +5,26 @@ documentation_of: //cp/algorithm/twopointer.hpp
 
 # 尺取り法
 
-- Header: `cp/algorithm/twopointer.hpp`
-- Symbol: `poe::count_subarrays_inversions_at_most`, `poe::count_subarrays_inversions`, `poe::count_subarrays_sum_nonnegative`, `poe::count_subrectangles_sum_nonnegative`, `poe::count_subarrays_frequency_constraints`, `poe::circularthresholdwindow`, `poe::circular_threshold_windows`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 要素が非負整数である列・行列について、和が指定値と一致する空でない連続区間・長方形を数える。
 負の要素がある場合は単調性が壊れるので使えない。
 
+## 厳密な定義
+
+- `count_subarrays_inversions_at_most`: O(n log n)。転倒数がlimit以下である空でない部分配列の個数を返す。
+- `count_subarrays_inversions`: O(n log n)。転倒数がtargetと等しい空でない部分配列の個数を返す。
+- `count_subarrays_sum_nonnegative`: O(n)。非負整数列で和がtargetとなる空でない部分配列の個数を返す。
+- `count_subrectangles_sum_nonnegative`: O(min(h,w)^2 max(h,w))。非負整数行列で和がtargetとなる空でない長方形の個数を返す。
+- `count_subarrays_frequency_constraints`: O(n)。Pをminimum以上、Qをmaximum未満含む空でない部分配列数を返す。minimum,maximum>=1。
+- `circularthresholdwindow`: 円環列の始点から和が閾値以上になる最短区間の長さと和。
+- `circular_threshold_windows`: O(n)。非負円環列の各始点から和がtarget以上になる最短prefixを返す。
+
 値を座標圧縮し、Fenwick treeで区間の転倒数を管理する版もある。値の重複を許し、
 転倒数が上限以下または指定値と等しい部分配列を数えられる。
+
+## Include
 
 ```cpp
 #include "algorithm/twopointer.hpp"

@@ -5,9 +5,18 @@ documentation_of: //cp/geometry/circle.hpp
 
 # 円と最小包含円
 
-- Header: `cp/geometry/circle.hpp`
-- Symbol: `poe::circle`, `poe::minimum_enclosing_circle`
-- Status: experimental
+## 概要
+
+円と期待線形時間の最小包含円を扱う。
+
+## 厳密な定義
+
+- `circle`: circle{center,radius}: long doubleの円。
+- `minimum_enclosing_circle`: 期待O(n)。minimum_enclosing_circle(points): 全点を含む最小円を返す。空集合は半径0。
+
+
+
+## Include
 
 ```cpp
 #include "geometry/circle.hpp"
@@ -54,4 +63,4 @@ template<class T> circle minimum_enclosing_circle(std::vector<point<T>> points)
 ## 実在問題での使用例
 
 [ABC151 F - Enclose All](https://atcoder.jp/contests/abc151/tasks/abc151_f)は返された半径を出力すればよい。
-verifyコードを用意し、サンプル確認済み・。
+サンプル確認済み。

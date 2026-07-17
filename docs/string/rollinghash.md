@@ -5,20 +5,15 @@ documentation_of: //cp/string/rollinghash.hpp
 
 # Rolling Hash
 
-- Status: experimental
-- Header: `cp/string/rollinghash.hpp`
-- Symbol: `poe::rollinghash<T>`
 
-## Include
-
-```cpp
-#include "string/rollinghash.hpp"
-```
-
-## できること
+## 概要
 
 文字列または`std::hash<T>`対応列を`2^61-1`を法とするhashへ変換し、
 部分列hash・部分列一致・別の列とのLCPを求める。
+
+## 厳密な定義
+
+- `rollinghash`: 2^61-1 modの列hash: rollinghash<char> hash(text); 構築O(n)、部分列hash O(1)、LCP O(log n)。
 
 ```cpp
 rollinghash<char> first(text), second(pattern);
@@ -29,6 +24,12 @@ int common = first.lcp(left, text.size(), second, 0, pattern.size());
 `hash(left, right)`は半開部分列のhash、`operator[]`は元要素を返す。
 `concat(left_hash, right_hash, right_length)`は二つのhashを`O(1)`で連結するが、
 呼び出し元オブジェクトが`right_length`以上のbase冪を持つ必要がある。
+
+## Include
+
+```cpp
+#include "string/rollinghash.hpp"
+```
 
 ## 計算量
 

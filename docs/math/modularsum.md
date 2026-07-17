@@ -5,13 +5,14 @@ documentation_of: //cp/math/modularsum.hpp
 
 # 線形剰余指数の冪和
 
-- Header: `cp/math/modularsum.hpp`
-- Symbol: `poe::sum_power_mod_linear`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `sum_power_mod_linear(n,m,a,b,x,mod)`は
+
+## 厳密な定義
+
+- `sum_power_mod_linear`: O(log(n+m+a+b+mod))。sum base^((a*i+b) mod m), 0<=i<nをmodで返す。
 
 `sum_{i=0}^{n-1} x^((a*i+b) mod m) mod mod`
 
@@ -20,6 +21,8 @@ documentation_of: //cp/math/modularsum.hpp
 法を、`x`と互いに素な部分と、十分大きい冪で`x^k=0`になる部分へ分ける。前者は
 `floor_product`、後者は非零になる低い指数だけを逆像列挙し、最後にCRTで統合する。
 `O(log(n+m+a+b+mod))`時間、`O(log)`再帰領域。`m,mod>=1`、`0<=a,b<m`、`0<=x<mod`。
+
+## Include
 
 ```cpp
 #include "math/modularsum.hpp"

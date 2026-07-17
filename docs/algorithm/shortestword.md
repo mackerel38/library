@@ -5,14 +5,17 @@ documentation_of: //cp/algorithm/shortestword.hpp
 
 # 暗黙automatonの最短辞書順語
 
-- Header: `cp/algorithm/shortestword.hpp`
-- Symbol: `poe::shortest_lexicographic_word`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 有限状態automatonを明示的に辺配列へせず、受理される最短語をBFSで探して親から復元する。
 同じ長さでは辞書順最小を返す。剰余automaton、禁止pattern、数字だけからなる最小倍数に使える。
+
+## 厳密な定義
+
+- `shortest_lexicographic_word`: O(V+E)。暗黙automatonで最短、同長なら辞書順最小の受理語を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/shortestword.hpp"

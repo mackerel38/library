@@ -5,15 +5,19 @@ documentation_of: //cp/graph/travelingsalesman.hpp
 
 # Traveling Salesman Problem
 
-- Header: `cp/graph/travelingsalesman.hpp`
-- Symbol: `poe::travelingsalesman`, `poe::travelingsalesman_result`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 開始頂点から全頂点を一度ずつ訪れ、開始頂点へ戻る最小費用閉路を求める部分問題に使う。
 入力は距離行列なので、元問題が座標、最短路距離、状態間遷移費用のどれでも利用できる。
 到達不能辺には呼び出し側で指定した`inf`を入れる。
+
+## 厳密な定義
+
+- `travelingsalesman_result`: Traveling Salesman DPの最小費用と閉路。到達不能ならreachable=false。
+- `travelingsalesman`: O(n^2 2^n)時間・O(n 2^n)領域。travelingsalesman(cost, inf, start): 全頂点を巡る最小閉路。
+
+## Include
 
 ```cpp
 #include "graph/travelingsalesman.hpp"

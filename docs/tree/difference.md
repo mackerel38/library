@@ -5,9 +5,17 @@ documentation_of: //cp/tree/difference.hpp
 
 # 木上差分
 
-- Status: experimental
-- Header: `cp/tree/difference.hpp`
-- Symbol: `poe::vertexpathdifference`, `poe::edgepathdifference`, `poe::subtreedifference`
+## 概要
+
+頂点path・辺path・部分木へのoffline木上差分を扱う。
+
+## 厳密な定義
+
+- `vertexpathdifference`: offline頂点パス加算: vertexpathdifference<Graph,long long> diff(graph); add O(log n)、build O(n)。
+- `edgepathdifference`: offline辺パス加算: edgepathdifference<Graph,long long> diff(graph); add O(log n)、build O(n)。
+- `subtreedifference`: 部分木・部分木外へのoffline頂点加算: subtreedifference<Graph,T> diff(graph); 各add O(1)。
+
+
 
 ## Include
 

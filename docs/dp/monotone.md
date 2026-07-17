@@ -5,14 +5,17 @@ documentation_of: //cp/dp/monotone.hpp
 
 # Monotone minima
 
-- Header: `cp/dp/monotone.hpp`
-- Symbol: `poe::monotone_minima`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 行列の各行の最小要素位置が行に対して広義単調増加するとき、全要素を調べず各行の最小値と列を求める。
 Monge DP、凸費用の遷移、max/min-plus convolutionなどの内部部品として使える。
+
+## 厳密な定義
+
+- `monotone_minima`: O(columns log rows + rows)。monotone_minima<T>(rows, columns, value): 各行の最小値と列を返す。 最小列が行に対して広義単調増加であること。同値なら最小の列を選ぶ。
+
+## Include
 
 ```cpp
 #include "dp/monotone.hpp"

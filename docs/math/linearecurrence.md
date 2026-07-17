@@ -5,17 +5,20 @@ documentation_of: //cp/math/linearecurrence.hpp
 
 # 線形漸化式
 
-- Header: `cp/math/linearecurrence.hpp`
-- Symbol: `poe::semiring_recurrence`, `poe::linear_recurrence`, `poe::maxplus_recurrence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定係数`k`項線形漸化式の第`n`項だけを高速に求める。`n`が巨大で状態数`k`も行列累乗には
 やや大きい場合に向く。係数や漸化式の次数が途中で変わる問題には使えない。
 通常の加算・乗算だけでなく、結合的で分配法則を満たす半環も扱える。
 
-## API・計算量
+## 厳密な定義
+
+- `semiring_recurrence`: O(k^2 log n)。任意半環上のk項漸化式a[i]=add_j multiply(c[j-1],a[i-j])のa[n]。
+- `linear_recurrence`: O(k^2 log n)。linear_recurrence(initial, coefficient, n)でa[n]を返す。 a[i]=sum_{j=1..k} coefficient[j-1]*a[i-j]、initial.size()==k。
+- `maxplus_recurrence`: O(k^2 log n)。a[i]=max_j(a[i-j]+coefficient[j-1])で定まるmax-plus漸化式のa[n]。
+
+## Include
 
 ```cpp
 #include "math/linearecurrence.hpp"

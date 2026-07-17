@@ -5,20 +5,25 @@ documentation_of: //cp/math/matrix.hpp
 
 # 行列
 
-- Header: `cp/math/matrix.hpp`
-- Symbol: `poe::matrix<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 状態ベクトルが毎回同じ線形変換を受けるDPに使う。遷移回数が`10^9`以上でも、正方行列を
 二分累乗すれば`O(k^3 log n)`で進められる。グラフ上の長さ固定walk数、有限オートマトン、
 小さい状態数の線形DPが代表例である。
 
+## 厳密な定義
+
+- `matrix`: 加算・乗算を持つ型の行列: matrix<mint> a(h, w); 乗算O(hwk)。
+- `semiring_matrix_product`: O(hwk)。zero・add・multiplyで定めた半環上の行列積を返す。
+- `semiring_matrix_power`: O(n^3 log exponent)。zero・one・演算を指定した半環上の正方行列累乗を返す。
+- `minplus_matrix_product`: O(hwk)。min-plus半環で行列積を返す。infinity以上は到達不能として扱う。
+- `minplus_matrix_power`: O(n^3 log exponent)。ちょうどexponent辺の最小費用を表すmin-plus行列累乗を返す。
+
 状態数が大きい、遷移が疎、時刻ごとに遷移が変わる場合は、そのままの行列積は向かない。
 線形漸化式の一項だけなら`linear_recurrence`の方が`O(k^2 log n)`で軽い。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "math/matrix.hpp"

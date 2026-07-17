@@ -5,6 +5,17 @@ documentation_of: //cp/graph/scc.hpp
 
 # 強連結成分分解
 
+## 概要
+
+有向グラフの強連結成分分解を扱う。
+
+## 厳密な定義
+
+- `sccgraph`: 有向グラフを強連結成分分解する: sccgraph graph(n); 計算O(n+m)。
+- `scc_ids`: O(n+m)。{成分数, 各頂点の成分番号}をトポロジカル順の番号で返す。
+- `scc`: O(n+m)。成分内は頂点昇順、成分間はトポロジカル順で返す。
+
+
 ## Include
 
 ```cpp

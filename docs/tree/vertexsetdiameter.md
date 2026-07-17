@@ -5,14 +5,18 @@ documentation_of: //cp/tree/vertexsetdiameter.hpp
 
 # 動的頂点集合の直径
 
-- Header: `cp/tree/vertexsetdiameter.hpp`
-- Symbol: `poe::vertexsetdiameter`, `poe::vertexsetdiameterresult`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定された重みなし木上で、候補頂点を追加・削除しながら候補同士の最大距離を求める。
 候補集合の直径は、二集合それぞれの直径端点4個だけで結合できる性質を使う。
+
+## 厳密な定義
+
+- `vertexsetdiameterresult`: 動的頂点集合の直径。空ならleft=right=-1、singletonならleft=right。
+- `vertexsetdiameter`: 頂点の有効無効を更新し、有効頂点間の最大辺距離を管理する。構築O(n log n)、更新O(log n)。
+
+## Include
 
 ```cpp
 #include "tree/vertexsetdiameter.hpp"

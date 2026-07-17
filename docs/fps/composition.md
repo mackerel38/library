@@ -5,22 +5,26 @@ documentation_of: //cp/fps/composition.hpp
 
 # FPSの合成
 
-- Header: `cp/fps/composition.hpp`
-- Symbol: `poe::compose`, `poe::functional_power`
-- Status: experimental
 
-```cpp
-#include "fps/composition.hpp"
-```
-
-## どんな問題に使えるか
+## 概要
 
 `compose(f,g,n)`は`f(g(x)) mod x^n`、`functional_power(f,k,n)`は`f`の`k`回自己合成を返す。
 漸化式の変数変換、生成関数の代入、形式的写像の反復に使う。現在は`g[0]=0`を前提とする。
 
+## 厳密な定義
+
+- `compose`: NTT可能ならO(n log^2 n)、それ以外はO(n^2+sqrt(n)M(n))。compose(f,g,n): f(g(x)) mod x^nを返す。g[0]=0。
+- `functional_power`: O(log k)回のcompose。functional_power(f,k,n): fをk回自己合成する。恒等写像はx。
+
 NTT可能な法で必要な2冪長が法の原始根に収まる場合は、転置NTTを使う高速合成を選び、
 1回の合成が`O(n log^2 n)`時間・`O(n)`領域になる。その他の法では平方分割へ戻り、
 `O(n^2+sqrt(n)M(n))`時間・`O(n sqrt(n))`領域。自己合成冪は合成を`O(log k)`回行う。
+
+## Include
+
+```cpp
+#include "fps/composition.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス

@@ -5,6 +5,15 @@ documentation_of: //cp/tree/rootedtree.hpp
 
 # `rootedtree`
 
+## 概要
+
+根付き木の親・深さ・距離・部分木・DFS順を扱う。
+
+## 厳密な定義
+
+- `rootedtree`: 無向木をroot根の根付き木として前処理する: rootedtree tree(graph, root); 構築O(n)。
+
+
 ## Include
 
 ```cpp
@@ -145,4 +154,3 @@ for (int vertex = 1; vertex < n; ++vertex) {
 ```
 
 `verify/lca.test.cpp`などでは内部から使用し、2026-07-15に関連verifyの全ケースAC確認済み。
-直接APIで。

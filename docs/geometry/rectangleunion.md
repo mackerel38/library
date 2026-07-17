@@ -5,16 +5,25 @@ documentation_of: //cp/geometry/rectangleunion.hpp
 
 # 軸平行長方形の和集合面積
 
-- Header: `cp/geometry/rectangleunion.hpp`
-- Symbol: `poe::axisalignedrectangle`, `poe::rectangle_area`, `poe::split_rectangle_x`,
   `poe::split_rectangle_y`, `poe::translate_rectangle`, `poe::rectangles_edge_adjacent`,
   `poe::rectangle_union_area`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 重なりを許す多数の軸平行長方形が覆う面積を数える。長方形は
 `[left,right) x [bottom,top)`の半開区間で表し、退化長方形は無視する。
+
+## 厳密な定義
+
+- `axisalignedrectangle`: 半開軸平行長方形[left,right)x[bottom,top)を表す。
+- `rectangle_area`: O(1)。半開長方形の面積を返す。
+- `split_rectangle_x`: O(1)。半開長方形をx=coordinateで空でない高々二つへ分割する。
+- `split_rectangle_y`: O(1)。半開長方形をy=coordinateで空でない高々二つへ分割する。
+- `translate_rectangle`: O(1)。半開長方形を(dx,dy)だけ平行移動する。
+- `rectangles_edge_adjacent`: O(1)。面積正の半開長方形が正の長さの辺で接するならtrueを返す。点接触・重なりはfalse。
+- `rectangle_union_area`: O(n log n)。半開軸平行長方形群の和集合面積を返す。
+
+## Include
 
 ```cpp
 #include "geometry/rectangleunion.hpp"

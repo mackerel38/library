@@ -5,9 +5,16 @@ documentation_of: //cp/structure/mo.hpp
 
 # Mo's algorithm
 
-- Status: experimental
-- Header: `cp/structure/mo.hpp`
-- Symbol: `poe::Mo`, `poe::Mo2d`
+## 概要
+
+静的区間と二次元点queryを座標更新へ分解するMo's algorithmを扱う。
+
+## 厳密な定義
+
+- `Mo`: 静的区間queryを端点一つの更新へ分解する: Mo mo(n); mo.add(l, r); mo.run(...);
+- `Mo2d`: offlineの二次元点queryを座標一つの更新へ分解する: Mo2d mo(x_limit, y_limit);。
+
+
 
 ## Include
 

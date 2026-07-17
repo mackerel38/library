@@ -5,6 +5,15 @@ documentation_of: //cp/string/suffixquery.hpp
 
 # `suffixquery`
 
+## 概要
+
+Suffix間LCP・部分文字列比較・pattern検索を扱う。
+
+## 厳密な定義
+
+- `suffixquery`: suffix間LCP・部分文字列比較・pattern検索: suffixquery query(text); 構築O(n log n)。
+
+
 ## Include
 
 ```cpp

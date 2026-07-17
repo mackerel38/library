@@ -5,14 +5,18 @@ documentation_of: //cp/graph/maximumcut.hpp
 
 # 最大cut
 
-- Header: `cp/graph/maximumcut.hpp`
-- Symbol: `poe::maximumcutresult`, `poe::maximum_cut`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 頂点数が小さい無向グラフを二色に分け、異なる色を結ぶ辺の重み和を最大化する。
 重みなしグラフではcutに入る辺数を最大化する。
+
+## 厳密な定義
+
+- `maximumcutresult`: 最大cutの重みと二色分け。side[v]が異なる辺がcutへ入る。
+- `maximum_cut`: O(2^(n-1)m)。小頂点数の非負重み無向グラフで最大cutと二色分けを返す。
+
+## Include
 
 ```cpp
 #include "graph/maximumcut.hpp"
@@ -62,6 +66,6 @@ O(2^(n-1)m)。小頂点数の非負重み無向グラフで最大cutと二色分
   全辺から最大cutに残せる辺を引く。
 
 `verify/atcoder_abc427_c.cpp`に提出用コードを収録し、公式sample 3件との一致を確認済み。
-。
+
 
 `tests/property/graph/maximumcut.cpp`では、返された彩色の重みと再帰全彩色の最適値を比較する。

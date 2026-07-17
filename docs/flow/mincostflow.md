@@ -5,6 +5,15 @@ documentation_of: //cp/flow/mincostflow.hpp
 
 # `mincostflow`
 
+## 概要
+
+ポテンシャル法による最小費用流と費用曲線を扱う。
+
+## 厳密な定義
+
+- `mincostflow`: ACL互換の最小費用流。新規コードではcostflowgraphとmincostも使える。
+
+
 ## Include
 
 ```cpp

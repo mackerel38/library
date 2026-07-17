@@ -5,17 +5,19 @@ documentation_of: //cp/dp/optimization.hpp
 
 # DP最適化
 
-- Header: `cp/dp/optimization.hpp`
-- Symbol: `poe::divide_conquer_dp`, `poe::optimal_merge_cost`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `divide_conquer_dp`は層DPで最適遷移元が列に対して単調な場合、`optimal_merge_cost`は非負重みの
 隣接併合費用に使う。どちらも単なる高速化の期待だけで適用してはいけない。単調性・四辺形不等式などの
 必要条件を証明できない場合は愚直DPまたは別のデータ構造を使う。
 
-## 使い方
+## 厳密な定義
+
+- `divide_conquer_dp`: O(rows * columns * log columns)。divide_conquer_dpで各行の最小遷移を単調性付きで計算する。 cost(row, previous, column)を返し、最適previousがcolumnに対して広義単調増加であること。
+- `optimal_merge_cost`: O(n^2)。optimal_merge_cost(weights): 隣接する二群を総和コストで併合する最小費用を返す。 weightsは非負であること。Knuth最適化を用いる。
+
+## Include
 
 ```cpp
 #include "dp/optimization.hpp"
@@ -26,6 +28,8 @@ long long answer = poe::optimal_merge_cost(weights);
 `optimal_merge_cost`は隣接群を総重量コストで併合する区間DPをKnuth最適化する。
 `divide_conquer_dp`は、各列の最適遷移元が単調な層DPを分割統治最適化する。
 単調性が成立しない問題へ使うと誤答になるため、利用者が証明できる場合だけ使う。
+
+## 使い方
 
 ## 計算量
 

@@ -5,6 +5,15 @@ documentation_of: //cp/structure/lazysegtree.hpp
 
 # `lazysegtree`
 
+## 概要
+
+モノイド作用による遅延伝播Segment Treeを扱う。
+
+## 厳密な定義
+
+- `lazysegtree`: 区間作用と区間積を扱う: lazysegtree<S, op, e, F, mapping, composition, id> seg(v)。
+
+
 ## Include
 
 ```cpp

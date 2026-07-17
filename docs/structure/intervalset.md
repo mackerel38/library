@@ -5,15 +5,18 @@ documentation_of: //cp/structure/intervalset.hpp
 
 # 区間集合
 
-- Header: `cp/structure/intervalset.hpp`
-- Symbol: `poe::intervalset`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 整数直線や実数直線上の被覆を、互いに交わらず隣接もしない半開区間へ圧縮して管理する。
 区間の追加・削除、点の包含判定、被覆長の取得が必要な問題に使える。座標の最大値ではなく、
 区間の境界数にだけ依存して動く。
+
+## 厳密な定義
+
+- `intervalset`: 互いに素な半開区間の和集合: intervalset<long long> covered; add/eraseで被覆長も管理する。
+
+## Include
 
 ```cpp
 #include "structure/intervalset.hpp"

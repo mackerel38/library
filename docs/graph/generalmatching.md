@@ -5,14 +5,18 @@ documentation_of: //cp/graph/generalmatching.hpp
 
 # 一般グラフの完全マッチング
 
-- Header: `cp/graph/generalmatching.hpp`
-- Symbol: `poe::binarymatchingedge`, `poe::minimum_binary_perfect_matching_weight`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 二部とは限らない無向グラフで、全頂点を互いに素な辺で覆う完全マッチングのうち、
 重み0または1の辺の合計が最小のものを求める。
+
+## 厳密な定義
+
+- `binarymatchingedge`: minimum_binary_perfect_matching_weightへ渡す重み0または1の無向辺。
+- `minimum_binary_perfect_matching_weight`: O(n^4)。重み0/1の一般無向グラフで完全matchingの最小重みを高確率で返す。存在しなければnullopt。
+
+## Include
 
 ```cpp
 #include "graph/generalmatching.hpp"

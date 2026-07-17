@@ -5,19 +5,17 @@ documentation_of: //cp/string/palindromictree.hpp
 
 # Palindromic Tree
 
-- Status: experimental
-- Header: `cp/string/palindromictree.hpp`
-- Symbol: `poe::palindromictree<Symbol>`, `poe::palindromenode<Symbol>`
 
-## Include
-
-```cpp
-#include "string/palindromictree.hpp"
-```
-
-## できること
+## 概要
 
 列に現れる相異なる回文を高々`n+2`状態で表す回文木（eertree）。
+
+## 厳密な定義
+
+- `palindromenode`: 回文木の一状態。next、suffix link、回文長、出現数、最初の終了位置を持つ。
+- `palindromematch`: 最長回文結果。元の列の半開区間[begin,end)と回文木stateを持つ。
+- `palindromepartitionresult`: 最小回文分割結果。rangesは元の列を覆う半開区間列。
+- `palindromictree`: 相異なる回文をonline構築する: palindromictree<char> tree(text); 構築ならしO(n log sigma)。
 
 ```cpp
 palindromictree<char> tree(text);
@@ -35,6 +33,12 @@ auto partition = tree.minimum_partition();
 
 default constructorへ`add`してonline構築もできる。出現回数やterminalを使う前に`build()`を呼び、
 追加後には再度`build()`する。constructorへ列を渡した場合は自動でbuildされる。
+
+## Include
+
+```cpp
+#include "string/palindromictree.hpp"
+```
 
 ## 計算量
 

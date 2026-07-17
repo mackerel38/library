@@ -5,6 +5,15 @@ documentation_of: //cp/string/lcp.hpp
 
 # `lcp_array`
 
+## 概要
+
+Kasai法によるLCP配列を扱う。
+
+## 厳密な定義
+
+- `lcp_array`: O(n)。sequenceとそのsuffix arrayから隣接suffix間のLCP配列を返す。
+
+
 ## Include
 
 ```cpp

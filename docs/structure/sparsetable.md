@@ -5,9 +5,16 @@ documentation_of: //cp/structure/sparsetable.hpp
 
 # Sparse Table
 
-- Status: experimental
-- Header: `cp/structure/sparsetable.hpp`
-- Symbol: `poe::sparsetable<S, op>`, `poe::disjointsparsetable<S, op>`
+## 概要
+
+静的区間積をO(1)で返すSparse TableとDisjoint Sparse Tableを扱う。
+
+## 厳密な定義
+
+- `sparsetable`: 冪等演算の静的区間積: sparsetable<int, op> table(values); 構築O(n log n)、取得O(1)。
+- `disjointsparsetable`: 一般モノイドの静的区間積: disjointsparsetable<S, op> table(values); 構築O(n log n)、取得O(1)。
+
+
 
 ## Include
 
@@ -133,7 +140,7 @@ O(1)。table.prod(left, right)で非空な[left, right)の積を返す。
 - [Library Checker - Static RMQ](https://judge.yosupo.jp/problem/staticrmq):
   `sparsetable`のverifyコードを収録。
 - [Library Checker - Static Range Composite](https://judge.yosupo.jp/problem/static_range_composite):
-  `disjointsparsetable`を使える代表問題。verifyコードは未作成。
+  `disjointsparsetable`を使える代表問題。
 
 ## 検証
 

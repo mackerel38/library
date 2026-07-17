@@ -5,16 +5,23 @@ documentation_of: //cp/math/decimal.hpp
 
 # RLE十進整数
 
-- Header: `cp/math/decimal.hpp`
-- Symbol: `poe::decimalrun`, `poe::decimal_runs_mod`, `poe::decimal_runs_div_mod`,
   `poe::count_divisible_concatenations`, `poe::smallest_multiple_containing`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 同じ数字が非常に長く連続する十進整数を、文字列へ復元せずに剰余計算する。
 各runを`decimalrun{digit,length}`で渡し、整数そのものの剰余に加えて
 `floor(N/divisor) mod modulus`も求められる。
+
+## 厳密な定義
+
+- `decimalrun`: 十進表記の同一数字run: decimalrun{digit,length}。
+- `decimal_runs_mod`: O(K log L)。RLE十進整数をmodulusで割った余りを返す。
+- `decimal_runs_div_mod`: O(K log L)。RLE十進整数Nについてfloor(N/divisor) mod modulusを返す。
+- `count_divisible_concatenations`: O(n d log n)。base進表記を連結した値がmodulusの倍数となる順序付きpair数を返す。
+- `smallest_multiple_containing`: O(|pattern|d+d 10^(d/2)log modulus)。patternを含む最小の正の十進modulus倍数を返す。modulus<=1e9。
+
+## Include
 
 ```cpp
 #include "math/decimal.hpp"

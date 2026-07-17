@@ -5,6 +5,15 @@ documentation_of: //cp/graph/twosat.hpp
 
 # `twosat`
 
+## 概要
+
+強連結成分分解による2-SATを扱う。
+
+## 厳密な定義
+
+- `twosat`: 2-SATを解く: twosat sat(n); sat.add_clause(i, f, j, g); 計算O(n+m)。
+
+
 ## Include
 
 ```cpp

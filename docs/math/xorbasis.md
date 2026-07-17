@@ -5,9 +5,17 @@ documentation_of: //cp/math/xorbasis.hpp
 
 # XOR線形基底
 
-- Header: `cp/math/xorbasis.hpp`
-- Symbol: `poe::xorbasis`
-- Status: experimental
+## 概要
+
+XOR線形基底の挿入・所属・最小最大・k番目を扱う。
+
+## 厳密な定義
+
+- `xorbasis`: xorbasis<UInt>: XOR線形基底。add・contains・min・max・kthを各O(bit)で行う。
+
+
+
+## Include
 
 ```cpp
 #include "math/xorbasis.hpp"
@@ -103,4 +111,4 @@ O(bit^2)。basis.merge(other): otherの張る空間を追加する。
 
 [ABC141 F - Xor Sum 3](https://atcoder.jp/contests/abc141/tasks/abc141_f)で最大化、
 [ABC236 F - Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)で価格順の独立性判定に使える。
-両方のverifyコードを用意し、公開サンプル確認済み・。
+公開サンプル確認済み。

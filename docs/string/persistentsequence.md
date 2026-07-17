@@ -5,12 +5,21 @@ documentation_of: //cp/string/persistentsequence.hpp
 
 # 追加共有列の辞書順
 
-- Header: `cp/string/persistentsequence.hpp`
-- Symbol: `poe::persistentsequenceorder`, `poe::persistentconcatenation`
-- Status: experimental
+## 概要
+
+永続追加列の辞書順と連結DAGの巨大列添字アクセスを扱う。
+
+## 厳密な定義
+
+- `persistentsequenceorder`: 既存列への一要素追加で作る列群を辞書順化する: persistentsequenceorder<int> sequences; O(log sigma)/追加。
+- `persistentconcatenation`: 共有列の連結DAG: persistentconcatenation<char> seq({'0','1'}, limit); add後も旧versionを保持する。
+
+
 
 既存versionの末尾へ一要素を追加して作る多数の列を、列を実体化せず共有trieへ格納し辞書順に並べる。
 同じ列を表すversionは番号順になる。途中要素の変更や削除には使えない。
+
+## Include
 
 ```cpp
 #include "string/persistentsequence.hpp"

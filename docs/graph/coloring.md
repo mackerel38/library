@@ -5,14 +5,17 @@ documentation_of: //cp/graph/coloring.hpp
 
 # グラフ彩色数
 
-- Header: `cp/graph/coloring.hpp`
-- Symbol: `poe::count_graph_colorings`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 頂点数・辺数がともに30以下の単純無向グラフについて、隣接頂点を異色にする
 `K`彩色の個数を数える。
+
+## 厳密な定義
+
+- `count_graph_colorings`: O(m^2 1.59^m)程度。30辺以下の単純無向graphのK彩色数を返す。
+
+## Include
 
 ```cpp
 #include "graph/coloring.hpp"

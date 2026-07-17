@@ -5,6 +5,16 @@ documentation_of: //cp/tree/heavylightdecomposition.hpp
 
 # Heavy-Light Decomposition
 
+## 概要
+
+Heavy-Light Decompositionによるパス・部分木区間化を扱う。
+
+## 厳密な定義
+
+- `pathsegment`: HLD上の半開区間。reversedならright-1からleftへ向かう順で使う。
+- `hld`: 木のパスと部分木を列上の区間へ分解する: hld tree(graph, root); 構築O(n)。
+
+
 ## Include
 
 ```cpp

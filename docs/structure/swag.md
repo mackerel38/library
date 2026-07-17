@@ -5,20 +5,15 @@ documentation_of: //cp/structure/swag.hpp
 
 # SWAG
 
-- Status: experimental
-- Header: `cp/structure/swag.hpp`
-- Symbol: `poe::swag<S, op, e>`
 
-## Include
-
-```cpp
-#include "structure/swag.hpp"
-```
-
-## できること
+## 概要
 
 queueの先頭削除・末尾追加を行いながら、queue全体を順番どおりモノイド演算で畳み込む。
 全操作はならし`O(1)`で、sliding windowの最小値・最大値・GCD・行列積・写像合成などに使える。
+
+## 厳密な定義
+
+- `swag`: queue全体のモノイド積: swag<S, op, e> queue; 各操作ならしO(1)。
 
 ```cpp
 swag<int, minimum, inf> window;
@@ -30,6 +25,12 @@ int answer = window.prod();
 `push`、`pop`、`front`、`back`、`prod`、`size`、`empty`を持つ。
 空の`prod()`は`e()`を返す。`pop()`と`front()`は空queueでは使えない。
 `op`は結合的で、`e()`は単位元であること。可換性は不要である。
+
+## Include
+
+```cpp
+#include "structure/swag.hpp"
+```
 
 ## 計算量
 

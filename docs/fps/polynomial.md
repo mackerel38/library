@@ -5,14 +5,22 @@ documentation_of: //cp/fps/polynomial.hpp
 
 # 多項式アルゴリズム
 
-- Header: `cp/fps/polynomial.hpp`
-- Symbol: `poe::polynomial_product`, `poe::polynomial_matrix_product`, `poe::polynomial_divmod`, `poe::multipoint_evaluation`, `poe::polynomial_interpolation`, `poe::taylor_shift`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 多数の多項式の積、商と余り、多数の点での評価、指定点からの補間、変数の平行移動を扱う。
 単一のFPSに対する`inv`や`exp`とは分け、有限次数の多項式として末尾0を無視する操作をまとめている。
+
+## 厳密な定義
+
+- `polynomial_product`: O(M(S) log k)。polynomial_product(polynomials, limit): 多項式列の積を返す。 limit>=0なら各段階でx^limit未満へ切り詰める。空積は1。
+- `polynomial_matrix_product`: O(d^3 M(S) log k)。polynomial_matrix_product(matrices,limit): 行列列を先頭から掛ける。 各要素は多項式で、limit>=0なら各段階でx^limit未満へ切り詰める。行列列は空でないこと。
+- `polynomial_divmod`: O(M(n) log n)。polynomial_divmod(f,g): 多項式除算の商と余りを返す。g!=0。
+- `multipoint_evaluation`: O(M(n) log^2 n)。multipoint_evaluation(f, points): 全pointsでfを評価する。
+- `polynomial_interpolation`: O(M(n) log^2 n)。polynomial_interpolation(points, values): 指定点を通る次数n未満の多項式を返す。 pointsは相異なること。
+- `taylor_shift`: O(M(n))。taylor_shift(f,c): f(x+c)を返す。f.size()<mod。
+
+## Include
 
 ```cpp
 #include "fps/polynomial.hpp"
@@ -103,5 +111,5 @@ O(M(n))。taylor_shift(f,c): f(x+c)を返す。f.size()<mod。
   近傍へだけ進むwalkの母関数漸化式を3次多項式行列積でまとめる。
 - Library CheckerのMultipoint Evaluation / Polynomial Interpolationにも対応する。
 
-ABC462 GとABC317 Exはverifyコードを用意し公式sampleを確認済み。
+ABC462 GとABC317 Exは公式sampleを確認済み。
 ランダムな小多項式について愚直評価・Lagrange補間とも照合する。

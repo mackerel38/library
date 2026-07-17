@@ -5,14 +5,17 @@ documentation_of: //cp/recipe/prefixgrid.hpp
 
 # 行・列prefixのORで作るグリッド
 
-- Header: `cp/recipe/prefixgrid.hpp`
-- Symbol: `poe::count_row_column_prefix_union`
-- Status: experimental recipe
 
-## どんな問題に使えるか
+## 概要
 
 最初は全マス0のグリッドについて、各行の左から任意個と各列の上から任意個を1にする。
 この操作で得られる相異なる0/1グリッドのうち、`0`・`1`・`?`からなるpatternに一致する個数を数える。
+
+## 厳密な定義
+
+- `count_row_column_prefix_union`: O(hw2^min(h,w))。行左prefixと列上prefixのORで作れpatternに一致するgrid数を返す。
+
+## Include
 
 ```cpp
 #include "recipe/prefixgrid.hpp"

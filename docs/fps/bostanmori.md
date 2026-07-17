@@ -5,19 +5,22 @@ documentation_of: //cp/fps/bostanmori.hpp
 
 # Bostan–Mori法
 
-- Header: `cp/fps/bostanmori.hpp`
-- Symbol: `poe::bostan_mori`, `poe::bostan_mori_submask_sum`,
   `poe::fast_linear_recurrence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 有理型母関数 `P(x)/Q(x)` の非常に遠い係数や、次数が大きい固定係数線形漸化式の
 第 `n` 項だけを求める。小さい次数なら実装の軽い `math/linearecurrence.hpp`、
 次数が数百以上ならこちら、という使い分けを想定している。NTT可能な法では直接NTTし、
 それ以外のstatic modintでは`math/convolution.hpp`の3法CRT経路を使う。
 
-## API・計算量
+## 厳密な定義
+
+- `bostan_mori`: O(M(k) log n)。P(x)/Q(x)のx^nの係数をBostan-Mori法で返す。 Q[0]!=0かつP.size()<Q.size()。modはNTT可能な素数。
+- `bostan_mori_submask_sum`: O(M(k) log mask)。P/Qの係数a[i]についてiがmaskのsubmaskであるa[i]の総和を返す。
+- `fast_linear_recurrence`: O(M(k) log n)。固定係数k項線形漸化式のa[n]を畳み込みで求める。 a[i]=sum coefficient[j-1]*a[i-j]。modはNTT可能な素数。
+
+## Include
 
 ```cpp
 #include "fps/bostanmori.hpp"

@@ -5,13 +5,14 @@ documentation_of: //cp/structure/thresholdsequence.hpp
 
 # 末尾追加できる閾値写像列
 
-- Header: `cp/structure/thresholdsequence.hpp`
-- Symbol: `poe::thresholdsequence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各操作が一つの閾値`p`を持ち、現在値`x`を
+
+## 厳密な定義
+
+- `thresholdsequence`: thresholdsequence<long long> seq(up, down); seq.append(p); seq.apply(x)。追加ならしO(log n)、適用O(log^2 n)。
 
 - `x <= p`なら`x + up`
 - `x > p`なら`x - down`
@@ -19,6 +20,8 @@ documentation_of: //cp/structure/thresholdsequence.hpp
 へ変えるとき、操作の末尾追加と「初期値から全操作を通した最終値」を処理する。長いif列を毎query
 走査する必要があるオンライン問題に使える。元の操作列を、同じ写像を表す単調な閾値列へ正規化し、
 二進カウンタ状のブロックとして保持する。
+
+## Include
 
 ```cpp
 #include "structure/thresholdsequence.hpp"

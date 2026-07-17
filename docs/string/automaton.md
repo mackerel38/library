@@ -5,9 +5,20 @@ documentation_of: //cp/string/automaton.hpp
 
 # DFA・右文脈からの構築・部分文字列集計
 
-- Header: `cp/string/automaton.hpp`
-- Symbol: `poe::dfa`, `poe::right_context_dfa`, `poe::accepted_substring_stats`
-- Status: experimental
+## 概要
+
+DFA・有界右文脈からの候補構築・受理部分文字列集計を扱う。
+
+## 厳密な定義
+
+- `dfa`: 決定性有限automaton。alphabetは0..alphabet_size-1の整数で表す。
+- `acceptedsubstringstats`: accepted_substring_statsの結果。受理部分文字列がなければlongest=-1、count=0。
+- `accepted_substring_stats`: O(nq)。q状態DFAが受理する非空部分文字列の最長長と位置を区別した総数を返す。
+- `right_context_dfa`: membership oracleを長さcontext_length以下の右文脈で分類し、候補DFAを構築する。
+
+
+
+## Include
 
 ```cpp
 #include "string/automaton.hpp"

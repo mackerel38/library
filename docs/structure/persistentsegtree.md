@@ -5,20 +5,15 @@ documentation_of: //cp/structure/persistentsegtree.hpp
 
 # 永続Segment Tree
 
-- Status: experimental
-- Header: `cp/structure/persistentsegtree.hpp`
-- Symbol: `poe::persistentsegtree<S, op, e>`
 
-## Include
-
-```cpp
-#include "structure/persistentsegtree.hpp"
-```
-
-## できること
+## 概要
 
 過去versionを変更せず、一点更新後の新しい配列versionを作る。versionは軽い整数なので、
 配列全体のコピーや過去状態への巻き戻しはrootの代入だけで`O(1)`になる。
+
+## 厳密な定義
+
+- `persistentsegtree`: 永続Segment Tree: persistentsegtree<S,op,e> tree(values); version root=tree.initial()。
 
 ```cpp
 persistentsegtree<long long, add, zero> tree(values);
@@ -30,6 +25,12 @@ long long new_sum = tree.prod(second, 0, 4);
 
 `set`と`apply`は新しいversionを返す。`get`、`prod`、`all_prod`は指定versionを読む。
 演算`op`は結合的で、`e()`は単位元であること。更新ごとに`O(log n)`個のnodeを追加する。
+
+## Include
+
+```cpp
+#include "structure/persistentsegtree.hpp"
+```
 
 ## 計算量
 

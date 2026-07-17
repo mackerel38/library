@@ -5,18 +5,21 @@ documentation_of: //cp/fps/powerprojection.hpp
 
 # Power Projection
 
-- Header: `cp/fps/powerprojection.hpp`
-- Symbol: `poe::power_projection`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 同じ長さ`n+1`の多項式`f`, `g`に対し、
+
+## 厳密な定義
+
+- `power_projection`: O(n log^2 n)。result[i]=[x^n]function(x)^i*multiplier(x)をi=0..nで返す。
 
 `h[i] = [x^n] f(x)^i g(x)`
 
 を`i=0..n`についてまとめて列挙する。冪を一つずつ掛ける`O(n^2 log n)`相当の処理を避け、
 二変数Bostan–MoriとKronecker substitutionによる一次元畳み込みで高速化する。
+
+## Include
 
 ```cpp
 #include "fps/powerprojection.hpp"
@@ -50,6 +53,6 @@ O(n log^2 n)。result[i]=[x^n]function(x)^i*multiplier(x)をi=0..nで返す。
 `verify/atcoder_abc439_g.cpp`に全体の使用例を収録する。
 
 [AtCoder ABC387 G - Many LCS](https://atcoder.jp/contests/abc387/tasks/abc387_g)も
-power projectionを利用できる代表例である。こちらのverifyコードは未作成。
+power projectionを利用できる代表例である。
 
 property testでは定数項0・非0の双方について、小次数の愚直な多項式冪と全係数を比較する。

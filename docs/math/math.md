@@ -5,6 +5,20 @@ documentation_of: //cp/math/math.hpp
 
 # 整数数学関数
 
+## 概要
+
+mod冪・逆元・中国剰余・floor sum・整数平方根を扱う。
+
+## 厳密な定義
+
+- `pow_mod`: O(log exponent)。base^exponent mod modを返す。exponent>=0、mod>=1。
+- `inv_mod`: O(log mod)。xのmod逆元を[0, mod)で返す。gcd(x, mod)=1、mod>=1。
+- `crt`: O(n log lcm)。x≡remainders[i](mod moduli[i])を解き、{x,lcm}を返す。解なしは{0,0}。
+- `floor_sum`: O(log mod)。sum floor((a*i+b)/mod)をmod 2^64で返す。0<=n<2^32、1<=mod<2^32。
+- `floor_sqrt`: O(1)。非負64bit整数xに対してfloor(sqrt(x))を誤差なく返す。
+- `is_square`: O(1)。xが平方数ならtrueを返す。
+
+
 ## Include
 
 ```cpp

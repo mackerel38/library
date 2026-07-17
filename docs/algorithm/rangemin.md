@@ -5,18 +5,21 @@ documentation_of: //cp/algorithm/rangemin.hpp
 
 # オフライン区間上限制約和
 
-- Header: `cp/algorithm/rangemin.hpp`
 - Symbols: `poe::rangeminsumquery`, `poe::offline_range_min_sum`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定列に対する多数のクエリ
 `sum(values[i] と cap の小さい方, left <= i < right)`をまとめて求める。
 閾値以下の要素数と和をFenwick Treeで管理するため、値が更新される問題やオンラインで直前の答えに依存する
 クエリには使えない。
 
-## API・計算量
+## 厳密な定義
+
+- `rangeminsumquery`: offline_range_min_sumへ渡す半開区間と上限値。
+- `offline_range_min_sum`: 各queryのsum(min(values[i], cap))を一括計算する: offline_range_min_sum(values, queries); O((n+q)log n)。
+
+## Include
 
 ```cpp
 #include "algorithm/rangemin.hpp"

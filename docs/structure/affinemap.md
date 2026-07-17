@@ -5,14 +5,17 @@ documentation_of: //cp/structure/affinemap.hpp
 
 # Affine変換付きmap
 
-- Header: `cp/structure/affinemap.hpp`
-- Symbol: `poe::affinemap`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 キーごとに値を持ち、全キーの値へ同じ`x -> a*x+b`を何度も適用しながら、個別キーの追加・削除と
 総和取得も行う問題に使う。全要素更新を二つの遅延係数へまとめるため、要素数に依存せず更新できる。
+
+## 厳密な定義
+
+- `affinemap`: 全valueへのaffine変換を遅延できるmap: affinemap<int,mint> values; apply(a,b)でxをa*x+bへ変える。
+
+## Include
 
 ```cpp
 #include "structure/affinemap.hpp"

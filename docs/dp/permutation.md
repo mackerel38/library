@@ -5,18 +5,21 @@ documentation_of: //cp/dp/permutation.hpp
 
 # 順列挿入DP
 
-- Header: `cp/dp/permutation.hpp`
-- Symbol: `poe::insertion_component_counts`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 相異なる値を小さい順に最終順列へ挿入し、すでに挿入した要素同士の隣接辺でできる
 連結成分数だけを状態にする順列数え上げに使う。新要素は次のいずれかになる。
 
+## 厳密な定義
+
+- `insertion_component_counts`: O(n^2)。値を昇順に順列へ挿入し、隣接済み成分数ごとの並べ方数を返す。 allow(i,c,j): i個挿入済み・c成分から、新要素がj個の成分へ接続する遷移を許すか。
+
 - 既存成分へ接続せず、新成分を作る。挿入位置は`components+1`通り。
 - 一つの既存成分の左端または右端へ接続する。`2*components`通り。
 - 二つの隣接成分をつなぐ。`components-1`通り。
+
+## Include
 
 ```cpp
 #include "dp/permutation.hpp"

@@ -5,14 +5,17 @@ documentation_of: //cp/string/avoid.hpp
 
 # 禁止patternを含まない語の数え上げ
 
-- Header: `cp/string/avoid.hpp`
-- Symbol: `poe::count_avoiding_words<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 指定したalphabetから作る長さ`length`の語のうち、複数の禁止patternを
 連続部分列として一度も含まないものを数える。Aho--Corasickの状態DPと行列累乗を内部で行う。
+
+## 厳密な定義
+
+- `count_avoiding_words`: 禁止patternを含まない長さlengthの語数を数える。O(states^3 log length + states sigma log sigma)。
+
+## Include
 
 ```cpp
 #include "string/avoid.hpp"

@@ -5,9 +5,21 @@ documentation_of: //cp/math/prime.hpp
 
 # 素数・素因数分解
 
-- Header: `cp/math/prime.hpp`
-- Symbol: `poe::primetable`, `poe::is_prime`, `poe::factorize`, `poe::divisors`, `poe::signed_divisors`
-- Status: experimental
+## 概要
+
+線形篩・64bit素数判定・Pollard–Rho素因数分解を扱う。
+
+## 厳密な定義
+
+- `primetable`: primetable(n): 0..nの最小素因数をO(n)で前計算し、素数判定・因数分解・約数列挙に使う。
+- `factorize`: O(log value)。table.factorize(value): {{素因数,指数}}を昇順で返す。value>=1。
+- `divisors`: O(tau(value) log tau(value))。table.divisors(value): 正の約数を昇順で返す。
+- `is_prime`: O(log^3 n)程度。is_prime(n): 64bit符号なし整数nが素数か決定的Miller–Rabin法で判定する。
+- `signed_divisors`: 期待O(|n|^(1/4)+tau(|n|) log tau(|n|))程度。signed_divisors(n): 非零整数nの正負の約数を昇順で返す。
+
+
+
+## Include
 
 ```cpp
 #include "math/prime.hpp"
@@ -113,7 +125,7 @@ inline std::vector<long long> signed_divisors(long long value)
 
 [ABC149 C - Next Prime](https://atcoder.jp/contests/abc149/tasks/abc149_c)では`is_prime`、
 [ABC284 D - Happy New Year 2023](https://atcoder.jp/contests/abc284/tasks/abc284_d)では`factorize`を使える。
-Library Checker Factorizeのverifyコードを用意し。
+Library Checker Factorize用のverifyコードを収録している。
 
 [ABC420 G - sqrt(n²+n+X)](https://atcoder.jp/contests/abc420/tasks/abc420_g)では、
 `(2m+2n+1)(2m-2n-1)=4X-1`へ変形し、`signed_divisors(4*X-1)`で候補を列挙する。

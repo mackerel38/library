@@ -5,14 +5,17 @@ documentation_of: //cp/dp/slopetrick.hpp
 
 # Slope trick
 
-- Header: `cp/dp/slopetrick.hpp`
-- Symbol: `poe::slopetrick`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 一次元の区分線形凸関数をDP値として持ち、絶対値、片側距離、区間内からの遷移を加える問題に使う。
 関数全体を座標ごとに保持せず、傾きが変わる位置だけを二つのheapで管理する。
+
+## 厳密な定義
+
+- `slopetrick`: 区分線形凸関数を傾き変化点で管理する: slopetrick<long long> f;
+
+## Include
 
 ```cpp
 #include "dp/slopetrick.hpp"

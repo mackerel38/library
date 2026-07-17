@@ -5,6 +5,16 @@ documentation_of: //cp/flow/dinic.hpp
 
 # `dinic` / `mincut`
 
+## 概要
+
+残余グラフに対するDinic法と最小カットを扱う。
+
+## 厳密な定義
+
+- `dinic`: O(n^2m)。graph上でsourceからsinkへlimitまで最大流を追加し、その量を返す。
+- `mincut`: O(n+m)。残余グラフでsourceから到達できる頂点を返す。最大流後は最小カット。
+
+
 ## Include
 
 ```cpp

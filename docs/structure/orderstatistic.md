@@ -5,14 +5,17 @@ documentation_of: //cp/structure/orderstatistic.hpp
 
 # 動的順序統計multiset
 
-- Header: `cp/structure/orderstatistic.hpp`
-- Symbol: `poe::orderstatisticmultiset`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 更新で現れ得る値を先に列挙できるとき、重複を許す値集合へ追加・削除しながら、
 順位、個数、順位範囲の総和を求める。
+
+## 厳密な定義
+
+- `orderstatisticmultiset`: 座標圧縮済み動的順序統計multiset: orderstatisticmultiset<long long> data(universe)。
+
+## Include
 
 ```cpp
 #include "structure/orderstatistic.hpp"

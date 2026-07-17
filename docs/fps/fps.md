@@ -5,15 +5,15 @@ documentation_of: //cp/fps/fps.hpp
 
 # 形式的冪級数
 
-- Header: `cp/fps/fps.hpp`
-- Symbol: `poe::fps<mod>`, `poe::fps998244353`
-- Status: experimental
+## 概要
 
-## 設計
+vectorに近い形式的冪級数とinv・log・exp・powを扱う。
 
-係数列を`vector`と同じ添字・iteratorで扱い、FPS固有の打ち切り演算だけをメソッドとして追加する。
-`f.inv(n)`の`n`は「次数」ではなく返す項数で、常に`x^n`未満を返す。省略時は`f.size()`を使う。
-範囲外係数を0として読む場合は`coeff(i)`、通常の配列アクセスには`operator[]`を使う。
+## 厳密な定義
+
+- `fps`: fps<mod> f(n): mod上の形式的冪級数をvectorと同じ添字で持つ。 f.inv(n), f.log(n), f.exp(n), f.pow(k,n)は先頭n項を返す。
+
+## Include
 
 ```cpp
 #include "fps/fps.hpp"
@@ -23,6 +23,12 @@ fps f = {1, 2, 3};
 fps inverse = f.inv(10);
 fps power = f.pow(100, 10);
 ```
+
+## 設計
+
+係数列を`vector`と同じ添字・iteratorで扱い、FPS固有の打ち切り演算だけをメソッドとして追加する。
+`f.inv(n)`の`n`は「次数」ではなく返す項数で、常に`x^n`未満を返す。省略時は`f.size()`を使う。
+範囲外係数を0として読む場合は`coeff(i)`、通常の配列アクセスには`operator[]`を使う。
 
 ## 主な操作
 
@@ -220,7 +226,7 @@ property testで確認する。
 
 ## FPS 24題との対応
 
-全24題にverifyコードを用意している。いずれもrepo内ライブラリを使用しており。
+全24題に対応するverifyコードを用意している。いずれもrepo内ライブラリを使用している。
 FはFPS演算そのものを必要とせず、`math/modint.hpp`のverifyとして残している。
 
 | 問題 | 主に使う部品 |

@@ -5,15 +5,19 @@ documentation_of: //cp/graph/rangeedge.hpp
 
 # 区間間距離辺の最短路
 
-- Header: `cp/graph/rangeedge.hpp`
-- Symbol: `poe::rangedistancetransition`, `poe::range_distance_shortest_paths`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 座標昇順の頂点列があり、一つの操作が半開区間`[l,r)`の任意頂点から、交差しない別区間
 `[L,R)`の任意頂点へ移動できる問題に使う。頂点`u`から`v`への費用は
 `base_cost + abs(position[u]-position[v])`とする。
+
+## 厳密な定義
+
+- `rangedistancetransition`: range_distance_shortest_pathsへ渡す半開区間間の全方向付き遷移。
+- `range_distance_shortest_paths`: O((n+q)log n)頂点辺構築後Dijkstra。区間間のcost+座標距離遷移によるstartからの最短距離。
+
+## Include
 
 ```cpp
 #include "graph/rangeedge.hpp"

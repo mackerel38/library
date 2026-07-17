@@ -5,15 +5,19 @@ documentation_of: //cp/string/stacksequence.hpp
 
 # Push・pop列Segment Tree
 
-- Header: `cp/string/stacksequence.hpp`
-- Symbol: `poe::stacksequence`, `poe::stacksequenceresult`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 列への`push(symbol)`と、空なら何もしない`pop()`からなる固定長の操作列に対して、一点更新と
 部分区間の実行結果を扱う。操作を単純な定数サイズmonoidへ潰すと、右側のpopで消える左側末尾の
 情報が失われる。本構造はSegment Tree内部の分割履歴を辿って必要な末尾だけ復元する。
+
+## 厳密な定義
+
+- `stacksequenceresult`: push/pop列を実行した結果。popは空stackへ残ったpop数、lengthとvalueは残る列を表す。
+- `stacksequence`: 一点更新付きpush/pop列: -1をpop、[0,base)をpushとして区間実行結果を返す。
+
+## Include
 
 ```cpp
 #include "string/stacksequence.hpp"
@@ -123,4 +127,3 @@ O(1)。全操作列の実行結果を返す。
 
 [AtCoder ABC434 G - Keyboard](https://atcoder.jp/contests/abc434/tasks/abc434_g)では、
 数字をpush、`B`をpopとしてそのまま使える。`verify/atcoder_abc434_g.cpp`で公式sampleを確認済み。
-。

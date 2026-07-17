@@ -5,6 +5,16 @@ documentation_of: //cp/graph/warshallfloyd.hpp
 
 # `warshall_floyd`
 
+## 概要
+
+Warshall-Floyd法による全点対最短路と負閉路判定。
+
+## 厳密な定義
+
+- `warshallfloydresult`: 全点対最短路結果: result(from, to), result.path(from, to)で取得する。
+- `warshall_floyd`: O(n^3)、空間O(n^2)。重み付きグラフの全点対最短路をWarshall-Floyd法で求める。
+
+
 ## Include
 
 ```cpp

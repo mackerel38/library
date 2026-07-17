@@ -5,15 +5,18 @@ documentation_of: //cp/graph/bottleneck.hpp
 
 # Minimax距離の辺重み増加感度
 
-- Header: `cp/graph/bottleneck.hpp`
-- Symbol: `poe::bottlenecksensitivity`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 連結な重み付き無向グラフで、二頂点間のpath上最大辺重みを最小化した値をminimax距離とする。
 固定グラフを前処理し、指定した一辺の重みを増やしたとき、指定二頂点間のminimax距離が
 真に増えるかを判定する。
+
+## 厳密な定義
+
+- `bottlenecksensitivity`: minimax距離に指定辺が不可欠かを判定する: bottlenecksensitivity sensitivity(graph)。
+
+## Include
 
 ```cpp
 #include "graph/bottleneck.hpp"

@@ -5,13 +5,16 @@ documentation_of: //cp/tree/treedistancesum.hpp
 
 # 木上距離和
 
-- Header: `cp/tree/treedistancesum.hpp`
-- Symbol: `poe::treedistancesum`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 重みなし木を一度前処理し、全頂点・固定根部分木・二つの施設の近い方への距離和を求める。
+
+## 厳密な定義
+
+- `treedistancesum`: 木上の全体・部分木・二点の近い方への距離和: treedistancesum distances(graph)。
+
+## Include
 
 ```cpp
 #include "tree/treedistancesum.hpp"

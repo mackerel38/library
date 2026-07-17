@@ -5,14 +5,18 @@ documentation_of: //cp/algorithm/permutation.hpp
 
 # 制約付きmultiset順列と1回swap列の辞書順
 
-- Header: `cp/algorithm/permutation.hpp`
-- Symbol: `poe::count_permutations_max_drop`, `poe::one_swap_lexicographic_pairs`, `poe::path_order_positions`
-- Status: experimental
+## 概要
 
-## 隣接する減少幅を制限したmultiset順列
+制約付き順列数・swap辞書順・有向path posetの可能位置を扱う。
 
-`count_permutations_max_drop<modulus>(values, maximum_drop)`は、重複する値を区別しない
-相異なる順列のうち、すべての隣接項で`next >= current - maximum_drop`となる個数を返す。
+## 厳密な定義
+
+- `count_permutations_max_drop`: O(n log n)。multisetの相異なる順列で隣接項next>=current-maximum_dropとなる個数を返す。
+- `one_swap_lexicographic_pairs`: O((n+q)log n)。各0-indexed rankについて、1回swap後の列を辞書順に並べたrank番目の位置組を返す。 同じ列を作るswapも別々に数え、同順位の列にはそのいずれかを返す。
+- `pathorderpositions`: path_order_positionsの結果。ranges[value]は可能な0-indexed位置の閉区間、counts[position]は候補数。
+- `path_order_positions`: O(n)。隣接value間だけに前後制約がある順列で、各valueの可能位置区間と各位置の候補数を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/permutation.hpp"
@@ -26,6 +30,11 @@ auto count = count_permutations_max_drop<998244353>(values, maximum_drop);
 
 [AtCoder ABC431 F - Almost Sorted 2](https://atcoder.jp/contests/abc431/tasks/abc431_f)へ直接使える。
 `verify/atcoder_abc431_f.cpp`で公式sampleを確認済み。
+
+## 隣接する減少幅を制限したmultiset順列
+
+`count_permutations_max_drop<modulus>(values, maximum_drop)`は、重複する値を区別しない
+相異なる順列のうち、すべての隣接項で`next >= current - maximum_drop`となる個数を返す。
 
 ## 1回swap後の列を辞書順に並べる
 
@@ -93,7 +102,7 @@ O(n)。隣接value間だけに前後制約がある順列で、各valueの可能
 - [AtCoder ABC431 G - One Time Swap 2](https://atcoder.jp/contests/abc431/tasks/abc431_g):
   query順位を0-indexedへ直して`one_swap_lexicographic_pairs`へ一括して渡す。
 
-どちらも公式sample確認済みで。
+どちらも公式sample確認済み。
 
 ## 有向path制約下の可能位置
 

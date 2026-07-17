@@ -5,14 +5,16 @@ documentation_of: //cp/string/subsequence.hpp
 
 # 辞書順部分列
 
-- Header: `cp/string/subsequence.hpp`
-- Symbol: `poe::count_substrings_without_subsequence`, `poe::kth_distinct_subsequence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 文字列から順序を保って文字を間引いた、相異なる空でない部分列を辞書順で扱う問題に使う。
 各文字を次に使う最左位置へ正規化して重複を除き、個数を`k+1`で飽和させながらk番目を復元する。
+
+## 厳密な定義
+
+- `count_substrings_without_subsequence`: O(|text||pattern|)。patternを部分列として含まないtextの空でない部分文字列の個数を返す。
+- `kth_distinct_subsequence`: O(n|alphabet|)。kth_distinct_subsequence(text,k)で辞書順k番目(1-indexed)の空でない部分列を返す。 存在しなければnullopt。alphabetは重複なし昇順で、textの全文字を含むこと。
 
 部分文字列、重複を区別する部分列、辞書順以外の順序には使えない。alphabetは昇順・重複なしで、
 入力に現れる全文字を含める必要がある。
@@ -20,7 +22,7 @@ documentation_of: //cp/string/subsequence.hpp
 また、各位置を区別する部分文字列のうち、指定列を部分列として含まないものも数えられる。
 各長さのprefixを作れる最も右の開始位置を更新するため、文字種には依存しない。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "string/subsequence.hpp"

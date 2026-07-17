@@ -5,21 +5,16 @@ documentation_of: //cp/structure/dynamicconnectivity.hpp
 
 # Offline Dynamic Connectivity
 
-- Status: experimental
-- Header: `cp/structure/dynamicconnectivity.hpp`
-- Symbol: `poe::dynamicconnectivity`
 
-## Include
-
-```cpp
-#include "structure/dynamicconnectivity.hpp"
-```
-
-## できること
+## 概要
 
 無向辺が途中で追加・削除される時系列を先に登録し、各時刻の連結判定、連結成分サイズ、
 連結成分数をまとめて求める。時間segment treeとrollback DSUを内部で処理するため、
 利用側は辺の生存区間やDFSを書かなくてよい。
+
+## 厳密な定義
+
+- `dynamicconnectivity`: 辺の追加・削除がある連結性をofflineで解く: dynamicconnectivity dc(n, q); solveはO((q+k)log q log n)。
 
 ```cpp
 dynamicconnectivity dc(vertex_count, operation_count);
@@ -37,6 +32,12 @@ cout << answers[answer_id] << '\n';
 `same(time, a, b)`、`size(time, a)`、`count(time)`は質問を登録し、結果配列の添字を返す。
 同じ時刻へ複数の質問を登録してよい。構築後に`solve()`を呼び、返された`vector<int>`を
 登録時の添字で読む。
+
+## Include
+
+```cpp
+#include "structure/dynamicconnectivity.hpp"
+```
 
 ## 計算量
 

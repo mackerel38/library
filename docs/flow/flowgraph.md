@@ -5,6 +5,18 @@ documentation_of: //cp/flow/flowgraph.hpp
 
 # `flowgraph` / `costflowgraph`
 
+## 概要
+
+コストの有無を型で表すフロー用残余グラフを扱う。
+
+## 厳密な定義
+
+- `flowgraph`: コストなしフロー用残余グラフ: flowgraph<long long> graph(n)。
+- `costflowgraph`: コスト付きフロー用残余グラフ: costflowgraph<long long, long long> graph(n)。
+- `flowgraph_type`: コストの有無を問わずフロー用残余グラフを受け取るconcept。
+- `costflowgraph_type`: コスト付きフロー用残余グラフだけを受け取るconcept。
+
+
 ## Include
 
 ```cpp

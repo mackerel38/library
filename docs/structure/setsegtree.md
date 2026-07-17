@@ -5,14 +5,18 @@ documentation_of: //cp/structure/setsegtree.hpp
 
 # 区間集合更新Segment Tree Beats
 
-- Header: `cp/structure/setsegtree.hpp`
-- Symbol: `poe::setsegtree`, `poe::setmaxresult`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各位置に64要素以下の集合を持ち、区間内の全集合への要素追加・削除と、区間内の最大要素数・
 その達成位置数を処理する。集合は`uint64_t`のbit maskで表す。
+
+## 厳密な定義
+
+- `setmaxresult`: auto [size,count]=tree.max(l,r); 区間内集合の最大要素数と達成位置数。
+- `setsegtree`: setsegtree tree(n); tree.add(l,r,x); tree.erase(l,r,x); 0<=x<64。
+
+## Include
 
 ```cpp
 #include "structure/setsegtree.hpp"

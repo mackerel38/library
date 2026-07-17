@@ -5,6 +5,19 @@ documentation_of: //cp/algorithm/binarysearch.hpp
 
 # 二分探索
 
+## 概要
+
+単調述語の境界探索と実数凸関数の最小化を扱う。
+
+## 厳密な定義
+
+- `first_true`: O(log(right-left))。falseからtrueへ変わる[left,right)内の最初を返し、なければnullopt。
+- `last_true`: O(log(right-left))。trueからfalseへ変わる[left,right)内の最後を返し、なければnullopt。
+- `binary_search_real`: O(iterations)。falseからtrueへ変わる実数述語を二分探索し、true側の近似境界を返す。
+- `realminimum`: minimize_convex_realの近似結果。argumentでvalueを取る。
+- `minimize_convex_real`: O(iterations)。[left,right]上の凸関数を三分探索し、最小点と最小値の近似を返す。
+
+
 ## Include
 
 ```cpp

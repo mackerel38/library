@@ -5,15 +5,18 @@ documentation_of: //cp/math/gaussiannorm.hpp
 
 # ガウス整数のnorm剰余分布
 
-- Header: `cp/math/gaussiannorm.hpp`
-- Symbol: `poe::gaussian_norm_residue_distribution<Mint>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 素因数分解`N=product(p^e)`から、`x^2+y^2=N`を満たす整数組を法`C`の剰余ごとに数える。
 返り値の`result[x*C+y]`が`x mod C, y mod C`となる解数である。二平方和の総数だけでなく、
 格子円の中心が有理数で合同条件が付く場合にも使える。
+
+## 厳密な定義
+
+- `gaussian_norm_residue_distribution`: O(r C^4 + sum sqrt(p))。norm(z)=Nとなるガウス整数zの法Cでの剰余分布を返す。
+
+## Include
 
 ```cpp
 #include "math/gaussiannorm.hpp"
