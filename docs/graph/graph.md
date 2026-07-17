@@ -1,5 +1,5 @@
 ---
-title: "`directed_graph` / `undirected_graph`"
+title: "directed_graph / undirected_graph"
 documentation_of: //cp/graph/graph.hpp
 ---
 

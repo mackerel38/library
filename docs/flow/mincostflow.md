@@ -1,5 +1,5 @@
 ---
-title: "`mincostflow`"
+title: "mincostflow"
 documentation_of: //cp/flow/mincostflow.hpp
 ---
 

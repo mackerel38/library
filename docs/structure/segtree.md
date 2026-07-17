@@ -1,5 +1,5 @@
 ---
-title: "`segtree`"
+title: "segtree"
 documentation_of: //cp/structure/segtree.hpp
 ---
 

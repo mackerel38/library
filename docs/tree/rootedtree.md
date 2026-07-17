@@ -1,5 +1,5 @@
 ---
-title: "`rootedtree`"
+title: "rootedtree"
 documentation_of: //cp/tree/rootedtree.hpp
 ---
 

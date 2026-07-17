@@ -1,5 +1,5 @@
 ---
-title: "`lazysegtree`"
+title: "lazysegtree"
 documentation_of: //cp/structure/lazysegtree.hpp
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "`suffixquery`"
+title: "suffixquery"
 documentation_of: //cp/string/suffixquery.hpp
 ---
 

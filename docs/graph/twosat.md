@@ -1,5 +1,5 @@
 ---
-title: "`twosat`"
+title: "twosat"
 documentation_of: //cp/graph/twosat.hpp
 ---
 

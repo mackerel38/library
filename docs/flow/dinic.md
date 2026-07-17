@@ -1,5 +1,5 @@
 ---
-title: "`dinic` / `mincut`"
+title: "dinic / mincut"
 documentation_of: //cp/flow/dinic.hpp
 ---
 

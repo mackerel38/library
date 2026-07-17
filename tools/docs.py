@@ -31,7 +31,9 @@ def modules() -> list[tuple[str, dict]]:
 def title_of(text: str, fallback: str) -> str:
     body = without_front_matter(text)
     match = re.search(r"^#\s+(.+?)\s*$", body, re.MULTILINE)
-    return match.group(1) if match else fallback
+    title = match.group(1) if match else fallback
+    # Front MatterのtitleはlayoutがMarkdown変換せず出力するため、inline code記法を除く。
+    return re.sub(r"`([^`]*)`", r"\1", title)
 
 
 def without_front_matter(text: str) -> str:

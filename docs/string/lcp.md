@@ -1,5 +1,5 @@
 ---
-title: "`lcp_array`"
+title: "lcp_array"
 documentation_of: //cp/string/lcp.hpp
 ---
 

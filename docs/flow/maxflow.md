@@ -1,5 +1,5 @@
 ---
-title: "`maxflow`"
+title: "maxflow"
 documentation_of: //cp/flow/maxflow.hpp
 ---
 
