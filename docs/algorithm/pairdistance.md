@@ -5,11 +5,19 @@ documentation_of: //cp/algorithm/pairdistance.hpp
 
 # 二列間の絶対差和
 
-- Header: `cp/algorithm/pairdistance.hpp`
-- Symbol: `poe::sum_cross_absolute`
-- Status: experimental
+## 概要
+
+二列から一要素ずつ選ぶ全組の絶対差和を扱う。
+
+## 厳密な定義
+
+- `sum_cross_absolute`: 二列から一つずつ選ぶ全組の絶対差和を返す: sum_cross_absolute(a, b); O((n+m)log n)。
+
+
 
 二列から一要素ずつ選ぶ全組について絶対差を合計する。片方をsortし、各要素の左右を二分探索する。
+
+## Include
 
 ```cpp
 #include "algorithm/pairdistance.hpp"

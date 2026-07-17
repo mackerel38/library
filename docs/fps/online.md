@@ -5,20 +5,24 @@ documentation_of: //cp/fps/online.hpp
 
 # オンライン畳み込みDP
 
-- Header: `cp/fps/online.hpp`
-- Symbol: `poe::relaxedconvolution`, `poe::online_convolution`, `poe::convolution_recurrence`
-- Status: experimental
 
-## どんな問題に使えるか
-
+## 概要
 
 `i`番目を左から確定するとき、過去の確定値からの寄与が差`i-j`だけで決まるDPを分割統治畳み込みで
 計算する。`decide(i,raw)`には過去からの寄与をすべて加えた値が渡されるため、禁止位置なら0にする、
 その場で正規化する、といった問題側の判断を挟める。
 
+## 厳密な定義
+
+- `relaxedconvolution`: relaxedconvolution conv(n); conv.append(a[i],b[i])で積のi次係数を返す。 全n回でO(M(n) log n)、各append時点ではそれ以前の係数だけを使う。
+- `online_convolution`: O(M(n) log n)。online_convolution(source,kernel,decide): 左から確定する畳み込みDPを返す。 raw[i]=source[i]+sum_{j<i} committed[j]*kernel[i-j]を受け、decide(i,raw[i])が確定値を返す。
+- `convolution_recurrence`: O(M(n) log n)。convolution_recurrence(source,kernel): f=source+f*kernel、kernel[0]=0を解く。
+
 `relaxedconvolution`は二列の係数がどちらも左から確定する場合に使う。
 `append(a[i], b[i])`は、その時点で確定する積の`i`次係数を返すため、
 自己畳み込みや相互に依存する二列のonline DPにも使える。
+
+## Include
 
 ```cpp
 #include "fps/online.hpp"

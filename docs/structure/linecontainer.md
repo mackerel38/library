@@ -5,19 +5,22 @@ documentation_of: //cp/structure/linecontainer.hpp
 
 # Li Chao Tree
 
-- Header: `cp/structure/linecontainer.hpp`
-- Symbol: `poe::line<T>`, `poe::minlinecontainer<T>`, `poe::maxlinecontainer<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 DP遷移が`dp[i]=min_j(a[j]*x[i]+b[j])`またはmax版に変形でき、問い合わせ座標を先に列挙できる問題に使う。
 傾きの追加順や`x`の問い合わせ順に単調性を要求しない。直線が有効な添字区間だけの追加もできる。
 
+## 厳密な定義
+
+- `line`: y=ax+bを表す直線。
+- `minlinecontainer`: 最小値Li Chao Tree: minlinecontainer<long long> lines(xs); 追加O(log n)、取得O(log n)。
+- `maxlinecontainer`: 最大値Li Chao Tree: maxlinecontainer<long long> lines(xs); 追加O(log n)、取得O(log n)。
+
 問い合わせ座標を事前に集められない場合は動的座標版が必要。二次関数のままでは使えず、共通項を
 外へ出して直線に変形できる必要がある。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "structure/linecontainer.hpp"

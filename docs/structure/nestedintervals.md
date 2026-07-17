@@ -5,14 +5,17 @@ documentation_of: //cp/structure/nestedintervals.hpp
 
 # 入れ子区間列
 
-- Header: `cp/structure/nestedintervals.hpp`
-- Symbol: `poe::nestedintervals<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 長さが厳密増加する区間列を、最初はすべて左端0で置く。その後、prefix全体の左端または右端を
 一つの座標へ揃える操作を繰り返しながら、各区間や一点を覆う区間数を取得する。
+
+## 厳密な定義
+
+- `nestedintervals`: 長さ昇順の入れ子区間列をprefix左端・右端整列で管理する: nestedintervals<long long> a(lengths)。
+
+## Include
 
 ```cpp
 #include "structure/nestedintervals.hpp"
@@ -128,6 +131,6 @@ O(log n)。半開区間[left,right)がcoordinateを含む区間数を返す。
   prefixの左端・右端整列と半整数点を含む区間数を処理する。
 
 `verify/atcoder_abc428_f.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-。
+
 
 `tests/property/structure/nestedintervals.cpp`では、全区間を直接移動する愚直実装とランダム操作を比較する。

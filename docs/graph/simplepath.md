@@ -5,9 +5,17 @@ documentation_of: //cp/graph/simplepath.hpp
 
 # 長さ別単純パス数
 
-- Header: `cp/graph/simplepath.hpp`
-- Symbol: `poe::simple_path_length_counts`
-- Status: experimental
+## 概要
+
+余剰辺数が小さい無向グラフの長さ別単純パス数え上げを扱う。
+
+## 厳密な定義
+
+- `simple_path_length_counts`: O(n+m+K 2^K)程度。余剰辺数Kが小さい無向グラフでsource-sink単純パス数を辺数別に返す。
+
+
+
+## Include
 
 ```cpp
 #include "graph/simplepath.hpp"

@@ -5,15 +5,20 @@ documentation_of: //cp/algorithm/isotonic.hpp
 
 # 右向き移動による単調化
 
-- Header: `cp/algorithm/isotonic.hpp`
 - Symbols: `poe::righttransferisotonicresult`, `poe::right_transfer_isotonic`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 整数列に対して「位置 `i` から `i+1` へ値を1だけ移す」操作を繰り返し、
 広義単調増加列にする最小操作回数と最終列を求める。
 隣接する違反区間を均等にならす処理をblockとして併合するため、要素を一単位ずつ動かさない。
+
+## 厳密な定義
+
+- `righttransferisotonicresult`: right_transfer_isotonicの結果。valuesは操作後の広義単調増加列、operationsは最小操作回数。
+- `right_transfer_isotonic`: O(n)。各操作でvalues[i]を1減らしvalues[i+1]を1増やして広義単調増加にする最小操作を求める。
+
+## Include
 
 ```cpp
 #include "algorithm/isotonic.hpp"

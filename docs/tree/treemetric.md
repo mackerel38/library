@@ -5,15 +5,19 @@ documentation_of: //cp/tree/treemetric.hpp
 
 # 木距離行列の判定・復元
 
-- Header: `cp/tree/treemetric.hpp`
-- Symbol: `poe::restore_tree_metric`, `poe::is_tree_metric`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 対称行列が、同じ頂点集合上の正重み無向木の全点間距離になっているか判定する。
 成立する場合は、その距離を実現する`undirected_graph<Cost>`も復元できる。
 入力頂点以外にSteiner頂点を追加してよい木距離や、0・負辺を許す場合には使えない。
+
+## 厳密な定義
+
+- `restore_tree_metric`: O(n^2)。distanceが正重み木の全点間距離ならその木を返し、そうでなければnullopt。
+- `is_tree_metric`: O(n^2)。distanceが正重み木の全点間距離ならtrueを返す。
+
+## Include
 
 ```cpp
 #include "tree/treemetric.hpp"

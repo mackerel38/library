@@ -5,6 +5,15 @@ documentation_of: //cp/tree/lca.hpp
 
 # `lcatree`
 
+## 概要
+
+二分累乗によるLCA・木上jump・パス所属・切断側サイズを扱う。
+
+## 厳密な定義
+
+- `lcatree`: 二分累乗でLCAと木上移動を扱う: lcatree tree(graph, root); 構築O(n log n)、取得O(log n)。
+
+
 ## Include
 
 ```cpp

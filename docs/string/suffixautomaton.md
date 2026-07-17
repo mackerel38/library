@@ -5,19 +5,16 @@ documentation_of: //cp/string/suffixautomaton.hpp
 
 # Suffix Automaton
 
-- Status: experimental
-- Header: `cp/string/suffixautomaton.hpp`
-- Symbol: `poe::suffixautomaton<Symbol>`, `poe::suffixstate<Symbol>`, `poe::suffixmatch`
 
-## Include
-
-```cpp
-#include "string/suffixautomaton.hpp"
-```
-
-## できること
+## 概要
 
 一つの列に含まれる全連続部分列を高々`2n`状態のDFAで表す。
+
+## 厳密な定義
+
+- `suffixstate`: suffix automatonの一状態。next、suffix link、最長長、出現数、最初の終了位置を持つ。
+- `suffixmatch`: 別列との最長共通部分列結果。substringは連続部分列を表す。
+- `suffixautomaton`: 全連続部分列を表す最小DFA: suffixautomaton<char> sam(text); 構築ならしO(n log sigma)。
 
 ```cpp
 suffixautomaton<char> automaton(text);
@@ -37,6 +34,12 @@ auto common = automaton.longest_common_substring(other);
 
 default constructorへ`add`でオンライン追加もできるが、出現回数やterminal情報を使う前に
 `build()`を呼ぶ。追加済みautomatonへさらに追加した場合も再度`build()`が必要。
+
+## Include
+
+```cpp
+#include "string/suffixautomaton.hpp"
+```
 
 ## 計算量
 

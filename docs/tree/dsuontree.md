@@ -5,21 +5,16 @@ documentation_of: //cp/tree/dsuontree.hpp
 
 # DSU on Tree
 
-- Status: experimental
-- Header: `cp/tree/dsuontree.hpp`
-- Symbol: `poe::dsuontree`
 
-## Include
-
-```cpp
-#include "tree/dsuontree.hpp"
-```
-
-## できること
+## 概要
 
 各頂点の部分木に対する統計を、最大部分木を持つ子の状態だけ使い回して列挙する。
 親配列から構築し、現在の表へ頂点を出し入れする`add`、`remove`と、答えを読む
 `query`を渡す。
+
+## 厳密な定義
+
+- `dsuontree`: 部分木情報を使い回すDSU on Tree: dsuontree tree(parent); run(add,remove,query)。
 
 ```cpp
 dsuontree tree(parent);
@@ -32,6 +27,12 @@ tree.run(
 `query(vertex)`が呼ばれた時点では、表にちょうど`vertex`の部分木だけが入っている。
 `run()`開始前の表は空であること。終了後も空へ戻る。
 実装は再帰を使わないため、細長い巨大木でもcall stackを消費しない。
+
+## Include
+
+```cpp
+#include "tree/dsuontree.hpp"
+```
 
 ## 計算量
 

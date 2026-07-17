@@ -5,14 +5,18 @@ documentation_of: //cp/game/finite.hpp
 
 # 有限手数ゲーム
 
-- Header: `cp/game/finite.hpp`
-- Symbol: `poe::finitegameresult`, `poe::finite_horizon_game`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 グラフ上の駒を指定回数動かし、最後の頂点に定めた真偽で勝敗が決まる完全情報零和ゲームを解く。
 真側の手番は行き先のOR、偽側の手番はANDを取る。
+
+## 厳密な定義
+
+- `finitegameresult`: 有限手数の真偽ゲーム結果。winning[v]は開始頂点vで真側が勝つことを表す。
+- `finite_horizon_game`: O(turns*(n+m))。turn_maximizes(turn)で各手番のOR・ANDを指定する有限手数ゲームを解く。
+
+## Include
 
 ```cpp
 #include "game/finite.hpp"
@@ -84,6 +88,6 @@ O(turns*(n+m))。first_maximizesから真最大化・最小化を交互に行う
   頂点文字が`A`ならterminalをtrueとし、Aliceから`2K`手交互に操作する。
 
 `verify/atcoder_abc427_d.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-。
+
 
 `tests/property/game/finite.cpp`では、小さいランダムgraphを再帰minimaxと比較する。

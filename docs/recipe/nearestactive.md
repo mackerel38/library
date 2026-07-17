@@ -5,22 +5,16 @@ documentation_of: //cp/recipe/nearestactive.hpp
 
 # 最寄りの有効頂点
 
-- Status: experimental
-- Header: `cp/recipe/nearestactive.hpp`
-- Symbol: `poe::nearestactive<Graph>`, `poe::nearestactiveresult<Distance>`
 
-## Include
-
-```cpp
-#include "recipe/nearestactive.hpp"
-```
-
-`recipe`なので`all.hpp`には含めない。必要な問題で明示的にincludeする。
-
-## できること
+## 概要
 
 木の頂点を有効・無効に更新しながら、指定頂点から最も近い有効頂点を求める。
 重心分解のancestor距離と重心ごとのmultiset管理を内部で行う。
+
+## 厳密な定義
+
+- `nearestactiveresult`: 最寄りの有効頂点query結果。距離が同じなら頂点番号が小さいものを返す。
+- `nearestactive`: 有効頂点を更新し最寄りを尋ねる: nearestactive active(graph); 更新O(log^2 n)、query O(log n)。
 
 ```cpp
 nearestactive active(graph);
@@ -39,6 +33,14 @@ if (answer) cout << answer->vertex << ' ' << answer->distance << '\n';
 
 有効頂点がなければ`nearest`と`distance`は`nullopt`。
 辺重みは非負であること。重みなし木は各辺を1と数える。
+
+## Include
+
+```cpp
+#include "recipe/nearestactive.hpp"
+```
+
+`recipe`なので`all.hpp`には含めない。必要な問題で明示的にincludeする。
 
 ## 計算量
 

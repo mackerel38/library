@@ -5,19 +5,23 @@ documentation_of: //cp/structure/doubling.hpp
 
 # ダブリング
 
-- Header: `cp/structure/doubling.hpp`
 - Symbols: `poe::doubling`, `poe::weighteddoubling`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各状態から次状態が一意に決まる関数グラフで、巨大回数先の状態を求める。さらに、遷移先に対する条件が
 経路上でtrueからfalseへ一度だけ変わるなら、条件内で進める最大回数も二分累乗表上で求められる。
 
+## 厳密な定義
+
+- `weighteddoublingresult`: 重み付きダブリングの到着頂点と経路集約値。
+- `doubling`: 関数グラフの二分累乗表: doubling table(next, max_step); 構築O(n log K)。
+- `weighteddoubling`: 関数グラフ上の遷移値も集約する: weighteddoubling table(next, weight, max_step); 構築O(n log K)。
+
 辺ごとの値も必要なら`weighteddoubling`で、和・積・文字列結合などの結合的な演算を通過順に集約できる。
 次状態が複数ある場合や、経路上でpredicateが再びtrueになる場合は対象外。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "structure/doubling.hpp"

@@ -5,21 +5,25 @@ documentation_of: //cp/dp/profile.hpp
 
 # Frontierの連結状態
 
-- Header: `cp/dp/profile.hpp`
-- Symbol: `poe::submaskprofileresult`, `poe::minimum_submask_profile`,
   `poe::connectivityprofile`, `poe::normalize_profile`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 幅の小さい盤面を順に走査し、処理済み領域と未処理領域の境界に接する連結成分だけを状態にする問題に
 使う。`connectivityprofile`は空位置を`-1`、追跡したい一つの成分を`0`、その他の成分を正の番号で
 表す。成分番号は毎回正規化されるため、同じ分割がラベルの付け方だけで別状態になることを防げる。
 
+## 厳密な定義
+
+- `submaskprofileresult`: 行submask profile DPの結果。costが削除bit数、masksが選んだ各行mask。
+- `minimum_submask_profile`: O(h 4^w)時間・O(h 2^w)空間。各行のsubmaskを隣接compatibleに選び削除bit数を最小化する。
+- `normalize_profile`: O(width)。normalize_profile(labels): frontier DPの連結成分番号を出現順に0,1,...へ正規化する。 -1は空マス。distinguished>=0ならその位置の成分を必ず0にする。 reserve_zero=trueならdistinguishedの成分が消えた後も0を他成分へ再利用しない。
+- `connectivityprofile`: connectivityprofile state(width): frontier上の連結成分を持つ。-1は空、0は注目成分。
+
 この型が保持するのは「境界上の分割」と一つの注目成分だけである。閉じた成分の個数、次数、重み、
 複数端点の対応などが必要なら、追加情報を持つ独自状態に組み込む。
 
-## 使い方
+## Include
 
 ```cpp
 #include "dp/profile.hpp"
@@ -34,6 +38,8 @@ if (state.has_marked() && state.is_marked(height - 1)) {
 `from_mask`と`advance`は同じ列の隣接占有マスを縦に結び、前後列の同位置を横に結ぶ。
 局所的な辺の張り方が異なる問題では、`add`、`erase`、`connect`、`mark`を使う。
 生のラベル列だけ正規化したい場合は`normalize_profile`を使える。
+
+## 使い方
 
 ## 操作と計算量
 

@@ -5,6 +5,15 @@ documentation_of: //cp/tree/eulertour.hpp
 
 # Euler tour
 
+## 概要
+
+完全Euler tour列と部分木のDFS行きがけ区間を扱う。
+
+## 厳密な定義
+
+- `eulertour`: 無向木を根から巡回し、頂点へ入る時と子から戻る時の列を作る: eulertour tour(graph, root); 構築O(n)。
+
+
 ## Include
 
 ```cpp

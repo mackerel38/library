@@ -5,6 +5,16 @@ documentation_of: //cp/string/manacher.hpp
 
 # Manacher法
 
+## 概要
+
+Manacher法による奇数長・偶数長回文半径を扱う。
+
+## 厳密な定義
+
+- `manacher_odd`: O(n)。odd[i]を中心iの奇数長回文半径として返す。回文長は2*odd[i]-1。
+- `manacher_even`: O(n)。even[i]を境界(i-1,i)中心の偶数長回文半径として返す。回文長は2*even[i]。
+
+
 ## Include
 
 ```cpp

@@ -55,8 +55,27 @@ class TitleTest(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("TeX-AMS_CHTML", mathjax)
         self.assertNotIn("TeX-MML-AM_CHTML", mathjax)
-        self.assertIn('inlineMath: [["\\\\(", "\\\\)"]]', mathjax)
+        self.assertIn('inlineMath: [["$", "$"], ["\\\\(", "\\\\)"]]', mathjax)
+        self.assertIn('displayMath: [["$$", "$$"]', mathjax)
         self.assertIn('"pre", "code"', mathjax)
+
+    def test_tropical_convolution_uses_jekyll_safe_tex_delimiters(self) -> None:
+        document = (
+            REPOSITORY_ROOT / "docs/math/tropicalconvolution.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("$$\nC_k = \\min_{i+j=k}(A_i+B_j)\n$$", document)
+        self.assertIn("$C_k=\\min_{i+j=k}(A_i+B_j)$", document)
+
+    def test_pages_workflow_verifies_before_generating_documents(self) -> None:
+        workflow = (
+            REPOSITORY_ROOT / ".github/workflows/docs.yml"
+        ).read_text(encoding="utf-8")
+        self.assertIn("pull_request:", workflow)
+        self.assertLess(
+            workflow.index("oj-verify run"),
+            workflow.index("python3 tools/docs.py build"),
+        )
+        self.assertIn("if: github.event_name == 'push'", workflow)
 
 
 class ApiReferenceTest(unittest.TestCase):
@@ -82,6 +101,26 @@ class ApiReferenceTest(unittest.TestCase):
         )
         cleaned = DOCS_TOOL.remove_reader_irrelevant_verification_notes(text)
         self.assertEqual(cleaned, "公式sampleを確認済み。\nproperty test済み。\n")
+
+    def test_documentation_style_puts_summary_before_exact_definition(self) -> None:
+        metadata = {
+            "summary_ja": "単調述語の境界探索",
+            "symbols": ["poe::first_true"],
+        }
+        body = "# 二分探索\n\n## どんな問題に使えるか\n\n簡単な説明。\n\n詳しい条件。\n\n## Include\n"
+        styled = DOCS_TOOL.documentation_style(
+            "cp/algorithm/binarysearch.hpp", metadata, body
+        )
+        self.assertLess(styled.index("## 概要"), styled.index("## 厳密な定義"))
+        self.assertLess(styled.index("## 厳密な定義"), styled.index("## Include"))
+        self.assertIn("簡単な説明。", styled)
+        self.assertIn("詳しい条件。", styled)
+
+    def test_include_section_is_inserted_after_exact_definition(self) -> None:
+        body = "# Example\n\n## 概要\n\n概要。\n\n## 厳密な定義\n\n定義。\n"
+        styled = DOCS_TOOL.normalize_include_section("cp/math/example.hpp", body)
+        self.assertLess(styled.index("## 厳密な定義"), styled.index("## Include"))
+        self.assertIn('#include "math/example.hpp"', styled)
 
 
 if __name__ == "__main__":

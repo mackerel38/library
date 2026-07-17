@@ -5,15 +5,19 @@ documentation_of: //cp/structure/persistentlichaotree.hpp
 
 # 永続動的 Li Chao Tree
 
-- Header: `cp/structure/persistentlichaotree.hpp`
-- Symbol: `poe::lichaomode`, `poe::persistentlichaotree`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 直線集合の版を残しながら、任意の実数座標で最小値または最大値を求める。
 prefixごとの直線集合、分岐するDP、永続版を左右から作って一要素を除外する問題に使える。
 問い合わせ座標の事前列挙は不要で、versionは軽い整数handleで表す。
+
+## 厳密な定義
+
+- `lichaomode`: Li Chao Treeが最小値・最大値のどちらを返すかを表す。
+- `persistentlichaotree`: 永続動的Li Chao Tree: versionはint handle。直線追加・取得O(depth)、copy O(1)。
+
+## Include
 
 ```cpp
 #include "structure/persistentlichaotree.hpp"

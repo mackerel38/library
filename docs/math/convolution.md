@@ -5,6 +5,16 @@ documentation_of: //cp/math/convolution.hpp
 
 # 畳み込み
 
+## 概要
+
+NTTと3法CRTによる畳み込みを扱う。
+
+## 厳密な定義
+
+- `convolution`: O(n log n)。modint列a,bの畳み込みを返す。modはNTT可能な素数。
+- `convolution_ll`: O(n log n)。long long列を整数として畳み込む。全係数がlong long範囲内であること。
+
+
 ## Include
 
 ```cpp

@@ -5,6 +5,19 @@ documentation_of: //cp/graph/connectivity.hpp
 
 # 連結成分・二部グラフ
 
+## 概要
+
+辺数・木判定付き無向連結成分分解と二部彩色を扱う。
+
+## 厳密な定義
+
+- `componentresult`: 連結成分分解の結果: result[vertex]で成分番号を取得する。
+- `connected_components`: O(n+m)。無向グラフを連結成分分解する。成分内と成分間は頂点番号順になる。
+- `bipartiteresult`: 二部グラフ判定の結果。colorは各頂点の0/1彩色、失敗時のconflict_edgeは同色を結ぶ辺番号。
+- `is_bipartite`: O(1)。二部グラフならtrueを返す。
+- `bipartite_coloring`: O(n+m)。無向グラフを二部彩色し、二部でない場合は衝突辺を返す。
+
+
 ## Include
 
 ```cpp

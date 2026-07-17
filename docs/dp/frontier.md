@@ -5,20 +5,21 @@ documentation_of: //cp/dp/frontier.hpp
 
 # 疎なfrontier DP
 
-- Header: `cp/dp/frontier.hpp`
-- Symbol: `poe::frontierdp`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 盤面を一列ずつ走査するDP、辞書・オートマトン上のDPなど、各段階で到達する状態が全状態空間より
 十分少ない問題に使う。`frontierdp`は状態から値への`map`と次層への交換だけを担当し、状態の意味や
 遷移は利用側に残す。同じ遷移先への値は`add`で自動的に加算される。
 
+## 厳密な定義
+
+- `frontierdp`: frontierdp<State, Value> dp(initial): 同じ状態の値を+=でまとめる疎なfrontier DP。
+
 密な整数状態をすべて走査できる場合は`vector`の方が速い。最小値DPのように集約演算が加算でない場合も、
 この型をそのまま使わず、値型または別の状態管理を選ぶ。
 
-## 使い方
+## Include
 
 ```cpp
 #include "dp/frontier.hpp"
@@ -32,6 +33,8 @@ mint answer = dp.sum([](const State& state) { return is_goal(state); });
 
 公開されている`states`を直接走査できるが、次層の構築には`step`を使う。同じ層を参照しながら更新して
 意図せず遷移を繰り返す事故を防げる。
+
+## 使い方
 
 ## 前提と計算量
 

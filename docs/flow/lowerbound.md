@@ -5,6 +5,16 @@ documentation_of: //cp/flow/lowerbound.hpp
 
 # `lowerboundflow`
 
+## 概要
+
+辺容量の下限付き循環・最小流・最大流を扱う。
+
+## 厳密な定義
+
+- `lowerboundflowresult`: 下限制約付きs-tフローの解。flowは流量値、edge_flowは辺追加順の流量。
+- `lowerboundflow`: 各辺lower<=flow<=upperのフローを解く: lowerboundflow<long long> problem(n)。
+
+
 ## Include
 
 ```cpp

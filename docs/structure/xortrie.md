@@ -5,15 +5,20 @@ documentation_of: //cp/structure/xortrie.hpp
 
 # XOR Trie
 
-- Header: `cp/structure/xortrie.hpp`
-- Symbol: `poe::xortrie`, `poe::sum_min_xor`, `poe::count_pairs_xor_at_most`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 非負整数のmultisetに対し、値の追加・削除・個数取得と、指定値とのXORが上限未満・以下になる
 要素数を上位bitから数える。指定値との最小XOR、整数区間全体に対する最小XORの総和、列内の
 二要素のXORが上限以下となる組数も求められる。
+
+## 厳密な定義
+
+- `xortrie`: 整数multisetのXOR検索: xortrie<unsigned,30> trie; 各操作O(bits)。
+- `sum_min_xor`: O(n bits)前計算・O(bits)集約。x=0..upper-1についてmin_a(x xor a)の総和を返す。
+- `count_pairs_xor_at_most`: O(n bits)。i<jかつvalues[i] xor values[j]<=limitとなる組数を返す。
+
+## Include
 
 ```cpp
 #include "structure/xortrie.hpp"

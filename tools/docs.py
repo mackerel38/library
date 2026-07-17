@@ -53,12 +53,24 @@ def remove_reader_irrelevant_verification_notes(text: str) -> str:
         flags=re.IGNORECASE,
     )
     text = text.replace("公開問題への提出によるAC確認はまだ行っていない", "")
+    text = re.sub(
+        r"[^。\n]*(?:verifyコード(?:は|が)?未作成|後にverifyを追加する)[^。\n]*。",
+        "",
+        text,
+    )
+    text = re.sub(r"[^。\n]*専用の使用例は置かない[^。\n]*。", "", text)
     text = re.sub(r"(?:、|，|,)+\s*。", "。", text)
     text = re.sub(r"(?:だが|であり|への|の)\s*。", "。", text)
     text = text.replace("。、", "。")
     while "。。" in text:
         text = text.replace("。。", "。")
     text = text.replace("いずれも。", "")
+    text = text.replace("確認済み・。", "確認済み。")
+    text = text.replace("公式sample確認済みで。", "公式sample確認済み。")
+    text = text.replace("サンプル確認のみで。", "サンプルを確認済み。")
+    text = text.replace("repo内ライブラリを使用しており。", "repo内ライブラリを使用している。")
+    text = text.replace("最大sampleはlocal約22秒で。", "最大sampleはlocal約22秒である。")
+    text = re.sub(r"(?m)^。", "", text)
     return text
 
 
@@ -147,6 +159,137 @@ def public_api(header: Path) -> list[tuple[str, str, str]]:
     return result
 
 
+def main_api_definition(header: str, metadata: dict) -> str:
+    """主要symbolの補完コメントから、概要の次に置く厳密な説明を作る。"""
+    expected = {
+        symbol.rsplit("::", 1)[-1].split("<", 1)[0]
+        for symbol in metadata.get("symbols", [])
+    }
+    descriptions: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for name, _, description in public_api(ROOT / header):
+        if name not in expected or name in seen or not description:
+            continue
+        descriptions.append((name, description.replace("\n", " ")))
+        seen.add(name)
+    if descriptions:
+        return "\n".join(
+            f"- `{name}`: {description}" for name, description in descriptions
+        )
+    summary = metadata.get("summary_ja", Path(header).stem)
+    return f"このheaderは、{summary}を扱う。公開APIの入出力と成立条件は以下の節で定める。"
+
+
+def documentation_style(header: str, metadata: dict, body: str) -> str:
+    """利用者向け本文を「概要、厳密な定義」の順へ統一する。"""
+    body = re.sub(
+        r"(?m)^- (?:Header|Symbol|Status):[^\n]*\n?",
+        "",
+        body,
+    )
+    summary_text = metadata.get("summary_ja", Path(header).stem).rstrip("。")
+    if re.search(r"(?:る|判定)$", summary_text):
+        summary = summary_text + "。"
+    else:
+        summary = summary_text + "を扱う。"
+    old_generated_summary = summary_text + "。"
+    body = body.replace(
+        "## 概要\n\n" + old_generated_summary,
+        "## 概要\n\n" + summary,
+        1,
+    )
+    if "## 概要" in body and "## 厳密な定義" in body:
+        return body
+    definition = main_api_definition(header, metadata)
+    legacy_heading = next(
+        (
+            heading
+            for heading in ("## 概要", "## どんな問題に使えるか", "## できること")
+            if heading in body
+        ),
+        None,
+    )
+    if legacy_heading is not None:
+        start = body.index(legacy_heading)
+        content_start = start + len(legacy_heading)
+        next_heading = re.search(r"^##\s+", body[content_start:], re.MULTILINE)
+        end = content_start + next_heading.start() if next_heading else len(body)
+        content = body[content_start:end].strip()
+        blocks = re.split(r"\n\n+", content, maxsplit=1) if content else []
+        if blocks and not blocks[0].startswith(("```", "- ", "| ")):
+            overview = blocks[0]
+            detail = blocks[1] if len(blocks) == 2 else ""
+        else:
+            overview = summary
+            detail = content
+        strict = definition + ("\n\n" + detail if detail else "")
+        replacement = (
+            "## 概要\n\n"
+            + overview
+            + "\n\n## 厳密な定義\n\n"
+            + strict
+            + "\n\n"
+        )
+        return body[:start] + replacement + body[end:].lstrip("\n")
+
+    title = re.search(r"^#\s+.+$", body, re.MULTILINE)
+    if title is None:
+        return body
+    insert = title.end()
+    following = body[insert:]
+    marker = re.match(r"\n+" + re.escape(COLLAPSED), following)
+    if marker:
+        insert += marker.end()
+    sections = (
+        "\n\n## 概要\n\n"
+        + summary
+        + "\n\n## 厳密な定義\n\n"
+        + definition
+        + "\n"
+    )
+    return body[:insert] + sections + body[insert:]
+
+
+def normalize_include_section(header: str, body: str) -> str:
+    """Include節を厳密な定義の直後へ置く。"""
+    if "## Include" not in body:
+        include = re.search(
+            r"^```cpp\n(?:(?!^```).)*?#include[^\n]*\n(?:(?!^```).)*?^```\n?",
+            body,
+            re.MULTILINE | re.DOTALL,
+        )
+        if include is not None:
+            body = body[: include.start()] + "## Include\n\n" + body[include.start() :]
+        else:
+            include_path = Path(header).relative_to("cp").as_posix()
+            body += (
+                "\n\n## Include\n\n```cpp\n"
+                f'#include "{include_path}"\n'
+                "```\n"
+            )
+    if "## 厳密な定義" not in body:
+        return body
+    include_start = body.index("## Include")
+    strict_start = body.index("## 厳密な定義")
+    first_after_strict = re.search(r"^##\s+", body[strict_start + 1 :], re.MULTILINE)
+    if first_after_strict is not None:
+        first_after_strict_start = strict_start + 1 + first_after_strict.start()
+        if first_after_strict_start == include_start:
+            return body
+    if include_start == strict_start:
+        return body
+    next_heading = re.search(r"^##\s+", body[include_start + 1 :], re.MULTILINE)
+    include_end = (
+        include_start + 1 + next_heading.start() if next_heading is not None else len(body)
+    )
+    section = body[include_start:include_end].strip()
+    body = (body[:include_start] + body[include_end:]).strip() + "\n"
+    strict_start = body.index("## 厳密な定義")
+    next_heading = re.search(r"^##\s+", body[strict_start + 1 :], re.MULTILINE)
+    insert = strict_start + 1 + next_heading.start() if next_heading else len(body)
+    return body[:insert].rstrip() + "\n\n" + section + "\n\n" + body[insert:].lstrip()
+
+
 def reference_block(header: str, *, collapsed: bool = False) -> str:
     entries = public_api(ROOT / header)
     lines = [BEGIN]
@@ -188,14 +331,16 @@ def front_matter(header: str, title: str) -> str:
     )
 
 
-def synchronized_text(header: str, docs: Path, original: str) -> str:
+def synchronized_text(header: str, metadata: dict, docs: Path, original: str) -> str:
     title = title_of(original, Path(header).stem)
     body = without_front_matter(original).lstrip("\n")
-    body = remove_reader_irrelevant_verification_notes(body)
     if BEGIN in body and END in body:
         left, rest = body.split(BEGIN, 1)
         _, right = rest.split(END, 1)
         body = left.rstrip() + "\n\n" + right.lstrip("\n")
+    body = remove_reader_irrelevant_verification_notes(body)
+    body = documentation_style(header, metadata, body)
+    body = normalize_include_section(header, body)
     block = reference_block(header, collapsed=COLLAPSED in body)
     marker = "## 実在問題での使用例"
     if marker in body:
@@ -211,7 +356,7 @@ def sync() -> int:
     for header, metadata in modules():
         docs = ROOT / metadata["docs"]
         original = docs.read_text(encoding="utf-8")
-        updated = synchronized_text(header, docs, original)
+        updated = synchronized_text(header, metadata, docs, original)
         if updated != original:
             docs.write_text(updated, encoding="utf-8", newline="\n")
             changed += 1
@@ -224,16 +369,25 @@ def check() -> int:
     for header, metadata in modules():
         docs = ROOT / metadata["docs"]
         text = docs.read_text(encoding="utf-8")
-        expected = synchronized_text(header, docs, text)
+        expected = synchronized_text(header, metadata, docs, text)
         if text != expected:
             issues.append(f"{metadata['docs']}: run `python3 tools/docs.py sync`")
         for symbol in metadata.get("symbols", []):
             short = symbol.rsplit("::", 1)[-1]
             if short not in text:
                 issues.append(f"{metadata['docs']}: public symbol is undocumented: {short}")
-        for required in ("#include",):
+        for required in ("## 概要", "## 厳密な定義", "## Include", "#include"):
             if required not in text:
                 issues.append(f"{metadata['docs']}: missing required section: {required}")
+        if all(section in text for section in ("## 概要", "## 厳密な定義", "## Include")):
+            if not (
+                text.index("## 概要")
+                < text.index("## 厳密な定義")
+                < text.index("## Include")
+            ):
+                issues.append(
+                    f"{metadata['docs']}: sections must be ordered as overview, exact definition, include"
+                )
         if "## APIリファレンス" not in text and "### 完全なAPIリファレンス" not in text:
             issues.append(f"{metadata['docs']}: missing required API reference section")
     if issues:

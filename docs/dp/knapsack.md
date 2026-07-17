@@ -5,15 +5,26 @@ documentation_of: //cp/dp/knapsack.hpp
 
 # ナップサック
 
-- Header: `cp/dp/knapsack.hpp`
-- Symbol: `poe::knapsack01`, `poe::classify_knapsack01_items`, `poe::knapsack01_value`, `poe::knapsack01_mitm`, `poe::knapsack01_auto`, `poe::bounded_knapsack`, `poe::bounded_knapsack_tiny_weights`, `poe::unbounded_knapsack`, `poe::minimum_unbounded_knapsack_cost`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 重さと価値が加算され、重さの総和が容量以下となる選び方の最大価値を求める問題に使う。
 同じ0/1ナップサックでも、容量、価値総和、品物数のどれが小さいかによって解法を選ぶ。
 個数が無制限または上限付きの場合も、同じ入力模型のまま専用の遷移を利用できる。
+
+## 厳密な定義
+
+- `knapsack01`: O(nW)。knapsack01(weight, value, W): 重さW以下の0/1ナップサック最大価値を返す。
+- `knapsackitemstatus`: 最適な0/1ナップサック解における品物の使われ方。
+- `classify_knapsack01_items`: O(nW)時間・O(nW)領域。全最適解で各品物が必須・任意・不使用かを返す。
+- `knapsack01_by_value`: O(nV)。knapsack01_by_value(weight, value): 各価値を作る最小重量を返す。価値は非負整数。
+- `knapsack01_value`: O(nV)。knapsack01_value(weight, value, W): 価値DPで重さW以下の最大価値を返す。
+- `knapsack01_mitm`: O(2^(n/2))時間・領域。knapsack01_mitm(weight, value, W): 半分全列挙で最大価値を返す。
+- `knapsack01_auto`: 容量DP・価値DP・半分全列挙の最小推定計算量。knapsack01_auto(weight, value, W): 最大価値を返す。 価値は非負整数で、いずれかの解法の状態数がメモリに載る制約で使う。
+- `unbounded_knapsack`: O(nW)。unbounded_knapsack(weight, value, W): 同じ品物を何個でも使える最大価値を返す。
+- `minimum_unbounded_knapsack_cost`: O(nC^2)時間・O(C^2)領域。小さい正コスト品を無制限に選び、価値target以上の最小コストを返す。 Cは最大コスト。valuesとtargetは正で、答えがlong longに収まること。
+- `bounded_knapsack`: O(nW)。bounded_knapsack(weight, value, count, W): 各品物をcount個まで使える最大価値を返す。
+- `bounded_knapsack_tiny_weights`: O(n log n)。重みが1,2,3だけの個数制限knapsackを巨大capacityでも解く。
 
 | 制約 | 関数 | 計算量 |
 | --- | --- | --- |
@@ -30,9 +41,7 @@ documentation_of: //cp/dp/knapsack.hpp
 すべて「重さが容量以下」の最大価値を返し、何も選ばない場合の価値`0`を許す。
 価値DPと自動選択では価値を非負整数に限る。
 
-## 使い方
-
-制約から解法が明らかな場合は、計算量が名前から分かる関数を直接選ぶ。
+## Include
 
 ```cpp
 #include "dp/knapsack.hpp"
@@ -60,6 +69,10 @@ long long answer = poe::knapsack01_auto(weight, value, capacity);
 
 どの解法でも状態数が巨大になる入力は扱えない。重さが特殊な基数の冪、異なる重さの種類数が少ない、
 最大重さ・最大価値だけが小さい、といった追加構造には別のアルゴリズムが必要である。
+
+## 使い方
+
+制約から解法が明らかな場合は、計算量が名前から分かる関数を直接選ぶ。
 
 ## よくある誤り
 

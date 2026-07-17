@@ -5,17 +5,20 @@ documentation_of: //cp/dp/concave.hpp
 
 # 区分線形な上に凸列
 
-- Header: `cp/dp/concave.hpp`
-- Symbol: `poe::concavesequence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 有限な整数区間上の上に凸なDP列を折れ点だけで持ち、次の遷移を高速化する。
+
+## 厳密な定義
+
+- `concavesequence`: 整数区間上の区分線形な上に凸列。点から作り、一次関数加算・level未満切除・suffix max変換を行う。
 
 - 全状態への一次関数加算
 - 値が閾値未満になる両端状態の削除
 - `g(x) = max_{y >= x}(f(y) - c(y-x))`というsuffix max-plus変換
+
+## Include
 
 ```cpp
 #include "dp/concave.hpp"
@@ -116,4 +119,3 @@ void suffix_max(long long slope, long long new_left)
 
 [ABC458 G - Children Yearn for the Evil Kindergarten](https://atcoder.jp/contests/abc458/tasks/abc458_g)の
 人数別最大メダルDPをこの列として持てる。`verify/atcoder_abc458_g.cpp`で公式sample一致を確認している。
-。

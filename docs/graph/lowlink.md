@@ -5,6 +5,17 @@ documentation_of: //cp/graph/lowlink.hpp
 
 # `lowlink` / 二辺連結成分
 
+## 概要
+
+反復DFSによる関節点・橋・二辺連結成分を扱う。
+
+## 厳密な定義
+
+- `lowlinkresult`: LowLinkの結果。articulation_pointsは関節点、bridge_idsは橋の辺番号を表す。
+- `lowlink`: O(n+m)。無向グラフの関節点と橋を反復DFSで求める。多重辺と自己辺も使える。
+- `two_edge_connected_components`: O(n+m)。橋を除いて無向グラフを二辺連結成分分解する。
+
+
 ## Include
 
 ```cpp

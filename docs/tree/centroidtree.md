@@ -5,20 +5,16 @@ documentation_of: //cp/tree/centroidtree.hpp
 
 # Centroid Decomposition
 
-- Status: experimental
-- Header: `cp/tree/centroidtree.hpp`
-- Symbol: `poe::centroidtree<Graph>`, `poe::centroidpathentry<Distance>`
 
-## Include
-
-```cpp
-#include "tree/centroidtree.hpp"
-```
-
-## できること
+## 概要
 
 木を重心で再帰的に分け、深さ`O(log n)`のcentroid treeを構築する。
 各元頂点からcentroid ancestorまでの距離も前計算するため、動的な距離queryの土台として使える。
+
+## 厳密な定義
+
+- `centroidpathentry`: 元頂点からcentroid ancestorへの距離。branchはcentroidから最初に進む元頂点。
+- `centroidtree`: 木を重心で再帰分割する: centroidtree decomposition(graph); 構築O(n log n)。
 
 ```cpp
 centroidtree decomposition(graph);
@@ -34,6 +30,12 @@ for (const auto& entry : decomposition.path(vertex)) {
 `path(vertex)`はcentroid treeの根側から`vertex`自身までのentry列を返す。
 `entry.branch`は、そのcentroidから元頂点へ向かうとき最初に通る元の木の隣接頂点で、
 centroid自身のentryだけ`-1`。同じbranch内の寄与を除外する距離集約に使える。
+
+## Include
+
+```cpp
+#include "tree/centroidtree.hpp"
+```
 
 ## 計算量
 

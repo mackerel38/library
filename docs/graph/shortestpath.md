@@ -5,6 +5,23 @@ documentation_of: //cp/graph/shortestpath.hpp
 
 # 単一始点最短路
 
+## 概要
+
+明示・暗黙graphの最短路と各頂点に近い異なる複数始点を扱う。
+
+## 厳密な定義
+
+- `shortestpathresult`: 最短路の距離と復元情報: result[v], result.path(v), result.edge_path(v)。
+- `nearestsource`: ある頂点に近い始点の番号と距離。
+- `nearestsourcesresult`: 各頂点に近い異なる始点を近い順にCount個まで持つ。
+- `bfs`: O(n+m)。辺数を距離として、多点始点BFSを行う。重み付きグラフでは重みを無視する。
+- `nearest_sources_bfs`: O(Count*(n+m))。各頂点について異なる始点の近い方からCount個をBFSで求める。
+- `zero_one_bfs`: O(n+m)。辺重みが0または1のグラフで、多点始点最短路を求める。
+- `dijkstra`: O((n+m)log n)。非負重みグラフで、多点始点Dijkstra法を行う。
+- `bellmanfordresult`: Bellman-Ford法の結果。negative[v]は負閉路からvへ到達できることを表す。
+- `bellman_ford`: O(nm)。負辺を許すグラフで、多点始点Bellman-Ford法を行う。
+
+
 ## Include
 
 ```cpp

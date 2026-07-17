@@ -5,6 +5,19 @@ documentation_of: //cp/graph/topologicalsort.hpp
 
 # トポロジカルソート
 
+## 概要
+
+通常・辞書順最小・位置区間制約付きトポロジカル順を扱う。
+
+## 厳密な定義
+
+- `topologicalsortresult`: トポロジカルソート結果。dagはDAGか、uniqueは順序が一意かを表す。
+- `boundedtopologicalresult`: 位置区間付きトポロジカルソート結果。position[v]は頂点vを置く0-indexed位置。
+- `topological_sort`: O(n+m)。有向グラフをトポロジカルソートし、DAG判定と一意性も返す。
+- `topological_sort_min`: O((n+m)log n)。辞書順最小のトポロジカル順序とDAG判定を返す。
+- `bounded_topological_sort`: O((n+m)log n)。各頂点vをlower[v]以上upper[v]以下へ置くトポロジカル順序を一つ返す。
+
+
 ## Include
 
 ```cpp

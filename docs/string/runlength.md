@@ -5,19 +5,16 @@ documentation_of: //cp/string/runlength.hpp
 
 # Run-length encoding
 
-- Status: experimental
-- Header: `cp/string/runlength.hpp`
-- Symbol: `poe::runlength`, `poe::runlength_decode`, `poe::runlength_string`
 
-## Include
-
-```cpp
-#include "string/runlength.hpp"
-```
-
-## できること
+## 概要
 
 連続する等しい要素を`(value, count)`へまとめる。文字列だけでなく一般のrangeへ使える。
+
+## 厳密な定義
+
+- `runlength`: O(n)。連続する等しい要素を(value, count)へまとめる。
+- `runlength_decode`: O(復元後の長さ)。非負のcountを持つ(value, count)列を元の列へ戻す。
+- `runlength_string`: O(復元後の長さ)。charの(value, count)列を文字列へ戻す。
 
 ```cpp
 vector<pair<char, int>> runs = runlength(text);
@@ -31,6 +28,12 @@ string restored = runlength_string(runs);
 countは非負でなければならず、0のrunは復元時に無視される。
 
 符号化は`O(n)`、復元は復元後の長さに対して`O(n)`。返却領域も同じ。
+
+## Include
+
+```cpp
+#include "string/runlength.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス

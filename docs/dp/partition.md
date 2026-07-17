@@ -5,18 +5,19 @@ documentation_of: //cp/dp/partition.hpp
 
 # 連続フェーズ分割DP
 
-- Header: `cp/dp/partition.hpp`
-- Symbol: `poe::max_phase_partition`
-- Symbol: `poe::parenthesized_results`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 長さ`n`の列を、順序固定の`p`個の非空な連続区間へ分割する。`score[k][i]`を位置`i`を
 フェーズ`k`へ入れた得点として、その総和の最大値を返す。境界ごとの追加コストや、空フェーズを許す問題は
 このAPIの対象外。
 
-## API・計算量
+## 厳密な定義
+
+- `max_phase_partition`: 列を各フェーズ一個以上の連続区間へ分け最大得点を返す: max_phase_partition(score); O(pn)。
+- `parenthesized_results`: O(n^3 s^2)。二項演算を全ての括弧付けで適用して到達できる状態をbit集合で返す。s<=64。
+
+## Include
 
 ```cpp
 #include "dp/partition.hpp"
@@ -25,6 +26,8 @@ long long answer = poe::max_phase_partition(score);
 ```
 
 `O(pn)`時間・`O(n)`領域。`score`は`p x n`で、`n >= p >= 1`とする。
+
+## API・計算量
 
 ## 任意の括弧付けによる二項演算
 

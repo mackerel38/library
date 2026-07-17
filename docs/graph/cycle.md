@@ -5,6 +5,19 @@ documentation_of: //cp/graph/cycle.hpp
 
 # 閉路
 
+## 概要
+
+閉路検出・指定頂点最小cycle・小多重グラフの全単純cycle数え上げを扱う。
+
+## 厳密な定義
+
+- `cycleresult`: 閉路検出結果。vertices[i]からedge_ids[i]を通りvertices[(i+1)%k]へ進む。
+- `minimumcycleresult`: 重み付き最小cycle。vertices[i]からedge_ids[i]を通りvertices[(i+1)%k]へ進む。
+- `find_cycle`: O(n+m)。有向・無向グラフから閉路を一つ返す。存在しなければ空の結果を返す。
+- `minimum_cycle_through_vertex`: O(n^2+m)。非負重み無向グラフでrootを通る最小単純cycleを返す。forbidden_edgeは使用しない。
+- `count_simple_cycles`: O(2^n n^2)時間・O(2^n n)領域。n<=20の多重無向グラフの頂点単純cycle数を返す。
+
+
 ## Include
 
 ```cpp

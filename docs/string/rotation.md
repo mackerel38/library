@@ -5,20 +5,19 @@ documentation_of: //cp/string/rotation.hpp
 
 # 巡回シフト
 
-- Status: experimental
-- Header: `cp/string/rotation.hpp`
-- Symbol: `poe::rotation_index`, `poe::minimum_rotation`, `poe::maximum_rotation`, `poe::rotated`, `poe::rotation_distance`
 
-## Include
-
-```cpp
-#include "string/rotation.hpp"
-```
-
-## できること
+## 概要
 
 列を途中で切って前後を入れ替えた全巡回シフトのうち、辞書順最小・最大の開始位置を
 Booth法で`O(n)`に求める。
+
+## 厳密な定義
+
+- `rotation_index`: O(n)。compareに関して辞書順最小の巡回シフト開始位置を返す。空列は0。
+- `minimum_rotation`: O(n)。辞書順最小の巡回シフト開始位置を返す。空列は0。
+- `maximum_rotation`: O(n)。辞書順最大の巡回シフト開始位置を返す。空列は0。
+- `rotated`: O(n)。startから始まる巡回シフト列を返す。空列ではstart=0。
+- `rotation_distance`: O(n)。sourceを左巡回シフトしてtargetにする最小回数を返す。不可能なら-1。
 
 ```cpp
 int first = minimum_rotation(text);
@@ -34,6 +33,12 @@ string maximum = rotated(text, maximum_rotation(text));
 
 `rotation_distance(source, target)`は`source`を左巡回シフトして`target`へ一致させる最小回数を返す。
 一致する巡回シフトがなければ`-1`、両方が空なら`0`。KMPで`O(n)`時間・`O(n)`領域。
+
+## Include
+
+```cpp
+#include "string/rotation.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス

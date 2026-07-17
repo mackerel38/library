@@ -5,16 +5,24 @@ documentation_of: //cp/fps/combinatorial.hpp
 
 # OGF・EGFによるグループ分配
 
-- Header: `cp/fps/combinatorial.hpp`
-- Symbol: `poe::groupdistributioncounts`, `poe::divisible_group_counts`,
   `poe::labeled_tree_degree_weight_sum`, `poe::count_labeled_trees_with_degrees`,
   `poe::adjacentdistinctwordcounts`, `poe::adjacent_distinct_words`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `n`個の要素を複数の区別される箱・色・グループへ分配し、各groupの要素数を`period[i]`の倍数に
 制限する問題を扱う。要素を区別しない通常型母関数と、各要素を区別する指数型母関数を同時に構築する。
+
+## 厳密な定義
+
+- `groupdistributioncounts`: divisible_group_countsの結果。ordinaryは要素を区別せず、labeledは各要素を区別する。
+- `adjacentdistinctwordcounts`: adjacent_distinct_wordsの結果。countとlength_sumを重み和ごとのFPSで持つ。
+- `divisible_group_counts`: O(kn+M(n)log k)。n要素を各groupの大きさがperiodの倍数となるよう分配する通り数を返す。
+- `labeled_tree_degree_weight_sum`: O(M(n)log n)。各頂点vにdegree_weight[deg(v)]を掛けたn頂点ラベル付き木の重み総和を返す。
+- `count_labeled_trees_with_degrees`: O(n+M(n)log n)。全頂点の次数がallowed_degreesのいずれかであるn頂点ラベル付き木を数える。
+- `adjacent_distinct_words`: O(sum(max_sum/weight)+M(n)log n)。同じ記号が隣接しないwordの個数と長さ総和を返す。
+
+## Include
 
 ```cpp
 #include "fps/combinatorial.hpp"

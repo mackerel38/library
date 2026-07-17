@@ -5,14 +5,17 @@ documentation_of: //cp/recipe/treepathpartition.hpp
 
 # 木のpath分割幅
 
-- Header: `cp/recipe/treepathpartition.hpp`
-- Symbol: `poe::minimum_path_partition_width`
-- Status: experimental recipe
 
-## どんな問題に使えるか
+## 概要
 
 木の頂点を複数色へ分割し、各色の頂点集合が連結な単純pathになるようにする。
 そのうえで、任意の木上pathに現れる色数の最大値を最小化する。
+
+## 厳密な定義
+
+- `minimum_path_partition_width`: O(n log n)。各色がpathとなる頂点分割で、任意path上の最大色数の最小値を返す。
+
+## Include
 
 ```cpp
 #include "recipe/treepathpartition.hpp"

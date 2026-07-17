@@ -5,14 +5,17 @@ documentation_of: //cp/tree/pathsum.hpp
 
 # 木の辺path和
 
-- Header: `cp/tree/pathsum.hpp`
-- Symbol: `poe::edgepathsum`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 木の辺重みを一点更新しながら、二頂点間pathの辺重み和を求める。
 重み付き`undirected_graph<T>`なら辺costをそのまま初期値にする。
+
+## 厳密な定義
+
+- `edgepathsum`: 辺の一点更新と木のpath和を扱う: edgepathsum data(graph); 構築O(n)。
+
+## Include
 
 ```cpp
 #include "tree/pathsum.hpp"

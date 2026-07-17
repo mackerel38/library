@@ -5,17 +5,18 @@ documentation_of: //cp/algorithm/groupreduce.hpp
 
 # 隣接群の縮約
 
-- Header: `cp/algorithm/groupreduce.hpp`
-- Symbol: `poe::reduce_adjacent_groups`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 列中の同じ値が隣接して`k`個揃うたびに消える操作を、消去後に新しく接した要素も含めて処理する。
 返り値は縮約後の列なので、長さだけでなく残った要素も利用できる。入力順を保てない消去規則や、値ごとに
 消去個数が異なる規則には使えない。
 
-## API・計算量
+## 厳密な定義
+
+- `reduce_adjacent_groups`: 隣接する同値要素がgroup_size個揃うたび消す: reduce_adjacent_groups(values, k); O(n)。
+
+## Include
 
 ```cpp
 #include "algorithm/groupreduce.hpp"

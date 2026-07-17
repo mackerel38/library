@@ -5,9 +5,23 @@ documentation_of: //cp/math/gaussian.hpp
 
 # Gauss消去法
 
-- Header: `cp/math/gaussian.hpp`
-- Symbol: `poe::linearstatus`, `poe::linearsystemresult`, `poe::matrix_rank`, `poe::determinant`, `poe::solve_linear`, `poe::binary_matrix_rank`, `poe::solve_binary_linear`
-- Status: experimental
+## 概要
+
+一般の体とGF(2)上のrank・行列式・連立一次方程式と解空間基底を扱う。
+
+## 厳密な定義
+
+- `linearstatus`: linearstatus: 連立一次方程式の解なし・一意解・複数解。
+- `linearsystemresult`: solve_linearの結果。solutionは特殊解、basisは斉次解空間の基底。
+- `matrix_rank`: O(h*w*min(h,w))。matrix_rank(a): 体上の行列aのrankを返す。
+- `determinant`: O(n^3)。determinant(a): 体上の正方行列aの行列式を返す。
+- `solve_linear`: O(h*w*min(h,w))。solve_linear(a,b): 体上のAx=bを解き、特殊解と斉次解基底を返す。
+- `binary_matrix_rank`: O(hw min(h,w)/64)。0/1行列aをGF(2)上でbit並列Gauss消去し、rankを返す。
+- `solve_binary_linear`: O(hw min(h,w)/64 + w^2)。GF(2)上のAx=bを解き、0/1の特殊解と斉次解基底を返す。
+
+
+
+## Include
 
 ```cpp
 #include "math/gaussian.hpp"
@@ -102,5 +116,5 @@ O(hw min(h,w)/64 + w^2)。GF(2)上のAx=bを解き、0/1の特殊解と斉次解
 ## 実在問題での使用例
 
 [ABC366 G - XOR Neighbors](https://atcoder.jp/contests/abc366/tasks/abc366_g)ではGF(2)の解空間基底が必要になる。
-一般の体版とGF(2)版についてLibrary Checker System of Linear Equationsのverifyコードを用意している。
-どちらもproperty test済みだが、GF(2)版。
+一般の体版とGF(2)版についてLibrary Checker System of Linear Equations用のverifyコードを用意している。
+どちらもproperty test済み。

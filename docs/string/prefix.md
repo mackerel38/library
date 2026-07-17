@@ -5,6 +5,16 @@ documentation_of: //cp/string/prefix.hpp
 
 # Prefix function / KMP検索
 
+## 概要
+
+Prefix functionとKMPによる全出現位置検索を扱う。
+
+## 厳密な定義
+
+- `prefix_function`: O(n)。prefix[i]=sequence[0..k)とsequence[0..i]の最長一致長kを返す。
+- `find_all`: O(n+m)。text内でpatternが始まる全位置を昇順で返す。空patternは0..nを返す。
+
+
 ## Include
 
 ```cpp

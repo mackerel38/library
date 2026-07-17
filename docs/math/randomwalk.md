@@ -5,14 +5,17 @@ documentation_of: //cp/math/randomwalk.hpp
 
 # 周期剰余への初到達期待値
 
-- Header: `cp/math/randomwalk.hpp`
-- Symbol: `poe::cyclic_hitting_expectation`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 毎回独立に正の整数stepを選んで累積和へ加え、累積和が`remaining (mod period)`へ
 初めて到達するまでのstep回数の期待値を求める。
+
+## 厳密な定義
+
+- `cyclic_hitting_expectation`: O(d^3 log period)。正のstep和がremaining mod periodへ初到達するまでの期待step数を返す。
+
+## Include
 
 ```cpp
 #include "math/randomwalk.hpp"

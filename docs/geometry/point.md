@@ -5,9 +5,28 @@ documentation_of: //cp/geometry/point.hpp
 
 # 2次元点と線分
 
-- Header: `cp/geometry/point.hpp`
-- Symbol: `poe::point`, `poe::dot`, `poe::cross`, `poe::orientation`, `poe::on_segment`, `poe::segments_intersect`, `poe::distance`, `poe::distance_to_segment`, `poe::minimum_distance_segment_walks`, `poe::argument_less`, `poe::same_direction`
-- Status: experimental
+## 概要
+
+2次元点・線分距離・等速線分移動の最接近・整数偏角比較を扱う。
+
+## 厳密な定義
+
+- `point`: point<T>{x,y}: 2次元点・ベクトル。+,-,scalar積と辞書順比較が使える。
+- `dot`: O(1)。dot(a,b): ベクトルa,bの内積を返す。整数型では__int128_tへ拡張する。
+- `cross`: O(1)。cross(a,b): ベクトルa,bの外積を返す。整数型では__int128_tへ拡張する。
+- `orientation`: O(1)。orientation(a,b,c): 反時計回りなら1、時計回りなら-1、一直線なら0。
+- `on_segment`: O(1)。on_segment(a,b,p): 線分ab上にpがあるか返す。
+- `segments_intersect`: O(1)。segments_intersect(a,b,c,d): 端点接触を含め、二線分が交わるか返す。
+- `distance`: O(1)。distance(a,b): 二点間のEuclid距離をlong doubleで返す。
+- `distance_to_segment`: O(1)。distance_to_segment(p,a,b): 点pと線分abの最短距離を返す。
+- `minimum_distance_segment_walks`: O(1)。二点が各線分を速さ1で同時に進み、到着後停止するときの最接近距離を返す。
+- `argument_half`: O(1)。偏角を[0,pi)と[pi,2pi)へ分ける。原点ベクトルには使わない。
+- `argument_less`: O(1)。偏角の昇順比較を返す。同じ方向は同値として扱う。
+- `same_direction`: O(1)。原点から見て同じ向きのray上にあるか返す。
+
+
+
+## Include
 
 ```cpp
 #include "geometry/point.hpp"
@@ -141,7 +160,7 @@ O(1)。原点から見て同じ向きのray上にあるか返す。
 ## 実在問題での使用例
 
 [ABC266 C - Convex Quadrilateral](https://atcoder.jp/contests/abc266/tasks/abc266_c)で各連続3点の
-`orientation`を調べられる。verifyコードはサンプル確認のみで。
+`orientation`を調べられる。verifyコードはサンプルを確認済み。
 
 [ABC442 E - Laser Takahashi](https://atcoder.jp/contests/abc442/tasks/abc442_e)では偏角順に並べ、
 同じrayをgroup化する。`verify/atcoder_abc442_e.cpp`で公式sampleを確認済み。

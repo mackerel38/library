@@ -5,17 +5,26 @@ documentation_of: //cp/dp/aliens.hpp
 
 # Aliens trick
 
-- Header: `cp/dp/aliens.hpp`
-- Symbol: `poe::aliens_min`, `poe::aliens_max`, `poe::aliens_result<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 「ちょうどK個選ぶ／K区間に分ける」最小化DPで、個数制約を一個あたりのペナルティへ移すと
 高速なDPになる場合に使う。ペナルティを増やすほど最適解の個数が単調減少し、値が離散凸である必要がある。
 
+## 厳密な定義
+
+- `aliens_result`: Aliens trickのペナルティ探索結果。
+- `aliens_min`: O(log(high-low) * solve)。最小化DPで区切り数targetの値をAliens trickで復元する。 solve(p)は「元費用+p*個数」の最小値と、その中で最小の個数を返す。 penalty増加に対してcountが広義単調減少し、離散凸性によりvalue-penalty*targetが成立すること。
+- `aliens_max`: O(log(high-low) * solve)。最大化DPで個数targetの値をAliens trickで復元する。 solve(p)は「元価値-p*個数」の最大値と、その中で最小の個数を返す。 penalty増加に対してcountが広義単調減少し、離散凹性によりvalue+penalty*targetが成立すること。
+
 単に個数が単調になるだけでは不十分で、双対ギャップなく`penalized-penalty*K`で復元できることを
 証明する必要がある。最大化問題やtieの選び方が逆の場合は変換してから使う。
+
+## Include
+
+```cpp
+#include "dp/aliens.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -54,15 +63,6 @@ penalty増加に対してcountが広義単調減少し、離散凹性によりva
 
 ## 実在問題での使用例
 
-```cpp
-#include "dp/aliens.hpp"
-
-auto result = poe::aliens_min<long long>(low, high, K, solve);
-```
-
-最大化では`solve(penalty)`が`元価値-penalty*個数`を最大化するように書き、
-`aliens_max`を使う。どちらも同値なら個数が小さい解を返すこと。
-
 ## 使う前の確認
 
 - 探索区間に答えを復元できる境界の罰金が含まれていること。
@@ -77,4 +77,4 @@ auto result = poe::aliens_min<long long>(low, high, K, solve);
 
 [NDPC O - ゲーム](https://atcoder.jp/contests/ndpc/tasks/ndpc2026_o)の満点想定解で利用される。
 このヘッダはペナルティ二分探索だけを担当し、問題固有の`solve(penalty)`は利用側で実装する。
-。小さい離散凸列で全個数走査と照合済み。
+小さい離散凸列で全個数走査と照合済み。

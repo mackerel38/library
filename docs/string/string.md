@@ -5,6 +5,15 @@ documentation_of: //cp/string/string.hpp
 
 # String一括ヘッダ
 
+## 概要
+
+ACL string相当の一括includeを扱う。
+
+## 厳密な定義
+
+このheaderは、ACL string相当の一括includeを扱う。公開APIの入出力と成立条件は以下の節で定める。
+
+
 ## Include
 
 ```cpp
@@ -12,7 +21,7 @@ documentation_of: //cp/string/string.hpp
 ```
 
 `lcp`、Manacher法、prefix function、suffix array、`suffixquery`、Z algorithmをまとめて読み込む。
-機能を追加せず他ヘッダを集約するだけなので、専用の使用例は置かない。提出サイズを抑えたい場合は
+提出サイズを抑えたい場合は
 必要な個別ヘッダを直接includeする。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->

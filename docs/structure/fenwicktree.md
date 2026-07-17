@@ -5,21 +5,16 @@ documentation_of: //cp/structure/fenwicktree.hpp
 
 # Fenwick Tree
 
-- Status: experimental
-- Header: `cp/structure/fenwicktree.hpp`
-- Symbol: `poe::fenwicktree<T>`
 
-## Include
-
-```cpp
-#include "structure/fenwicktree.hpp"
-```
-
-## できること
+## 概要
 
 長さ `n` の列に対する一点加算、代入、要素取得、区間和を`O(log n)`で処理する。
 累積和に対する二分探索も`O(log n)`で行える。
 外から渡す添字は 0-index とし、区間は半開区間 `[left, right)` で表す。
+
+## 厳密な定義
+
+- `fenwicktree`: 一点加算と区間和を扱う配列: fenwicktree<long long> fw(n); 構築O(n)、更新・取得O(log n)。
 
 ```cpp
 poe::fenwicktree<long long> sums(5);
@@ -29,6 +24,12 @@ sums.set(4, -3);
 long long value = sums[2];         // 7
 long long prefix = sums.sum(3);    // [0, 3) の和。7
 long long range = sums.sum(2, 5);  // [2, 5) の和。4
+```
+
+## Include
+
+```cpp
+#include "structure/fenwicktree.hpp"
 ```
 
 ## API

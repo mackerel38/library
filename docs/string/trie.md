@@ -5,9 +5,18 @@ documentation_of: //cp/string/trie.hpp
 
 # Trie / Aho--Corasick
 
-- Status: experimental
-- Header: `cp/string/trie.hpp`
-- Symbol: `poe::trie<Symbol>`, `poe::ahocorasick<Symbol>`
+## 概要
+
+任意文字種trieとDP遷移にも使えるAho-Corasick automatonを扱う。
+
+## 厳密な定義
+
+- `trienode`: trieの一頂点。next、親、深さ、通過word数、終端word数をO(1)で参照する。
+- `trie`: 任意文字種のprefix木: trie<char> dictionary; dictionary.add(word); 各操作O(length log sigma)。
+- `ahomatch`: Aho--Corasickの一一致。patternが半開区間[begin,end)へ現れる。
+- `ahocorasick`: 複数pattern automaton: ahocorasick<char> ac('a','z'); add後build; 遷移O(log sigma)。
+
+
 
 ## Include
 

@@ -5,6 +5,16 @@ documentation_of: //cp/structure/cumulative.hpp
 
 # 多次元累積変換
 
+## 概要
+
+product order上の任意次元prefix・suffix累積変換を扱う。
+
+## 厳密な定義
+
+- `cumulativedirection`: 多次元累積変換の向き。prefixは各座標以下、suffixは各座標以上を集約する。
+- `multidimensional_cumulative`: O(dN)。row-major多次元配列を各座標以下または以上のoperation累積へ変換する。
+
+
 ## Include
 
 ```cpp
@@ -61,4 +71,3 @@ auto latest = multidimensional_cumulative(
 ```
 
 `verify/atcoder_abc464_e.cpp`に提出用コードを用意し、公式サンプル1との一致を確認済み。
-。

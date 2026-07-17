@@ -5,14 +5,17 @@ documentation_of: //cp/tree/monochromatic.hpp
 
 # 動的な同色連結成分
 
-- Header: `cp/tree/monochromatic.hpp`
-- Symbol: `poe::monochromatictree`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定木の各頂点が色0または1と加算可能な重みを持つとき、色反転と重み更新を行いながら、
 指定頂点を含む同色連結成分の重み総和を求める。
+
+## 厳密な定義
+
+- `monochromatictree`: 二色木で色反転・重み更新・同色連結成分和を扱う。構築O(n log^2 n)、各操作O(log^2 n)。
+
+## Include
 
 ```cpp
 #include "tree/monochromatic.hpp"

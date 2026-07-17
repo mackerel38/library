@@ -5,15 +5,19 @@ documentation_of: //cp/dp/wildcardorder.hpp
 
 # wildcard列の狭義増加補完
 
-- Header: `cp/dp/wildcardorder.hpp`
-- Symbol: `poe::count_strictly_increasing_wildcard_sequences`,
   `poe::count_strictly_increasing_wildcard_numbers`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 同じ長さのwildcard列を独立に補完し、列全体を辞書順で狭義増加にする方法数を数える。
 一般版は各位置を`0..alphabet_size-1`または指定したwildcard値で表す。
+
+## 厳密な定義
+
+- `count_strictly_increasing_wildcard_sequences`: O(m b n^3)。同長wildcard列を辞書順狭義増加へ補完する方法数を返す。
+- `count_strictly_increasing_wildcard_numbers`: O(m n^3)。数字と?からなる同長文字列を整数として狭義増加へ補完する方法数を返す。
+
+## Include
 
 ```cpp
 #include "dp/wildcardorder.hpp"

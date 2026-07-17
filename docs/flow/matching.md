@@ -5,15 +5,19 @@ documentation_of: //cp/flow/matching.hpp
 
 # 重み付き二部matching
 
-- Header: `cp/flow/matching.hpp`
-- Symbol: `poe::weightedbipartiteedge`, `poe::minimum_weight_bipartite_matching`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 左右の頂点を高々一度ずつ使う辺集合を自由な本数だけ選び、辺重み和を最小化する。
 空matchingを許すため、正の辺だけを選ぶことはない。負辺を一定値だけ平行移動し、
 matchingサイズごとの最小費用を`mincostslope`で列挙して元の重みへ戻す処理を内部化している。
+
+## 厳密な定義
+
+- `weightedbipartiteedge`: minimum_weight_bipartite_matchingへ渡す重み付き二部辺。
+- `minimum_weight_bipartite_matching`: O(F(m+n log n))。空matchingも許して重み和が最小の二部matchingの重みを返す。
+
+## Include
 
 ```cpp
 #include "flow/matching.hpp"

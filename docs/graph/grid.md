@@ -5,16 +5,28 @@ documentation_of: //cp/graph/grid.hpp
 
 # Grid BFS・連結成分
 
-- Header: `cp/graph/grid.hpp`
-- Symbol: `poe::gridpoint`, `poe::gridcomponentsresult`, `poe::layeredgridcomponentsresult`,
   `poe::grid4`, `poe::grid8`, `poe::inside_grid`, `poe::gridbfs`, `poe::grid_components`,
   `poe::layered_grid_components`, `poe::sparse_grid_path_exists`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 長方形grid上で、一つまたは複数の始点から各マスへの最短移動回数を求める。
 壁判定と近傍方向を差し替えられる。
+
+## 厳密な定義
+
+- `gridpoint`: grid上の(row,column)座標。
+- `gridcomponentsresult`: gridcomponentsresultは各マスの成分番号・成分サイズ・外周接触を持つ。
+- `layeredgridcomponentsresult`: 各layer内のgrid成分と、同じ座標で接する隣接layer成分を持つ。
+- `grid4`: 上下左右の4近傍。
+- `grid8`: 周囲の8近傍。
+- `inside_grid`: O(1)。(row,column)がheight x widthのgrid内ならtrue。
+- `sparse_grid_path_exists`: O(k alpha(k))期待時間。(0,0)から(h-1,w-1)へ疎なblockedを避ける4近傍pathがあればtrue。
+- `grid_components`: O(hwK)。passableなマスのdirections連結成分と外周接触を列挙する。
+- `layered_grid_components`: O(lhw log(hw))。各layerを4近傍成分へ圧縮し、同じ座標で接する上下成分を結ぶ。
+- `gridbfs`: O(hwK)。複数始点からdirectionsへ進むgrid BFS距離。通れない・到達不能なマスは-1。
+
+## Include
 
 ```cpp
 #include "graph/grid.hpp"

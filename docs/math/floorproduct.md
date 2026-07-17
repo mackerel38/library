@@ -5,15 +5,20 @@ documentation_of: //cp/math/floorproduct.hpp
 
 # Floor Sumのモノイド積版
 
-- Header: `cp/math/floorproduct.hpp`
-- Symbol: `poe::monoid_power`, `poe::powersummonoid`, `poe::floor_product`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 通常のFloor Sumが格子境界の下側面積を加算するのに対し、`floor_product`は
 `floor((a*i+b)/m)`が描く格子経路に沿って任意のモノイド元`x`,`y`を掛ける。
 ユークリッド互除法と同じ反転を行い、巨大な`n,m,a,b`を対数時間で処理する。
+
+## 厳密な定義
+
+- `monoid_power`: O(log exponent)。Monoid::identity()を単位元としてvalue^exponentを返す。
+- `powersummonoid`: powersummonoid<T>::x(a), y(b)をfloor_productへ渡すとsum a^i*b^floorを得る。
+- `floor_product`: O(log(n+m+a+b))。格子境界floor((a*i+b)/m)に沿うx,yのモノイド積を返す。
+
+## Include
 
 ```cpp
 #include "math/floorproduct.hpp"

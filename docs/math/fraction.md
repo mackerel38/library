@@ -5,15 +5,19 @@ documentation_of: //cp/math/fraction.hpp
 
 # 分数区間
 
-- Header: `cp/math/fraction.hpp`
-- Symbol: `poe::fraction`, `poe::simplest_fraction_between`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 二つの有理数の開区間に入る分数のうち、分母が最小のものを求める。
 連分数またはStern--Brocot treeで同じ方向へ進む操作をまとめ、値の大きさに対して対数時間で処理する。
 分母が同じ候補が複数ある場合は分子が最小のものを返す。
+
+## 厳密な定義
+
+- `fraction`: fraction{numerator, denominator}: 正の分母を持つ64 bit有理数を表す。
+- `simplest_fraction_between`: O(log max(a,b,c,d))。simplest_fraction_between(a,b,c,d): a/b<p/q<c/dで分母最小のp/qを返す。
+
+## Include
 
 ```cpp
 #include "math/fraction.hpp"

@@ -5,19 +5,23 @@ documentation_of: //cp/math/divisortransform.hpp
 
 # 約数・倍数変換
 
-- Header: `cp/math/divisortransform.hpp`
-- Symbol: `poe::divisor_zeta`, `poe::divisor_mobius`, `poe::multiple_zeta`, `poe::multiple_mobius`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 添字`1..n`が整数で、約数全体または倍数全体から値を集約するDP・数え上げに使う。
 gcd/lcmに関する組の数え上げや、約数包除を一括処理するときに有効である。
 
+## 厳密な定義
+
+- `divisor_zeta`: O(n log log n)。divisor_zeta(a): a[x]をsum_{d|x} original[d]へ変換する。a[0]は不使用。
+- `divisor_mobius`: O(n log log n)。divisor_mobius(a): divisor_zetaの逆変換を行う。a[0]は不使用。
+- `multiple_zeta`: O(n log log n)。multiple_zeta(a): a[x]をsum_{x|m} original[m]へ変換する。a[0]は不使用。
+- `multiple_mobius`: O(n log log n)。multiple_mobius(a): multiple_zetaの逆変換を行う。a[0]は不使用。
+
 演算が通常の加減算でない場合や、添字集合が`1..n`でない場合はそのまま使えない。
 `values[0]`は常に不使用である。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "math/divisortransform.hpp"

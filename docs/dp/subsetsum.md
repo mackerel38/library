@@ -5,17 +5,24 @@ documentation_of: //cp/dp/subsetsum.hpp
 
 # 部分和
 
-- Header: `cp/dp/subsetsum.hpp`
-- Symbol: `poe::subsetsum`, `poe::bounded_subsetsum`, `poe::subsetsumstatistics`, `poe::subset_sum_less_by_size`, `poe::nonadjacentsubsetsums`, `poe::nonadjacent_subset_sums`, `poe::count_nonadjacent_subsets_mod`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 非負整数を選んで作れる総和の可否だけが必要な問題に向く。各要素を高々一回なら`subsetsum`、
 値ごとに使用上限があるなら`bounded_subsetsum`を使う。個数や最大価値も同時に管理する問題、
 負数を含む問題、選んだ要素の復元が必要な問題にはこのAPIだけでは足りない。
 
-## 使い方
+## 厳密な定義
+
+- `subsetsum`: O(n * limit / 64)。subsetsum(values, limit): 0/1部分和で作れる0以上limit以下の和を返す。
+- `bounded_subsetsum`: O(n * limit)。bounded_subsetsum(value, count, limit): 個数制限付き部分和の可否を返す。
+- `subsetsumstatistics`: subset_sum_less_by_sizeの結果。count[k]はk個選ぶ組数、sum[k]はその部分集合和の総計。
+- `subset_sum_less_by_size`: O(n 2^(n/2))時間・O(2^(n/2))領域。要素数別に部分集合和がlimit未満の個数と和を返す。
+- `nonadjacentsubsetsums`: 非隣接部分集合和列挙。last_selectedは最後の要素を選ぶ場合、allは全場合の剰余。
+- `nonadjacent_subset_sums`: O(F_n)。path上で隣接要素を同時に選ばない部分集合和をmoduloで割った剰余を列挙する。
+- `count_nonadjacent_subsets_mod`: O(F_(n/2) log F_(n/2))。非隣接部分集合のうち和≡target(mod modulo)となる個数を返す。
+
+## Include
 
 ```cpp
 #include "dp/subsetsum.hpp"
@@ -26,6 +33,8 @@ int kinds = std::ranges::count(possible, true);
 
 `subsetsum`は各要素を高々一度使う0/1部分和を、`bounded_subsetsum`は値ごとの使用個数を
 制限した部分和を返す。値は非負、個数制限付きでは値が正でなければならない。
+
+## 使い方
 
 ## 戻り値とよくある誤り
 
@@ -146,7 +155,7 @@ auto count = count_nonadjacent_subsets_mod(values, modulo, target);
 
 [AtCoder ABC427 F - Not Adjacent](https://atcoder.jp/contests/abc427/tasks/abc427_f)では、
 `target=0`として直接使う。`verify/atcoder_abc427_f.cpp`で公式sample 3件を確認済み。
-。
+
 
 [ABC464 F - Random Vault Heist](https://atcoder.jp/contests/abc464/tasks/abc464_f)では、
 閾値未満のprefix集合について要素数別の個数と金額総計を集約する。`verify/atcoder_abc464_f.cpp`は

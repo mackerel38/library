@@ -5,16 +5,23 @@ documentation_of: //cp/math/dirichlet.hpp
 
 # Dirichlet畳み込みと積necklace
 
-- Header: `cp/math/dirichlet.hpp`
-- Symbol: `poe::dirichlet_convolution`, `poe::dirichlet_inverse`,
   `poe::prime_omega_table`, `poe::dirichlet_log`, `poe::product_necklace_counts`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 添字の積に対して状態を合成する数列を扱う。通常の畳み込みが`i+j=n`を集めるのに対し、
 Dirichlet畳み込みは`i*j=n`を集める。約数DP、乗法的な列の形式的な逆元・対数、要素の積で
 分類する列や巡回列の数え上げに使える。
+
+## 厳密な定義
+
+- `dirichlet_convolution`: O(n log n)。添字1始まりの列left,rightのDirichlet畳み込みをn未満で返す。
+- `dirichlet_inverse`: O(n log n)。values[1]が可逆な列のDirichlet畳み込み逆元を返す。添字0は使わない。
+- `prime_omega_table`: O(n)。omega[n]=nの素因数の重複込み個数となる表を返す。
+- `dirichlet_log`: O(n log n)。values[1]=1の形式Dirichlet級数についてlog(values)を返す。
+- `product_necklace_counts`: O(u log u)。frequency[w]種類の重みwを使う有向necklaceを、積ごとに数える。frequency[1]=0。
+
+## Include
 
 ```cpp
 #include "math/dirichlet.hpp"

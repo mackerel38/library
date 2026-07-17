@@ -5,6 +5,18 @@ documentation_of: //cp/tree/diameter.hpp
 
 # 木の直径
 
+## 概要
+
+非負重み木の直径・経路復元と全頂点からの最遠頂点を扱う。
+
+## 厳密な定義
+
+- `treediameterresult`: 木の直径結果。pathは端点firstからsecondへの頂点列、edge_idsは辺番号列。
+- `farthestvertex`: ある頂点からの最遠頂点と距離。
+- `tree_diameter`: O(n)。非負重みの無向木の直径を返す。重みなし辺は1と数える。
+- `tree_farthest_vertices`: O(n)。各頂点からの最遠頂点を返す。同距離ではprefer(a,b)がtrueの頂点aを優先する。
+
+
 ## Include
 
 ```cpp

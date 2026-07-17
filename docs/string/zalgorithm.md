@@ -5,6 +5,15 @@ documentation_of: //cp/string/zalgorithm.hpp
 
 # Z algorithm
 
+## 概要
+
+線形時間のZ algorithmを扱う。
+
+## 厳密な定義
+
+- `z_algorithm`: O(n)。z[i]=LCP(sequence, sequence[i..])となるZ配列を返す。
+
+
 ## Include
 
 ```cpp

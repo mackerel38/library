@@ -5,13 +5,16 @@ documentation_of: //cp/string/bracketsequence.hpp
 
 # 動的括弧列
 
-- Header: `cp/string/bracketsequence.hpp`
-- Symbol: `poe::bracketsequence`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `(`と`)`を末尾へ追加・削除しながら、現在の列が正しい括弧列かを判定する。
+
+## 厳密な定義
+
+- `bracketsequence`: 末尾push/popできる括弧列: bracketsequence brackets; brackets.push('('); brackets.good()。
+
+## Include
 
 ```cpp
 #include "string/bracketsequence.hpp"
@@ -158,6 +161,6 @@ O(1)。現在の文字列を返す。
   各push/pop直後に`good()`を出力する。
 
 `verify/atcoder_abc428_c.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-。
+
 
 `tests/property/string/bracketsequence.cpp`では、ランダムpush/pop後に全prefixを直接走査して比較する。

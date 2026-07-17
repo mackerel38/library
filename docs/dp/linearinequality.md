@@ -5,17 +5,18 @@ documentation_of: //cp/dp/linearinequality.hpp
 
 # 重み付き非負整数解の個数
 
-- Header: `cp/dp/linearinequality.hpp`
-- Symbol: `poe::count_nonnegative_weighted_sum_at_most`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 正の重み`a[i]`と巨大な上限`M`に対し、`sum(a[i] * x[i]) <= M`を満たす非負整数列`x`を数える。
 各変数を`x=2q+r`へ分け、`r`の重み分布との畳み込みを行いながら上限を半分へ縮約する。
 重みの総和が小さい場合に向き、負の重み・変数上限・複数不等式には対応しない。
 
-## API・計算量
+## 厳密な定義
+
+- `count_nonnegative_weighted_sum_at_most`: 非負整数列xでsum(weights[i]*x[i])<=limitとなる個数を返す; sum(weights)=SとしてO(S log S log limit)。
+
+## Include
 
 ```cpp
 #include "dp/linearinequality.hpp"

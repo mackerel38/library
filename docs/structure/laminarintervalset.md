@@ -5,14 +5,17 @@ documentation_of: //cp/structure/laminarintervalset.hpp
 
 # Laminar区間集合
 
-- Header: `cp/structure/laminarintervalset.hpp`
-- Symbol: `poe::laminarintervalset`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 端点がすべて異なる閉区間をonlineで追加し、既存区間と真に交差する区間だけを拒否する。
 受理済み区間どうしは、互いに素・包含・被包含のいずれかとなるlaminar familyを保つ。
+
+## 厳密な定義
+
+- `laminarintervalset`: 端点重複なしのlaminar閉区間族: laminarintervalset data(coordinate_count)。
+
+## Include
 
 ```cpp
 #include "structure/laminarintervalset.hpp"

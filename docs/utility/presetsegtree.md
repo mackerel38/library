@@ -5,6 +5,41 @@ documentation_of: //cp/utility/presetsegtree.hpp
 
 # 用途別区間構造
 
+## 概要
+
+更新方法と取得内容で選べる用途別区間構造27種を扱う。
+
+## 厳密な定義
+
+- `point_add_range_sum`: 一点加算・一点代入・区間和: point_add_range_sum<long long> data(values)。
+- `point_affine_range_sum`: 一点一次変換・一点代入・区間和: data.affine(i,multiply,add)。
+- `point_flip_range_sum`: 一点反転・一点代入・区間1数: point_flip_range_sum data(bits)。
+- `point_set_range_min`: 一点代入・区間最小値: point_set_range_min<long long> data(values)。
+- `point_set_range_max`: 一点代入・区間最大値: point_set_range_max<long long> data(values)。
+- `point_set_prefix_sum_max`: 一点代入とprefix和・最大prefix和・最初の到達位置を扱う。
+- `point_set_range_manhattan_max`: 点列の一点変更と区間内最遠Manhattan距離: point_set_range_manhattan_max<long long> data(points)。
+- `point_set_range_gcd`: 一点代入・区間gcd: point_set_range_gcd<long long> data(values)。
+- `point_set_range_composite`: 一点関数代入・区間関数合成: point_set_range_composite<modint> data(functions)。
+- `range_add_range_sum`: 区間加算・区間和: range_add_range_sum<long long> data(values)。
+- `range_add_range_sum_square`: 区間加算・区間和・区間二乗和: range_add_range_sum_square<mint> data(values)。
+- `range_set_range_sum`: 区間代入・区間和: range_set_range_sum<long long> data(values)。
+- `range_affine_range_sum`: 区間一次変換・区間和: data.affine(left,right,multiply,add)。
+- `range_add_range_min`: 区間加算・区間最小値: range_add_range_min<long long> data(values)。
+- `range_subtract_clamp_zero_sum`: 区間消費・0下限・消費量和: data.subtract(left,right,amount)。
+- `range_add_range_max`: 区間加算・区間最大値: range_add_range_max<long long> data(values)。
+- `range_set_range_min`: 区間代入・区間最小値: range_set_range_min<long long> data(values)。
+- `range_set_range_max`: 区間代入・区間最大値: range_set_range_max<long long> data(values)。
+- `range_set_range_gcd`: 区間代入・区間gcd: range_set_range_gcd<long long> data(values)。
+- `range_add_range_gcd`: 区間加算・区間gcd: range_add_range_gcd<long long> data(values)。
+- `range_add_point_get`: 区間加算・一点取得: range_add_point_get<long long> data(values)。
+- `range_set_point_get`: 区間代入・一点取得: range_set_point_get<long long> data(values)。
+- `range_affine_point_get`: 区間一次変換・一点取得: range_affine_point_get<long long> data(values)。
+- `range_flip_range_sum`: 区間反転・区間1数: range_flip_range_sum data(bits)。
+- `range_flip_range_inversion`: 区間反転・区間転倒数: range_flip_range_inversion data(bits)。
+- `range_active_add_range_clear_flip_max`: 区間active加算・全値clear後のactive反転・区間最大値をO(log n)で扱う。
+- `range_chmin_chmax_add_range_sum`: 区間chmin・chmax・加算・一点代入・区間和: Segment Tree Beatsで各操作を償却O(log n)で行う。
+
+
 ## Include
 
 ```cpp

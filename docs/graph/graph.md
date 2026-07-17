@@ -5,6 +5,22 @@ documentation_of: //cp/graph/graph.hpp
 
 # `directed_graph` / `undirected_graph`
 
+## 概要
+
+型で有向・無向と重みの有無を表す共通グラフ構造を扱う。
+
+## 厳密な定義
+
+- `edge`: 重みなし辺を表す: edge<> e{from, to, id}; 各フィールドの取得O(1)。
+- `matrix_graph_type`: 隣接行列型グラフを受け取るためのconcept。
+- `directed_graph`: 重み型Costの有向グラフ: directed_graph<long long> graph(n); 重みなしはCostを省略する。
+- `undirected_graph`: 重み型Costの無向グラフ: undirected_graph<long long> graph(n); 重みなしはCostを省略する。
+- `graph_type`: directed_graphとundirected_graphを受け取るためのconcept。
+- `weighted_graph_type`: 重み付きグラフだけを受け取るためのconcept。
+- `directed_graph_type`: 有向グラフだけを受け取るためのconcept。
+- `undirected_graph_type`: 無向グラフだけを受け取るためのconcept。
+
+
 ## Include
 
 ```cpp

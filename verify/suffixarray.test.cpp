@@ -8,8 +8,8 @@ using namespace poe;
 int main() {
     string text;
     cin >> text;
-    const auto suffix_array = suffix_array(text);
-    for (size_t i = 0; i < suffix_array.size(); ++i) {
-        cout << suffix_array[i] << " \n"[i + 1 == suffix_array.size()];
+    const auto suffixes = suffix_array(text);
+    for (size_t i = 0; i < suffixes.size(); ++i) {
+        cout << suffixes[i] << " \n"[i + 1 == suffixes.size()];
     }
 }

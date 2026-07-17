@@ -5,6 +5,17 @@ documentation_of: //cp/graph/minimumspanningtree.hpp
 
 # 最小全域木・最小全域森
 
+## 概要
+
+Kruskal法による最小全域木と最小全域森を扱う。
+
+## 厳密な定義
+
+- `minimumspanningforestresult`: 最小全域森の結果。costは重み合計、edge_idsは採用した辺番号を表す。
+- `minimum_spanning_forest`: O(m log m)。重み付き無向グラフの最小全域森をKruskal法で求める。
+- `minimum_spanning_tree`: O(m log m)。連結な重み付き無向グラフの最小全域木を求める。非連結ならassertする。
+
+
 ## Include
 
 ```cpp

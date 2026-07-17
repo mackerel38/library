@@ -5,6 +5,19 @@ documentation_of: //cp/structure/dsu.hpp
 
 # DSU
 
+## 概要
+
+通常・重み付き・parity・rollback・成分辺数集約付きの素集合データ構造を扱う。
+
+## 厳密な定義
+
+- `dsu`: 素集合を併合して管理する: dsu uf(n); 併合・判定はならしO(alpha(n))。
+- `paritydsu`: XOR差を保つDSU: paritydsu uf(n); uf.merge(a,b,1)で異なる二色を要求する。
+- `weighted_dsu`: 頂点間の加法的な差を保つDSU: weighted_dsu<long long> uf(n); 各操作ならしO(alpha(n))。
+- `rollbackdsu`: 併合を巻き戻せるDSU: rollbackdsu uf(n); 併合・判定O(log n)、undo O(1)。
+- `rollbackgraphdsu`: 成分の(頂点数,辺数)スコア総和を保って辺追加を巻き戻す: rollbackgraphdsu uf(n, score)。
+
+
 ## Include
 
 ```cpp
@@ -523,13 +536,12 @@ else std::cout << sets.same(left, right) << '\n';
 
 `rollbackdsu`はoffline dynamic connectivityなどの時間分割と組み合わせて使う。
 [Library Checker - Dynamic Graph Vertex Add Component Sum](https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum)
-が代表問題だが、時間分割側の実装後にverifyを追加する。
+
 
 [AtCoder ABC302 Ex - Ball Collector](https://atcoder.jp/contests/abc302/tasks/abc302_h)では、
 `score(vertices, edges)=min(vertices, edges)`を使い、根から各頂点へのpathに対応する辺集合を
 `root_path_rollback`で追加・取消する。`verify/atcoder_abc302_h.cpp`で公式sample 2件を確認済み。
-。
+
 
 [AtCoder ABC451 F - Make Bipartite 3](https://atcoder.jp/contests/abc451/tasks/abc451_f)は
 各辺を`merge(u,v,1)`するだけで解ける。`verify/atcoder_abc451_f.cpp`で公式sampleを確認済み。
-。

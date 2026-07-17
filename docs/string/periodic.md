@@ -5,17 +5,21 @@ documentation_of: //cp/string/periodic.hpp
 
 # 周期文字列
 
-- Header: `cp/string/periodic.hpp`
-- Symbol: `poe::primitive_period`, `poe::minimum_unique_repetition_counts`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `primitive_period(text)`は、文字列全体を整数回繰り返して構成できる最短文字列を返す。
 例えば`"ababab"`なら`"ab"`、`"ababa"`なら元の文字列を返す。
 
+## 厳密な定義
+
+- `primitive_period`: O(n)。primitive_period(text): textを構成する最短周期文字列を返す。空文字列は空。
+- `minimum_unique_repetition_counts`: O(L alpha(n))目安。順に各文字列を正整数回反復し、過去と異なる最小反復回数を返す。
+
 `minimum_unique_repetition_counts(strings)`は入力順に各文字列`strings[i]`を正整数`k[i]`回繰り返し、
 過去に作った文字列と異なるようにする最小の`k[i]`を返す。
+
+## Include
 
 ```cpp
 #include "string/periodic.hpp"

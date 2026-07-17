@@ -5,17 +5,15 @@ documentation_of: //cp/fps/cyclic.hpp
 
 # 巡回畳み込み累乗
 
-- Header: `cp/fps/cyclic.hpp`
-- Symbol: `poe::cyclic_convolution`, `poe::cyclic_power`
-- Status: experimental
 
-```cpp
-#include "fps/cyclic.hpp"
-```
-
-## どんな問題に使えるか
+## 概要
 
 長さ`n`の巡回畳み込み環、すなわち多項式を`x^n-1`で割った余りとして、積や巨大整数乗を求める。
+
+## 厳密な定義
+
+- `cyclic_convolution`: O(n log n)。cyclic_convolution(a,b): 同じ長さnの列を巡回畳み込みする。
+- `cyclic_power`: 2冪長はO(n log n)、一般長はO(M(n) log k)。cyclic_power(a,k)で巡回畳み込みのa^kを返す。 k>=0。2冪長かつmod-1の約数ならNTT領域で直接累乗する。
 
 ```cpp
 auto product = poe::cyclic_convolution<998244353>(left, right);
@@ -25,6 +23,12 @@ auto power = poe::cyclic_power<998244353>(values, exponent);
 長さが2冪かつ`mod-1`の約数なら、NTT後の各周波数を直接累乗して`O(n log n)`時間で処理する。
 一般の長さでは巡回畳み込みによる二分累乗へ自動で切り替わり、
 `O(M(n) log exponent)`時間となる。指数は非負であること。
+
+## Include
+
+```cpp
+#include "fps/cyclic.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -57,4 +61,4 @@ k>=0。2冪長かつmod-1の約数ならNTT領域で直接累乗する。
 
 [AtCoder ABC309 Ex - Simple Path Counting Problem](https://atcoder.jp/contests/abc309/tasks/abc309_h)では、
 鏡像法で両端を吸収壁とするpath DPを長さ`2M+2`の巡回畳み込みへ変換する。
-`verify/atcoder_abc309_h.cpp`で公式sample 3件を確認済み。最大sampleはlocal約22秒で。
+`verify/atcoder_abc309_h.cpp`で公式sample 3件を確認済み。最大sampleはlocal約22秒である。

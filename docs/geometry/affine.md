@@ -5,9 +5,17 @@ documentation_of: //cp/geometry/affine.hpp
 
 # 2次元アフィン変換
 
-- Header: `cp/geometry/affine.hpp`
-- Symbol: `poe::affine`
-- Status: experimental
+## 概要
+
+2次元アフィン変換の合成を扱う。
+
+## 厳密な定義
+
+- `affine`: affine<T>: 2次元アフィン変換。left*rightはrightを適用してからleftを適用する。
+
+
+
+## Include
 
 ```cpp
 #include "geometry/affine.hpp"
@@ -106,4 +114,4 @@ O(1)。left*right: rightの後にleftを適用する合成変換を返す。
 ## 実在問題での使用例
 
 [ABC189 E - Rotate and Flip](https://atcoder.jp/contests/abc189/tasks/abc189_e)の4種類の操作を直接表せる。
-verifyコードを用意し、サンプル確認済み・。
+サンプル確認済み。

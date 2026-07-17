@@ -5,6 +5,15 @@ documentation_of: //cp/tree/rerooting.hpp
 
 # `rerooting`
 
+## 概要
+
+結合関数と辺作用を指定する汎用全方位木DPを扱う。
+
+## 厳密な定義
+
+- `rerooting`: O(n)。木の全頂点を根としたDPを返す。mergeは結合則を満たし、identityを単位元とすること。 add_vertex(統合値, 頂点)、add_edge(送る頂点のDP, 送る向きの辺)を指定する。
+
+
 ## Include
 
 ```cpp

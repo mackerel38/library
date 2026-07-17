@@ -5,15 +5,18 @@ documentation_of: //cp/tree/constrainedpath.hpp
 
 # 条件付き最長パス
 
-- Header: `cp/tree/constrainedpath.hpp`
-- Symbol: `poe::longest_constrained_path`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 木上の単純パスについて、端点に必要な条件と内部頂点に必要な条件が異なる場合に、
 条件を満たす最大頂点数を`O(n)`で求める。次数制約だけでなく、色・使用可能フラグ・
 頂点属性などをpredicateへ渡せる。
+
+## 厳密な定義
+
+- `longest_constrained_path`: O(n)。端点がendpoint、内部頂点がinternalを満たす木上pathの最大頂点数を返す。
+
+## Include
 
 ```cpp
 #include "tree/constrainedpath.hpp"

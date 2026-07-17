@@ -5,6 +5,15 @@ documentation_of: //cp/string/suffixarray.hpp
 
 # `suffix_array`
 
+## 概要
+
+SA-ISによるsuffix arrayを扱う。
+
+## 厳密な定義
+
+- `suffix_array`: O(n+upper)。0以上upper以下の整数列sequenceのsuffix arrayを返す。
+
+
 ## Include
 
 ```cpp

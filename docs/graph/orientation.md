@@ -5,19 +5,22 @@ documentation_of: //cp/graph/orientation.hpp
 
 # 辺の向き付けと縮約
 
-- Header: `cp/graph/orientation.hpp`
-- Symbol: `poe::count_acyclic_edge_states`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 無向グラフの各辺について、
+
+## 厳密な定義
+
+- `count_acyclic_edge_states`: O(3^n)時間・O(2^n)領域。各辺を二方向または同一視にし、縮約後がDAGとなる割当数を返す。 count_acyclic_edge_states<T>(graph): nは小さいこと。Tは加減算と0,1からの構築に対応すること。
 
 - 一方から他方へ向ける
 - 逆向きにする
 - 両端頂点を同一視する
 
 のいずれかを選び、すべての同一視を行った後の有向グラフがDAGになる割当数を数える。
+
+## Include
 
 ```cpp
 #include "graph/orientation.hpp"

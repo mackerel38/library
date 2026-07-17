@@ -5,17 +5,18 @@ documentation_of: //cp/graph/hyperedge.hpp
 
 # グループ遷移付きBFS
 
-- Header: `cp/graph/hyperedge.hpp`
-- Symbol: `poe::bfs_with_hyperedges`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 通常の単位コスト辺に加え、同じグループに属する任意の頂点間を1手で移動できる最短路を求める。
 各グループは最短距離が確定した最初の所属頂点から一度だけ展開するため、巨大なcliqueを辺へ展開しない。
 グループ遷移のコストが1でない場合には使えない。
 
-## API・計算量
+## 厳密な定義
+
+- `bfs_with_hyperedges`: 通常辺と「同じgroup内の任意頂点へ1手」を持つBFS: bfs_with_hyperedges(n, groups, s, expand); O(n+m+incidence)。 expand(v, visit)内で通常辺の行先ごとにvisit(to)を呼ぶ。
+
+## Include
 
 ```cpp
 #include "graph/hyperedge.hpp"

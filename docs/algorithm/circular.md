@@ -5,14 +5,17 @@ documentation_of: //cp/algorithm/circular.hpp
 
 # 剰余類の最小幅
 
-- Header: `cp/algorithm/circular.hpp`
-- Symbol: `poe::minimum_modular_range`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 各整数へ同じmodulusの任意の倍数を個別に足し引きできるとき、最終値の`max-min`を最小化する。
 剰余を円周上の点とみなし、全点を含む最短弧、すなわちmodulusから最大空隙を引いた長さを返す。
+
+## 厳密な定義
+
+- `minimum_modular_range`: O(n log n)。各値にmodulusの倍数を足し引きしてmax-minを最小化した値を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/circular.hpp"

@@ -5,14 +5,17 @@ documentation_of: //cp/dp/segments.hpp
 
 # 高々K個の互いに素な部分配列
 
-- Header: `cp/dp/segments.hpp`
-- Symbol: `poe::maximum_k_disjoint_subarray_sum`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 数列から互いに位置が重ならない非空部分配列を高々`k`個選び、選んだ要素の総和を最大化する。
 区間を選ばない場合も許すため、全要素が負なら0を返す。
+
+## 厳密な定義
+
+- `maximum_k_disjoint_subarray_sum`: O(nk)。互いに交わらない高々k個の非空部分配列を選んだ総和の最大値を返す。
+
+## Include
 
 ```cpp
 #include "dp/segments.hpp"

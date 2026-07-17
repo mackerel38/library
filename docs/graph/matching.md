@@ -5,21 +5,19 @@ documentation_of: //cp/graph/matching.hpp
 
 # Bipartite Matching
 
-- Status: experimental
-- Header: `cp/graph/matching.hpp`
-- Symbol: `poe::bipartitematching`, `poe::bipartitematchingresult`,
   `poe::bipartite_degree_feasible`, `poe::max_bipartite_degree_reward`
 
-## Include
-
-```cpp
-#include "graph/matching.hpp"
-```
-
-## できること
+## 概要
 
 左右の頂点集合を明示した二部グラフの最大matchingをHopcroft--Karp法で求める。
 flow graphへ変換する定型コードは不要で、最小頂点coverもKőnigの定理から同時に復元する。
+
+## 厳密な定義
+
+- `bipartitematchingresult`: 二部最大matchingの結果: result[left], result.right[right], result.size(); 取得O(1)。
+- `bipartitematching`: 左右の頂点集合を分けた二部グラフ: bipartitematching graph(L, R); solveはO(m sqrt(L+R))。
+- `bipartite_degree_feasible`: O(LR+R log R)。完全二部グラフで右頂点の要求次数を左頂点の次数上限内に割り当てられるか返す。
+- `max_bipartite_degree_reward`: O(LR^3)時間・O(LR^2)領域。要求次数を割当て可能な右頂点部分集合の最大報酬を返す。
 
 ```cpp
 bipartitematching graph(left_size, right_size);
@@ -46,6 +44,12 @@ long long best = max_bipartite_degree_reward(left_capacity, right_degree, reward
 前者は全右頂点を割り当てられるか判定する。後者は右頂点を任意に選び、選んだ各頂点の要求次数を
 満たせる部分集合の最大報酬を返す。右次数の降順prefixごとにGale--Ryser型条件を課すため、実際の
 辺や割当てを列挙する必要がない。接続可能な辺が頂点対ごとに制限される場合はこのAPIを使えない。
+
+## Include
+
+```cpp
+#include "graph/matching.hpp"
+```
 
 ## 計算量
 

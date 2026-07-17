@@ -5,15 +5,8 @@ documentation_of: //cp/fps/transform.hpp
 
 # 二項変換
 
-- Header: `cp/fps/transform.hpp`
-- Symbol: `poe::binomial_convolution`, `poe::binomial_transform`, `poe::upper_binomial_transform`
-- Status: experimental
 
-```cpp
-#include "fps/transform.hpp"
-```
-
-## どんな問題に使えるか
+## 概要
 
 `b[n]=sum_k C(n,k)a[k]c^(n-k)`という二項変換を、階乗で正規化した畳み込みとして計算する。
 `c=-1`なら包除変換、`c=1`なら通常のbinomial transformになる。
@@ -22,7 +15,19 @@ documentation_of: //cp/fps/transform.hpp
 `b[k]=sum_{n>=k} C(n,k)a[n]c^(n-k)`を返す。各大きさ`n`の対象から
 `k`個を選んで残りへ同じ重みを掛ける集約に使う。
 
+## 厳密な定義
+
+- `binomial_convolution`: O(M(n))。binomial_convolution(a,b)[n]=sum C(n,k)a[k]b[n-k]を返す。
+- `binomial_transform`: O(M(n))。binomial_transform(a,c)[n]=sum C(n,k)a[k]c^(n-k)を返す。
+- `upper_binomial_transform`: O(M(n))。upper_binomial_transform(a,c)[k]=sum_{n>=k} C(n,k)a[n]c^(n-k)を返す。
+
 項数`n`が法未満であること。計算量`O(M(n))`、領域`O(n)`。
+
+## Include
+
+```cpp
+#include "fps/transform.hpp"
+```
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -65,7 +70,7 @@ O(M(n))。upper_binomial_transform(a,c)[k]=sum_{n>=k} C(n,k)a[n]c^(n-k)を返す
 [AtCoder ABC432 G - Sum of Binom(A, B)](https://atcoder.jp/contests/abc432/tasks/abc432_g)では、
 `a[k]`を値`k`の出現数として`binomial_transform(a, 1)[n]=sum C(n,k)a[k]`を求め、
 もう一方の列の各値で参照する。`verify/atcoder_abc432_g.cpp`で公式sampleを確認済み。
-。
+
 
 [AtCoder ABC409 G - Accumulation of Wealth](https://atcoder.jp/contests/abc409/tasks/abc409_g)では、
 値`k`が初登場する時刻ごとの期待値を`a[n]`へまとめた後、

@@ -5,20 +5,15 @@ documentation_of: //cp/graph/functionalgraph.hpp
 
 # Functional Graph
 
-- Status: experimental
-- Header: `cp/graph/functionalgraph.hpp`
-- Symbol: `poe::functionalgraph`
 
-## Include
-
-```cpp
-#include "graph/functionalgraph.hpp"
-```
-
-## できること
+## 概要
 
 各頂点から出る辺がちょうど一つのグラフを、木部分と有向閉路へ分解する。
 巨大回数の遷移だけでなく、閉路頂点の列挙、閉路までの距離、到達可能性と最短step数も返す。
+
+## 厳密な定義
+
+- `functionalgraph`: 各頂点の行先が一つのグラフ: functionalgraph fg(next); 構築O(n log U)、jump O(log U)。
 
 ```cpp
 functionalgraph graph(next);
@@ -31,6 +26,12 @@ optional<unsigned long long> distance = graph.steps(start, target);
 `operator[]`は一回遷移した頂点、`cycle_id`は最終的に入る閉路番号、
 `distance_to_cycle`は閉路へ入るまでの辺数を返す。`cycle(id)`の頂点列は辺の向き順である。
 `steps(from, to)`は到達不能なら`nullopt`を返す。
+
+## Include
+
+```cpp
+#include "graph/functionalgraph.hpp"
+```
 
 ## 計算量
 

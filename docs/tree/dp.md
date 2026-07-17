@@ -5,14 +5,17 @@ documentation_of: //cp/tree/dp.hpp
 
 # 抽象化木DP
 
-- Header: `cp/tree/dp.hpp`
-- Symbol: `poe::treedp`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 根付き木を葉から処理し、子のDP値を結合して各頂点の部分木DPを求める問題に使う。
 `merge`、単位元、頂点作用、辺作用を指定するため、数え上げ、最適化、木ナップサックなどに再利用できる。
+
+## 厳密な定義
+
+- `treedp`: O(n)。treedp(graph, root, identity, merge, add_vertex, add_edge): 各頂点の部分木DPを返す。 mergeは結合則とidentityを持ち、add_edge(child_value, parent_to_child_edge)で子を親へ渡す。
+
+## Include
 
 ```cpp
 #include "tree/dp.hpp"

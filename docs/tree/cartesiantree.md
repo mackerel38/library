@@ -5,17 +5,19 @@ documentation_of: //cp/tree/cartesiantree.hpp
 
 # Cartesian Tree
 
-- Header: `cp/tree/cartesiantree.hpp`
-- Symbol: `poe::cartesian_tree`, `poe::cartesiantree_result`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 列の各区間を最小値または最大値の位置で再帰分割する問題を木DPへ変換するときに使う。
 inorderが元配列順なので、区間の包含関係を木の祖先関係として扱える。単に区間最小値queryが必要なだけなら
 Segment Treeの方が直接的であり、同値要素の親子規則が解法へ影響する場合はtie規則を確認する。
 
-## 使い方
+## 厳密な定義
+
+- `cartesiantree_result`: cartesiantree_resultはmin Cartesian Treeの親・左右の子・根を保持する。
+- `cartesian_tree`: O(n)。compare(child,parent)が偽となるCartesian Treeを返す。std::greater{}ならmax木。 compare上で同値なら左側の要素を祖先にする。
+
+## Include
 
 ```cpp
 #include "tree/cartesiantree.hpp"
@@ -28,6 +30,8 @@ int root = tree.root;
 inorder順が元配列の順序と一致する。省略時は親の値が子以下となるmin Cartesian Tree、
 `std::greater{}`を渡すと親の値が子以上となるmax Cartesian Treeを返す。
 同値では左側の要素を祖先にする。空列の根は`-1`。
+
+## 使い方
 
 ## 計算量
 

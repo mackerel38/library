@@ -5,14 +5,17 @@ documentation_of: //cp/string/matching.hpp
 
 # Wildcard文字列照合
 
-- Header: `cp/string/matching.hpp`
-- Symbol: `poe::wildcard_matches`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `text`の各部分文字列と`pattern`を比較し、同じ位置の文字が等しいか、
 少なくとも一方がwildcardである開始位置をすべて返す。
+
+## 厳密な定義
+
+- `wildcard_matches`: O((n+m) log(n+m))。wildcard_matches(text,pattern,wildcard)で一致する開始位置を返す。 textとpatternのどちらでもwildcardは任意の一文字に一致する。空patternは全境界に一致する。
+
+## Include
 
 ```cpp
 #include "string/matching.hpp"

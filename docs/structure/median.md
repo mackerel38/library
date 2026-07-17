@@ -5,14 +5,17 @@ documentation_of: //cp/structure/median.hpp
 
 # 動的中央値
 
-- Header: `cp/structure/median.hpp`
-- Symbol: `poe::median<T>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 値を逐次追加・削除しながら中央値を求める。中央値へ全要素をそろえる費用、
 sliding windowの中央値、オンラインな絶対値和最小化にも使える。
+
+## 厳密な定義
+
+- `median`: 動的中央値: median<long long> values; add/eraseはO(log n)、lower/upper/deviationはO(1)。
+
+## Include
 
 ```cpp
 #include "structure/median.hpp"

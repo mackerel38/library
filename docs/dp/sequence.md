@@ -5,16 +5,22 @@ documentation_of: //cp/dp/sequence.hpp
 
 # 列DP
 
-- Header: `cp/dp/sequence.hpp`
-- Symbol: `poe::lis`, `poe::lnds`, `poe::longest_nested_intervals`, `poe::lcs`, `poe::minimum_unbordered_pattern_increase`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 元の順序を保って要素を間引く問題に使う。大小関係だけならLIS/LNDS、二列の一致要素を残すならLCSを選ぶ。
 連続部分列、編集距離、重み付きLISは別問題であり、この戻り値をそのまま使えない。
 
-## 使い方
+## 厳密な定義
+
+- `lis_result`: lis_result.indicesに狭義LISの元配列上の添字を保持する。
+- `lis`: O(n log n)。lis(values): 狭義最長増加部分列を一つ復元する。
+- `lnds`: O(n log n)。lnds(values): 広義最長増加部分列を一つ復元する。
+- `longest_nested_intervals`: O(n log n)。longest_nested_intervals(intervals): 区間を外側から内側へ狭義包含する最長列を復元する。
+- `lcs`: O(nm)時間・O(nm)領域。lcs(a, b): 最長共通部分列を一つ返す。
+- `minimum_unbordered_pattern_increase`: O(n(m+k))時間・O(nk)領域。自己重なりしないpatternの出現数をちょうどk増やす最小置換数。 minimum_unbordered_pattern_increase(text, pattern, k): 不可能なら-1。patternは空でなくborderを持たないこと。
+
+## Include
 
 ```cpp
 #include "dp/sequence.hpp"
@@ -34,6 +40,8 @@ std::string common = poe::lcs(left, right);
 出現数をちょうど`k`増やす最小置換数を返す。不可能なら`-1`。`ABC`や`docker`のように
 空でなく自己重なりしない、すなわち真のprefixとsuffixが一致しないpattern専用である。
 patternがborderを持つ場合はassertに失敗する。
+
+## 使い方
 
 ## 戻り値と選択基準
 
@@ -129,6 +137,6 @@ minimum_unbordered_pattern_increase(text, pattern, k): 不可能なら-1。patte
 std::cout << poe::lcs(s, t) << '\n'; // EDPC F
 ```
 
-`verify/atcoder_dp_f.cpp`で2026-07-15にjudge AC確認済み。ABC462 Fはverifyコードを用意し、
-公式sampleを確認済み。ABC410 Gもverifyコードを用意して公式sampleを確認済み。
+`verify/atcoder_dp_f.cpp`で2026-07-15にjudge AC確認済み。ABC462 FとABC410 Gも
+公式sampleを確認済み。
 API test、LIS・区間包含列・出現数増加の愚直差分も実施済み。

@@ -5,28 +5,16 @@ documentation_of: //cp/recipe/connectivityfrontier.hpp
 
 # 盤面連結frontier DP recipe
 
-- Header: `cp/recipe/connectivityfrontier.hpp`
-- Symbol: `poe::connectivityfrontierdp`
-- Status: experimental recipe
+## 概要
 
-## recipeへ置く理由
+盤面連結frontier DPと必須マスを結ぶ最小連結supersetを扱う。
 
-`connectivityfrontierdp`は疎な状態管理だけでなく、各列のbitmask全列挙、選択マス間の上下左右辺、
-注目成分がfrontierから消えた状態の破棄まで決めている。提出コードは非常に短くなる一方、辺の選択や
-禁止マスが異なる問題にはそのまま使えない。このため汎用DPの`dp`ではなく、狭い問題族向けの完成形を
-置く`recipe`へ隔離し、`all.hpp`からはincludeしない。
+## 厳密な定義
 
-## 適用できる問題
+- `connectivityfrontierdp`: connectivityfrontierdp<Value> dp(height, marked): markedを含む全初列から盤面連結DPを始める。 各列では選択マス間の上下辺と前列への横辺をすべて張る問題だけに使う。
+- `minimum_connected_grid_completion`: O(rows*S*2^width*width^2 log S)。必須マスを含む最小追加マス数の連結supersetを返す。
 
-- 幅`H`の盤面を列ごとに左から処理する。
-- 選んだマス同士は上下左右に隣接すれば必ず接続する。
-- 最初の列の`marked`を含む連結成分が、最後の指定位置まで届く配置数を数える。
-- 各マスは自由に選ぶか選ばないかを決められる。
-
-禁止マス、選択個数、辺そのものの選択、複数の注目成分を扱う場合は、`frontierdp`と
-`connectivityprofile`を直接組み合わせて遷移を書く。
-
-## 使い方
+## Include
 
 ```cpp
 #include "recipe/connectivityfrontier.hpp"

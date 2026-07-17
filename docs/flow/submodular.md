@@ -5,6 +5,16 @@ documentation_of: //cp/flow/submodular.hpp
 
 # `submodular`
 
+## 概要
+
+graph cutによる二値二項劣モジュラ関数最小化を扱う。
+
+## 厳密な定義
+
+- `submodularresult`: 二値劣モジュラ最小化の解。value[i]は変数iの0/1、costは最小値。
+- `submodular`: 二値単項・二項劣モジュラ関数をgraph cutで最小化する: submodular<long long> f(n)。
+
+
 ## Include
 
 ```cpp

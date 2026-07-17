@@ -5,15 +5,19 @@ documentation_of: //cp/game/dag.hpp
 
 # DAG上のimpartial game
 
-- Header: `cp/game/dag.hpp`
-- Symbol: `poe::dag_grundy`, `poe::dag_winning_positions`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 DAGの頂点を局面、出辺を一手とする通常プレイのimpartial gameに使う。遷移先を持たない局面で
 手番を迎えた側が負ける。Grundy数を求めれば、一つのゲームの勝敗だけでなく複数ゲームの直和も
 XORで扱える。
+
+## 厳密な定義
+
+- `dag_grundy`: O(n+m)。DAG上で手を辺遷移とするimpartial gameの各頂点のGrundy数を返す。
+- `dag_winning_positions`: O(n+m)。DAG上の通常プレイで各頂点が先手必勝ならtrueを返す。
+
+## Include
 
 ```cpp
 #include "game/dag.hpp"

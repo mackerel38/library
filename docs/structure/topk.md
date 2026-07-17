@@ -5,15 +5,21 @@ documentation_of: //cp/structure/topk.hpp
 
 # キー重複を除く上位 K 件
 
-- Header: `cp/structure/topk.hpp`
-- Symbol: `poe::topkdistinct`, `poe::merge_topkdistinct`, `poe::empty_topkdistinct`, `poe::make_topkdistinct`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 候補を値の降順に最大`K`件だけ残し、同じキーからは最大値の一件だけを採用する。
 `K`が小さいときのprefix/suffix集約、Segment Tree、SWAG、木DPで使える。
 保持領域は`O(K)`、一件追加とmergeは`O(K^2)`。
+
+## 厳密な定義
+
+- `topkdistinct`: キーが相異なる値上位K件を保持する固定長monoid。merge O(K^2)。
+- `merge_topkdistinct`: O(K^2)。二集合からキーが相異なる値上位K件を返す。
+- `empty_topkdistinct`: O(1)。topkdistinct monoidの単位元を返す。
+- `make_topkdistinct`: O(K^2)。候補一件からtopkdistinctを作る。
+
+## Include
 
 ```cpp
 #include "structure/segtree.hpp"

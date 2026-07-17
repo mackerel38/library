@@ -5,14 +5,18 @@ documentation_of: //cp/algorithm/rangefrequency.hpp
 
 # 区間内の同値組数
 
-- Header: `cp/algorithm/rangefrequency.hpp`
-- Symbol: `poe::equal_tuple_range_counts`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 静的な列と複数の半開区間`[l,r)`について、同じ値を持つ相異なる`k`添字の組数
 `sum_x C(freq_x, k)`を一括で求める。
+
+## 厳密な定義
+
+- `small_binomial`: O(k)。nCkをlong longで返す。結果がlong longに収まること。
+- `equal_tuple_range_counts`: O((n+q)sqrt(q) k+n log n)。各区間で値が等しいk添字組の個数を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/rangefrequency.hpp"
@@ -78,7 +82,7 @@ O((n+q)sqrt(q) k+n log n)。各区間で値が等しいk添字組の個数を返
 
 [AtCoder ABC293 G - Triple Index](https://atcoder.jp/contests/abc293/tasks/abc293_g)は
 `k=3`として直接使える。`verify/atcoder_abc293_g.cpp`で公式sample 1を確認済み。
-。
+
 
 ## 検証
 

@@ -5,17 +5,20 @@ documentation_of: //cp/string/distinctsubstring.hpp
 
 # 禁止値を含まない相異なる部分文字列
 
-- Header: `cp/string/distinctsubstring.hpp`
-- Symbol: `poe::count_distinct_substrings_without`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 列に現れる相異なる空でない部分文字列のうち、指定した禁止値を一つも含まないものを数える。
 文字列だけでなく整数列にも使え、区切り値で分割された複数列をまとめて処理するときにも便利。
 
+## 厳密な定義
+
+- `count_distinct_substrings_without`: O(n log n)。forbiddenを含まない相異なる空でない部分文字列の個数を返す。
+
 suffix array順に各suffixが初めて追加するprefixだけを数え、禁止値までの長さで打ち切る。
 出現位置を区別して数える問題や、複数種類の禁止値を直接指定する用途には使えない。
+
+## Include
 
 ```cpp
 #include "string/distinctsubstring.hpp"

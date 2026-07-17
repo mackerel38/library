@@ -5,6 +5,19 @@ documentation_of: //cp/math/modint.hpp
 
 # `modint`
 
+## 概要
+
+固定法・動的法のmodintと定番aliasを扱う。
+
+## 厳密な定義
+
+- `staticmodint`: 固定modの整数: staticmodint<998244353> x; 四則演算O(1)、除算O(log mod)。
+- `dynamicmodint`: 実行時modの整数: dynamicmodint<id>::set_mod(mod); 四則演算O(1)、除算O(log mod)。
+- `modint998244353`: 法998244353の固定modint: modint998244353 value; 各演算量はstaticmodintと同じ。
+- `modint1000000007`: 法1000000007の固定modint: modint1000000007 value; 各演算量はstaticmodintと同じ。
+- `modint`: 既定idの実行時modint: modint::set_mod(modulus); 各演算量はdynamicmodintと同じ。
+
+
 ## Include
 
 ```cpp

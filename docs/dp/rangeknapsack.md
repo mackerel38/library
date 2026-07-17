@@ -5,15 +5,19 @@ documentation_of: //cp/dp/rangeknapsack.hpp
 
 # 区間0/1ナップサック
 
-- Header: `cp/dp/rangeknapsack.hpp`
-- Symbol: `poe::rangeknapsackquery`, `poe::range_knapsack01`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 固定された品物列に対し、多数の半開区間`[left,right)`と小さい容量が与えられ、区間内だけから
 品物を選ぶ0/1ナップサックの最大価値をまとめて求める。各queryで容量DPを作り直す代わりに、
 列の分割統治で中央をまたぐ全queryへ左suffix DPと右prefix DPを共有する。
+
+## 厳密な定義
+
+- `rangeknapsackquery`: range_knapsack01へ渡す半開区間[left,right)と容量capacity。
+- `range_knapsack01`: O(CN log N + CQ + Q log N)時間・O(NC+Q log N)領域。各区間の0/1ナップサック最大価値を返す。
+
+## Include
 
 ```cpp
 #include "dp/rangeknapsack.hpp"

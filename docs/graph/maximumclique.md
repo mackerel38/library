@@ -5,6 +5,17 @@ documentation_of: //cp/graph/maximumclique.hpp
 
 # 最大clique・最大独立集合
 
+## 概要
+
+彩色枝刈りによる最大cliqueと最大独立集合を扱う。
+
+## 厳密な定義
+
+- `maximumvertexsetresult`: 最大clique・最大独立集合の結果。verticesは条件を満たす最大頂点集合。
+- `maximum_clique`: worst O(2^n)。63頂点以下の無向グラフの最大cliqueを彩色枝刈りで求める。
+- `maximum_independent_set`: worst O(2^n)。63頂点以下の無向グラフの最大独立集合を補グラフの最大cliqueとして求める。
+
+
 ## Include
 
 ```cpp
@@ -71,4 +82,3 @@ cout << maximum_clique(graph).size() << '\n';
 ```
 
 `verify/atcoder_abc002_d.cpp`に提出用コードを用意し、公式サンプル4件との一致を確認済み。
-。

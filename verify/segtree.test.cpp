@@ -17,7 +17,7 @@ affine compose(affine left, affine right) {
     return {right.a * left.a, right.a * left.b + right.b};
 }
 
-affine identity() {
+affine affine_identity() {
     return {1, 0};
 }
 
@@ -30,7 +30,7 @@ int main() {
     for (auto& [a, b] : functions) {
         cin >> a >> b;
     }
-    segtree<affine, compose, identity> seg(functions);
+    segtree<affine, compose, affine_identity> seg(functions);
     while (q--) {
         int type;
         cin >> type;

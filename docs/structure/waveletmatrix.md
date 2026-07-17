@@ -5,26 +5,27 @@ documentation_of: //cp/structure/waveletmatrix.hpp
 
 # Wavelet Matrix
 
-- Status: experimental
-- Header: `cp/structure/waveletmatrix.hpp`
-- Symbol: `poe::waveletmatrix<T, Sum>`
 
-## Include
-
-```cpp
-#include "structure/waveletmatrix.hpp"
-```
-
-## できること
+## 概要
 
 更新のない数値列について、位置区間と値域を同時に絞るqueryを`O(log sigma)`で処理する。
 値は内部で座標圧縮するため、負数や大きな値もそのまま渡せる。
+
+## 厳密な定義
+
+- `waveletmatrix`: 静的列の値域query: waveletmatrix<int, long long> wm(values); 構築O(n log sigma)、取得O(log sigma)。
 
 ```cpp
 waveletmatrix<int, long long> wm(values);
 int third = wm.kth(left, right, 2);
 int frequency = wm.count(left, right, value);
 long long total = wm.sum_leq(left, right, upper);
+```
+
+## Include
+
+```cpp
+#include "structure/waveletmatrix.hpp"
 ```
 
 ## API

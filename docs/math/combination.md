@@ -5,20 +5,22 @@ documentation_of: //cp/math/combination.hpp
 
 # 組合せ
 
-- Header: `cp/math/combination.hpp`
-- Symbol: `poe::combination<T>`, `poe::pascalcombination`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 法が素数のmodintなど、階乗が割り算可能な体上で`nCk`を多数回求める問題に向く。
 順列の混ぜ合わせ、障害点を避ける格子経路、木DPの子部分木の順序付けに使える。
+
+## 厳密な定義
+
+- `pascalcombination`: 合成数法でも使えるPascal二項係数表: pascalcombination comb(n, modulus)。
+- `combination`: modint等で二項係数を前計算する: combination<mint> comb(n); 構築O(n)、取得O(1)。
 
 前計算上限が法以上になる場合は階乗が0になり逆元を持たないため使えない。
 法が合成数の場合や逆元を使えない場合は`pascalcombination`を使う。
 巨大な`n`でも`k`が小さければ`choose_large(n, k)`を使える。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "math/combination.hpp"
@@ -30,6 +32,8 @@ mint sparse_ways = comb.choose_large(1'000'000'000LL, k);
 
 構築`O(limit)`、`factorial`・`permutation`・`choose`・`multichoose`は`O(1)`、
 `choose_large(n, k)`は`O(k)`。後者も`k`までの逆階乗を使うため、`limit >= k`が必要。
+
+## API・計算量
 
 ## 任意の法に対するPascal表
 

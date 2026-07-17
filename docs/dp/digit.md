@@ -5,14 +5,20 @@ documentation_of: //cp/dp/digit.hpp
 
 # 桁DP
 
-- Header: `cp/dp/digit.hpp`
-- Symbol: `poe::digitdp`, `poe::digitdpresult`, `poe::leadingzero`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 `0`以上、指定した上限以下の整数を桁ごとに走査し、剰余、桁和、出現状態、オートマトン状態などを
 集計する問題に使う。上限への一致状態`tight`はライブラリが管理し、利用側は一桁の状態遷移だけを書く。
+
+## 厳密な定義
+
+- `leadingzero`: 桁DPで先頭の0を通常の桁として使うか、数が始まるまで無視するかを指定する。
+- `digitdpstate`: digitdpの終端状態。started=falseはleadingzero::ignoreで数0だけを表す。
+- `digitdpresult`: digitdpの状態別集計結果。
+- `digitdp`: O(length * base * states * log states)。digitdp(digits, base, initial, transition): 0以上upper以下を集計する。 transition(state, digit, position)は次状態またはoptional<状態>を返す。
+
+## Include
 
 ```cpp
 #include "dp/digit.hpp"

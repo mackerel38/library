@@ -14,19 +14,19 @@ documentation_of: //cp/math/tropicalconvolution.hpp
 
 ## 厳密な定義
 
-長さ\(n\)の数列\(A\)と長さ\(m\)の数列\(B\)に対し、min-plus畳み込みは
-長さ\(n+m-1\)の数列\(C\)を
+長さ$n$の数列$A$と長さ$m$の数列$B$に対し、min-plus畳み込みは
+長さ$n+m-1$の数列$C$を
 
-\[
+$$
 C_k = \min_{i+j=k}(A_i+B_j)
-\]
+$$
 
-で定義する。ただし\(0 \le i < n\), \(0 \le j < m\)を満たす範囲で最小値を取る。
+で定義する。ただし$0 \le i < n$, $0 \le j < m$を満たす範囲で最小値を取る。
 max-plus畳み込みは
 
-\[
+$$
 C_k = \max_{i+j=k}(A_i+B_j)
-\]
+$$
 
 で定義する。
 どちらかの入力が空なら空列を返す。
@@ -55,10 +55,10 @@ auto c = poe::minplus_convolution(a, b);
 
 | 条件 | 出力 | 関数 | 計算量 |
 | --- | --- | --- | --- |
-| \(A, B\)は一般の数列 | \(C_k=\min_{i+j=k}(A_i+B_j)\) | `minplus_convolution` | `O(nm)` |
-| \(A, B\)は上に凸な数列（差分が単調非減少） | \(C_k=\min_{i+j=k}(A_i+B_j)\) | `minplus_convolution_convex` | `O(n+m)` |
-| \(A, B\)は一般の数列 | \(C_k=\max_{i+j=k}(A_i+B_j)\) | `maxplus_convolution` | `O(nm)` |
-| \(A, B\)は下に凸な数列（差分が単調非増加） | \(C_k=\max_{i+j=k}(A_i+B_j)\) | `maxplus_convolution_concave` | `O(n+m)` |
+| $A, B$は一般の数列 | $C_k=\min_{i+j=k}(A_i+B_j)$ | `minplus_convolution` | `O(nm)` |
+| $A, B$は上に凸な数列（差分が単調非減少） | $C_k=\min_{i+j=k}(A_i+B_j)$ | `minplus_convolution_convex` | `O(n+m)` |
+| $A, B$は一般の数列 | $C_k=\max_{i+j=k}(A_i+B_j)$ | `maxplus_convolution` | `O(nm)` |
+| $A, B$は下に凸な数列（差分が単調非増加） | $C_k=\max_{i+j=k}(A_i+B_j)$ | `maxplus_convolution_concave` | `O(n+m)` |
 
 ## 注意点
 

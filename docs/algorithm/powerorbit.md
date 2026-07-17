@@ -5,14 +5,17 @@ documentation_of: //cp/algorithm/powerorbit.hpp
 
 # 有限monoid上の冪の周期
 
-- Header: `cp/algorithm/powerorbit.hpp`
-- Symbol: `poe::finitepowerorbit<State>`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 有限個の状態しか持たないmonoidで`1, base, base^2, ...`を生成し、前周期と周期へ圧縮する。
 巨大指数の剰余、行列や写像の小さい有限状態、指数区間に現れる状態の頻度計算に使える。
+
+## 厳密な定義
+
+- `finitepowerorbit`: 有限monoidのbase^k列: finitepowerorbit orbit(one, base, multiply); 構築O(s log s)、参照O(1)。
+
+## Include
 
 ```cpp
 #include "algorithm/powerorbit.hpp"

@@ -5,14 +5,18 @@ documentation_of: //cp/tree/statictoptree.hpp
 
 # Static top tree
 
-- Header: `cp/tree/statictoptree.hpp`
-- Symbol: `poe::statictoptree`, `poe::make_statictoptreedp`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 木DPの頂点値をオンライン更新し、木全体のDP値を毎回求める問題に使う。元の木を
 深さ`O(log n)`のcluster merge木へ変換し、更新頂点からmerge木の祖先だけを再計算する。
+
+## 厳密な定義
+
+- `statictoptree_type`: Static top treeのcluster生成操作。
+- `statictoptree`: 根付き木を深さO(log n)のcluster merge木へ変換する。構築O(n log n)。
+- `statictoptreedp`: Static top treeへ5演算の木DPを載せ、頂点更新をO(log n)で再計算する。
+- `make_statictoptreedp`: O(n)。make_statictoptreedp(tree, vertex, compress, rake, add_edge, add_vertex)でDPを構築する。
 
 木DPを次の5演算へ分解できる必要がある。
 
@@ -26,7 +30,7 @@ documentation_of: //cp/tree/statictoptree.hpp
 この演算を結合的かつ正しく定義できないDPには使えない。辺更新は、辺を頂点へ分割した`2n-1`頂点木へ
 変換すると扱いやすい。
 
-## API・計算量
+## Include
 
 ```cpp
 #include "tree/statictoptree.hpp"

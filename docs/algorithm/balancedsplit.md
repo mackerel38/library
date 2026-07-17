@@ -5,15 +5,19 @@ documentation_of: //cp/algorithm/balancedsplit.hpp
 
 # 均等二分の最終分布
 
-- Header: `cp/algorithm/balancedsplit.hpp`
-- Symbol: `poe::balanced_split_leaves`
-- Status: experimental
 
-## どんな問題に使えるか
+## 概要
 
 長さ`length`の一要素を、値が`threshold`以上である間、`floor(x/2)`と`ceil(x/2)`へ
 分割し続けた最終multisetを求める。要素を一個ずつ生成せず、`{値, 個数}`へ圧縮して返す。
 棒や資源の均等分割後に、一定値以上の個数、短い方から`K`個の総和、分割回数を調べる問題に使える。
+
+## 厳密な定義
+
+- `balanced_split_leaves`: O(log^2 length)。length以上ではなくthreshold以上のpieceを半分へ分割し続けた{長さ,個数}を返す。
+- `kth_largest_after_max_halving`: O(n log A + n log n)。最大要素をK回半分へ分割した後のX番目に大きい値を返す。
+
+## Include
 
 ```cpp
 #include "algorithm/balancedsplit.hpp"
