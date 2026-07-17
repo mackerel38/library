@@ -211,6 +211,32 @@ def check() -> int:
     return 0
 
 
+def protect_generated_markdown_from_liquid(directory: Path) -> int:
+    """Markdown本文をraw blockで囲み、C++の`{{...}}`をLiquidから守る。"""
+    protected = 0
+    for path in sorted(directory.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("---\n"):
+            continue
+        front_matter_end = text.find("\n---\n", 4)
+        if front_matter_end == -1:
+            raise RuntimeError(f"generated Markdown has invalid Front Matter: {path}")
+        content_start = front_matter_end + 5
+        front_matter = text[:content_start]
+        content = text[content_start:]
+        if "{% raw %}" in content or "{% endraw %}" in content:
+            raise RuntimeError(f"generated Markdown already contains Liquid raw tags: {path}")
+        wrapped = (
+            front_matter
+            + "{% raw %}\n"
+            + content.rstrip("\n")
+            + "\n{% endraw %}\n"
+        )
+        path.write_text(wrapped, encoding="utf-8", newline="\n")
+        protected += 1
+    return protected
+
+
 def build(jobs: int) -> int:
     """repository上の公開対象からoj-verify形式のMarkdownを生成する。"""
     if check() != 0:
@@ -297,7 +323,12 @@ def build(jobs: int) -> int:
     finally:
         os.chdir(previous)
 
-    print(f"PASS docs build: generated {destination}")
+    protected = protect_generated_markdown_from_liquid(destination)
+
+    print(
+        f"PASS docs build: generated {destination} "
+        f"({protected} Markdown files protected from Liquid)"
+    )
     return 0
 
 
