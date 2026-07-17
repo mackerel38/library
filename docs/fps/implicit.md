@@ -53,4 +53,4 @@ equation(y,n)はpair{F(y), dF/dy(y)}をそれぞれn項返す。constantはF(con
 ## 実在問題での使用例
 
 [FPS 24題 S - 根付き木](https://atcoder.jp/contests/fps-24/tasks/fps_24_s)のtype 1で、
-勝敗条件を満たす根付き木の母関数`A=x exp(T-A)`として使う。verifyコードを用意し、judge ACは未確認。
+勝敗条件を満たす根付き木の母関数`A=x exp(T-A)`として使う。verifyコードを用意し。

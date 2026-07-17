@@ -75,7 +75,7 @@ a[i]=sum coefficient[j-1]*a[i-j]。modはNTT可能な素数。
 
 [AtCoder ABC300 Ex - Fibonacci: Revisited](https://atcoder.jp/contests/abc300/tasks/abc300_h)
 ではK-bonacci数列の有理型母関数を作り、係数のsubmask和を求める。
-`verify/atcoder_abc300_h.cpp`で公式sample 5件を確認済み。judge ACは未確認。
+`verify/atcoder_abc300_h.cpp`で公式sample 5件を確認済み。
 
 `tests/property/fps/bostanmorisubmask.cpp`では小さい係数列を直接展開し、
 全submask列挙の和と比較する。

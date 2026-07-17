@@ -112,4 +112,4 @@ membership oracleを長さcontext_length以下の右文脈で分類し、候補D
 [AtCoder ABC418 G - Binary Operation](https://atcoder.jp/contests/abc418/tasks/abc418_g)では、
 二項演算の任意括弧付けで`1`へ縮約できるかをoracleとする。公式解説により全16演算で
 `u<=3`に安定し、状態数は7以下であることが示されている。
-`verify/atcoder_abc418_g.cpp`で公式2 sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc418_g.cpp`で公式2 sampleを確認済み。

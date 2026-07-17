@@ -90,8 +90,7 @@ O(1)。操作が空ならtrueを返す。
 ## 実在問題での使用例
 
 [AtCoder ABC427 G - Takahashi's Expectation 2](https://atcoder.jp/contests/abc427/tasks/abc427_g)で、
-プレゼント価値を閾値として末尾へ追加し、質問の初期テンションへ`apply`する。公式sample確認済み、
-judge ACは未確認。
+プレゼント価値を閾値として末尾へ追加し、質問の初期テンションへ`apply`する。公式sample確認済み。
 
 ## 検証
 

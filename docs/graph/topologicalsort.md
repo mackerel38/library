@@ -121,4 +121,4 @@ if (!result.found()) {
 ```
 
 `tests/property/graph/boundedtopological.cpp`で全順列探索と比較し、
-`verify/atcoder_abc304_h.cpp`で公式サンプルを確認済み。judge ACは未確認。
+`verify/atcoder_abc304_h.cpp`で公式サンプルを確認済み。

@@ -54,4 +54,4 @@ template <class T> std::vector<T> offline_range_min_sum(const std::vector<T>& va
 
 [AtCoder ABC438 G - Sum of Min](https://atcoder.jp/contests/abc438/tasks/abc438_g)では、互いに素な
 周期列の組を固定した添字ごとの巡回区間へ変換し、このAPIで全区間を一括処理する。
-`verify/atcoder_abc438_g.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc438_g.cpp`は公式サンプル一致を確認済み。

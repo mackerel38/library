@@ -146,8 +146,8 @@ auto count = count_nonadjacent_subsets_mod(values, modulo, target);
 
 [AtCoder ABC427 F - Not Adjacent](https://atcoder.jp/contests/abc427/tasks/abc427_f)では、
 `target=0`として直接使う。`verify/atcoder_abc427_f.cpp`で公式sample 3件を確認済み。
-judge ACは未確認。
+。
 
 [ABC464 F - Random Vault Heist](https://atcoder.jp/contests/abc464/tasks/abc464_f)では、
 閾値未満のprefix集合について要素数別の個数と金額総計を集約する。`verify/atcoder_abc464_f.cpp`は
-公式サンプル3件との一致を確認済みだが、judgeへの提出確認は未実施。
+公式サンプル3件との一致を確認済み。

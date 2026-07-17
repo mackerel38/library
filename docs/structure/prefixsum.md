@@ -5,11 +5,30 @@ documentation_of: //cp/structure/prefixsum.hpp
 
 # 累積和
 
-- Status: experimental
-- Header: `cp/structure/prefixsum.hpp`
-- Symbol: `poe::differencearray<T>`, `poe::differencearray2d<T>`, `poe::prefixsum<T>`,
-  `poe::subarrayprefixsum<T>`, `poe::circularprefixsum<T>`, `poe::prefixsum2d<T>`,
-  `poe::multidimensionalprefixsum<T>`
+<!-- API REFERENCE: COLLAPSED -->
+
+## 概要
+
+値を変更しない配列の区間和を何度も求めるときや、多数の区間加算を最後にまとめて反映するときに使う。
+一次元、二次元、円環、多次元の各形式をこのheaderにまとめている。
+
+## 厳密な定義
+
+数列`A`の一次元累積和を
+
+```text
+S[0] = 0
+S[k] = sum(A[i])  （0 <= i < k）
+```
+
+と定義する。このとき半開区間`[left, right)`の和は`S[right] - S[left]`である。
+
+二次元累積和`S[bottom][right]`は、`0 <= row < bottom`かつ`0 <= column < right`を満たす
+全セルの和である。長方形`[top, bottom) x [left, right)`の和は包除原理で求める。
+
+差分配列は区間加算`[left, right)`へ`value`を加える操作を、差分の
+`D[left] += value, D[right] -= value`として記録する。最後に`D`の累積和を取ると各要素が復元される。
+二次元差分配列では、長方形の四隅へ符号付きで値を加え、縦横の累積和で復元する。
 
 ## Include
 
@@ -17,14 +36,38 @@ documentation_of: //cp/structure/prefixsum.hpp
 #include "structure/prefixsum.hpp"
 ```
 
-## できること
+## 型の選び方
 
-更新のない列や表について、前計算後に区間和・長方形和を`O(1)`で返す。
-区間はすべて右端を含まない半開区間である。
+| やりたいこと | 型 |
+| --- | --- |
+| 多数の区間加算後に各要素を得る | `differencearray` |
+| 多数の長方形加算後に各セルを得る | `differencearray2d` |
+| 静的な区間和 | `prefixsum` |
+| 区間内の全部分配列和 | `subarrayprefixsum` |
+| 円環上の静的区間和 | `circularprefixsum` |
+| 静的な長方形和 | `prefixsum2d` |
+| 任意次元の静的直方体和 | `multidimensionalprefixsum` |
+
+## 最短の使用例
+
+```cpp
+prefixsum<long long> sums(values);
+long long answer = sums.sum(left, right);
+```
+
+```cpp
+differencearray2d<long long> diff(initial);
+diff.add(top, left, bottom, right, value);
+diff.build();
+long long result = diff(row, column);
+```
+
+## 基本的な使い方
 
 `differencearray<T>`は多数の区間加算を`add(left, right, value)`で予約し、`build()`後に
 `operator[]`または`values()`で完成列を取得する。`build()`後にさらに追加して再buildしてもよい。
 `differencearray2d<T>`は同じ操作を半開長方形へ拡張し、`operator()(row,column)`で取得する。
+どちらも要素数だけでなく、初期値の一次元・二次元`vector`から構築できる。
 
 ```cpp
 differencearray<int> count(1000001);
@@ -97,9 +140,12 @@ long long answer = data.sum(begin, end);
 `T`には`T{}`、加算、減算が必要である。浮動小数点数では、引き算による誤差に注意する。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
-## APIリファレンス
+<details class="api-reference" markdown="1">
+<summary>すべてのAPI宣言を表示</summary>
 
-この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。
+### 完全なAPIリファレンス
+
+headerの公開補完コメントと宣言から自動生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。
 
 ### `differencearray`
 
@@ -180,6 +226,14 @@ differencearray2d(int height, int width) : height_(height), width_(width), diffe
 ```
 
 O(hw)。height行width列の0表を作る。
+
+### `differencearray2d`
+
+```cpp
+explicit differencearray2d(const std::vector<std::vector<T>>& values) : differencearray2d( static_cast<int>(values.size()), values.empty() ? 0 : static_cast<int>(values.front().size()))
+```
+
+O(hw)。valuesを初期値とする2次元差分配列を作る。
 
 ### `height`
 
@@ -549,12 +603,14 @@ T sum() const
 
 O(1)。全要素の和を返す。
 
+</details>
+
 <!-- END AUTO-GENERATED API REFERENCE -->
 
 ## 実在問題での使用例
 
 - [Library Checker - Static Range Sum](https://judge.yosupo.jp/problem/static_range_sum):
-  `prefixsum<long long>`を使うverifyコードを収録。judge未提出。
+  `prefixsum<long long>`を使うverifyコードを収録。
 - [AtCoder ABC106 D - AtCoder Express 2](https://atcoder.jp/contests/abc106/tasks/abc106_d):
   区間の両端を2次元表へ置く`prefixsum2d`の適用例。verifyコードは未作成。
 - [AtCoder ABC465 F - Sjeltzer?](https://atcoder.jp/contests/abc465/tasks/abc465_f):
@@ -572,9 +628,9 @@ O(1)。全要素の和を返す。
 
 - `tests/api/structure/prefixsum.cpp`: 公開APIのsmoke test
 - `tests/property/structure/prefixsum.cpp`: 1次元・2次元の愚直和との固定seed比較
-- `verify/librarychecker_static_range_sum.cpp`: 公開問題用コード。judge未提出
-- `verify/atcoder_abc465_f.cpp`: ABC465 F提出用コード。公式サンプル1確認済み、judge未提出
-- `verify/atcoder_abc462_d.cpp`: ABC462 D提出用コード。公式サンプル確認済み、judge未提出
-- `verify/atcoder_abc434_d.cpp`: ABC434 D提出用コード。公式サンプル確認済み、judge未提出
-- `verify/atcoder_abc425_c.cpp`: ABC425 C提出用コード。公式サンプル一致、judge未提出
-- `verify/atcoder_abc423_e.cpp`: ABC423 E提出用コード。公式サンプル一致、judge未提出
+- `verify/librarychecker_static_range_sum.cpp`: 公開問題用コード。
+- `verify/atcoder_abc465_f.cpp`: ABC465 F提出用コード。公式サンプル1確認済み、
+- `verify/atcoder_abc462_d.cpp`: ABC462 D提出用コード。公式サンプル確認済み、
+- `verify/atcoder_abc434_d.cpp`: ABC434 D提出用コード。公式サンプル確認済み、
+- `verify/atcoder_abc425_c.cpp`: ABC425 C提出用コード。公式サンプル一致、
+- `verify/atcoder_abc423_e.cpp`: ABC423 E提出用コード。公式サンプル一致、

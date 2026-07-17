@@ -59,5 +59,5 @@ allow(i,c,j): i個挿入済み・c成分から、新要素がj個の成分へ接
 [AtCoder ABC313 Ex - Group Photo](https://atcoder.jp/contests/abc313/tasks/abc313_h)では、
 前列の身長を昇順に挿入する。挿入済み`i`人が`j`成分なら、後列との比較に必要な
 閾値列の確定数が`i+j`だけで決まるため、callbackでその遷移を許可するか判定できる。
-`verify/atcoder_abc313_h.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc313_h.cpp`で公式sampleを確認済み。
 小さい順列を全列挙し、ランダムな遷移許可表との比較も実施済み。

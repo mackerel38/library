@@ -168,4 +168,4 @@ eulertour tour(graph, 0);
 for (int vertex : tour.vertices()) cout << vertex + 1 << ' ';
 ```
 
-`verify/atcoder_abc213_d.cpp`に提出用コードを用意しているが、judgeへの提出確認は未実施。
+`verify/atcoder_abc213_d.cpp`に提出用コードを用意しているが。

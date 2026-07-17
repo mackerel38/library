@@ -193,17 +193,17 @@ AOJの5 verifierは2026-07-15にAOJ公式テストデータ全190ケースで自
 選択個数を6との剰余で固定し、残りを同じ重さ6のgroupへ統合する。
 
 [AtCoder ABC442 G - Lightweight Knapsack](https://atcoder.jp/contests/abc442/tasks/abc442_g)の
-`verify/atcoder_abc442_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc442_g.cpp`で公式sampleを確認済み。
 基数の冪や、最大重さが4以上の一般化は前提と計算量を個別に検証してから追加する。
 
 ABC441 Fはprefix DPを全時点分、suffix DPを走査中の1行だけ保持することで、
 素直な前後DP二表の約半分となる`O(nW)`領域で分類する。
-`verify/atcoder_abc441_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc441_f.cpp`で公式sampleを確認済み。
 
-ABC431 Dは`verify/atcoder_abc431_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+ABC431 Dは`verify/atcoder_abc431_d.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC310 Ex - Negative Cost](https://atcoder.jp/contests/abc310/tasks/abc310_h)では、
 長さ`1..600`の基本行動列を品物へ圧縮した後、巨大な目標damageへ
 `minimum_unbounded_knapsack_cost`を使う。最良の価値/コスト比を持つ品物以外は
 最大コスト未満の個数だけ使う最適解が存在するため、残差コスト`O(C^2)`だけをDPすればよい。
-`verify/atcoder_abc310_h.cpp`で公式sample 2件を確認済み。judge ACは未確認。
+`verify/atcoder_abc310_h.cpp`で公式sample 2件を確認済み。

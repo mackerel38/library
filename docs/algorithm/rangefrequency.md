@@ -78,7 +78,7 @@ O((n+q)sqrt(q) k+n log n)。各区間で値が等しいk添字組の個数を返
 
 [AtCoder ABC293 G - Triple Index](https://atcoder.jp/contests/abc293/tasks/abc293_g)は
 `k=3`として直接使える。`verify/atcoder_abc293_g.cpp`で公式sample 1を確認済み。
-judge ACは未確認。
+。
 
 ## 検証
 

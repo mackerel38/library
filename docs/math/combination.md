@@ -162,8 +162,8 @@ O(1)。重複組合せnHkを返す。
 
 [ABC459 E - Select from Subtrees](https://atcoder.jp/contests/abc459/tasks/abc459_e)では、
 部分木内の巨大な個数から高々`D_i`個を選ぶ係数を`choose_large`で求める。
-`verify/atcoder_abc459_e.cpp`で公式sample一致を確認している。judge ACは未確認。
+`verify/atcoder_abc459_e.cpp`で公式sample一致を確認している。
 
 [ABC425 E - Count Sequences 2](https://atcoder.jp/contests/abc425/tasks/abc425_e)では、
 共通の法で上限5000まで一度構築し、各テストケースを`multinomial(counts)`で処理できる。
-`verify/atcoder_abc425_e.cpp`で公式sample 2件一致、judge未提出。
+`verify/atcoder_abc425_e.cpp`で公式sample 2件一致。

@@ -77,4 +77,4 @@ auto result = poe::aliens_min<long long>(low, high, K, solve);
 
 [NDPC O - ゲーム](https://atcoder.jp/contests/ndpc/tasks/ndpc2026_o)の満点想定解で利用される。
 このヘッダはペナルティ二分探索だけを担当し、問題固有の`solve(penalty)`は利用側で実装する。
-judge ACは未確認。小さい離散凸列で全個数走査と照合済み。
+。小さい離散凸列で全個数走査と照合済み。

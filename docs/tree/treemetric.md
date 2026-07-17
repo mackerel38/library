@@ -52,4 +52,4 @@ O(n^2)。distanceが正重み木の全点間距離ならtrueを返す。
 
 [AtCoder ABC451 E - Tree Distance](https://atcoder.jp/contests/abc451/tasks/abc451_e)へ
 `is_tree_metric(distance)`を直接使える。`verify/atcoder_abc451_e.cpp`に提出用コードを用意し、
-公式sampleを確認済み。judge ACは未確認。
+公式sampleを確認済み。

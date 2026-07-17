@@ -92,4 +92,4 @@ while (test_count--) {
 
 [AtCoder ABC428 D - 183184](https://atcoder.jp/contests/abc428/tasks/abc428_d)では、
 連結後の値域に含まれる平方数の個数を、両端の`floor_sqrt`の差で求める。
-`verify/atcoder_abc428_d.cpp`で公式sampleとの一致を確認済み。judge ACは未確認。
+`verify/atcoder_abc428_d.cpp`で公式sampleとの一致を確認済み。

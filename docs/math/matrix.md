@@ -173,4 +173,4 @@ Fibonacci行列のAPI testも実施済み。
 
 [AtCoder ABC445 F - Exactly K Steps 2](https://atcoder.jp/contests/abc445/tasks/abc445_f)では、
 `minplus_matrix_power`で全始点のちょうど`K`辺closed walk最小費用を求める。
-`verify/atcoder_abc445_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc445_f.cpp`で公式sampleを確認済み。

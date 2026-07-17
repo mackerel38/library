@@ -73,7 +73,7 @@ O(復元後の長さ)。charの(value, count)列を文字列へ戻す。
   文字ごとの総数と最長runを一度の符号化から集計する。
 
 `verify/atcoder_abc019_b.cpp`、`verify/atcoder_abc259_c.cpp`、
-`verify/atcoder_abc426_d.cpp`を収録した。ABC426 Dは公式sample一致、judge未提出。
+`verify/atcoder_abc426_d.cpp`を収録した。ABC426 Dは公式sample一致。
 
 ## 検証
 

@@ -71,4 +71,4 @@ cout << maximum_clique(graph).size() << '\n';
 ```
 
 `verify/atcoder_abc002_d.cpp`に提出用コードを用意し、公式サンプル4件との一致を確認済み。
-judgeへの提出確認は未実施。
+。

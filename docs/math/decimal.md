@@ -87,12 +87,12 @@ O(|pattern|d+d 10^(d/2)log modulus)。patternを含む最小の正の十進modul
 
 [AtCoder ABC448 E - Simple Division](https://atcoder.jp/contests/abc448/tasks/abc448_e)へ
 `decimal_runs_div_mod(runs, M, 10007)`を直接使える。
-`verify/atcoder_abc448_e.cpp`に提出用コードを用意し、公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc448_e.cpp`に提出用コードを用意し、公式sampleを確認済み。
 
 [AtCoder ABC433 D - 183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)へ
 `count_divisible_concatenations(values, M)`を直接使える。
-`verify/atcoder_abc433_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc433_d.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC423 G - Small Multiple 2](https://atcoder.jp/contests/abc423/tasks/abc423_g)へ
 `smallest_multiple_containing(K,S)`を直接使える。
-`verify/atcoder_abc423_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc423_g.cpp`で公式sampleを確認済み。

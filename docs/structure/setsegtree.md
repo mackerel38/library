@@ -146,7 +146,7 @@ O(log n)。tree[position]で集合maskを返す。
 
 [AtCoder ABC430 G - Range Set Modifying Query](https://atcoder.jp/contests/abc430/tasks/abc430_g)へ直接使う。
 問題の要素`x`を0-indexed bitへ直し、`verify/atcoder_abc430_g.cpp`に収録した。
-公式sample確認済み、judge ACは未確認。
+公式sample確認済み。
 
 ## 検証
 

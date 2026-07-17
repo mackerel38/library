@@ -12,12 +12,7 @@ int main() {
     int n, m, start, goal;
     cin >> n >> m >> start >> goal;
     directed_graph<long long> graph(n);
-    for (int index = 0; index < m; ++index) {
-        int from, to;
-        long long cost;
-        cin >> from >> to >> cost;
-        graph.add_edge(from, to, cost);
-    }
+    graph.read(m, 0);
     const auto result = dijkstra(graph, start);
     if (!result.reachable(goal)) {
         cout << -1 << '\n';

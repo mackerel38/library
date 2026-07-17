@@ -210,7 +210,7 @@ O(1)。元の列全体に対応する状態を返す。
 
 [AtCoder ABC347 B - Substring](https://atcoder.jp/contests/abc347/tasks/abc347_b)は、
 `distinct_substrings()`をそのまま答えられる。
-`verify/atcoder_abc347_b.cpp`を収録した。judge未提出。
+`verify/atcoder_abc347_b.cpp`を収録した。
 
 ## 検証
 

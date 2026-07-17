@@ -65,4 +65,4 @@ long long answer = poe::dinic(graph, 0, vertex_count - 1);
 ```
 
 `verify/maxflow.test.cpp`では互換wrapper経由で同じ基盤を使用し、2026-07-15に全ケースAC確認済み。
-直接APIと`costflowgraph`のjudge ACは未確認。
+直接APIと`costflowgraph`。

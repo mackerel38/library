@@ -117,5 +117,5 @@ O(log^2 n)。vertexを含む同色連結成分の重み総和を返す。
 - [AtCoder ABC460 G - Vertex Flip Query](https://atcoder.jp/contests/abc460/tasks/abc460_g):
   queryを公開APIへそのまま対応させられる。
 
-`verify/atcoder_abc460_g.cpp`で公式sample二つを確認済み。judge ACは未確認。
+`verify/atcoder_abc460_g.cpp`で公式sample二つを確認済み。
 小さいランダム木で色反転・加算・代入・成分和を愚直BFSと照合する。

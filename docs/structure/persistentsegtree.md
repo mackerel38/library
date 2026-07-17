@@ -143,7 +143,7 @@ O(1)。今後追加するnode領域を予約する。
 
 [AtCoder ABC453 G - Copy Query](https://atcoder.jp/contests/abc453/tasks/abc453_g)では、
 各数列に対応するversionだけを持つ。数列コピーはversion代入、一点代入は`set`、
-区間和は`prod`で処理できる。`verify/atcoder_abc453_g.cpp`に使用例を収録した。judge未提出。
+区間和は`prod`で処理できる。`verify/atcoder_abc453_g.cpp`に使用例を収録した。
 
 ## 検証
 

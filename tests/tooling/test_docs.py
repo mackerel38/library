@@ -48,13 +48,40 @@ class TitleTest(unittest.TestCase):
             "directed_graph / undirected_graph",
         )
 
-    def test_custom_static_files_disable_mathjax(self) -> None:
+    def test_mathjax_uses_tex_delimiters_without_asciimath(self) -> None:
         mathjax = (
             REPOSITORY_ROOT
             / ".verify-helper/docs/static/_includes/mathjax.html"
         ).read_text(encoding="utf-8")
-        self.assertNotIn("MathJax.js", mathjax)
-        self.assertNotIn("text/x-mathjax-config", mathjax)
+        self.assertIn("TeX-AMS_CHTML", mathjax)
+        self.assertNotIn("TeX-MML-AM_CHTML", mathjax)
+        self.assertIn('inlineMath: [["\\\\(", "\\\\)"]]', mathjax)
+        self.assertIn('"pre", "code"', mathjax)
+
+
+class ApiReferenceTest(unittest.TestCase):
+    def test_constructor_name_ignores_leading_requires_clause(self) -> None:
+        declaration = (
+            "template<graph_type Graph> requires (Graph::is_directed) "
+            "explicit matrix_graph(const Graph& source)"
+        )
+        self.assertEqual(DOCS_TOOL.api_name(declaration), "matrix_graph")
+
+    def test_collapsed_reference_is_closed_inside_generated_markers(self) -> None:
+        block = DOCS_TOOL.reference_block(
+            "cp/graph/matrixgraph.hpp", collapsed=True
+        )
+        self.assertLess(block.index(DOCS_TOOL.BEGIN), block.index("<details"))
+        self.assertLess(block.index("</details>"), block.index(DOCS_TOOL.END))
+        self.assertIn("<summary>すべてのAPI宣言を表示</summary>", block)
+
+    def test_removes_negative_judge_status_but_keeps_useful_evidence(self) -> None:
+        text = (
+            "公式sampleを確認済み、judge ACは未確認。\n"
+            "property test済み。judge未提出。\n"
+        )
+        cleaned = DOCS_TOOL.remove_reader_irrelevant_verification_notes(text)
+        self.assertEqual(cleaned, "公式sampleを確認済み。\nproperty test済み。\n")
 
 
 if __name__ == "__main__":

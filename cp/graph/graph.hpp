@@ -20,6 +20,21 @@ struct edge<void> {
     int id;
 };
 
+/// 隣接行列型グラフを受け取るためのconcept。
+template<class Graph>
+concept matrix_graph_type = requires(const Graph& graph, int from, int to) {
+    typename Graph::cost_type;
+    Graph::is_directed;
+    Graph::is_weighted;
+    Graph::is_matrix_graph;
+    { graph.size() } -> std::same_as<int>;
+    { graph.edge_count() } -> std::same_as<int>;
+    { graph.has_edge(from, to) } -> std::same_as<bool>;
+} && Graph::is_matrix_graph
+  && (!Graph::is_weighted || requires(const Graph& graph, int from, int to) {
+      { graph.cost(from, to) } -> std::same_as<const typename Graph::cost_type&>;
+  });
+
 namespace detail {
 
 template<bool Directed, class Cost>
@@ -37,6 +52,39 @@ struct graphbase {
     /// O(n)。n頂点の空グラフを作る。
     explicit graphbase(int n) : adjacency_(n), indegree_(n) {
         assert(n >= 0);
+    }
+
+    /// O(n^2+m)。同じ向き・重み型のmatrix_graphから変換する。
+    template<matrix_graph_type MatrixGraph>
+        requires (MatrixGraph::is_directed == Directed
+                  && std::same_as<typename MatrixGraph::cost_type, Cost>)
+    explicit graphbase(const MatrixGraph& source) : graphbase(source.size()) {
+        reserve_edges(source.edge_count());
+        for (int from = 0; from < size(); ++from) {
+            const int first_to = Directed ? 0 : from;
+            for (int to = first_to; to < size(); ++to) {
+                if (!source.has_edge(from, to)) continue;
+                if constexpr (std::is_void_v<Cost>) {
+                    add_edge(from, to);
+                } else {
+                    add_edge(from, to, source.cost(from, to));
+                }
+            }
+        }
+    }
+
+    /// 償却O(1)。頂点を一つ追加し、その頂点番号を返す。
+    int add_vertex() {
+        return add_vertices(1);
+    }
+
+    /// 償却O(count)。count頂点を追加し、追加区間の先頭番号を返す。
+    int add_vertices(int count) {
+        assert(0 <= count && count <= std::numeric_limits<int>::max() - size());
+        const int first = size();
+        adjacency_.resize(first + count);
+        indegree_.resize(first + count);
+        return first;
     }
 
     /// 償却O(1)。重みなし辺を追加し、その辺番号を返す。
@@ -68,6 +116,26 @@ struct graphbase {
             ++indegree_[from];
         }
         return id;
+    }
+
+    /// O(m)。標準入力のfrom to [cost]をm行読む: graph.read(m); 0-indexはread(m, 0)。
+    void read(int m, int indexed = 1) {
+        assert(m >= 0);
+        assert(indexed == 0 || indexed == 1);
+        reserve_edges(edge_count() + m);
+        for (int index = 0; index < m; ++index) {
+            int from, to;
+            std::cin >> from >> to;
+            from -= indexed;
+            to -= indexed;
+            if constexpr (std::is_void_v<Cost>) {
+                add_edge(from, to);
+            } else {
+                stored_cost_type cost;
+                std::cin >> cost;
+                add_edge(from, to, cost);
+            }
+        }
     }
 
     /// O(1)。頂点vertexから出る辺を返す。

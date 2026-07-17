@@ -111,8 +111,8 @@ auto [flow, minimum_cost] = poe::mincost(graph, source, sink, required_flow);
 if (flow != required_flow) minimum_cost = -1;
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。
 
 [AtCoder ABC421 G - Increase to make it Increasing](https://atcoder.jp/contests/abc421/tasks/abc421_g)では、
 差分列の正部分を供給、負部分を需要、区間加算を右端から左端直前への輸送辺として使う。
-`verify/atcoder_abc421_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc421_g.cpp`で公式sampleを確認済み。

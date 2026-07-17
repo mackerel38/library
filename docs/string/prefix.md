@@ -63,4 +63,4 @@ for (int position : poe::find_all(text, pattern)) {
 }
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

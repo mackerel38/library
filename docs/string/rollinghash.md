@@ -123,7 +123,7 @@ O(log length)。二つの半開部分列のLCP長を返す。
 
 [AtCoder ABC141 E - Who Says a Pun?](https://atcoder.jp/contests/abc141/tasks/abc141_e)では、
 二つのsuffixのLCPを求め、開始位置の差で上限を取ることで重ならない等しい部分文字列を探せる。
-`verify/atcoder_abc141_e.cpp`を収録した。judge未提出。
+`verify/atcoder_abc141_e.cpp`を収録した。
 
 ## 検証
 

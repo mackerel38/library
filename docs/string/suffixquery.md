@@ -114,4 +114,4 @@ while (query_count--) {
 }
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

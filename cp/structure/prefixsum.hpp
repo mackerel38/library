@@ -73,6 +73,24 @@ struct differencearray2d {
         assert(height >= 0 && width >= 0);
     }
 
+    /// O(hw)。valuesを初期値とする2次元差分配列を作る。
+    explicit differencearray2d(const std::vector<std::vector<T>>& values)
+        : differencearray2d(
+              static_cast<int>(values.size()),
+              values.empty() ? 0 : static_cast<int>(values.front().size())) {
+        for (const auto& row : values) assert(static_cast<int>(row.size()) == width_);
+        values_ = values;
+        for (int row = 0; row < height_; ++row) {
+            for (int column = 0; column < width_; ++column) {
+                difference_[row][column] += values[row][column];
+                difference_[row + 1][column] -= values[row][column];
+                difference_[row][column + 1] -= values[row][column];
+                difference_[row + 1][column + 1] += values[row][column];
+            }
+        }
+        built_ = true;
+    }
+
     /// O(1)。行数を返す。
     int height() const noexcept { return height_; }
 

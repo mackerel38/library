@@ -87,6 +87,6 @@ O(1)。追加順の受理済み閉区間列を返す。
 
 [AtCoder ABC424 F - Adding Chords](https://atcoder.jp/contests/abc424/tasks/abc424_f)では、
 円を点1と点Nの間で切ると、弦の交差判定が区間の交差判定になる。
-`verify/atcoder_abc424_f.cpp`で公式sample 2件一致、judge未提出。
+`verify/atcoder_abc424_f.cpp`で公式sample 2件一致。
 
 property testでは端点を一度だけ使う乱択追加列を生成し、全受理済み区間との直接交差判定と照合する。

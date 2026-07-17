@@ -84,6 +84,6 @@ O(turns*(n+m))。first_maximizesから真最大化・最小化を交互に行う
   頂点文字が`A`ならterminalをtrueとし、Aliceから`2K`手交互に操作する。
 
 `verify/atcoder_abc427_d.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-judge ACは未確認。
+。
 
 `tests/property/game/finite.cpp`では、小さいランダムgraphを再帰minimaxと比較する。

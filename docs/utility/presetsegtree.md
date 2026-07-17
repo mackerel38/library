@@ -2037,7 +2037,7 @@ else std::cout << data.sum(left, right).val() << '\n';
 [AtCoder ABC455 F - Merge Slimes 2](https://atcoder.jp/contests/abc455/tasks/abc455_f)では、
 `range_add_range_sum_square`で区間加算後の和`S`と二乗和`Q`を取得し、
 異なる二要素の積の総和を`(S*S-Q)/2`として求める。
-`verify/atcoder_abc455_f.cpp`に使用例を収録した。judge未提出。
+`verify/atcoder_abc455_f.cpp`に使用例を収録した。
 
 `point_set_prefix_sum_max<T>`は一点更新、prefix和、最大prefix和と
 「prefix和が指定値以上になる最初の要素index」を扱う。
@@ -2051,7 +2051,7 @@ long long prefix = data.sum(first + 1);
 
 [AtCoder ABC292 Ex - Rating Estimator](https://atcoder.jp/contests/abc292/tasks/abc292_h)では、
 各値から基準値を引いた列で最初にprefix和が0以上となる位置を求める。
-`verify/atcoder_abc292_h.cpp`で公式sampleを確認済み。judge未提出。
+`verify/atcoder_abc292_h.cpp`で公式sampleを確認済み。
 
 [AtCoder ABC441 G - Takoyaki and Flip](https://atcoder.jp/contests/abc441/tasks/abc441_g)では、
 各要素のactive/inactive状態を持ち、`add`でactive要素だけに加算する。
@@ -2065,7 +2065,7 @@ std::cout << data.max(left, right) << '\n';
 ```
 
 構築は`O(n)`、各操作は`O(log n)`。`operator[]`、`active`、一点`set`、
-一点`deactivate`も備える。`verify/atcoder_abc441_g.cpp`で公式sampleを確認済み、judge未提出。
+一点`deactivate`も備える。`verify/atcoder_abc441_g.cpp`で公式sampleを確認済み。
 
 ## Segment Tree Beats
 
@@ -2086,8 +2086,8 @@ std::cout << data.max(left, right) << '\n';
 
 `point_set_range_manhattan_max<T>`は点の一点変更と、添字区間内の点から指定点までの
 Manhattan距離最大値を`O(log n)`で扱う。[ABC437 F](https://atcoder.jp/contests/abc437/tasks/abc437_f)の
-`verify/atcoder_abc437_f.cpp`は公式サンプル一致、judge未提出。
-property testでは愚直配列との乱択照合を行っているが、judgeへの提出確認は未実施。
+`verify/atcoder_abc437_f.cpp`は公式サンプル一致。
+property testでは愚直配列との乱択照合を行っているが。
 
 ## 0を下限とする区間消費
 
@@ -2106,4 +2106,4 @@ long long removed = stock.subtract(left, right, amount);
 
 [AtCoder ABC426 F - Clearance](https://atcoder.jp/contests/abc426/tasks/abc426_f)では、
 各商品の在庫から注文数までを引き、返された総量をそのまま出力できる。
-`verify/atcoder_abc426_f.cpp`で公式sample一致、judge未提出。
+`verify/atcoder_abc426_f.cpp`で公式sample一致。

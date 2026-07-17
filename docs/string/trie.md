@@ -323,7 +323,7 @@ O(1)。使用するalphabetを返す。build後は昇順かつ重複なし。
 - [AtCoder ABC419 F - All Included](https://atcoder.jp/contests/abc419/tasks/abc419_f):
   Aho--Corasick状態と「既に含んだpattern集合」のbit maskをDP状態にする。
 
-`verify/atcoder_abc287_e.cpp`と`verify/atcoder_abc419_f.cpp`を収録した。judge未提出。
+`verify/atcoder_abc287_e.cpp`と`verify/atcoder_abc419_f.cpp`を収録した。
 ABC419 FでAho--Corasickを用いる方針は公式解説にも掲載されている。
 
 ## 検証

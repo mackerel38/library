@@ -139,7 +139,7 @@ O(1)。centroidの構築順を返す。親は必ず子より前にある。
 
 [AtCoder ABC291 Ex - Balanced Tree](https://atcoder.jp/contests/abc291/tasks/abc291_h)は、
 centroid treeの各頂点の親をそのまま出力すれば条件を満たす。
-`verify/atcoder_abc291_h.cpp`を収録した。judge未提出。
+`verify/atcoder_abc291_h.cpp`を収録した。
 
 距離の動的集約は複数の問題族があるため、特定の集約方法をcoreへ固定しない。
 最短距離・距離以内個数などは、この`path`と`branch`を使うrecipeとして追加する。

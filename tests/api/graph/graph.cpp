@@ -1,6 +1,30 @@
 #include "graph/all.hpp"
 
 int main() {
+    {
+        std::istringstream input("1 2\n2 4\n4 3\n");
+        auto* original = std::cin.rdbuf(input.rdbuf());
+        poe::directed_graph<> graph(4);
+        graph.read(3);
+        std::cin.rdbuf(original);
+        std::cin.clear();
+        assert(graph.edge_count() == 3);
+        assert(graph.edge_at(0).from == 0 && graph.edge_at(0).to == 1);
+        assert(graph.edge_at(2).from == 3 && graph.edge_at(2).to == 2);
+    }
+
+    {
+        std::istringstream input("0 1 7\n2 1 -4\n");
+        auto* original = std::cin.rdbuf(input.rdbuf());
+        poe::undirected_graph<long long> graph(3);
+        graph.read(2, 0);
+        std::cin.rdbuf(original);
+        std::cin.clear();
+        assert(graph.edge_count() == 2);
+        assert(graph.edge_at(0).cost == 7 && graph.edge_at(1).cost == -4);
+        assert(graph.degree(1) == 2);
+    }
+
     poe::directed_graph<> directed(4);
     const int first = directed.add_edge(0, 1);
     directed.add_edge(0, 2);

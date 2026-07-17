@@ -200,4 +200,4 @@ while (query_count--) {
 
 [AtCoder ABC438 F - Sum of Mex](https://atcoder.jp/contests/abc438/tasks/abc438_f)では、
 番号prefixを含む最小パスの端点更新を`on_path`で判定し、両端の外側にある頂点数を`side_size`で数える。
-`verify/atcoder_abc438_f.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc438_f.cpp`は公式サンプル一致を確認済み。

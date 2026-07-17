@@ -71,5 +71,5 @@ Fibonacciで行列累乗と一致することを検査済み。
 
 [AtCoder ABC415 G - Get Many Cola](https://atcoder.jp/contests/abc415/tasks/abc415_g)では、
 小さい状態だけ交換条件付きで直接DPし、全交換が使用可能になる以降をmax-plus漸化式として飛ばす。
-`verify/atcoder_abc415_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc415_g.cpp`で公式sampleを確認済み。
 小さい乱択漸化式を逐次DPと比較するproperty testも実施済み。

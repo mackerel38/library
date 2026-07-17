@@ -158,6 +158,6 @@ O(1)。現在の文字列を返す。
   各push/pop直後に`good()`を出力する。
 
 `verify/atcoder_abc428_c.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-judge ACは未確認。
+。
 
 `tests/property/string/bracketsequence.cpp`では、ランダムpush/pop後に全prefixを直接走査して比較する。

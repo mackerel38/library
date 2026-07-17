@@ -62,6 +62,6 @@ O(2^(n-1)m)。小頂点数の非負重み無向グラフで最大cutと二色分
   全辺から最大cutに残せる辺を引く。
 
 `verify/atcoder_abc427_c.cpp`に提出用コードを収録し、公式sample 3件との一致を確認済み。
-judge ACは未確認。
+。
 
 `tests/property/graph/maximumcut.cpp`では、返された彩色の重みと再帰全彩色の最適値を比較する。

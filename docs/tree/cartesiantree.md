@@ -71,4 +71,4 @@ dfs(tree.root); // 問題固有の二乗木DPを行う
 
 [AtCoder ABC435 F - Cat exercise](https://atcoder.jp/contests/abc435/tasks/abc435_f)ではmax Cartesian Treeを作り、
 各頂点から左右の子へ降りるpathの添字距離和の最大値を木DPする。
-`verify/atcoder_abc435_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc435_f.cpp`で公式sampleを確認済み。

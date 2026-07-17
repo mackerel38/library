@@ -63,4 +63,4 @@ O(n)。divide_binomial(f,d,c,n): f(x)/(1+c*x^d) mod x^nを返す。
 - [FPS 24題 A - お菓子](https://atcoder.jp/contests/fps-24/tasks/fps_24_a): 4項多項式の整数乗。
 - [FPS 24題 G - 硬貨](https://atcoder.jp/contests/fps-24/tasks/fps_24_g): 使用可能硬貨の追加・削除。
 
-judge ACは未確認。密な`fps::pow`および愚直更新と比較する。
+。密な`fps::pow`および愚直更新と比較する。

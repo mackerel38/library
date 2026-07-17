@@ -158,4 +158,4 @@ O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
 - [AtCoder ABC300 Ex - Fibonacci: Revisited](https://atcoder.jp/contests/abc300/tasks/abc300_h):
   K-bonacci母関数のsubmask係数和。
 
-judge ACは未確認。小次数の直接展開と比較するproperty testを行う。
+。小次数の直接展開と比較するproperty testを行う。

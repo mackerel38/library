@@ -103,4 +103,4 @@ O(bit^2)。basis.merge(other): otherの張る空間を追加する。
 
 [ABC141 F - Xor Sum 3](https://atcoder.jp/contests/abc141/tasks/abc141_f)で最大化、
 [ABC236 F - Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)で価格順の独立性判定に使える。
-両方のverifyコードを用意し、公開サンプル確認済み・judge ACは未確認。
+両方のverifyコードを用意し、公開サンプル確認済み・。

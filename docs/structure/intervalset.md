@@ -99,4 +99,4 @@ O(1)。互いに交わらず隣接もしない半開区間のmapを返す。
 
 [AtCoder ABC435 E - Cover query](https://atcoder.jp/contests/abc435/tasks/abc435_e)では、
 最初に白い区間`[0,N)`を追加し、各queryで黒くする区間を`erase`すれば、残る白マス数を
-`covered()`で得られる。`verify/atcoder_abc435_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+`covered()`で得られる。`verify/atcoder_abc435_e.cpp`で公式sampleを確認済み。

@@ -89,6 +89,6 @@ O(1)。昇順の除外整数列を返す。
 
 [AtCoder ABC440 D - Forbidden List 2](https://atcoder.jp/contests/abc440/tasks/abc440_d)では、
 各質問を`data.kth_allowed(X, Y)`で処理できる。
-`verify/atcoder_abc440_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc440_d.cpp`で公式sampleを確認済み。
 
 property testでは小さな禁止集合に対する愚直な整数走査と照合している。

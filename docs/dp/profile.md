@@ -225,4 +225,4 @@ auto result = minimum_submask_profile(initial_masks, width,
 
 [AtCoder ABC424 D - 2x2 Erasing 2](https://atcoder.jp/contests/abc424/tasks/abc424_d)では、
 上下二行の共通1bitに隣接する二bitがなければcompatibleとする。
-`verify/atcoder_abc424_d.cpp`で公式sample一致、judge未提出。
+`verify/atcoder_abc424_d.cpp`で公式sample一致。

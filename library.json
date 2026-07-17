@@ -904,10 +904,21 @@
       "layer": 0,
       "status": "experimental",
       "summary_ja": "型で有向・無向と重みの有無を表す共通グラフ構造",
-      "symbols": ["poe::edge", "poe::directed_graph", "poe::undirected_graph", "poe::graph_type", "poe::weighted_graph_type", "poe::directed_graph_type", "poe::undirected_graph_type"],
+      "symbols": ["poe::edge", "poe::directed_graph", "poe::undirected_graph", "poe::matrix_graph_type", "poe::graph_type", "poe::weighted_graph_type", "poe::directed_graph_type", "poe::undirected_graph_type"],
       "tags": ["graph", "container", "weighted", "unweighted"],
-      "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp"],
+      "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp", "tests/api/graph/matrixgraph.cpp", "tests/property/graph/matrixgraph.cpp"],
       "verify": ["verify/shortestpath.test.cpp", "verify/minimumspanningtree.test.cpp", "verify/twoedgeconnectedcomponents.test.cpp"]
+    },
+    "cp/graph/matrixgraph.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/matrixgraph.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "有向・無向と重み型を型で固定するn*n隣接行列グラフ",
+      "symbols": ["poe::matrix_graph", "poe::directed_matrix_graph", "poe::undirected_matrix_graph"],
+      "tags": ["graph", "container", "adjacency-matrix", "dense-graph"],
+      "tests": ["tests/api/graph/matrixgraph.cpp", "tests/property/graph/matrixgraph.cpp"],
+      "verify": []
     },
     "cp/graph/incrementalreachability.hpp": {
       "benchmark": [],

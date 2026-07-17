@@ -128,6 +128,6 @@ O(log n)。半開区間[left,right)がcoordinateを含む区間数を返す。
   prefixの左端・右端整列と半整数点を含む区間数を処理する。
 
 `verify/atcoder_abc428_f.cpp`に提出用コードを収録し、公式sampleとの一致を確認済み。
-judge ACは未確認。
+。
 
 `tests/property/structure/nestedintervals.cpp`では、全区間を直接移動する愚直実装とランダム操作を比較する。

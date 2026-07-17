@@ -149,7 +149,7 @@ O(1)。根付き木でvertexの親を返す。根では-1。
 
 [AtCoder ABC187 E - Through Path](https://atcoder.jp/contests/abc187/tasks/abc187_e)では、
 辺を切った一方側への加算を`subtreedifference`の`add`または`add_complement`へ変換できる。
-`verify/atcoder_abc187_e.cpp`を収録した。judge未提出。
+`verify/atcoder_abc187_e.cpp`を収録した。
 
 頂点・辺path版はtree imosとして、複数経路が各頂点・辺を通る回数や重み総和を一括計算する。
 

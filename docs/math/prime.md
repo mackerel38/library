@@ -113,8 +113,8 @@ inline std::vector<long long> signed_divisors(long long value)
 
 [ABC149 C - Next Prime](https://atcoder.jp/contests/abc149/tasks/abc149_c)では`is_prime`、
 [ABC284 D - Happy New Year 2023](https://atcoder.jp/contests/abc284/tasks/abc284_d)では`factorize`を使える。
-Library Checker Factorizeのverifyコードを用意し、judge ACは未確認。
+Library Checker Factorizeのverifyコードを用意し。
 
 [ABC420 G - sqrt(n²+n+X)](https://atcoder.jp/contests/abc420/tasks/abc420_g)では、
 `(2m+2n+1)(2m-2n-1)=4X-1`へ変形し、`signed_divisors(4*X-1)`で候補を列挙する。
-`verify/atcoder_abc420_g.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc420_g.cpp`で公式sampleを確認済み。

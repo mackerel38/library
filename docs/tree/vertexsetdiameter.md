@@ -134,5 +134,5 @@ O(1)。二頂点間の辺数を返す。
 - [AtCoder ABC460 F - Farthest Pair Query](https://atcoder.jp/contests/abc460/tasks/abc460_f):
   黒頂点をactiveとして各queryで`flip`し、`get().distance`を出力する。
 
-`verify/atcoder_abc460_f.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc460_f.cpp`で公式sampleを確認済み。
 API testと小さいランダム木・ランダム更新を全頂点対距離の愚直計算と照合する。

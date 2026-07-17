@@ -103,5 +103,5 @@ O(M(n))。taylor_shift(f,c): f(x+c)を返す。f.size()<mod。
   近傍へだけ進むwalkの母関数漸化式を3次多項式行列積でまとめる。
 - Library CheckerのMultipoint Evaluation / Polynomial Interpolationにも対応する。
 
-ABC462 GとABC317 Exはverifyコードを用意し公式sampleを確認済みだがjudge ACは未確認。
+ABC462 GとABC317 Exはverifyコードを用意し公式sampleを確認済み。
 ランダムな小多項式について愚直評価・Lagrange補間とも照合する。

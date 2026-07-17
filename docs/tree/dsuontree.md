@@ -137,7 +137,7 @@ O(1)。Euler tour上のindex番目の頂点を返す。
 
 [AtCoder ABC454 G - Mode in the Subtree](https://atcoder.jp/contests/abc454/tasks/abc454_g)では、
 現在の部分木における色別個数、頻度別の色数、最大頻度を配列で管理する。
-`verify/atcoder_abc454_g.cpp`に使用例を収録した。judge未提出。
+`verify/atcoder_abc454_g.cpp`に使用例を収録した。
 
 ## 検証
 

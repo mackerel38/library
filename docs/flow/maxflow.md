@@ -67,4 +67,4 @@ std::cout << graph.flow(0, n - 1) << '\n';
 
 [AtCoder ABC437 G - Colorful Christmas Tree](https://atcoder.jp/contests/abc437/tasks/abc437_g)では、
 木の各辺を削除するときの両端色割当を二部最大流で選ぶ。
-`verify/atcoder_abc437_g.cpp`は公式サンプル条件を満たす出力を確認済み、judge未提出。
+`verify/atcoder_abc437_g.cpp`は公式サンプル条件を満たす出力を確認済み。

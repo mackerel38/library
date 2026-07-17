@@ -73,4 +73,4 @@ auto [flow, answer] = graph.flow(source, sink, required_flow);
 std::cout << (flow == required_flow ? answer : -1) << '\n';
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

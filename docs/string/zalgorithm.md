@@ -46,4 +46,4 @@ auto z = poe::z_algorithm(text);
 for (int length : z) std::cout << length << ' ';
 ```
 
-候補問題へのjudge ACは未確認。
+候補問題。

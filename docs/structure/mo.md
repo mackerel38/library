@@ -141,7 +141,7 @@ O(1)。登録済みquery数を返す。
 ## 実在問題での使用例
 
 [AtCoder ABC242 G - Range Pairing Query](https://atcoder.jp/contests/abc242/tasks/abc242_g)用の
-`verify/atcoder_abc242_g.cpp`を収録した。judge未提出。
+`verify/atcoder_abc242_g.cpp`を収録した。
 
 値`x`の現在個数を`count[x]`とすると、追加前が奇数ならpair数を1増やし、
 削除前が偶数ならpair数を1減らすだけで各queryを処理できる。
@@ -162,7 +162,7 @@ mo.run(increase_x, decrease_x, increase_y, decrease_y,
 二変数の値を四方向すべて`O(1)`で更新でき、query順を変えてよい場合に使う。
 [ABC463 G - Random Walk Distance](https://atcoder.jp/contests/abc463/tasks/abc463_g)では、
 二項係数のprefix和`f(N,M)`と重み付きprefix和`g(N,M)`を二次元Moでまとめて求められる。
-`verify/atcoder_abc463_g.cpp`は公式サンプルとの一致を確認済みだが、judgeへの提出確認は未実施。
+`verify/atcoder_abc463_g.cpp`は公式サンプルとの一致を確認済み。
 
 ## 検証
 

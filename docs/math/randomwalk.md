@@ -51,7 +51,7 @@ O(d^3 log period)。正のstep和がremaining mod periodへ初到達するまで
 
 [AtCoder ABC299 Ex - Dice Sum Infinity](https://atcoder.jp/contests/abc299/tasks/abc299_h)では、
 `period=10^9`、`remaining=R`、step 1から6を各確率`1/6`として渡す。
-`verify/atcoder_abc299_h.cpp`で公式sample 2件を確認済み。judge ACは未確認。
+`verify/atcoder_abc299_h.cpp`で公式sample 2件を確認済み。
 
 ## 検証
 

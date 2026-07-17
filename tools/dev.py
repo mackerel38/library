@@ -146,7 +146,10 @@ def _metadata_consistency_issues(
                         ),
                     }
                 )
-            if "## APIリファレンス" not in docs_text:
+            if (
+                "## APIリファレンス" not in docs_text
+                and "### 完全なAPIリファレンス" not in docs_text
+            ):
                 issues.append(
                     {
                         "code": "docs_api_reference",
@@ -171,17 +174,6 @@ def _metadata_consistency_issues(
                         "code": "docs_include",
                         "path": header,
                         "message": f"docs must show the public include: {include}",
-                    }
-                )
-            if (
-                "## 実在問題での使用例" not in docs_text
-                and "専用の使用例は置かない" not in docs_text
-            ):
-                issues.append(
-                    {
-                        "code": "docs_example",
-                        "path": header,
-                        "message": "docs must contain a real-problem example or an explicit omission",
                     }
                 )
     return issues
@@ -282,29 +274,32 @@ def _render_docs(header: str) -> str:
         f"documentation_of: //{header}\n"
         "---\n\n"
         f"# {title}\n\n"
-        f"- Status: experimental\n"
-        f"- Header: {header}\n\n"
+        "<!-- API REFERENCE: COLLAPSED -->\n\n"
+        "## 概要\n\n"
+        "TODO: 初見でも用途を判断できる簡単な説明。\n\n"
+        "## 厳密な定義\n\n"
+        "TODO: 入出力、数式、添字範囲、成立条件を一意に定める。\n\n"
         "## Include\n\n"
         "```cpp\n"
         f'#include "{include}"\n'
         "```\n\n"
-        "## できること\n\n"
-        "TODO\n\n"
-        "## APIリファレンス\n\n"
-        "公開するコンストラクタ・関数・メソッドごとに、宣言、動作、引数、返り値を書く。\n\n"
-        "### `name`\n\n"
+        "## 最短の使用例\n\n"
         "```cpp\n"
-        "return_type name(arguments)\n"
+        "// TODO: コンテスト中にそのまま使える短い例。\n"
         "```\n\n"
-        "TODO: 動作、引数、返り値。\n\n"
-        "制約\n\n"
-        "- TODO\n\n"
-        "計算量\n\n"
-        "- TODO\n\n"
-        "## 前提・頻出事故\n\n"
-        "TODO\n\n"
+        "## APIの選び方\n\n"
+        "TODO: 複数の型や関数がある場合は比較表を書く。\n\n"
+        "## 注意点・計算量\n\n"
+        "TODO: 制約、計算量、誤用しやすい点。\n\n"
+        "<!-- BEGIN AUTO-GENERATED API REFERENCE -->\n"
+        "<details class=\"api-reference\" markdown=\"1\">\n"
+        "<summary>すべてのAPI宣言を表示</summary>\n\n"
+        "### 完全なAPIリファレンス\n\n"
+        "`python3 tools/docs.py sync`で生成する。\n\n"
+        "</details>\n\n"
+        "<!-- END AUTO-GENERATED API REFERENCE -->\n\n"
         "## 実在問題での使用例\n\n"
-        "TODO: 公開問題のURL、使用例、judge AC確認状態を書く。\n\n"
+        "TODO: 公開問題のURLと使用例を書く。\n\n"
         "## 検証\n\n"
         "TODO\n"
     )

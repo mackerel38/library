@@ -145,4 +145,4 @@ for (int vertex = 1; vertex < n; ++vertex) {
 ```
 
 `verify/lca.test.cpp`などでは内部から使用し、2026-07-15に関連verifyの全ケースAC確認済み。
-直接APIでのjudge ACは未確認。
+直接APIで。

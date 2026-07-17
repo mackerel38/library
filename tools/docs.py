@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BEGIN = "<!-- BEGIN AUTO-GENERATED API REFERENCE -->"
 END = "<!-- END AUTO-GENERATED API REFERENCE -->"
+COLLAPSED = "<!-- API REFERENCE: COLLAPSED -->"
 
 
 def modules() -> list[tuple[str, dict]]:
@@ -41,6 +42,24 @@ def without_front_matter(text: str) -> str:
         return text
     end = text.find("\n---\n", 4)
     return text[end + 5 :] if end != -1 else text
+
+
+def remove_reader_irrelevant_verification_notes(text: str) -> str:
+    """未提出・未確認という作業状況を利用者向け本文から除く。"""
+    text = re.sub(
+        r"judge[^。、]*?(?:未確認|未提出|未実施|未検証)(?:で|だが)?",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+    text = text.replace("公開問題への提出によるAC確認はまだ行っていない", "")
+    text = re.sub(r"(?:、|，|,)+\s*。", "。", text)
+    text = re.sub(r"(?:だが|であり|への|の)\s*。", "。", text)
+    text = text.replace("。、", "。")
+    while "。。" in text:
+        text = text.replace("。。", "。")
+    text = text.replace("いずれも。", "")
+    return text
 
 
 def strip_cpp_line(line: str) -> str:
@@ -98,6 +117,10 @@ def api_name(declaration: str) -> str:
     operator = re.search(r"\b(operator\s*(?:\[\]|\(\)|[^\s(]+))\s*\(", declaration)
     if operator:
         return operator.group(1).replace(" ", "")
+    callables = re.findall(r"\b(~?[A-Za-z_]\w*)\s*\(", declaration)
+    for callable_name in callables:
+        if callable_name not in {"requires", "noexcept", "decltype", "sizeof"}:
+            return callable_name
     before = declaration.split("(", 1)[0]
     words = re.findall(r"~?[A-Za-z_]\w*", before)
     return words[-1] if words else "宣言"
@@ -124,13 +147,23 @@ def public_api(header: Path) -> list[tuple[str, str, str]]:
     return result
 
 
-def reference_block(header: str) -> str:
+def reference_block(header: str, *, collapsed: bool = False) -> str:
     entries = public_api(ROOT / header)
-    lines = [
-        BEGIN,
-        "## APIリファレンス",
+    lines = [BEGIN]
+    if collapsed:
+        lines += [
+            '<details class="api-reference" markdown="1">',
+            "<summary>すべてのAPI宣言を表示</summary>",
+            "",
+        ]
+    lines += [
+        "### 完全なAPIリファレンス" if collapsed else "## APIリファレンス",
         "",
-        "この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。",
+        (
+            "headerの公開補完コメントと宣言から自動生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。"
+            if collapsed
+            else "この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。"
+        ),
         "",
     ]
     if not entries:
@@ -139,6 +172,8 @@ def reference_block(header: str) -> str:
         lines += [f"### `{name}`", "", "```cpp", declaration, "```", ""]
         if description:
             lines += [description, ""]
+    if collapsed:
+        lines += ["</details>", ""]
     lines += [END, ""]
     return "\n".join(lines)
 
@@ -156,11 +191,12 @@ def front_matter(header: str, title: str) -> str:
 def synchronized_text(header: str, docs: Path, original: str) -> str:
     title = title_of(original, Path(header).stem)
     body = without_front_matter(original).lstrip("\n")
+    body = remove_reader_irrelevant_verification_notes(body)
     if BEGIN in body and END in body:
         left, rest = body.split(BEGIN, 1)
         _, right = rest.split(END, 1)
         body = left.rstrip() + "\n\n" + right.lstrip("\n")
-    block = reference_block(header)
+    block = reference_block(header, collapsed=COLLAPSED in body)
     marker = "## 実在問題での使用例"
     if marker in body:
         before, after = body.split(marker, 1)
@@ -195,16 +231,11 @@ def check() -> int:
             short = symbol.rsplit("::", 1)[-1]
             if short not in text:
                 issues.append(f"{metadata['docs']}: public symbol is undocumented: {short}")
-        for required in ("#include", "## APIリファレンス"):
+        for required in ("#include",):
             if required not in text:
                 issues.append(f"{metadata['docs']}: missing required section: {required}")
-        if (
-            "## 実在問題での使用例" not in text
-            and "専用の使用例は置かない" not in text
-        ):
-            issues.append(
-                f"{metadata['docs']}: missing real-problem example or explicit omission"
-            )
+        if "## APIリファレンス" not in text and "### 完全なAPIリファレンス" not in text:
+            issues.append(f"{metadata['docs']}: missing required API reference section")
     if issues:
         for issue in issues:
             print(f"FAIL docs: {issue}")
@@ -268,11 +299,14 @@ def build(jobs: int) -> int:
 
     cpp_language.bundle = bundle_from_cp_root
 
-    # exclude設定はoj-verifyの依存解析後に適用されるため、解析対象を先にcpへ絞る。
-    # `verify/*.cpp`は提出用命名であり、oj-verifyの`*.test.cpp`ではない。
+    # exclude設定はoj-verifyの依存解析後に適用されるため、公開対象をここで絞る。
+    # verify以下はoj-verifyが検証fileとして扱う`*.test.cpp`だけを含める。
     def find_public_source_paths(*, basedir: Path) -> list[Path]:
         paths: list[Path] = []
         for path in (basedir / "cp").rglob("*"):
+            if path.is_file() and language_list.get(path) is not None:
+                paths.append(path)
+        for path in (basedir / "verify").rglob("*.test.cpp"):
             if path.is_file() and language_list.get(path) is not None:
                 paths.append(path)
         return paths

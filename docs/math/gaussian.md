@@ -14,7 +14,7 @@ documentation_of: //cp/math/gaussian.hpp
 ```
 
 除算できる体上でrank、行列式、連立一次方程式を求める。`solve_linear(A,b)`は解の有無だけでなく、
-特殊解`solution`と斉次方程式の解空間`basis`を返す。全解は特殊解へbasisの任意の線形結合を足したもの。
+特殊解`solution`と斉次方程式の解空間`basis`を返す。全解は特殊解へbasisの任意の線形結合を足したも。
 
 `h*w`行列の計算量は`O(hw min(h,w))`、正方行列では`O(n^3)`、領域`O(hw)`。
 浮動小数の近似0判定は行わないため、主に`modint`などの厳密な体を想定する。
@@ -103,4 +103,4 @@ O(hw min(h,w)/64 + w^2)。GF(2)上のAx=bを解き、0/1の特殊解と斉次解
 
 [ABC366 G - XOR Neighbors](https://atcoder.jp/contests/abc366/tasks/abc366_g)ではGF(2)の解空間基底が必要になる。
 一般の体版とGF(2)版についてLibrary Checker System of Linear Equationsのverifyコードを用意している。
-どちらもproperty test済みだが、GF(2)版のjudge ACは未確認。
+どちらもproperty test済みだが、GF(2)版。

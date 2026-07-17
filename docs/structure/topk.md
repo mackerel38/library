@@ -94,4 +94,4 @@ O(K^2)。候補一件からtopkdistinctを作る。
 
 [AtCoder ABC447 G - Div. 1 & Div. 2](https://atcoder.jp/contests/abc447/tasks/abc447_g)では、
 区間ごとにジャンルが異なる面白さ上位4件をSegment Treeへ載せる部分に対応する。
-`verify/atcoder_abc447_g.cpp`に使用例を収録した。公式sample確認済み、judge ACは未確認。
+`verify/atcoder_abc447_g.cpp`に使用例を収録した。公式sample確認済み。

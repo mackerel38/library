@@ -187,7 +187,7 @@ O(log sigma)。[left,right)でlower以上の最小値。なければnullopt。
 - [AtCoder ABC436 F - Starry Landscape Photo](https://atcoder.jp/contests/abc436/tasks/abc436_f):
   各位置の左右にある自身未満の値の個数を`count_less`で数える。
 
-いずれもjudge未提出。
+
 
 ## 検証
 

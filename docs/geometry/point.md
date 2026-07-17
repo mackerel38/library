@@ -141,11 +141,11 @@ O(1)。原点から見て同じ向きのray上にあるか返す。
 ## 実在問題での使用例
 
 [ABC266 C - Convex Quadrilateral](https://atcoder.jp/contests/abc266/tasks/abc266_c)で各連続3点の
-`orientation`を調べられる。verifyコードはサンプル確認のみで、judge ACは未確認。
+`orientation`を調べられる。verifyコードはサンプル確認のみで。
 
 [ABC442 E - Laser Takahashi](https://atcoder.jp/contests/abc442/tasks/abc442_e)では偏角順に並べ、
-同じrayをgroup化する。`verify/atcoder_abc442_e.cpp`で公式sampleを確認済み。judge ACは未確認。
+同じrayをgroup化する。`verify/atcoder_abc442_e.cpp`で公式sampleを確認済み。
 
 [ABC426 E - Closest Moment](https://atcoder.jp/contests/abc426/tasks/abc426_e)では
 `minimum_distance_segment_walks`へ二人の始点・終点を渡すだけで求められる。
-`verify/atcoder_abc426_e.cpp`で公式sample一致、judge未提出。
+`verify/atcoder_abc426_e.cpp`で公式sample一致。

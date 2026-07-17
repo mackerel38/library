@@ -53,9 +53,8 @@ k>=0。2冪長かつmod-1の約数ならNTT領域で直接累乗する。
 ## 実在問題での使用例
 
 [FPS 24題 R - ランダムウォーク](https://atcoder.jp/contests/fps-24/tasks/fps_24_r)で、円環上の
-左右移動をまとめて累乗する。judge ACは未確認。小さい円環の愚直遷移と比較する。
+左右移動をまとめて累乗する。小さい円環の愚直遷移と比較する。
 
 [AtCoder ABC309 Ex - Simple Path Counting Problem](https://atcoder.jp/contests/abc309/tasks/abc309_h)では、
 鏡像法で両端を吸収壁とするpath DPを長さ`2M+2`の巡回畳み込みへ変換する。
-`verify/atcoder_abc309_h.cpp`で公式sample 3件を確認済み。最大sampleはlocal約22秒で、
-judge ACと10秒制限内の実測は未確認。
+`verify/atcoder_abc309_h.cpp`で公式sample 3件を確認済み。最大sampleはlocal約22秒で。

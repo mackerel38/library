@@ -42,4 +42,4 @@ O(n)。upper以下で隣接差の絶対値がslope以下となる最大の列を
 
 [AtCoder ABC443 D - Pawn Line](https://atcoder.jp/contests/abc443/tasks/abc443_d)では、
 元の行番号を上限、傾きを1として最適な移動後の行を求める。
-`verify/atcoder_abc443_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc443_d.cpp`で公式sampleを確認済み。

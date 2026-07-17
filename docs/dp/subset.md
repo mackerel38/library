@@ -91,7 +91,7 @@ cout << result.cost << '\n';
 ```
 
 `verify/atcoder_abc187_f.cpp`に提出用コードを用意し、公式サンプル4件との一致を確認済み。
-judgeへの提出確認は未実施。
+。
 
 ## 重複を除いた全削除順
 
@@ -108,7 +108,7 @@ mint ways = poe::count_distinct_deletion_orders<mint>(sequence);
 
 [AtCoder ABC425 F - Inserting Process](https://atcoder.jp/contests/abc425/tasks/abc425_f)は
 挿入過程を逆向きの削除過程として数えられる。
-`verify/atcoder_abc425_f.cpp`で公式sample 3件一致、judge未提出。
+`verify/atcoder_abc425_f.cpp`で公式sample 3件一致。
 
 ## 零和部分集合への最大分割
 
@@ -129,4 +129,4 @@ for (uint64_t group : result.groups) {
 [AtCoder ABC432 F - Candy Redistribution](https://atcoder.jp/contests/abc432/tasks/abc432_f)では、
 各所持数から平均を引いた偏差を最大個数の零和groupへ分けると、最小操作数は
 `n - groups.size()`になる。`verify/atcoder_abc432_f.cpp`で公式sampleの有効な最小解を確認済み。
-judge ACは未確認。
+。

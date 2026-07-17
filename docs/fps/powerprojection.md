@@ -47,7 +47,7 @@ O(n log^2 n)。result[i]=[x^n]function(x)^i*multiplier(x)をi=0..nで返す。
 [AtCoder ABC439 G - Sugoroku 6](https://atcoder.jp/contests/abc439/tasks/abc439_g)では、
 一人が`i`回行動した後も未到達である確率を
 `[x^(N-1)] D(x)^i (1+x+...+x^(N-1))`として一括計算する。
-`verify/atcoder_abc439_g.cpp`に全体の使用例を収録する。judge ACは未確認。
+`verify/atcoder_abc439_g.cpp`に全体の使用例を収録する。
 
 [AtCoder ABC387 G - Many LCS](https://atcoder.jp/contests/abc387/tasks/abc387_g)も
 power projectionを利用できる代表例である。こちらのverifyコードは未作成。

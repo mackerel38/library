@@ -44,4 +44,4 @@ template <class T, class Equal = std::equal_to<T>> std::vector<T> reduce_adjacen
 
 [AtCoder ABC438 C - 1D puyopuyo](https://atcoder.jp/contests/abc438/tasks/abc438_c)では、
 `group_size=4`で縮約し、返った列の長さを出力する。
-`verify/atcoder_abc438_c.cpp`は公式サンプル一致を確認済み、judge未提出。
+`verify/atcoder_abc438_c.cpp`は公式サンプル一致を確認済み。

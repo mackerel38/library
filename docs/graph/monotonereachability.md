@@ -90,4 +90,4 @@ O(1)。頂点数を返す。
 [AtCoder ABC435 D - Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)では、
 辺を反転して黒頂点を始点として追加する。元のグラフで頂点`v`から黒頂点へ到達可能であることと、
 反転グラフで黒頂点から`v`へ到達可能であることが同値になる。
-`verify/atcoder_abc435_d.cpp`で公式sampleを確認済み。judge ACは未確認。
+`verify/atcoder_abc435_d.cpp`で公式sampleを確認済み。

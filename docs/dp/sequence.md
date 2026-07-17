@@ -130,5 +130,5 @@ std::cout << poe::lcs(s, t) << '\n'; // EDPC F
 ```
 
 `verify/atcoder_dp_f.cpp`で2026-07-15にjudge AC確認済み。ABC462 Fはverifyコードを用意し、
-公式sampleを確認済みだがjudge ACは未確認。ABC410 Gもverifyコードを用意して公式sampleを確認済み。
+公式sampleを確認済み。ABC410 Gもverifyコードを用意して公式sampleを確認済み。
 API test、LIS・区間包含列・出現数増加の愚直差分も実施済み。

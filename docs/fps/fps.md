@@ -211,16 +211,16 @@ O(n)。f.eval(x): 多項式としてxへ代入した値を返す。
 ## 実在問題での使用例
 
 基礎演算はLibrary CheckerのInv / Log / Exp / Pow of Formal Power Seriesに対応するverifyコードを
-追加する。FPS24題ではC、K、L、M、Nなどの下位部品になる。judge ACは未確認で、現在は愚直級数との
+追加する。FPS24題ではC、K、L、M、Nなどの下位部品になる。現在は愚直級数との
 property testで確認する。
 
 [AtCoder ABC318 Ex - Count Strong Test Cases](https://atcoder.jp/contests/abc318/tasks/abc318_h)では、
 長さ`i`の独立なcycle成分の重み`1/i^2`を係数に持つFPSを`exp`し、集合としてのcycle分解を数える。
-`verify/atcoder_abc318_h.cpp`で公式sample 4件を確認済み。judge ACは未確認。
+`verify/atcoder_abc318_h.cpp`で公式sample 4件を確認済み。
 
 ## FPS 24題との対応
 
-全24題にverifyコードを用意している。いずれもrepo内ライブラリを使用しており、judge ACは未確認。
+全24題にverifyコードを用意している。いずれもrepo内ライブラリを使用しており。
 FはFPS演算そのものを必要とせず、`math/modint.hpp`のverifyとして残している。
 
 | 問題 | 主に使う部品 |

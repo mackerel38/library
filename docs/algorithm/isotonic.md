@@ -55,4 +55,4 @@ O(n)。各操作でvalues[i]を1減らしvalues[i+1]を1増やして広義単調
 
 [ABC459 F - -1, +1](https://atcoder.jp/contests/abc459/tasks/abc459_f)は、
 `A[i] -= i`の後にこの関数を一度呼ぶだけで最小操作回数を得られる。
-`verify/atcoder_abc459_f.cpp`で公式sample一致を確認している。judge ACは未確認。
+`verify/atcoder_abc459_f.cpp`で公式sample一致を確認している。
