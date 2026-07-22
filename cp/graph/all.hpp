@@ -22,6 +22,7 @@
 #include "graph/monotonereachability.hpp"
 #include "graph/orientation.hpp"
 #include "graph/paritywalk.hpp"
+#include "graph/poset.hpp"
 #include "graph/rangeedge.hpp"
 #include "graph/scc.hpp"
 #include "graph/shortestpath.hpp"

@@ -1305,6 +1305,17 @@
       "tests": ["tests/api/graph/paritywalk.cpp", "tests/property/graph/paritywalk.cpp"],
       "verify": ["verify/atcoder_abc244_g.cpp"]
     },
+    "cp/graph/poset.hpp": {
+      "benchmark": ["ABC237 Ex n=200の同一文字列で0.01秒・3.7MB"],
+      "docs": "docs/graph/poset.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "Dilworthの定理による有限半順序の最大反鎖と最小chain分割",
+      "symbols": ["poe::posetantichainresult", "poe::maximum_poset_antichain"],
+      "tags": ["graph", "poset", "antichain", "dilworth", "bipartite-matching", "chain-cover"],
+      "tests": ["tests/api/graph/poset.cpp", "tests/property/graph/poset.cpp"],
+      "verify": ["verify/atcoder_abc237_h.cpp"]
+    },
     "cp/graph/rangeedge.hpp": {
       "benchmark": [],
       "docs": "docs/graph/rangeedge.md",
@@ -2051,7 +2062,7 @@
       "symbols": ["poe::palindromenode", "poe::palindromematch", "poe::palindromepartitionresult", "poe::palindromictree"],
       "tags": ["string", "palindrome", "palindromic-tree", "eertree"],
       "tests": ["tests/api/string/palindromictree.cpp", "tests/property/string/palindromictree.cpp"],
-      "verify": ["verify/atcoder_abc320_b.cpp"]
+      "verify": ["verify/atcoder_abc237_h.cpp", "verify/atcoder_abc320_b.cpp"]
     },
     "cp/string/prefix.hpp": {
       "benchmark": [],
