@@ -2547,6 +2547,17 @@
       "tests": ["tests/api/tree/pathsum.cpp", "tests/property/tree/pathsum.cpp"],
       "verify": ["verify/atcoder_abc294_g.cpp"]
     },
+    "cp/tree/pathfold.hpp": {
+      "benchmark": ["ABC248 G N=100000 のランダム値・二分木で0.63秒・21MB"],
+      "docs": "docs/tree/pathfold.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "木上パスを可換演算で畳み込み、値別に本数と長さ総和を集計",
+      "symbols": ["poe::treepathfoldstat", "poe::tree_path_fold_statistics"],
+      "tags": ["tree", "path", "fold", "commutative", "gcd", "aggregate"],
+      "tests": ["tests/api/tree/pathfold.cpp", "tests/property/tree/pathfold.cpp"],
+      "verify": ["verify/atcoder_abc248_g.cpp"]
+    },
     "cp/tree/perfectsubtree.hpp": {
       "benchmark": [],
       "docs": "docs/tree/perfectsubtree.md",

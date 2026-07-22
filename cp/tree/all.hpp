@@ -11,6 +11,7 @@
 #include "tree/heavylightdecomposition.hpp"
 #include "tree/heavyrecursivedp.hpp"
 #include "tree/lca.hpp"
+#include "tree/pathfold.hpp"
 #include "tree/pathsum.hpp"
 #include "tree/perfectsubtree.hpp"
 #include "tree/preorder.hpp"

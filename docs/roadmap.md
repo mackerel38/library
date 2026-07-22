@@ -235,6 +235,8 @@ ABC249 Gからは、第一成分の部分集合XORに上限を課し、第二成
 `maximum_paired_xor_under`を追加した。prefix制約ごとのGF(2)解空間上で第二成分を最大化する。
 ABC248 Exからは、相異なる整数列で$\max-\min-(\text{長さ}-1)\le k$となる部分配列を数える
 `count_subarrays_range_excess_at_most`を追加した。単調stackと小さい$k+1$種類だけ持つ区間木を使う。
+ABC248 Gからは、可換演算による木上パスの畳み込み値ごとに頂点対数と長さ総和を返す
+`tree_path_fold_statistics`を追加した。gcd、min、bitwise ANDなど状態数が小さい演算に再利用できる。
 ABC317 Exからは、低次多項式を要素に持つ小正方行列列を分割統治で掛ける
 `polynomial_matrix_product`を追加した。局所walk漸化式をまとめ、有理型母関数の巨大係数へ接続する。
 ABC315 Exからは、両方の入力列を左から確定しながら積の現在係数を返す

@@ -52,6 +52,7 @@
 | LCA、パス分解 | [`tree/lca.hpp`](tree/lca.md)、[`tree/heavylightdecomposition.hpp`](tree/heavylightdecomposition.md) | 木上queryの基礎 |
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |
 | 部分木更新、パス和 | [`tree/eulertour.hpp`](tree/eulertour.md)、[`tree/pathsum.hpp`](tree/pathsum.md) | 木を列・差分へ変換 |
+| パス上の値による頂点対集計 | [`tree/pathfold.hpp`](tree/pathfold.md) | gcd・min・bitwise ANDなどを値別に集約 |
 | 仮想木 | [`tree/virtualtree.hpp`](tree/virtualtree.md) | 指定頂点だけを含む圧縮木 |
 | 全部分列の根パス和集合 | [`tree/subarrayunion.hpp`](tree/subarrayunion.md) | 各部分木の出現位置をsmall-to-large集約 |
 | 互いに祖先・子孫でない頂点集合 | [`tree/antichain.hpp`](tree/antichain.md) | antichainを大きさ別に高速計数 |
