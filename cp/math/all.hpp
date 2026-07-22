@@ -19,6 +19,7 @@
 #include "math/matrix.hpp"
 #include "math/modint.hpp"
 #include "math/modularsum.hpp"
+#include "math/modularproduct.hpp"
 #include "math/multiconvolution.hpp"
 #include "math/nimber.hpp"
 #include "math/paritymatrix.hpp"

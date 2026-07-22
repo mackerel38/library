@@ -110,6 +110,7 @@
 | 小alphabetの動的な異なる部分列数 | [`string/dynamicsubsequence.hpp`](string/dynamicsubsequence.md) | 許容文字集合の一点更新 |
 | 線形漸化式の第N項 | [`fps/bostanmori.hpp`](fps/bostanmori.md)、[`math/linearecurrence.hpp`](math/linearecurrence.md) | Bostan-Moriなど |
 | 値ごとの重み付き冪和を全次数について求める | [`fps/rational.hpp`](fps/rational.md) | $\sum_i w_i v_i^k$を有理型母関数で一括計算 |
+| 積の剰余を指定した巨大長列 | [`math/modularproduct.hpp`](math/modularproduct.md) | 素数冪と$p$進付値による数え上げ |
 | 色別個数固定の順列、隣接色変化数 | [`fps/combinatorial.hpp`](fps/combinatorial.md) | ラベル付き順列を変化回数別に数える |
 | knapsack | [`dp/knapsack.hpp`](dp/knapsack.md)、[`dp/rangeknapsack.hpp`](dp/rangeknapsack.md) | 制約別knapsack |
 | 部分集合和を選択個数の偶奇別に数える | [`dp/subsetsumcount.hpp`](dp/subsetsumcount.md) | 同値な値をまとめた多項式積 |

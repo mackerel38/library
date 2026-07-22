@@ -1657,6 +1657,17 @@
       "tests": ["tests/api/math/nimber.cpp", "tests/property/math/nimber.cpp"],
       "verify": []
     },
+    "cp/math/modularproduct.hpp": {
+      "benchmark": ["ABC245 Ex K=1000000000・M=10^12で0.01秒未満・4MB"],
+      "docs": "docs/math/modularproduct.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "積の剰余を指定した巨大長の剰余列を素数冪ごとに計数",
+      "symbols": ["poe::count_modular_product_sequences"],
+      "tags": ["math", "number-theory", "modular-product", "p-adic-valuation", "crt", "factorization"],
+      "tests": ["tests/api/math/modularproduct.cpp", "tests/property/math/modularproduct.cpp"],
+      "verify": ["verify/atcoder_abc245_h.cpp"]
+    },
     "cp/math/paritymatrix.hpp": {
       "benchmark": [],
       "docs": "docs/math/paritymatrix.md",
