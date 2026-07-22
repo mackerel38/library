@@ -5,6 +5,7 @@
 #include "algorithm/dominance.hpp"
 #include "algorithm/groupreduce.hpp"
 #include "algorithm/groupxor.hpp"
+#include "algorithm/intervalcover.hpp"
 #include "algorithm/intervalcrossing.hpp"
 #include "algorithm/isotonic.hpp"
 #include "algorithm/modularrange.hpp"

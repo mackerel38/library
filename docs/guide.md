@@ -22,6 +22,7 @@
 | 値へ法の倍数を加減、幅最小 | [`algorithm/modularrange.hpp`](algorithm/modularrange.md) | 剰余類を円周上で覆う最短幅 |
 | 二列の全組の絶対差和 | [`algorithm/absolutedifference.hpp`](algorithm/absolutedifference.md) | $\sum_{i,j}|A_i-B_j|$ |
 | 区間端点が交互に現れる対、交差する弦 | [`algorithm/intervalcrossing.hpp`](algorithm/intervalcrossing.md) | Fenwick Treeによる交互区間対計数 |
+| 区間部分集合で全域を覆う、ランダム区間で被覆完了 | [`algorithm/intervalcover.hpp`](algorithm/intervalcover.md) | 本数別部分集合数と期待時間 |
 | 区間最小値と非負区間和が上限以下 | [`algorithm/subarrayminsum.hpp`](algorithm/subarrayminsum.md) | Cartesian Treeによる部分配列計数 |
 | 相異なる整数の部分配列、max-minと長さの差が小さい | [`algorithm/subarrayrange.hpp`](algorithm/subarrayrange.md) | 単調stackと小さい値だけ持つSegment Tree |
 | 三つの座標が全て非減少な最大重み列 | [`algorithm/dominance.hpp`](algorithm/dominance.md) | 三次元dominance DPと復元 |

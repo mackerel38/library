@@ -259,6 +259,9 @@ ABC243 Gからは、平方根以下の正整数へ値を移し続ける列を数
 ABC243 Exからは、4近傍長方形グリッドで指定可能マスだけを削除する
 `minimum_grid_vertex_separator`を追加した。平面双対の奇数交差cycleへ変換し、
 最小削除数だけでなく最適な頂点集合の個数も数える。
+ABC242 Exからは、区間部分集合による全域被覆を選択本数別に数える
+`interval_cover_subset_counts`と、区間を一様に引いて被覆が完了するまでの期待回数を返す
+`expected_random_interval_cover_time`を追加した。
 ABC317 Exからは、低次多項式を要素に持つ小正方行列列を分割統治で掛ける
 `polynomial_matrix_product`を追加した。局所walk漸化式をまとめ、有理型母関数の巨大係数へ接続する。
 ABC315 Exからは、両方の入力列を左から確定しながら積の現在係数を返す

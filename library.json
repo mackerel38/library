@@ -132,6 +132,17 @@
       "tests": ["tests/api/algorithm/isotonic.cpp", "tests/property/algorithm/isotonic.cpp"],
       "verify": ["verify/atcoder_abc459_f.cpp"]
     },
+    "cp/algorithm/intervalcover.hpp": {
+      "benchmark": ["n=m=400で0.23秒・4.6MB"],
+      "docs": "docs/algorithm/intervalcover.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "区間部分集合の全域被覆数とランダム選択の被覆完了期待値",
+      "symbols": ["poe::interval_cover_subset_counts", "poe::expected_random_interval_cover_time"],
+      "tags": ["algorithm", "interval", "cover", "subset-counting", "dynamic-programming", "expectation"],
+      "tests": ["tests/api/algorithm/intervalcover.cpp", "tests/property/algorithm/intervalcover.cpp"],
+      "verify": ["verify/atcoder_abc242_h.cpp"]
+    },
     "cp/algorithm/intervalcrossing.hpp": {
       "benchmark": [],
       "docs": "docs/algorithm/intervalcrossing.md",
