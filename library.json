@@ -88,6 +88,17 @@
       "tests": ["tests/api/algorithm/rangefrequency.cpp", "tests/property/algorithm/rangefrequency.cpp"],
       "verify": ["verify/atcoder_abc293_g.cpp"]
     },
+    "cp/algorithm/rangesort.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/rangesort.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "区間昇順・降順sort列の後の注目要素位置を二値化で追跡",
+      "symbols": ["poe::rangesortquery", "poe::position_after_range_sorts"],
+      "tags": ["algorithm", "range-sort", "lazy-segment-tree", "threshold", "tracking"],
+      "tests": ["tests/api/algorithm/rangesort.cpp", "tests/property/algorithm/rangesort.cpp"],
+      "verify": ["verify/atcoder_abc237_g.cpp"]
+    },
     "cp/algorithm/groupreduce.hpp": {
       "benchmark": [],
       "docs": "docs/algorithm/groupreduce.md",

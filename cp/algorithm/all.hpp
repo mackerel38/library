@@ -15,6 +15,7 @@
 #include "algorithm/quadraticselection.hpp"
 #include "algorithm/rangefrequency.hpp"
 #include "algorithm/rangemin.hpp"
+#include "algorithm/rangesort.hpp"
 #include "algorithm/shortestword.hpp"
 #include "algorithm/slopeconstraint.hpp"
 #include "algorithm/subarrayminsum.hpp"
