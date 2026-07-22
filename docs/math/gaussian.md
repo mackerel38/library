@@ -27,6 +27,10 @@ documentation_of: //cp/math/gaussian.hpp
 #include "math/gaussian.hpp"
 ```
 
+GF(2)の疎な方程式で特殊解を一つだけ得たい場合は、各行の1である列番号を
+`solve_sparse_binary_linear_one(variables, nonzero_columns, right)`へ渡します。
+解がなければ`nullopt`を返し、斉次解基底を作らないため変数が多い構成問題に向きます。
+
 除算できる体上でrank、行列式、連立一次方程式を求める。`solve_linear(A,b)`は解の有無だけでなく、
 特殊解`solution`と斉次方程式の解空間`basis`を返す。全解は特殊解へbasisの任意の線形結合を足したも。
 
@@ -110,6 +114,14 @@ inline linearsystemresult<int> solve_binary_linear( const matrix<int>& coefficie
 ```
 
 O(hw min(h,w)/64 + w^2)。GF(2)上のAx=bを解き、0/1の特殊解と斉次解基底を返す。
+
+### `solve_sparse_binary_linear_one`
+
+```cpp
+inline std::optional<std::vector<int>> solve_sparse_binary_linear_one( int variables, const std::vector<std::vector<int>>& nonzero_columns, const std::vector<int>& right )
+```
+
+O(mn(min(m,n)/64+1))。GF(2)上の疎な方程式から特殊解を一つ返す。解なしならnullopt。
 
 <!-- END AUTO-GENERATED API REFERENCE -->
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc460/tasks/abc460_g"
 #include <bits/stdc++.h>
 #include "graph/graph.hpp"
-#include "tree/monochromatic.hpp"
+#include "recipe/monochromatic.hpp"
 
 using namespace std;
 using namespace poe;

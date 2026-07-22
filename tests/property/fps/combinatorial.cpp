@@ -45,4 +45,28 @@ int main() {
         };
         choose_period(choose_period, 0);
     }
+
+    mt19937 random(260);
+    for (int trial = 0; trial < 200; ++trial) {
+        const int n = random() % 9;
+        const int colors = 1 + random() % 4;
+        vector<int> counts(colors), label_color;
+        for (int label = 0; label < n; ++label) {
+            const int color = random() % colors;
+            ++counts[color];
+            label_color.push_back(color);
+        }
+        vector<mint> expected(max(1, n));
+        vector<int> permutation(n);
+        iota(permutation.begin(), permutation.end(), 0);
+        do {
+            int changes = 0;
+            for (int index = 1; index < n; ++index) {
+                changes += label_color[permutation[index - 1]]
+                         != label_color[permutation[index]];
+            }
+            ++expected[changes];
+        } while (next_permutation(permutation.begin(), permutation.end()));
+        assert(labeled_color_change_counts<998244353>(counts) == expected);
+    }
 }

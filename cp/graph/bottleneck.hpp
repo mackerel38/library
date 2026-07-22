@@ -6,6 +6,64 @@
 
 namespace poe {
 
+/// O(n^3/64+nq+n log n)。各queryのpath上最大頂点costの最小値を返す。到達不能ならnullopt。
+template<graph_type Graph, class Cost>
+std::vector<std::optional<Cost>> minimum_vertex_bottleneck_paths(
+    const Graph& graph,
+    const std::vector<Cost>& vertex_cost,
+    const std::vector<std::pair<int, int>>& queries
+) {
+    const int size = graph.size();
+    assert(static_cast<int>(vertex_cost.size()) == size);
+    const int words = (size + 63) / 64;
+    std::vector reachable(size, std::vector<std::uint64_t>(words));
+    const auto set_reachable = [&](int from, int to) {
+        reachable[from][to / 64] |= 1ULL << (to % 64);
+    };
+    const auto is_reachable = [&](int from, int to) {
+        return (reachable[from][to / 64] >> (to % 64) & 1ULL) != 0;
+    };
+    for (int vertex = 0; vertex < size; ++vertex) {
+        set_reachable(vertex, vertex);
+        for (const auto& edge : graph[vertex]) set_reachable(vertex, edge.to);
+    }
+    for (const auto& [source, target] : queries) {
+        assert(0 <= source && source < size && 0 <= target && target < size);
+    }
+
+    std::vector<int> order(size);
+    std::iota(order.begin(), order.end(), 0);
+    std::ranges::sort(order, [&](int left, int right) {
+        if (vertex_cost[left] != vertex_cost[right]) {
+            return vertex_cost[left] < vertex_cost[right];
+        }
+        return left < right;
+    });
+    std::vector<std::optional<Cost>> answer(queries.size());
+    for (int left = 0; left < size;) {
+        int right = left + 1;
+        while (right < size && vertex_cost[order[right]] == vertex_cost[order[left]]) ++right;
+        for (int index = left; index < right; ++index) {
+            const int middle = order[index];
+            for (int source = 0; source < size; ++source) {
+                if (!is_reachable(source, middle)) continue;
+                for (int word = 0; word < words; ++word) {
+                    reachable[source][word] |= reachable[middle][word];
+                }
+            }
+        }
+        for (int query = 0; query < static_cast<int>(queries.size()); ++query) {
+            if (answer[query].has_value()) continue;
+            const auto [source, target] = queries[query];
+            if (!is_reachable(source, target)) continue;
+            answer[query] = std::max({vertex_cost[order[left]],
+                                      vertex_cost[source], vertex_cost[target]});
+        }
+        left = right;
+    }
+    return answer;
+}
+
 /// minimax距離に指定辺が不可欠かを判定する: bottlenecksensitivity sensitivity(graph)。
 template<weighted_graph_type Graph>
     requires (!Graph::is_directed)

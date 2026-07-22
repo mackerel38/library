@@ -35,4 +35,6 @@ int main() {
     for (char symbol : std::string("she")) state = automaton.next(state, symbol);
     const unsigned mask = automaton.pattern_mask<unsigned>(state);
     assert((mask >> he & 1U) && (mask >> she & 1U));
+    assert(automaton.shortest_match_length(state) == 2);
+    assert(!automaton.shortest_match_length(0));
 }

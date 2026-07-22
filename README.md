@@ -56,7 +56,10 @@ GitHub Pages用の文書はoj-verify形式で生成する。
 
 - [要件・構想](docs/requirements.md)
 - [ライブラリ拡張予定](docs/roadmap.md)
+- [カテゴリ別実装計画](docs/category_plan.md)
 - [ライブラリ実装規約](docs/library_conventions.md)
+- [ライブラリ選択ガイド](docs/guide.md)
+- [Recipe選択ガイド](docs/recipe/guide.md)
 - [DPライブラリ選択ガイド](docs/dp/guide.md)
 - [EDPC・TDPC・NDPC分類](docs/dp/catalog.md)
 - [ACL相当ライブラリ一覧](docs/acl.md)

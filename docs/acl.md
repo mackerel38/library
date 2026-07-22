@@ -52,7 +52,7 @@ AtCoder Libraryの公開機能を`poe`名前空間と本リポジトリの入力
 - `fenwicktree`の`set`、`operator[]`、累積和二分探索など、実戦向け操作を追加する。
 - `segtree`と`lazysegtree`は`operator[]`を持つ。
 - modintはstream入出力を持つ。
-- stringは機能別ヘッダへ分割し、`#include "string/string.hpp"`でもまとめて使える。
+- stringは機能別ヘッダへ分割し、まとめて使う場合は`#include "string/all.hpp"`を使う。
 - `utility/presetsegtree.hpp`には実装方式を型名へ出さない用途別区間構造を収録する。
 - 補完用コメントは日本語で、呼び出し例・計算量・重要な前提を記載する。
 

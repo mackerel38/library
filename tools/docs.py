@@ -94,6 +94,9 @@ def excluded_lines(lines: list[str]) -> set[int]:
             excluded.add(index)
         if re.match(r"^\s*private\s*:\s*$", code):
             private_depths.append(before)
+        if re.match(r"^\s*(?:public|protected)\s*:\s*$", code):
+            while private_depths and private_depths[-1] == before:
+                private_depths.pop()
         if private_depths:
             excluded.add(index)
         brace_depth += code.count("{") - code.count("}")

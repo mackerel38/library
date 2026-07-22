@@ -8,6 +8,40 @@ using namespace poe;
 int main() {
     mt19937 random(20260716);
     using mint = modint998244353;
+    const mint half = mint{1} / 2;
+    for (int people = 1; people <= 4; ++people) {
+        for (int trial = 0; trial < 100; ++trial) {
+            vector<int> positions(people);
+            for (int& position : positions) position = 2 * static_cast<int>(random() % 5);
+            constexpr int maximum_time = 7;
+            const auto actual = symmetric_walk_meeting_probabilities<998244353>(
+                positions, maximum_time
+            );
+            vector<map<int, mint>> distribution(people);
+            for (int person = 0; person < people; ++person) {
+                distribution[person][positions[person]] = 1;
+            }
+            for (int time = 0; time <= maximum_time; ++time) {
+                mint expected = 0;
+                for (int position = -maximum_time; position <= 8 + maximum_time; ++position) {
+                    mint probability = 1;
+                    for (int person = 0; person < people; ++person) {
+                        probability *= distribution[person][position];
+                    }
+                    expected += probability;
+                }
+                assert(actual[time] == expected);
+                for (auto& current : distribution) {
+                    map<int, mint> next;
+                    for (const auto& [position, probability] : current) {
+                        next[position - 1] += probability * half;
+                        next[position + 1] += probability * half;
+                    }
+                    current.swap(next);
+                }
+            }
+        }
+    }
     for (int period = 3; period <= 15; ++period) {
         for (int trial = 0; trial < 50; ++trial) {
             const int maximum_step = 1 + random() % (period - 1);

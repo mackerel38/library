@@ -34,6 +34,14 @@ int main() {
         }
     }
     for (int test = 0; test < 100; ++test) {
+        const int count = random() % 30;
+        std::vector<mint> roots(count);
+        for (auto& root : roots) root = random() % 1000;
+        const fps polynomial = poe::polynomial_from_roots<998244353>(roots);
+        assert(polynomial.size_int() == count + 1 && polynomial.back() == 1);
+        for (mint root : roots) assert(polynomial.eval(root) == 0);
+    }
+    for (int test = 0; test < 100; ++test) {
         const int degree = 1 + random() % 30;
         fps f(degree);
         for (auto& value : f) value = random() % 100000;

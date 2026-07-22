@@ -1,6 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "fps/polynomial.hpp"
+#include "fps/transform.hpp"
 
 namespace poe {
 
@@ -127,6 +128,59 @@ adjacentdistinctwordcounts<mod> adjacent_distinct_words(
     series count = denominator.inv(maximum_sum + 1);
     series length_sum = (marked_block * count * count).prefix(maximum_sum + 1);
     return {std::move(count), std::move(length_sum)};
+}
+
+/// O(n+M(n)log c)時間・O(n)領域。色別個数を持つ区別された要素の順列数を隣接色変化数別に返す。
+template<int mod>
+fps<mod> labeled_color_change_counts(const std::vector<int>& color_counts) {
+    using mint = staticmodint<mod>;
+    using series = fps<mod>;
+    long long total = 0;
+    for (const int count : color_counts) {
+        assert(count >= 0);
+        total += count;
+    }
+    assert(total < mod && total <= std::numeric_limits<int>::max());
+    const int element_count = static_cast<int>(total);
+    if (element_count == 0) return series{1};
+
+    std::vector<mint> factorial(static_cast<std::size_t>(element_count) + 1, 1);
+    std::vector<mint> inverse_factorial(static_cast<std::size_t>(element_count) + 1, 1);
+    for (int value = 1; value <= element_count; ++value) {
+        factorial[value] = factorial[value - 1] * value;
+    }
+    inverse_factorial[element_count] = factorial[element_count].inv();
+    for (int value = element_count; value >= 1; --value) {
+        inverse_factorial[value - 1] = inverse_factorial[value] * value;
+    }
+
+    mint label_permutations = 1;
+    std::vector<series> factors;
+    factors.reserve(color_counts.size());
+    for (const int count : color_counts) {
+        if (count == 0) continue;
+        label_permutations *= factorial[count];
+        series factor(static_cast<std::size_t>(count) + 1);
+        for (int blocks = 1; blocks <= count; ++blocks) {
+            const mint choices = factorial[count - 1]
+                               * inverse_factorial[blocks - 1]
+                               * inverse_factorial[count - blocks];
+            factor[blocks] = choices * inverse_factorial[blocks];
+        }
+        factors.push_back(std::move(factor));
+    }
+    const series product = polynomial_product<mod>(std::move(factors), element_count + 1);
+    series at_least_same(static_cast<std::size_t>(element_count));
+    for (int same = 0; same < element_count; ++same) {
+        const int blocks = element_count - same;
+        at_least_same[same] = factorial[blocks] * product.coeff(blocks);
+    }
+    const series exact_same = upper_binomial_transform(at_least_same, mint{-1});
+    series changes(static_cast<std::size_t>(element_count));
+    for (int count = 0; count < element_count; ++count) {
+        changes[count] = exact_same[element_count - 1 - count] * label_permutations;
+    }
+    return changes;
 }
 
 }

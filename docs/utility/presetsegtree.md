@@ -7,7 +7,7 @@ documentation_of: //cp/utility/presetsegtree.hpp
 
 ## 概要
 
-更新方法と取得内容で選べる用途別区間構造27種を扱う。
+更新方法と取得内容で選べる用途別区間構造28種を扱う。
 
 ## 厳密な定義
 
@@ -37,6 +37,7 @@ documentation_of: //cp/utility/presetsegtree.hpp
 - `range_flip_range_sum`: 区間反転・区間1数: range_flip_range_sum data(bits)。
 - `range_flip_range_inversion`: 区間反転・区間転倒数: range_flip_range_inversion data(bits)。
 - `range_active_add_range_clear_flip_max`: 区間active加算・全値clear後のactive反転・区間最大値をO(log n)で扱う。
+- `range_divide_set_range_sum`: 非負整数列の区間切り捨て除算・区間代入・区間和を扱う。
 - `range_chmin_chmax_add_range_sum`: 区間chmin・chmax・加算・一点代入・区間和: Segment Tree Beatsで各操作を償却O(log n)で行う。
 
 
@@ -81,10 +82,31 @@ documentation_of: //cp/utility/presetsegtree.hpp
 - `range_flip_range_sum`
 - `range_flip_range_inversion`
 - `range_active_add_range_clear_flip_max`
+- `range_divide_set_range_sum`
 - `range_chmin_chmax_add_range_sum`
 
 すべて半開区間`[left,right)`を使う。構築は`O(n)`、一点・区間更新と区間取得は
 特記がない限り`O(log n)`。配列として意味のある型は`operator[]`と一点`set`を持つ。
+
+### 区間切り捨て除算・代入・和
+
+```cpp
+range_divide_set_range_sum<long long> data(values);
+data.divide(left, right, divisor);
+data.set(left, right, value);
+long long answer = data.sum(left, right);
+```
+
+`range_divide_set_range_sum<T>`は非負整数列専用で、`divide(left,right,divisor)`により
+
+$$
+a_i\leftarrow\left\lfloor\frac{a_i}{\mathit{divisor}}\right\rfloor
+\qquad (\mathit{left}\leq i<\mathit{right})
+$$
+
+を行う。`divisor >= 2`、構築値と代入値は非負でなければならない。`divide`は値が半減する性質を使い、
+償却$O(\log n\log V)$で動作する。負数に対するC++の整数除算は床関数と一致しないため、この型へ負数を
+渡してはいけない。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -1955,6 +1977,86 @@ T operator[](int index)
 ```
 
 O(log n)。data[index]はindex番目の値を返す。
+
+### `size`
+
+```cpp
+int size() const noexcept
+```
+
+O(1)。要素数を返す。
+
+### `range_divide_set_range_sum`
+
+```cpp
+template<class T> struct range_divide_set_range_sum
+```
+
+非負整数列の区間切り捨て除算・区間代入・区間和: range_divide_set_range_sum<long long> data(values)。
+
+### `range_divide_set_range_sum`
+
+```cpp
+explicit range_divide_set_range_sum(int n) : range_divide_set_range_sum(std::vector<T>(n))
+```
+
+O(n)。n個の0から構築する。
+
+### `range_divide_set_range_sum`
+
+```cpp
+explicit range_divide_set_range_sum(const std::vector<T>& values) : n_(static_cast<int>(values.size())), nodes_(std::max(1, 4 * n_))
+```
+
+O(n)。非負整数valuesから構築する。
+
+### `divide`
+
+```cpp
+void divide(int left, int right, T divisor)
+```
+
+償却O(log n log V)。[left,right)の各a[i]をfloor(a[i]/divisor)へ更新する。divisor>=2。
+
+### `set`
+
+```cpp
+void set(int left, int right, T value)
+```
+
+O(log n)。[left,right)の各a[i]を非負整数valueへ代入する。
+
+### `set`
+
+```cpp
+void set(int index, T value)
+```
+
+O(log n)。a[index]を非負整数valueへ代入する。
+
+### `sum`
+
+```cpp
+T sum(int left, int right)
+```
+
+O(log n)。[left,right)の和を返す。
+
+### `sum`
+
+```cpp
+T sum() const
+```
+
+O(1)。全要素の和を返す。
+
+### `operator[]`
+
+```cpp
+T operator[](int index)
+```
+
+O(log n)。data[index]はa[index]を値で返す。
 
 ### `size`
 

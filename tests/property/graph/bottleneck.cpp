@@ -29,6 +29,45 @@ vector<vector<int>> minimax(const undirected_graph<int>& graph, int raised_edge 
 
 int main() {
     mt19937 random(20260716);
+    for (int size = 1; size <= 14; ++size) {
+        for (int trial = 0; trial < 100; ++trial) {
+            directed_graph<> graph(size);
+            for (int from = 0; from < size; ++from) {
+                for (int to = 0; to < size; ++to) {
+                    if (from != to && random() % 4 == 0) graph.add_edge(from, to);
+                }
+            }
+            vector<int> cost(size);
+            for (int& value : cost) value = random() % 7;
+            constexpr int infinity = 1 << 20;
+            vector distance(size, vector<int>(size, infinity));
+            for (int vertex = 0; vertex < size; ++vertex) distance[vertex][vertex] = cost[vertex];
+            for (int from = 0; from < size; ++from) {
+                for (const auto& edge : graph[from]) {
+                    distance[from][edge.to] = min(distance[from][edge.to],
+                        max(cost[from], cost[edge.to]));
+                }
+            }
+            for (int middle = 0; middle < size; ++middle) {
+                for (int from = 0; from < size; ++from) {
+                    for (int to = 0; to < size; ++to) {
+                        distance[from][to] = min(distance[from][to],
+                            max(distance[from][middle], distance[middle][to]));
+                    }
+                }
+            }
+            vector<pair<int, int>> queries;
+            for (int from = 0; from < size; ++from) {
+                for (int to = 0; to < size; ++to) queries.emplace_back(from, to);
+            }
+            const auto answer = minimum_vertex_bottleneck_paths(graph, cost, queries);
+            for (int query = 0; query < static_cast<int>(queries.size()); ++query) {
+                const auto [from, to] = queries[query];
+                if (distance[from][to] == infinity) assert(!answer[query].has_value());
+                else assert(answer[query] == distance[from][to]);
+            }
+        }
+    }
     for (int trial = 0; trial < 1000; ++trial) {
         const int n = 2 + random() % 7;
         undirected_graph<int> graph(n);

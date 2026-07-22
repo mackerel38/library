@@ -1,6 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc427/tasks/abc427_e"
 #include <bits/stdc++.h>
-#include "graph/translation.hpp"
+#include "recipe/translation.hpp"
 
 using namespace std;
 using namespace poe;

@@ -16,7 +16,7 @@ affinevalue compose(affinevalue first, affinevalue second) {
     return {second.a * first.a, second.a * first.b + second.b};
 }
 
-affinevalue identity() {
+affinevalue affine_identity() {
     return {1, 0};
 }
 
@@ -26,7 +26,7 @@ int main() {
 
     int q;
     cin >> q;
-    swag<affinevalue, compose, identity> functions;
+    swag<affinevalue, compose, affine_identity> functions;
     while (q--) {
         int type;
         cin >> type;

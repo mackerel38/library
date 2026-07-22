@@ -105,6 +105,13 @@ int main() {
     active.deactivate(0);
     assert(active.max(0, 2) == 0);
 
+    poe::range_divide_set_range_sum<long long> divide_sum({10, 3, 5, 20});
+    divide_sum.divide(1, 4, 3);
+    assert(divide_sum.sum() == 18 && divide_sum[2] == 1);
+    divide_sum.set(0, 3, 8);
+    divide_sum.set(1, 5);
+    assert(divide_sum.sum(0, 4) == 27 && divide_sum[1] == 5);
+
     poe::range_chmin_chmax_add_range_sum<long long> beats(values);
     beats.chmin(0, 4, 3);
     beats.chmax(0, 2, 2);

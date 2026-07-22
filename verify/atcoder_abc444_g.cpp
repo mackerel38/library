@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "math/gaussiannorm.hpp"
+#include "recipe/gaussiannorm.hpp"
 #include "math/modint.hpp"
 
 using namespace std;

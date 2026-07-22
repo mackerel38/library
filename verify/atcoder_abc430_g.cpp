@@ -1,6 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc430/tasks/abc430_g"
 #include <bits/stdc++.h>
-#include "structure/setsegtree.hpp"
+#include "recipe/setsegtree.hpp"
 
 using namespace std;
 using namespace poe;

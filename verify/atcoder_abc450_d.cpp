@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "algorithm/circular.hpp"
+#include "algorithm/modularrange.hpp"
 
 using namespace std;
 using namespace poe;

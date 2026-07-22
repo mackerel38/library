@@ -10,10 +10,13 @@ namespace poe {
 template<int mod>
 fps<mod> polynomial_product(std::vector<fps<mod>> polynomials, int limit = -1) {
     using series = fps<mod>;
-    if (polynomials.empty()) return series{1}.prefix(limit < 0 ? 1 : limit);
+    if (polynomials.empty()) return limit == 0 ? series{} : series{1};
     auto solve = [&](auto&& self, int left, int right) -> series {
         if (right - left == 1) {
-            return limit < 0 ? polynomials[left] : polynomials[left].prefix(limit);
+            if (limit >= 0 && polynomials[left].size_int() > limit) {
+                polynomials[left].resize(limit);
+            }
+            return std::move(polynomials[left]);
         }
         const int middle = (left + right) / 2;
         series result = self(self, left, middle) * self(self, middle, right);
@@ -21,6 +24,21 @@ fps<mod> polynomial_product(std::vector<fps<mod>> polynomials, int limit = -1) {
         return result;
     };
     return solve(solve, 0, static_cast<int>(polynomials.size()));
+}
+
+/// O(M(n) log n)。rootsを重複込みで根に持つmonic多項式prod(x-roots[i])を返す。
+template <int mod>
+fps<mod> polynomial_from_roots(
+    const std::vector<staticmodint<mod>>& roots
+) {
+    using series = fps<mod>;
+    if (roots.empty()) return series{1};
+    const auto solve = [&](auto&& self, int left, int right) -> series {
+        if (right - left == 1) return series{-roots[left], 1};
+        const int middle = (left + right) / 2;
+        return self(self, left, middle) * self(self, middle, right);
+    };
+    return solve(solve, 0, static_cast<int>(roots.size()));
 }
 
 /// O(d^3 M(S) log k)。polynomial_matrix_product(matrices,limit): 行列列を先頭から掛ける。

@@ -24,6 +24,14 @@ int main() {
             }
             assert(poe::subset_convolution(left, right) == expected);
 
+            std::fill(expected.begin(), expected.end(), mint{});
+            for (int first = 0; first < count; ++first) {
+                for (int second = 0; second < count; ++second) {
+                    expected[first ^ second] += left[first] * right[second];
+                }
+            }
+            assert(poe::xor_convolution(left, right) == expected);
+
             const int exponent = random() % 7;
             std::vector<mint> power(count);
             power[0] = 1;

@@ -7,6 +7,9 @@ int main() {
     using mint = poe::modint998244353;
 
     assert(poe::polynomial_product<998244353>({fps{1, 1}, fps{1, 2}}) == fps({1, 3, 2}));
+    assert(poe::polynomial_product<998244353>({fps{1, 1}, fps{1, 2}}, 2) == fps({1, 3}));
+    assert(poe::polynomial_product<998244353>({}, 5) == fps({1}));
+    assert(poe::polynomial_from_roots<998244353>({1, 2}) == fps({2, -3, 1}));
     poe::matrix<fps> first({{fps{1, 1}, fps{1}}, {fps{}, fps{1}}});
     poe::matrix<fps> second({{fps{1}, fps{0, 1}}, {fps{1}, fps{1}}});
     const auto matrix_product = poe::polynomial_matrix_product<998244353>(

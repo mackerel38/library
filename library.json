@@ -33,16 +33,38 @@
       "tests": ["tests/api/algorithm/binarysearch.cpp", "tests/property/algorithm/binarysearch.cpp"],
       "verify": ["verify/atcoder_abc463_d.cpp", "verify/atcoder_abc457_d.cpp", "verify/atcoder_abc314_h.cpp"]
     },
-    "cp/algorithm/circular.hpp": {
+    "cp/algorithm/dominance.hpp": {
       "benchmark": [],
-      "docs": "docs/algorithm/circular.md",
+      "docs": "docs/algorithm/dominance.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "三座標が全て非減少な最大重みchainと復元",
+      "symbols": ["poe::weightedpoint3d", "poe::dominancechainresult", "poe::maximum_weight_dominance_chain_3d"],
+      "tags": ["algorithm", "dynamic-programming", "dominance", "chain", "fenwick-tree", "reconstruction"],
+      "tests": ["tests/api/algorithm/dominance.cpp", "tests/property/algorithm/dominance.cpp"],
+      "verify": ["verify/atcoder_abc266_h.cpp"]
+    },
+    "cp/algorithm/modularrange.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/modularrange.md",
       "layer": 1,
       "status": "experimental",
       "summary_ja": "共通modulusの倍数移動で整数列の値域を最小化",
       "symbols": ["poe::minimum_modular_range"],
       "tags": ["algorithm", "circular", "modular", "range-minimization"],
-      "tests": ["tests/api/algorithm/circular.cpp", "tests/property/algorithm/circular.cpp"],
+      "tests": ["tests/api/algorithm/modularrange.cpp", "tests/property/algorithm/modularrange.cpp"],
       "verify": ["verify/atcoder_abc450_d.cpp"]
+    },
+    "cp/algorithm/multisettransform.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/multisettransform.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "Prefix木上の二多重集合matchingと2倍・2除算変換",
+      "symbols": ["poe::prefixmultisetmatcher", "poe::minimum_double_halve_multiset_operations"],
+      "tags": ["algorithm", "multiset", "trie", "prefix", "matching", "binary"],
+      "tests": ["tests/api/algorithm/multisettransform.cpp", "tests/property/algorithm/multisettransform.cpp"],
+      "verify": ["verify/atcoder_abc254_h.cpp"]
     },
     "cp/algorithm/rangemin.hpp": {
       "benchmark": [],
@@ -99,15 +121,37 @@
       "tests": ["tests/api/algorithm/isotonic.cpp", "tests/property/algorithm/isotonic.cpp"],
       "verify": ["verify/atcoder_abc459_f.cpp"]
     },
-    "cp/algorithm/lipschitz.hpp": {
+    "cp/algorithm/intervalcrossing.hpp": {
       "benchmark": [],
-      "docs": "docs/algorithm/lipschitz.md",
+      "docs": "docs/algorithm/intervalcrossing.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "端点が厳密に交互に現れる区間対の計数",
+      "symbols": ["poe::count_alternating_interval_pairs"],
+      "tags": ["algorithm", "interval", "chord", "crossing", "fenwick-tree"],
+      "tests": ["tests/api/algorithm/intervalcrossing.cpp", "tests/property/algorithm/intervalcrossing.cpp"],
+      "verify": ["verify/atcoder_abc263_h.cpp"]
+    },
+    "cp/algorithm/quadraticselection.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/quadraticselection.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "固定個数選択における総和の二乗と個別利得の最大化",
+      "symbols": ["poe::maximum_quadratic_k_selection"],
+      "tags": ["algorithm", "selection", "quadratic", "convex-hull", "kinetic-sort"],
+      "tests": ["tests/api/algorithm/quadraticselection.cpp", "tests/property/algorithm/quadraticselection.cpp"],
+      "verify": ["verify/atcoder_abc257_h.cpp"]
+    },
+    "cp/algorithm/slopeconstraint.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/slopeconstraint.md",
       "layer": 1,
       "status": "experimental",
       "summary_ja": "上限制約付き離散Lipschitz列の最大下包絡",
-      "symbols": ["poe::lipschitz_minorant"],
+      "symbols": ["poe::slope_minorant"],
       "tags": ["algorithm", "lipschitz", "distance-transform", "constraint-propagation"],
-      "tests": ["tests/api/algorithm/lipschitz.cpp", "tests/property/algorithm/lipschitz.cpp"],
+      "tests": ["tests/api/algorithm/slopeconstraint.cpp", "tests/property/algorithm/slopeconstraint.cpp"],
       "verify": ["verify/atcoder_abc443_d.cpp"]
     },
     "cp/algorithm/powerorbit.hpp": {
@@ -121,11 +165,11 @@
       "tests": ["tests/api/algorithm/powerorbit.cpp", "tests/property/algorithm/powerorbit.cpp"],
       "verify": ["verify/atcoder_abc444_g.cpp"]
     },
-    "cp/algorithm/pairdistance.hpp": {
-      "benchmark": [], "docs": "docs/algorithm/pairdistance.md", "layer": 1, "status": "experimental",
+    "cp/algorithm/absolutedifference.hpp": {
+      "benchmark": [], "docs": "docs/algorithm/absolutedifference.md", "layer": 1, "status": "experimental",
       "summary_ja": "二列から一要素ずつ選ぶ全組の絶対差和", "symbols": ["poe::sum_cross_absolute"],
       "tags": ["algorithm", "absolute-difference", "binary-search", "prefix-sum"],
-      "tests": ["tests/api/algorithm/pairdistance.cpp", "tests/property/algorithm/pairdistance.cpp"],
+      "tests": ["tests/api/algorithm/absolutedifference.cpp", "tests/property/algorithm/absolutedifference.cpp"],
       "verify": ["verify/atcoder_abc437_d.cpp"]
     },
     "cp/algorithm/permutation.hpp": {
@@ -149,6 +193,17 @@
       "tags": ["algorithm", "automaton", "breadth-first-search", "lexicographic"],
       "tests": ["tests/api/algorithm/shortestword.cpp", "tests/property/algorithm/shortestword.cpp"],
       "verify": ["verify/atcoder_abc443_f.cpp"]
+    },
+    "cp/algorithm/subarrayminsum.hpp": {
+      "benchmark": [],
+      "docs": "docs/algorithm/subarrayminsum.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "区間最小値と非負区間和の合計が上限以下となる部分配列計数",
+      "symbols": ["poe::count_subarrays_min_plus_sum_at_most"],
+      "tags": ["algorithm", "subarray", "cartesian-tree", "prefix-sum", "binary-search", "divide-and-conquer"],
+      "tests": ["tests/api/algorithm/subarrayminsum.cpp", "tests/property/algorithm/subarrayminsum.cpp"],
+      "verify": ["verify/atcoder_abc282_h.cpp"]
     },
     "cp/algorithm/twopointer.hpp": {
       "benchmark": [],
@@ -175,7 +230,7 @@
     "cp/dp/all.hpp": {
       "benchmark": [],
       "docs": "docs/dp/catalog.md",
-      "layer": 5,
+      "layer": 7,
       "status": "experimental",
       "summary_ja": "DPカテゴリの一括include",
       "symbols": [],
@@ -282,15 +337,15 @@
       "tests": ["tests/api/dp/partition.cpp", "tests/property/dp/partition.cpp"],
       "verify": ["verify/atcoder_abc438_d.cpp", "verify/atcoder_abc418_g.cpp"]
     },
-    "cp/dp/permutation.hpp": {
+    "cp/recipe/insertioncomponents.hpp": {
       "benchmark": [],
-      "docs": "docs/dp/permutation.md",
+      "docs": "docs/recipe/insertioncomponents.md",
       "layer": 0,
       "status": "experimental",
       "summary_ja": "昇順挿入時の隣接済み連結成分数による順列DP",
       "symbols": ["poe::insertion_component_counts"],
-      "tags": ["dynamic-programming", "permutation", "insertion-dp", "connected-components"],
-      "tests": ["tests/api/dp/permutation.cpp", "tests/property/dp/permutation.cpp"],
+      "tags": ["recipe", "dynamic-programming", "permutation", "insertion-dp", "connected-components"],
+      "tests": ["tests/api/recipe/insertioncomponents.cpp", "tests/property/recipe/insertioncomponents.cpp"],
       "verify": ["verify/atcoder_abc313_h.cpp"]
     },
     "cp/dp/profile.hpp": {
@@ -314,6 +369,61 @@
       "tags": ["dynamic-programming", "frontier", "sparse"],
       "tests": ["tests/api/dp/frontier.cpp"],
       "verify": []
+    },
+    "cp/dp/groupassignment.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/groupassignment.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "順番固定の多種類要素を種類別人数指定で二群へ分ける最小費用DP",
+      "symbols": ["poe::minimum_two_group_assignment"],
+      "tags": ["dynamic-programming", "assignment", "quota", "two-groups", "multidimensional-dp"],
+      "tests": ["tests/api/dp/groupassignment.cpp", "tests/property/dp/groupassignment.cpp"],
+      "verify": ["verify/atcoder_abc290_h.cpp"]
+    },
+    "cp/dp/gridpath.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/gridpath.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "group別右下単調grid path総数の頻度平方根分割",
+      "symbols": ["poe::gridpathpoint", "poe::count_grouped_monotone_grid_paths"],
+      "tags": ["dynamic-programming", "grid", "monotone-path", "square-root-decomposition", "combinatorics"],
+      "tests": ["tests/api/dp/gridpath.cpp", "tests/property/dp/gridpath.cpp"],
+      "verify": ["verify/atcoder_abc259_h.cpp"]
+    },
+    "cp/dp/intervalmaximum.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/intervalmaximum.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "複数の区間最大値制約を満たす非負整数列の数え上げ",
+      "symbols": ["poe::intervalmaximumconstraint", "poe::count_interval_maximum_sequences"],
+      "tags": ["dynamic-programming", "interval", "range-maximum", "counting", "lazy-segment-tree"],
+      "tests": ["tests/api/dp/intervalmaximum.cpp", "tests/property/dp/intervalmaximum.cpp"],
+      "verify": ["verify/atcoder_abc262_h.cpp"]
+    },
+    "cp/dp/decreasingconvex.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/decreasingconvex.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "merge可能な単調減少離散凸DP関数とsuffix min-plus遷移",
+      "symbols": ["poe::decreasingconvexsequence"],
+      "tags": ["dynamic-programming", "convex", "piecewise-linear", "small-to-large", "min-plus"],
+      "tests": ["tests/api/dp/decreasingconvex.cpp", "tests/property/dp/decreasingconvex.cpp", "tests/property/dp/decreasingconvexmonster.cpp"],
+      "verify": ["verify/atcoder_abc275_h.cpp"]
+    },
+    "cp/dp/permutationthreshold.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/permutationthreshold.md",
+      "layer": 6,
+      "status": "experimental",
+      "summary_ja": "順列の位置別下限制約を満たす個数分布の高速Hakone Ekiden DP",
+      "symbols": ["poe::permutation_threshold_counts"],
+      "tags": ["dynamic-programming", "permutation", "threshold", "hakone-ekiden", "multipoint-evaluation", "inclusion-exclusion"],
+      "tests": ["tests/api/dp/permutationthreshold.cpp", "tests/property/dp/permutationthreshold.cpp"],
+      "verify": ["verify/atcoder_abc272_h.cpp"]
     },
     "cp/dp/sequence.hpp": {
       "benchmark": [],
@@ -358,6 +468,17 @@
       "tags": ["dynamic-programming", "subset-sum", "bitset", "meet-in-the-middle", "independent-set", "path"],
       "tests": ["tests/api/dp/dp.cpp", "tests/api/dp/subsetsumstatistics.cpp", "tests/property/dp/dp.cpp", "tests/property/dp/subsetsumstatistics.cpp", "tests/api/dp/nonadjacentsubsetsum.cpp", "tests/property/dp/nonadjacentsubsetsum.cpp"],
       "verify": ["verify/atcoder_abc427_f.cpp", "verify/atcoder_tdpc_contest.cpp", "verify/atcoder_abc464_f.cpp"]
+    },
+    "cp/dp/subsetsumcount.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/subsetsumcount.md",
+      "layer": 6,
+      "status": "experimental",
+      "summary_ja": "部分集合和の個数を選択個数の偶奇別に高速計算",
+      "symbols": ["poe::subsetsumparitycounts", "poe::subset_sum_parity_counts"],
+      "tags": ["dynamic-programming", "subset-sum", "counting", "parity", "formal-power-series"],
+      "tests": ["tests/api/dp/subsetsumcount.cpp", "tests/property/dp/subsetsumcount.cpp"],
+      "verify": ["verify/atcoder_abc267_h.cpp"]
     },
     "cp/dp/wildcardorder.hpp": {
       "benchmark": [],
@@ -452,11 +573,11 @@
       "docs": "docs/fps/combinatorial.md",
       "layer": 6,
       "status": "experimental",
-      "summary_ja": "OGF・EGFによるgroup分配、ラベル付き木、隣接異記号wordの数え上げ",
-      "symbols": ["poe::groupdistributioncounts", "poe::divisible_group_counts", "poe::labeled_tree_degree_weight_sum", "poe::count_labeled_trees_with_degrees", "poe::adjacentdistinctwordcounts", "poe::adjacent_distinct_words"],
+      "summary_ja": "OGF・EGFによるgroup分配、ラベル付き木・色順列・wordの数え上げ",
+      "symbols": ["poe::groupdistributioncounts", "poe::divisible_group_counts", "poe::labeled_tree_degree_weight_sum", "poe::count_labeled_trees_with_degrees", "poe::adjacentdistinctwordcounts", "poe::adjacent_distinct_words", "poe::labeled_color_change_counts"],
       "tags": ["formal-power-series", "ordinary-generating-function", "exponential-generating-function", "distribution", "prufer-code", "labeled-tree", "degree", "word", "adjacent-distinct", "inclusion-exclusion"],
       "tests": ["tests/api/fps/combinatorial.cpp", "tests/property/fps/combinatorial.cpp", "tests/api/fps/labeledtree.cpp", "tests/property/fps/labeledtree.cpp", "tests/api/fps/adjacentdistinct.cpp", "tests/property/fps/adjacentdistinct.cpp"],
-      "verify": ["verify/atcoder_abc422_g.cpp", "verify/atcoder_abc303_h.cpp", "verify/atcoder_abc297_h.cpp"]
+      "verify": ["verify/atcoder_abc260_h.cpp", "verify/atcoder_abc422_g.cpp", "verify/atcoder_abc303_h.cpp", "verify/atcoder_abc297_h.cpp"]
     },
     "cp/fps/composition.hpp": {
       "benchmark": [],
@@ -518,8 +639,8 @@
       "docs": "docs/fps/polynomial.md",
       "layer": 5,
       "status": "experimental",
-      "summary_ja": "多項式列・多項式行列列の積、除算、多点評価、補間、Taylor shift",
-      "symbols": ["poe::polynomial_product", "poe::polynomial_matrix_product", "poe::polynomial_divmod", "poe::multipoint_evaluation", "poe::polynomial_interpolation", "poe::taylor_shift"],
+      "summary_ja": "多項式列・一次因子・多項式行列列の積、除算、多点評価、補間、Taylor shift",
+      "symbols": ["poe::polynomial_product", "poe::polynomial_from_roots", "poe::polynomial_matrix_product", "poe::polynomial_divmod", "poe::multipoint_evaluation", "poe::polynomial_interpolation", "poe::taylor_shift"],
       "tags": ["formal-power-series", "polynomial", "matrix-product", "multipoint-evaluation", "interpolation"],
       "tests": ["tests/api/fps/polynomial.cpp", "tests/property/fps/polynomial.cpp"],
       "verify": ["verify/atcoder_abc462_g.cpp", "verify/atcoder_fps_24_e.cpp", "verify/atcoder_fps_24_i.cpp", "verify/atcoder_fps_24_p.cpp", "verify/atcoder_abc317_h.cpp"]
@@ -540,11 +661,22 @@
       "docs": "docs/fps/online.md",
       "layer": 4,
       "status": "experimental",
-      "summary_ja": "固定kernelと両列逐次確定に対応するオンライン畳み込みDP",
-      "symbols": ["poe::relaxedconvolution", "poe::online_convolution", "poe::convolution_recurrence"],
-      "tags": ["formal-power-series", "online-convolution", "relaxed-convolution", "dynamic-programming"],
+      "summary_ja": "固定kernel・両列逐次確定・動的一次因子積に対応するオンライン畳み込みDP",
+      "symbols": ["poe::relaxedconvolution", "poe::online_convolution", "poe::convolution_recurrence", "poe::online_factor_product_coefficients"],
+      "tags": ["formal-power-series", "online-convolution", "relaxed-convolution", "dynamic-factor-product", "dynamic-programming"],
       "tests": ["tests/api/fps/advanced.cpp", "tests/property/fps/advanced.cpp"],
-      "verify": ["verify/atcoder_fps_24_j.cpp", "verify/atcoder_abc315_h.cpp"]
+      "verify": ["verify/atcoder_fps_24_j.cpp", "verify/atcoder_abc281_h.cpp", "verify/atcoder_abc315_h.cpp"]
+    },
+    "cp/fps/partition.hpp": {
+      "benchmark": [],
+      "docs": "docs/fps/partition.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "一般五角数定理によるEuler積の疎係数・整数分割数・巨大次数係数",
+      "symbols": ["poe::pentagonalterm", "poe::generalized_pentagonal_terms", "poe::partition_numbers", "poe::euler_product_over_one_minus_x_coefficient"],
+      "tags": ["formal-power-series", "partition", "pentagonal-number", "euler-product", "lucas-theorem"],
+      "tests": ["tests/api/fps/partition.cpp", "tests/property/fps/partition.cpp"],
+      "verify": ["verify/atcoder_abc279_h.cpp"]
     },
     "cp/fps/rational.hpp": {
       "benchmark": [],
@@ -552,10 +684,10 @@
       "layer": 5,
       "status": "experimental",
       "summary_ja": "有理型母関数の和・積・展開・遠い係数・submask係数和、制約構築と冪和",
-      "symbols": ["poe::rationalfps", "poe::rational_sum", "poe::rational_product", "poe::weightedsumvariable", "poe::weighted_sum_rational", "poe::count_weighted_sum", "poe::power_sums"],
+      "symbols": ["poe::rationalfps", "poe::rational_sum", "poe::rational_product", "poe::weightedsumvariable", "poe::weighted_sum_rational", "poe::count_weighted_sum", "poe::weighted_power_sums", "poe::power_sums"],
       "tags": ["formal-power-series", "rational-generating-function", "weighted-sum", "power-sum"],
       "tests": ["tests/api/fps/advanced.cpp", "tests/property/fps/advanced.cpp"],
-      "verify": ["verify/atcoder_fps_24_b.cpp", "verify/atcoder_fps_24_q.cpp", "verify/atcoder_fps_24_t.cpp", "verify/atcoder_abc300_h.cpp"]
+      "verify": ["verify/atcoder_fps_24_b.cpp", "verify/atcoder_fps_24_q.cpp", "verify/atcoder_fps_24_t.cpp", "verify/atcoder_abc260_h.cpp", "verify/atcoder_abc300_h.cpp"]
     },
     "cp/fps/setfps.hpp": {
       "benchmark": [],
@@ -579,6 +711,17 @@
       "tests": ["tests/api/fps/sparse.cpp", "tests/property/fps/sparse.cpp"],
       "verify": ["verify/atcoder_fps_24_a.cpp", "verify/atcoder_fps_24_g.cpp"]
     },
+    "cp/fps/stirling.hpp": {
+      "benchmark": [],
+      "docs": "docs/fps/stirling.md",
+      "layer": 6,
+      "status": "experimental",
+      "summary_ja": "Taylor shiftと畳み込みによる第一種・第二種Stirling数の一行",
+      "symbols": ["poe::falling_factorial_polynomial", "poe::signed_stirling_first_row", "poe::stirling_second_row"],
+      "tags": ["formal-power-series", "stirling-number", "falling-factorial", "set-partition", "taylor-shift"],
+      "tests": ["tests/api/fps/stirling.cpp", "tests/property/fps/stirling.cpp"],
+      "verify": ["verify/stirling_number_of_the_first_kind.test.cpp", "verify/stirling_number_of_the_second_kind.test.cpp", "verify/atcoder_abc278_h.cpp"]
+    },
     "cp/fps/transform.hpp": {
       "benchmark": [],
       "docs": "docs/fps/transform.md",
@@ -598,8 +741,19 @@
       "summary_ja": "gameカテゴリの一括include",
       "symbols": [],
       "tags": ["aggregate", "game"],
-      "tests": ["tests/api/game/dag.cpp"],
+      "tests": ["tests/api/game/dag.cpp", "tests/api/game/alternating.cpp"],
       "verify": []
+    },
+    "cp/game/alternating.hpp": {
+      "benchmark": [],
+      "docs": "docs/game/alternating.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "循環を含む非負重み付き交互min/maxゲームの後退解析",
+      "symbols": ["poe::gameplayer", "poe::alternatingpathgameresult", "poe::alternating_path_game"],
+      "tags": ["game", "graph", "retrograde-analysis", "minimax", "cycle", "shortest-path"],
+      "tests": ["tests/api/game/alternating.cpp", "tests/property/game/alternating.cpp"],
+      "verify": ["verify/atcoder_abc261_h.cpp"]
     },
     "cp/game/dag.hpp": {
       "benchmark": [],
@@ -666,6 +820,39 @@
       "tags": ["geometry", "closest-pair", "divide-and-conquer"],
       "tests": ["tests/api/geometry/closestpair.cpp", "tests/property/geometry/closestpair.cpp"],
       "verify": ["verify/closest_pair.test.cpp"]
+    },
+    "cp/geometry/convexpath.hpp": {
+      "benchmark": [],
+      "docs": "docs/geometry/convexpath.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "凸多角形の内部を避ける二点間最短距離",
+      "symbols": ["poe::shortest_path_avoiding_convex_polygon"],
+      "tags": ["geometry", "convex-polygon", "shortest-path", "convex-hull", "obstacle"],
+      "tests": ["tests/api/geometry/convexpath.cpp", "tests/property/geometry/convexpath.cpp"],
+      "verify": ["verify/atcoder_abc286_h.cpp"]
+    },
+    "cp/geometry/latticemove.hpp": {
+      "benchmark": [],
+      "docs": "docs/geometry/latticemove.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "二つの整数移動ベクトルの非負整数結合による最小手数",
+      "symbols": ["poe::minimum_lattice_moves", "poe::minimum_two_kind_lattice_moves"],
+      "tags": ["geometry", "lattice", "integer-vector", "minimum-moves", "diophantine-equation"],
+      "tests": ["tests/api/geometry/latticemove.cpp", "tests/property/geometry/latticemove.cpp"],
+      "verify": ["verify/atcoder_abc271_h.cpp"]
+    },
+    "cp/geometry/line.hpp": {
+      "benchmark": [],
+      "docs": "docs/geometry/line.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "直線の交点・距離と円内交点数・k番目交点距離",
+      "symbols": ["poe::line", "poe::line_intersection", "poe::distance_to_line", "poe::count_line_intersections_in_circle", "poe::kth_line_intersection_distance"],
+      "tags": ["geometry", "line", "intersection", "circle", "chord", "binary-search"],
+      "tests": ["tests/api/geometry/line.cpp", "tests/property/geometry/line.cpp"],
+      "verify": ["verify/atcoder_abc263_h.cpp"]
     },
     "cp/geometry/point.hpp": {
       "benchmark": [],
@@ -826,11 +1013,11 @@
       "docs": "docs/graph/bottleneck.md",
       "layer": 3,
       "status": "experimental",
-      "summary_ja": "辺重み増加に対する二頂点間minimax距離の感度判定",
-      "symbols": ["poe::bottlenecksensitivity"],
-      "tags": ["graph", "minimum-spanning-tree", "minimax-path", "kruskal", "bridge", "sensitivity"],
+      "summary_ja": "頂点bottleneck path queryと辺重み増加に対するminimax距離の感度判定",
+      "symbols": ["poe::minimum_vertex_bottleneck_paths", "poe::bottlenecksensitivity"],
+      "tags": ["graph", "bottleneck-path", "bitset", "warshall-floyd", "minimum-spanning-tree", "minimax-path", "kruskal", "bridge", "sensitivity"],
       "tests": ["tests/api/graph/bottleneck.cpp", "tests/property/graph/bottleneck.cpp"],
-      "verify": ["verify/atcoder_abc301_h.cpp"]
+      "verify": ["verify/atcoder_abc287_h.cpp", "verify/atcoder_abc301_h.cpp"]
     },
     "cp/graph/coloring.hpp": {
       "benchmark": [],
@@ -1063,16 +1250,27 @@
       "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp", "tests/api/graph/boundedtopological.cpp", "tests/property/graph/boundedtopological.cpp"],
       "verify": ["verify/aoj_grl_4_b.cpp", "verify/atcoder_abc304_h.cpp"]
     },
-    "cp/graph/translation.hpp": {
+    "cp/recipe/translation.hpp": {
       "benchmark": [],
-      "docs": "docs/graph/translation.md",
+      "docs": "docs/recipe/translation.md",
       "layer": 2,
       "status": "experimental",
       "summary_ja": "長方形grid上の点集合一斉平行移動・盤外消去の安全最短手順",
       "symbols": ["poe::minimum_safe_translation_clear_steps"],
-      "tags": ["graph", "grid", "breadth-first-search", "translation", "state-compression"],
-      "tests": ["tests/api/graph/translation.cpp", "tests/property/graph/translation.cpp"],
+      "tags": ["recipe", "graph", "grid", "breadth-first-search", "translation", "state-compression"],
+      "tests": ["tests/api/recipe/translation.cpp", "tests/property/recipe/translation.cpp"],
       "verify": ["verify/atcoder_abc427_e.cpp"]
+    },
+    "cp/recipe/compassmove.hpp": {
+      "benchmark": [],
+      "docs": "docs/recipe/compassmove.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "許可した8近傍方向だけを使う障害物なし格子の最小手数",
+      "symbols": ["poe::compassmoves"],
+      "tags": ["recipe", "geometry", "grid", "compass", "shortest-path", "lattice"],
+      "tests": ["tests/api/recipe/compassmove.cpp", "tests/property/recipe/compassmove.cpp"],
+      "verify": ["verify/atcoder_abc271_h.cpp"]
     },
     "cp/graph/travelingsalesman.hpp": {
       "benchmark": [],
@@ -1084,6 +1282,17 @@
       "tags": ["graph", "dynamic-programming", "traveling-salesman"],
       "tests": ["tests/api/graph/travelingsalesman.cpp", "tests/property/graph/travelingsalesman.cpp"],
       "verify": ["verify/aoj_dpl_2_a.test.cpp"]
+    },
+    "cp/graph/integerconstraints.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/integerconstraints.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "有界整数変数に対する二変数和制約の2-SAT",
+      "symbols": ["poe::boundedsumsat"],
+      "tags": ["graph", "sat", "2-sat", "integer-constraints", "bounded-sum"],
+      "tests": ["tests/api/graph/integerconstraints.cpp", "tests/property/graph/integerconstraints.cpp"],
+      "verify": ["verify/atcoder_abc277_h.cpp"]
     },
     "cp/graph/twosat.hpp": {
       "benchmark": [],
@@ -1107,15 +1316,15 @@
       "tests": ["tests/api/graph/grid.cpp", "tests/api/graph/layeredgrid.cpp", "tests/property/graph/layeredgrid.cpp", "tests/property/graph/sparsegrid.cpp"],
       "verify": ["verify/atcoder_abc413_g.cpp", "verify/atcoder_abc440_g.cpp", "verify/atcoder_abc450_c.cpp", "verify/atcoder_abc460_d.cpp"]
     },
-    "cp/graph/monotonegridshortestpath.hpp": {
+    "cp/recipe/monotonegridshortestpath.hpp": {
       "benchmark": [],
-      "docs": "docs/graph/monotonegridshortestpath.md",
+      "docs": "docs/recipe/monotonegridshortestpath.md",
       "layer": 3,
       "status": "experimental",
       "summary_ja": "固定高さgridの壁更新と列単調最短路query",
       "symbols": ["poe::monotonegridshortestpath"],
-      "tags": ["graph", "grid", "shortest-path", "min-plus", "segment-tree", "dynamic"],
-      "tests": ["tests/api/graph/monotonegridshortestpath.cpp", "tests/property/graph/monotonegridshortestpath.cpp"],
+      "tags": ["recipe", "graph", "grid", "shortest-path", "min-plus", "segment-tree", "dynamic"],
+      "tests": ["tests/api/recipe/monotonegridshortestpath.cpp", "tests/property/recipe/monotonegridshortestpath.cpp"],
       "verify": ["verify/atcoder_abc429_f.cpp"]
     },
     "cp/graph/hyperedge.hpp": {
@@ -1128,6 +1337,17 @@
       "tags": ["graph", "breadth-first-search", "hyperedge", "group-transition"],
       "tests": ["tests/api/graph/hyperedge.cpp", "tests/property/graph/hyperedge.cpp"],
       "verify": ["verify/atcoder_abc436_d.cpp"]
+    },
+    "cp/graph/unlabeledcount.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/unlabeledcount.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "全色使用の頂点彩色付き無ラベル単純無向グラフの数え上げ",
+      "symbols": ["poe::count_surjectively_colored_unlabeled_graphs"],
+      "tags": ["graph", "unlabeled-graph", "burnside", "polya", "vertex-coloring", "enumeration"],
+      "tests": ["tests/api/graph/unlabeledcount.cpp", "tests/property/graph/unlabeledcount.cpp"],
+      "verify": ["verify/atcoder_abc284_h.cpp"]
     },
     "cp/graph/warshallfloyd.hpp": {
       "benchmark": [],
@@ -1150,6 +1370,28 @@
       "tags": ["aggregate", "math"],
       "tests": ["tests/api/math/acl_math.cpp"],
       "verify": []
+    },
+    "cp/math/bitcountsum.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/bitcountsum.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "floor sumによる非負整数等差数列のpopcount総和",
+      "symbols": ["poe::sum_popcount_arithmetic_progression"],
+      "tags": ["math", "bit", "popcount", "arithmetic-progression", "floor-sum"],
+      "tests": ["tests/api/math/bitcountsum.cpp", "tests/property/math/bitcountsum.cpp"],
+      "verify": ["verify/atcoder_abc283_h.cpp"]
+    },
+    "cp/math/burnside.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/burnside.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "対称群のcycle type列挙によるBurnside軌道数",
+      "symbols": ["poe::symmetric_group_orbit_count"],
+      "tags": ["math", "combinatorics", "burnside", "polya", "symmetric-group", "integer-partition"],
+      "tests": ["tests/api/math/burnside.cpp", "tests/property/math/burnside.cpp"],
+      "verify": ["verify/atcoder_abc284_h.cpp"]
     },
     "cp/math/combination.hpp": {
       "benchmark": [],
@@ -1261,15 +1503,15 @@
       "tests": ["tests/api/math/gaussianinteger.cpp"],
       "verify": ["verify/atcoder_abc444_g.cpp"]
     },
-    "cp/math/gaussiannorm.hpp": {
+    "cp/recipe/gaussiannorm.hpp": {
       "benchmark": [],
-      "docs": "docs/math/gaussiannorm.md",
+      "docs": "docs/recipe/gaussiannorm.md",
       "layer": 2,
       "status": "experimental",
       "summary_ja": "素因数分解から二平方和解の法C剰余分布を数える",
       "symbols": ["poe::gaussian_norm_residue_distribution"],
-      "tags": ["math", "gaussian-integer", "sum-of-two-squares", "periodicity", "distribution"],
-      "tests": ["tests/api/math/gaussiannorm.cpp", "tests/property/math/gaussiannorm.cpp"],
+      "tags": ["recipe", "math", "gaussian-integer", "sum-of-two-squares", "periodicity", "distribution"],
+      "tests": ["tests/api/recipe/gaussiannorm.cpp", "tests/property/recipe/gaussiannorm.cpp"],
       "verify": ["verify/atcoder_abc444_g.cpp"]
     },
     "cp/math/interpolation.hpp": {
@@ -1282,6 +1524,17 @@
       "tags": ["math", "polynomial", "interpolation"],
       "tests": ["tests/api/dp/advanced.cpp"],
       "verify": []
+    },
+    "cp/math/lucas.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/lucas.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "Lucasの定理による小さい素数法の巨大二項係数",
+      "symbols": ["poe::lucascombination"],
+      "tags": ["math", "combinatorics", "binomial", "lucas-theorem", "prime-modulus"],
+      "tests": ["tests/api/math/lucas.cpp", "tests/property/math/lucas.cpp"],
+      "verify": ["verify/atcoder_abc279_h.cpp"]
     },
     "cp/math/linearecurrence.hpp": {
       "benchmark": [],
@@ -1299,11 +1552,11 @@
       "docs": "docs/math/matrix.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "通常・任意半環・min-plusの行列積と二分累乗",
-      "symbols": ["poe::matrix", "poe::semiring_matrix_product", "poe::semiring_matrix_power", "poe::minplus_matrix_product", "poe::minplus_matrix_power"],
-      "tags": ["math", "matrix", "dynamic-programming", "semiring", "min-plus"],
+      "summary_ja": "通常・任意半環・min-plus行列と疎イベント付き線形遷移",
+      "symbols": ["poe::matrix", "poe::matrix_vector_product", "poe::sparse_matrix_events", "poe::sparse_matrix_transitions", "poe::semiring_matrix_product", "poe::semiring_matrix_power", "poe::minplus_matrix_product", "poe::minplus_matrix_power"],
+      "tags": ["math", "matrix", "dynamic-programming", "sparse-events", "semiring", "min-plus"],
       "tests": ["tests/api/dp/advanced.cpp", "tests/api/math/matrix.cpp", "tests/property/math/matrix.cpp"],
-      "verify": ["verify/atcoder_dp_r.cpp", "verify/atcoder_tdpc_house.cpp", "verify/atcoder_abc445_f.cpp"]
+      "verify": ["verify/atcoder_dp_r.cpp", "verify/atcoder_tdpc_house.cpp", "verify/atcoder_abc258_h.cpp", "verify/atcoder_abc445_f.cpp"]
     },
     "cp/math/math.hpp": {
       "benchmark": [],
@@ -1338,6 +1591,39 @@
       "tests": ["tests/api/math/modularsum.cpp", "tests/property/math/modularsum.cpp"],
       "verify": ["verify/atcoder_abc429_g.cpp"]
     },
+    "cp/math/multiconvolution.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/multiconvolution.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "通常和とXORの二次元畳み込み分布を高速べき乗",
+      "symbols": ["poe::sum_xor_convolution_power"],
+      "tags": ["math", "convolution", "xor-convolution", "walsh-hadamard-transform", "multidimensional", "power"],
+      "tests": ["tests/api/math/multiconvolution.cpp", "tests/property/math/multiconvolution.cpp"],
+      "verify": ["verify/atcoder_abc265_h.cpp"]
+    },
+    "cp/math/nimber.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/nimber.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "64-bit nimberのXOR加法とNim積",
+      "symbols": ["poe::nim_product", "poe::nimber"],
+      "tags": ["math", "nimber", "nim-product", "field", "xor"],
+      "tests": ["tests/api/math/nimber.cpp", "tests/property/math/nimber.cpp"],
+      "verify": []
+    },
+    "cp/math/paritymatrix.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/paritymatrix.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "列和固定で全成分偶数の行を禁止した非負整数行列の数え上げ",
+      "symbols": ["poe::count_matrices_without_even_rows"],
+      "tags": ["math", "combinatorics", "matrix", "parity", "inclusion-exclusion", "generating-function"],
+      "tests": ["tests/api/math/paritymatrix.cpp", "tests/property/math/paritymatrix.cpp"],
+      "verify": ["verify/atcoder_abc285_h.cpp"]
+    },
     "cp/math/prime.hpp": {
       "benchmark": [],
       "docs": "docs/math/prime.md",
@@ -1349,27 +1635,60 @@
       "tests": ["tests/api/math/prime.cpp", "tests/property/math/prime.cpp"],
       "verify": ["verify/librarychecker_factorize.cpp", "verify/atcoder_abc420_g.cpp"]
     },
+    "cp/math/qanalog.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/qanalog.md",
+      "layer": 4,
+      "status": "experimental",
+      "summary_ja": "q整数・Gaussian二項係数と固定非零vectorを避ける有限体行空間計数",
+      "symbols": ["poe::qcombination", "poe::matrix_rowspace_avoiding_vector_counts"],
+      "tags": ["math", "q-analog", "gaussian-binomial", "finite-field", "matrix-rank", "convolution"],
+      "tests": ["tests/api/math/qanalog.cpp", "tests/property/math/qanalog.cpp"],
+      "verify": ["verify/atcoder_abc278_h.cpp"]
+    },
+    "cp/math/rectangleparity.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/rectangleparity.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "長方形XOR制約を満たす0/1行列の構成",
+      "symbols": ["poe::rectangleparitysystem"],
+      "tags": ["math", "linear-algebra", "gf2", "matrix", "rectangle", "parity"],
+      "tests": ["tests/api/math/rectangleparity.cpp", "tests/property/math/rectangleparity.cpp"],
+      "verify": ["verify/atcoder_abc276_h.cpp"]
+    },
     "cp/math/randomwalk.hpp": {
       "benchmark": [],
       "docs": "docs/math/randomwalk.md",
-      "layer": 3,
+      "layer": 4,
       "status": "experimental",
-      "summary_ja": "正の確率step和が指定周期剰余へ初到達する期待step数",
-      "symbols": ["poe::cyclic_hitting_expectation"],
-      "tags": ["math", "probability", "random-walk", "expectation", "linear-recurrence", "matrix-exponentiation"],
+      "summary_ja": "独立対称walkの合流確率列と正のstep和の周期剰余初到達期待値",
+      "symbols": ["poe::symmetric_walk_meeting_probabilities", "poe::cyclic_hitting_expectation"],
+      "tags": ["math", "probability", "random-walk", "meeting", "convolution", "expectation", "linear-recurrence", "matrix-exponentiation"],
       "tests": ["tests/api/math/randomwalk.cpp", "tests/property/math/randomwalk.cpp"],
-      "verify": ["verify/atcoder_abc299_h.cpp"]
+      "verify": ["verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
     },
     "cp/math/subsettransform.hpp": {
       "benchmark": [],
       "docs": "docs/math/subsettransform.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "部分集合変換・部分集合畳み込みとunit列の巨大冪",
-      "symbols": ["poe::subset_zeta", "poe::subset_mobius", "poe::superset_zeta", "poe::superset_mobius", "poe::subset_convolution", "poe::subset_convolution_unit_power", "poe::exact_match_counts", "poe::divisibility_match_counts"],
-      "tags": ["math", "subset", "zeta-transform", "mobius-transform", "subset-convolution", "power", "inclusion-exclusion", "divisibility", "sos-dp"],
+      "summary_ja": "部分集合変換、XOR・subset畳み込みとunit列の巨大冪",
+      "symbols": ["poe::xor_transform", "poe::xor_convolution", "poe::subset_zeta", "poe::subset_mobius", "poe::superset_zeta", "poe::superset_mobius", "poe::subset_convolution", "poe::subset_convolution_unit_power", "poe::exact_match_counts", "poe::divisibility_match_counts"],
+      "tags": ["math", "subset", "zeta-transform", "mobius-transform", "xor-convolution", "walsh-hadamard-transform", "subset-convolution", "power", "inclusion-exclusion", "divisibility", "sos-dp"],
       "tests": ["tests/api/dp/dp.cpp", "tests/api/math/subsettransform.cpp", "tests/property/math/subsettransform.cpp"],
-      "verify": ["verify/atcoder_ndpc2026_m.cpp", "verify/atcoder_abc423_f.cpp"]
+      "verify": ["verify/atcoder_ndpc2026_m.cpp", "verify/atcoder_abc423_f.cpp", "verify/atcoder_abc265_h.cpp"]
+    },
+    "cp/math/sternbrocot.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/sternbrocot.md",
+      "layer": 0,
+      "status": "experimental",
+      "summary_ja": "Stern-Brocot pathのrun-length表現と指定分数の仮想木",
+      "symbols": ["poe::sternbrocotpath", "poe::stern_brocot_path", "poe::sternbrocotvirtualtree", "poe::stern_brocot_virtual_tree"],
+      "tags": ["math", "fraction", "stern-brocot", "continued-fraction", "virtual-tree", "run-length"],
+      "tests": ["tests/api/math/sternbrocot.cpp", "tests/property/math/sternbrocot.cpp"],
+      "verify": ["verify/atcoder_abc273_h.cpp"]
     },
     "cp/math/tropicalconvolution.hpp": {
       "benchmark": [],
@@ -1393,6 +1712,17 @@
       "tests": ["tests/api/math/xorbasis.cpp", "tests/property/math/xorbasis.cpp"],
       "verify": ["verify/atcoder_abc141_f.cpp", "verify/atcoder_abc236_f.cpp"]
     },
+    "cp/math/xorcount.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/xorcount.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "上限付きXOR tuple計数とdistinct tuple・multiset間の変換",
+      "symbols": ["poe::bounded_xor_tuple_counts", "poe::distinct_xor_tuple_counts", "poe::xor_multiset_count"],
+      "tags": ["math", "xor", "counting", "digit-dp", "tuple", "multiset", "set-partition"],
+      "tests": ["tests/api/math/xorcount.cpp", "tests/property/math/xorcount.cpp"],
+      "verify": ["verify/atcoder_abc288_h.cpp"]
+    },
     "cp/string/all.hpp": {
       "benchmark": [],
       "docs": "docs/string/acl.md",
@@ -1409,11 +1739,11 @@
       "docs": "docs/string/avoid.md",
       "layer": 3,
       "status": "experimental",
-      "summary_ja": "Aho--Corasickと行列累乗による禁止pattern回避語の数え上げ",
-      "symbols": ["poe::count_avoiding_words"],
-      "tags": ["string", "aho-corasick", "matrix", "automaton-dp"],
+      "summary_ja": "禁止pattern全出現の最小文字置換と回避語の数え上げ",
+      "symbols": ["poe::minimum_pattern_replacements", "poe::count_avoiding_words"],
+      "tags": ["string", "aho-corasick", "interval-stabbing", "greedy", "matrix", "automaton-dp"],
       "tests": ["tests/api/string/avoid.cpp", "tests/property/string/avoid.cpp"],
-      "verify": ["verify/atcoder_abc458_f.cpp"]
+      "verify": ["verify/atcoder_abc268_h.cpp", "verify/atcoder_abc458_f.cpp"]
     },
     "cp/string/automaton.hpp": {
       "benchmark": [],
@@ -1576,27 +1906,16 @@
       "tests": ["tests/api/string/runlength.cpp", "tests/property/string/runlength.cpp"],
       "verify": ["verify/atcoder_abc019_b.cpp", "verify/atcoder_abc259_c.cpp", "verify/atcoder_abc433_c.cpp", "verify/atcoder_abc426_d.cpp"]
     },
-    "cp/string/stacksequence.hpp": {
+    "cp/recipe/stacksequence.hpp": {
       "benchmark": [],
-      "docs": "docs/string/stacksequence.md",
+      "docs": "docs/recipe/stacksequence.md",
       "layer": 3,
       "status": "experimental",
       "summary_ja": "一点更新・区間取得付きpush/pop操作列Segment Tree",
       "symbols": ["poe::stacksequenceresult", "poe::stacksequence"],
-      "tags": ["string", "segment-tree", "stack", "push-pop", "dynamic-query"],
-      "tests": ["tests/api/string/stacksequence.cpp", "tests/property/string/stacksequence.cpp"],
+      "tags": ["recipe", "string", "segment-tree", "stack", "push-pop", "dynamic-query"],
+      "tests": ["tests/api/recipe/stacksequence.cpp", "tests/property/recipe/stacksequence.cpp"],
       "verify": ["verify/atcoder_abc434_g.cpp"]
-    },
-    "cp/string/string.hpp": {
-      "benchmark": [],
-      "docs": "docs/string/string.md",
-      "layer": 5,
-      "status": "experimental",
-      "summary_ja": "ACL string相当の一括include",
-      "symbols": [],
-      "tags": ["aggregate", "string"],
-      "tests": ["tests/api/string/acl_string.cpp"],
-      "verify": []
     },
     "cp/string/suffixquery.hpp": {
       "benchmark": [],
@@ -1609,6 +1928,17 @@
       "tests": ["tests/api/string/acl_string.cpp", "tests/property/string/acl_string.cpp"],
       "verify": []
     },
+    "cp/string/xorrollinghash.hpp": {
+      "benchmark": [],
+      "docs": "docs/string/xorrollinghash.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "要素ごとのXORと両立するnimber Rolling Hash",
+      "symbols": ["poe::xorrollinghash"],
+      "tags": ["string", "sequence", "rolling-hash", "nimber", "xor", "lcp"],
+      "tests": ["tests/api/string/xorrollinghash.cpp", "tests/property/string/xorrollinghash.cpp"],
+      "verify": ["verify/atcoder_abc274_h.cpp"]
+    },
     "cp/string/subsequence.hpp": {
       "benchmark": [],
       "docs": "docs/string/subsequence.md",
@@ -1619,6 +1949,17 @@
       "tags": ["string", "subsequence", "dynamic-programming"],
       "tests": ["tests/api/dp/advanced.cpp", "tests/property/dp/advanced.cpp", "tests/api/string/distinctsubstring.cpp", "tests/property/string/distinctsubstring.cpp"],
       "verify": ["verify/atcoder_tdpc_lexicographical.cpp", "verify/atcoder_abc452_d.cpp"]
+    },
+    "cp/string/substringorder.hpp": {
+      "benchmark": [],
+      "docs": "docs/string/substringorder.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "複数文字列の全部分文字列を出現ごとに数える辞書順順位検索",
+      "symbols": ["poe::substringoccurrence", "poe::substringorder"],
+      "tags": ["string", "substring", "suffix-array", "lexicographic", "order-statistics"],
+      "tests": ["tests/api/string/substringorder.cpp", "tests/property/string/substringorder.cpp"],
+      "verify": ["verify/atcoder_abc280_h.cpp"]
     },
     "cp/string/suffixautomaton.hpp": {
       "benchmark": [],
@@ -1651,7 +1992,7 @@
       "symbols": ["poe::trienode", "poe::trie", "poe::ahomatch", "poe::ahocorasick"],
       "tags": ["string", "trie", "aho-corasick", "automaton"],
       "tests": ["tests/api/string/trie.cpp", "tests/property/string/trie.cpp"],
-      "verify": ["verify/atcoder_abc287_e.cpp", "verify/atcoder_abc419_f.cpp"]
+      "verify": ["verify/atcoder_abc268_h.cpp", "verify/atcoder_abc287_e.cpp", "verify/atcoder_abc419_f.cpp"]
     },
     "cp/string/zalgorithm.hpp": {
       "benchmark": [],
@@ -1718,6 +2059,17 @@
       "tags": ["structure", "interval", "ordered-set", "coverage"],
       "tests": ["tests/api/structure/intervalset.cpp", "tests/property/structure/intervalset.cpp"],
       "verify": ["verify/atcoder_abc435_e.cpp"]
+    },
+    "cp/structure/intervalmap.hpp": {
+      "benchmark": [],
+      "docs": "docs/structure/intervalmap.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "巨大座標上の区間定数写像と上書き前区間片の列挙",
+      "symbols": ["poe::intervalmapsegment", "poe::intervalmap"],
+      "tags": ["structure", "interval", "range-assign", "ordered-map", "sparse"],
+      "tests": ["tests/api/structure/intervalmap.cpp", "tests/property/structure/intervalmap.cpp"],
+      "verify": ["verify/atcoder_abc255_h.cpp"]
     },
     "cp/structure/laminarintervalset.hpp": {
       "benchmark": [],
@@ -1790,17 +2142,21 @@
       "docs": "docs/structure/fenwicktree.md",
       "layer": 2,
       "status": "experimental",
-      "summary_ja": "一点加算・代入・区間和・累積和二分探索を扱うFenwick Tree",
+      "summary_ja": "一次元の区間和と疎な二次元prefix monoidを扱うFenwick Tree",
       "symbols": [
-        "poe::fenwicktree"
+        "poe::fenwicktree",
+        "poe::fenwicktree2d"
       ],
       "tags": [
         "structure",
-        "prefix-sum"
+        "prefix-sum",
+        "two-dimensional",
+        "offline-compression"
       ],
       "tests": [
         "tests/api/structure/fenwicktree.cpp",
-        "tests/property/structure/fenwicktree.cpp"
+        "tests/property/structure/fenwicktree.cpp",
+        "tests/property/structure/fenwicktree2d.cpp"
       ],
       "verify": [
         "verify/fenwicktree.test.cpp"
@@ -1905,15 +2261,15 @@
       "tests": ["tests/api/structure/acl_structure.cpp", "tests/property/structure/acl_structure.cpp"],
       "verify": ["verify/segtree.test.cpp"]
     },
-    "cp/structure/setsegtree.hpp": {
+    "cp/recipe/setsegtree.hpp": {
       "benchmark": [],
-      "docs": "docs/structure/setsegtree.md",
+      "docs": "docs/recipe/setsegtree.md",
       "layer": 1,
       "status": "experimental",
       "summary_ja": "64要素以下の集合列に対する区間追加削除と最大要素数Segment Tree Beats",
       "symbols": ["poe::setmaxresult", "poe::setsegtree"],
-      "tags": ["structure", "segment-tree-beats", "set", "range-update"],
-      "tests": ["tests/api/structure/setsegtree.cpp", "tests/property/structure/setsegtree.cpp"],
+      "tags": ["recipe", "structure", "segment-tree-beats", "set", "range-update"],
+      "tests": ["tests/api/recipe/setsegtree.cpp", "tests/property/recipe/setsegtree.cpp"],
       "verify": ["verify/atcoder_abc430_g.cpp"]
     },
     "cp/structure/sparsetable.hpp": {
@@ -1949,15 +2305,15 @@
       "tests": ["tests/api/structure/topk.cpp", "tests/property/structure/topk.cpp"],
       "verify": ["verify/atcoder_abc447_g.cpp"]
     },
-    "cp/structure/thresholdsequence.hpp": {
+    "cp/recipe/thresholdsequence.hpp": {
       "benchmark": [],
-      "docs": "docs/structure/thresholdsequence.md",
+      "docs": "docs/recipe/thresholdsequence.md",
       "layer": 1,
       "status": "experimental",
       "summary_ja": "二分ブロックで末尾追加できる増減閾値写像列",
       "symbols": ["poe::thresholdsequence"],
-      "tags": ["structure", "append-only", "piecewise-function", "binary-counter", "online-query"],
-      "tests": ["tests/api/structure/thresholdsequence.cpp", "tests/property/structure/thresholdsequence.cpp"],
+      "tags": ["recipe", "structure", "append-only", "piecewise-function", "binary-counter", "online-query"],
+      "tests": ["tests/api/recipe/thresholdsequence.cpp", "tests/property/recipe/thresholdsequence.cpp"],
       "verify": ["verify/atcoder_abc427_g.cpp"]
     },
     "cp/structure/waveletmatrix.hpp": {
@@ -1985,13 +2341,24 @@
     "cp/tree/all.hpp": {
       "benchmark": [],
       "docs": "docs/tree/algorithm.md",
-      "layer": 5,
+      "layer": 6,
       "status": "experimental",
       "summary_ja": "treeカテゴリの一括include",
       "symbols": [],
       "tags": ["aggregate", "tree"],
       "tests": ["tests/api/tree/tree.cpp"],
       "verify": []
+    },
+    "cp/tree/antichain.hpp": {
+      "benchmark": [],
+      "docs": "docs/tree/antichain.md",
+      "layer": 5,
+      "status": "experimental",
+      "summary_ja": "根付き木のantichainを大きさ別に数える高速多項式木DP",
+      "symbols": ["poe::tree_antichain_counts"],
+      "tags": ["tree", "antichain", "generating-function", "static-top-tree", "polynomial", "convolution"],
+      "tests": ["tests/api/tree/antichain.cpp", "tests/property/tree/antichain.cpp"],
+      "verify": ["verify/atcoder_abc269_h.cpp"]
     },
     "cp/tree/cartesiantree.hpp": {
       "benchmark": [],
@@ -2114,15 +2481,15 @@
       "tests": ["tests/api/tree/tree.cpp", "tests/property/tree/tree.cpp"],
       "verify": ["verify/lca.test.cpp", "verify/atcoder_abc438_f.cpp"]
     },
-    "cp/tree/monochromatic.hpp": {
+    "cp/recipe/monochromatic.hpp": {
       "benchmark": [],
-      "docs": "docs/tree/monochromatic.md",
+      "docs": "docs/recipe/monochromatic.md",
       "layer": 3,
       "status": "experimental",
       "summary_ja": "二色木の色反転・重み更新・同色連結成分和",
       "symbols": ["poe::monochromatictree"],
-      "tags": ["tree", "heavy-light-decomposition", "dynamic", "component", "color"],
-      "tests": ["tests/api/tree/monochromatic.cpp", "tests/property/tree/monochromatic.cpp"],
+      "tags": ["recipe", "tree", "heavy-light-decomposition", "dynamic", "component", "color"],
+      "tests": ["tests/api/recipe/monochromatic.cpp", "tests/property/recipe/monochromatic.cpp"],
       "verify": ["verify/atcoder_abc460_g.cpp"]
     },
     "cp/tree/pathsum.hpp": {
@@ -2136,6 +2503,17 @@
       "tests": ["tests/api/tree/pathsum.cpp", "tests/property/tree/pathsum.cpp"],
       "verify": ["verify/atcoder_abc294_g.cpp"]
     },
+    "cp/tree/perfectsubtree.hpp": {
+      "benchmark": [],
+      "docs": "docs/tree/perfectsubtree.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "頂点prefixごとの完全r分誘導部分木計数",
+      "symbols": ["poe::perfect_ary_subtree_prefix_counts"],
+      "tags": ["tree", "dynamic-programming", "incremental", "perfect-tree", "elementary-symmetric-polynomial"],
+      "tests": ["tests/api/tree/perfectsubtree.cpp", "tests/property/tree/perfectsubtree.cpp"],
+      "verify": ["verify/atcoder_abc264_h.cpp"]
+    },
     "cp/tree/rerooting.hpp": {
       "benchmark": [],
       "docs": "docs/tree/rerooting.md",
@@ -2146,6 +2524,17 @@
       "tags": ["tree", "rerooting", "dynamic-programming"],
       "tests": ["tests/api/tree/tree.cpp", "tests/property/tree/tree.cpp"],
       "verify": ["verify/atcoder_dp_v.cpp"]
+    },
+    "cp/tree/subarrayunion.hpp": {
+      "benchmark": [],
+      "docs": "docs/tree/subarrayunion.md",
+      "layer": 0,
+      "status": "experimental",
+      "summary_ja": "全部分列が選ぶ根パス和集合の重み総和",
+      "symbols": ["poe::sum_subarray_root_path_unions"],
+      "tags": ["tree", "subarray", "path-union", "small-to-large", "offline"],
+      "tests": ["tests/api/tree/subarrayunion.cpp", "tests/property/tree/subarrayunion.cpp"],
+      "verify": ["verify/atcoder_abc273_h.cpp"]
     },
     "cp/tree/rootpath.hpp": {
       "benchmark": [],
@@ -2240,7 +2629,7 @@
       "docs": "docs/utility/presetsegtree.md",
       "layer": 3,
       "status": "experimental",
-      "summary_ja": "更新方法と取得内容で選べる用途別区間構造27種",
+      "summary_ja": "更新方法と取得内容で選べる用途別区間構造28種",
       "symbols": [
         "poe::point_add_range_sum",
         "poe::point_affine_range_sum",
@@ -2268,6 +2657,7 @@
         "poe::range_flip_range_sum",
         "poe::range_flip_range_inversion",
         "poe::range_active_add_range_clear_flip_max",
+        "poe::range_divide_set_range_sum",
         "poe::range_chmin_chmax_add_range_sum"
       ],
       "tags": ["utility", "range-query", "point-update", "range-update"],
@@ -2286,6 +2676,7 @@
         ,"verify/atcoder_abc437_f.cpp"
         ,"verify/atcoder_abc426_f.cpp"
         ,"verify/atcoder_abc292_h.cpp"
+        ,"verify/atcoder_abc256_h.cpp"
       ]
     }
   },
