@@ -1855,6 +1855,17 @@
       "tests": ["tests/api/string/acl_string.cpp", "tests/property/string/acl_string.cpp"],
       "verify": []
     },
+    "cp/string/dynamicsubsequence.hpp": {
+      "benchmark": ["ABC246 Ex N=Q=100000・二文字alphabetで0.36秒・14MB"],
+      "docs": "docs/string/dynamicsubsequence.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "小alphabetの許容文字集合更新と異なる非空部分列数",
+      "symbols": ["poe::dynamicsubsequencecount"],
+      "tags": ["string", "subsequence", "dynamic", "point-update", "small-alphabet", "segment-tree", "matrix-product"],
+      "tests": ["tests/api/string/dynamicsubsequence.cpp", "tests/property/string/dynamicsubsequence.cpp"],
+      "verify": ["verify/atcoder_abc246_h.cpp"]
+    },
     "cp/string/manacher.hpp": {
       "benchmark": [],
       "docs": "docs/string/manacher.md",

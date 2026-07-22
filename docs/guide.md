@@ -106,6 +106,7 @@
 | 係数確定ごとに一次因子を追加 | [`fps/online.hpp`](fps/online.md) | 動的な$\prod(1+a_ix)$の係数再帰 |
 | 整数分割、一般五角数、Euler積 | [`fps/partition.hpp`](fps/partition.md) | 分割数列と巨大次数の疎な係数抽出 |
 | Stirling数、集合分割、cycle数 | [`fps/stirling.hpp`](fps/stirling.md) | 第一種・第二種とblock内置換のcycle数分布 |
+| 小alphabetの動的な異なる部分列数 | [`string/dynamicsubsequence.hpp`](string/dynamicsubsequence.md) | 許容文字集合の一点更新 |
 | 線形漸化式の第N項 | [`fps/bostanmori.hpp`](fps/bostanmori.md)、[`math/linearecurrence.hpp`](math/linearecurrence.md) | Bostan-Moriなど |
 | 値ごとの重み付き冪和を全次数について求める | [`fps/rational.hpp`](fps/rational.md) | $\sum_i w_i v_i^k$を有理型母関数で一括計算 |
 | 色別個数固定の順列、隣接色変化数 | [`fps/combinatorial.hpp`](fps/combinatorial.md) | ラベル付き順列を変化回数別に数える |
