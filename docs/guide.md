@@ -44,6 +44,7 @@
 | 指定地点でのみ休憩、一回の移動上限、到達可能性 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | 多点Dijkstraと閾値順DSU |
 | 全点対最短路 | [`graph/warshallfloyd.hpp`](graph/warshallfloyd.md) | Warshall-Floyd |
 | path上の最大頂点costを最小化 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | bitset一括bottleneck query |
+| 完全有向グラフ、辺重みが$(A_i+B_j)\bmod M$ | [`graph/modularcomplete.hpp`](graph/modularcomplete.md) | 剰余円周へ圧縮した最短路 |
 | 強連結成分 | [`graph/scc.hpp`](graph/scc.md) | SCC分解と縮約 |
 | 有界整数、二変数の和の上下限 | [`graph/integerconstraints.hpp`](graph/integerconstraints.md) | $L\leq x_i+x_j\leq R$を満たす整数割当て |
 | 橋、関節点、二重連結成分 | [`graph/lowlink.hpp`](graph/lowlink.md) | LowLink |

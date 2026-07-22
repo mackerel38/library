@@ -1239,6 +1239,17 @@
       "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp"],
       "verify": ["verify/minimumspanningtree.test.cpp"]
     },
+    "cp/graph/modularcomplete.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/modularcomplete.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "剰余和重みの完全有向グラフを線形辺数へ圧縮した最短路",
+      "symbols": ["poe::modular_complete_distances"],
+      "tags": ["graph", "complete-graph", "shortest-path", "modulo", "implicit-graph"],
+      "tests": ["tests/api/graph/modularcomplete.cpp", "tests/property/graph/modularcomplete.cpp"],
+      "verify": ["verify/atcoder_abc232_g.cpp"]
+    },
     "cp/graph/orientation.hpp": {
       "benchmark": [],
       "docs": "docs/graph/orientation.md",

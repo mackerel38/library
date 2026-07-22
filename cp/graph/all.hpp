@@ -19,6 +19,7 @@
 #include "graph/maximumcut.hpp"
 #include "graph/minimumspanningtree.hpp"
 #include "graph/monotonereachability.hpp"
+#include "graph/modularcomplete.hpp"
 #include "graph/orientation.hpp"
 #include "graph/paritywalk.hpp"
 #include "graph/rangeedge.hpp"
