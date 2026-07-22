@@ -601,6 +601,17 @@
       "tests": ["tests/api/fps/bostanmori.cpp", "tests/property/fps/bostanmori.cpp", "tests/api/fps/bostanmorisubmask.cpp", "tests/property/fps/bostanmorisubmask.cpp"],
       "verify": ["verify/atcoder_tdpc_fibonacci.cpp", "verify/atcoder_abc300_h.cpp"]
     },
+    "cp/fps/boundedgeometric.hpp": {
+      "benchmark": ["n=16・degree=10^18で0.01秒未満・4.0MB"],
+      "docs": "docs/fps/boundedgeometric.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "上限付き等比級数積の巨大次数係数",
+      "symbols": ["poe::bounded_geometric_product_coefficient"],
+      "tags": ["formal-power-series", "generating-function", "geometric-series", "subset-enumeration", "partial-fraction"],
+      "tests": ["tests/api/fps/boundedgeometric.cpp", "tests/property/fps/boundedgeometric.cpp"],
+      "verify": ["verify/atcoder_abc241_h.cpp"]
+    },
     "cp/fps/combinatorial.hpp": {
       "benchmark": [],
       "docs": "docs/fps/combinatorial.md",

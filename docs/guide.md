@@ -109,6 +109,7 @@
 | 0/1行列、長方形XOR制約 | [`math/rectangleparity.hpp`](math/rectangleparity.md) | 長方形の四隅だけを使うGF(2)連立方程式 |
 | ランダムウォークの合流・初到達 | [`math/randomwalk.hpp`](math/randomwalk.md) | 合流確率列・周期剰余への初到達期待値 |
 | 多項式、形式的冪級数 | [`fps/fps.hpp`](fps/fps.md)、[`fps/polynomial.hpp`](fps/polynomial.md) | inv、log、exp、補間など |
+| 上限付き等比級数積の巨大次数係数 | [`fps/boundedgeometric.hpp`](fps/boundedgeometric.md) | 小種類数の多重集合型母関数 |
 | 係数確定ごとに一次因子を追加 | [`fps/online.hpp`](fps/online.md) | 動的な$\prod(1+a_ix)$の係数再帰 |
 | 整数分割、一般五角数、Euler積 | [`fps/partition.hpp`](fps/partition.md) | 分割数列と巨大次数の疎な係数抽出 |
 | Stirling数、集合分割、cycle数 | [`fps/stirling.hpp`](fps/stirling.md) | 第一種・第二種とblock内置換のcycle数分布 |

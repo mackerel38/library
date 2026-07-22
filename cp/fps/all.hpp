@@ -1,5 +1,6 @@
 #pragma once
 #include "fps/bostanmori.hpp"
+#include "fps/boundedgeometric.hpp"
 #include "fps/combinatorial.hpp"
 #include "fps/composition.hpp"
 #include "fps/cyclic.hpp"
