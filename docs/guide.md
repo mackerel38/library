@@ -23,6 +23,7 @@
 | 二列の全組の絶対差和 | [`algorithm/absolutedifference.hpp`](algorithm/absolutedifference.md) | $\sum_{i,j}|A_i-B_j|$ |
 | 区間端点が交互に現れる対、交差する弦 | [`algorithm/intervalcrossing.hpp`](algorithm/intervalcrossing.md) | Fenwick Treeによる交互区間対計数 |
 | 区間最小値と非負区間和が上限以下 | [`algorithm/subarrayminsum.hpp`](algorithm/subarrayminsum.md) | Cartesian Treeによる部分配列計数 |
+| 相異なる整数の部分配列、max-minと長さの差が小さい | [`algorithm/subarrayrange.hpp`](algorithm/subarrayrange.md) | 単調stackと小さい値だけ持つSegment Tree |
 | 三つの座標が全て非減少な最大重み列 | [`algorithm/dominance.hpp`](algorithm/dominance.md) | 三次元dominance DPと復元 |
 | 多重集合を2倍・2で切り捨て除算して一致 | [`algorithm/multisettransform.hpp`](algorithm/multisettransform.md) | 二進prefix木上の最小移動matching |
 | word多重集合、末尾削除、prefixまで移動 | [`algorithm/multisettransform.hpp`](algorithm/multisettransform.md) | 左右別の辺制約を持つprefix matching |

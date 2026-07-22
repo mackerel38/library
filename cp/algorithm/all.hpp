@@ -17,5 +17,6 @@
 #include "algorithm/shortestword.hpp"
 #include "algorithm/slopeconstraint.hpp"
 #include "algorithm/subarrayminsum.hpp"
+#include "algorithm/subarrayrange.hpp"
 #include "algorithm/topenumeration.hpp"
 #include "algorithm/twopointer.hpp"

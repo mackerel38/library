@@ -216,6 +216,17 @@
       "tests": ["tests/api/algorithm/subarrayminsum.cpp", "tests/property/algorithm/subarrayminsum.cpp"],
       "verify": ["verify/atcoder_abc282_h.cpp"]
     },
+    "cp/algorithm/subarrayrange.hpp": {
+      "benchmark": ["ABC248 Ex N=140000, K=3 のランダムな順列で0.42秒・37MB"],
+      "docs": "docs/algorithm/subarrayrange.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "相異なる整数の部分配列を値域幅と長さの余剰上限で計数",
+      "symbols": ["poe::count_subarrays_range_excess_at_most"],
+      "tags": ["algorithm", "subarray", "range", "monotone-stack", "segment-tree", "small-k"],
+      "tests": ["tests/api/algorithm/subarrayrange.cpp", "tests/property/algorithm/subarrayrange.cpp"],
+      "verify": ["verify/atcoder_abc248_h.cpp"]
+    },
     "cp/algorithm/twopointer.hpp": {
       "benchmark": [],
       "docs": "docs/algorithm/twopointer.md",
