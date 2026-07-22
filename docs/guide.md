@@ -36,6 +36,7 @@
 | 問題文の語 | 最初に見るheader | 主な用途 |
 | --- | --- | --- |
 | 有向・無向グラフ、入力 | [`graph/graph.hpp`](graph/graph.md) | adjacency listと`read` |
+| 頂点訪問回数の偶奇を指定するwalk | [`graph/paritywalk.hpp`](graph/paritywalk.md) | 長さ$4n$未満の構成 |
 | 隣接行列、全点対変換 | [`graph/matrixgraph.hpp`](graph/matrixgraph.md) | matrix形式とlist形式の相互変換 |
 | 同じ凸多角形を複数回平行移動、全ての共通部分 | [`geometry/polygon.hpp`](geometry/polygon.md) | 辺ごとの半平面下限を前計算 |
 | 最短路・ラベル別の最寄り始点 | [`graph/shortestpath.hpp`](graph/shortestpath.md) | BFS、0-1 BFS、Dijkstra、Bellman-Ford |

@@ -1228,6 +1228,17 @@
       "tests": ["tests/api/graph/orientation.cpp", "tests/property/graph/orientation.cpp"],
       "verify": ["verify/atcoder_abc306_h.cpp"]
     },
+    "cp/graph/paritywalk.hpp": {
+      "benchmark": ["ABC244 G N=100000・M=200000で0.53秒・20MB"],
+      "docs": "docs/graph/paritywalk.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "頂点訪問回数の偶奇を指定した長さ4n未満のwalk構成",
+      "symbols": ["poe::vertex_parity_walk"],
+      "tags": ["graph", "constructive", "walk", "parity", "spanning-tree", "iterative-dfs"],
+      "tests": ["tests/api/graph/paritywalk.cpp", "tests/property/graph/paritywalk.cpp"],
+      "verify": ["verify/atcoder_abc244_g.cpp"]
+    },
     "cp/graph/rangeedge.hpp": {
       "benchmark": [],
       "docs": "docs/graph/rangeedge.md",

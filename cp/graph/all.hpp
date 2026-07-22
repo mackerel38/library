@@ -20,6 +20,7 @@
 #include "graph/minimumspanningtree.hpp"
 #include "graph/monotonereachability.hpp"
 #include "graph/orientation.hpp"
+#include "graph/paritywalk.hpp"
 #include "graph/rangeedge.hpp"
 #include "graph/scc.hpp"
 #include "graph/shortestpath.hpp"
