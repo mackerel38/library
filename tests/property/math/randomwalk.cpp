@@ -6,6 +6,22 @@ using namespace std;
 using namespace poe;
 
 int main() {
+    using mint1000000007 = staticmodint<1000000007>;
+    for (int faces = 2; faces <= 12; ++faces) {
+        for (int limit = 0; limit <= 200; ++limit) {
+            vector<mint1000000007> expected(limit + 1);
+            for (int maximum_product = 1; maximum_product <= limit; ++maximum_product) {
+                mint1000000007 sum = faces;
+                for (int face = 2; face <= faces; ++face) {
+                    sum += expected[maximum_product / face];
+                }
+                expected[maximum_product] = sum / (faces - 1);
+            }
+            assert(uniform_multiplicative_stopping_expectation<mint1000000007>(
+                faces, limit) == expected[limit]);
+        }
+    }
+
     mt19937 random(20260716);
     using mint = modint998244353;
     const mint half = mint{1} / 2;

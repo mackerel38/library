@@ -5,6 +5,9 @@ using namespace std;
 using namespace poe;
 
 int main() {
+    using mint1000000007 = staticmodint<1000000007>;
+    assert(uniform_multiplicative_stopping_expectation<mint1000000007>(2, 39) == 12);
+
     using mint = modint998244353;
     const auto one = symmetric_walk_meeting_probabilities<998244353>({7}, 5);
     assert(ranges::all_of(one, [](mint value) { return value == 1; }));

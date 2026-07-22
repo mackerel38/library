@@ -1812,15 +1812,15 @@
       "verify": ["verify/atcoder_abc276_h.cpp"]
     },
     "cp/math/randomwalk.hpp": {
-      "benchmark": ["ABC249 Ex N=2000で0.21秒・12MB"],
+      "benchmark": ["ABC249 Ex N=2000で0.21秒・12MB", "ABC239 Ex N=M=10^9で1.46秒・3.8MB"],
       "docs": "docs/math/randomwalk.md",
       "layer": 4,
       "status": "experimental",
-      "summary_ja": "独立対称walk・周期初到達期待値・上方向skip-free Markovポテンシャル",
-      "symbols": ["poe::upward_skipfree_potential", "poe::symmetric_walk_meeting_probabilities", "poe::cyclic_hitting_expectation"],
+      "summary_ja": "乗法停止過程・独立対称walk・周期初到達期待値・skip-free Markovポテンシャル",
+      "symbols": ["poe::uniform_multiplicative_stopping_expectation", "poe::upward_skipfree_potential", "poe::symmetric_walk_meeting_probabilities", "poe::cyclic_hitting_expectation"],
       "tags": ["math", "probability", "markov-chain", "potential", "skip-free", "random-walk", "meeting", "convolution", "expectation", "linear-recurrence", "matrix-exponentiation"],
       "tests": ["tests/api/math/randomwalk.cpp", "tests/property/math/randomwalk.cpp"],
-      "verify": ["verify/atcoder_abc249_h.cpp", "verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
+      "verify": ["verify/atcoder_abc239_h.cpp", "verify/atcoder_abc249_h.cpp", "verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
     },
     "cp/math/subsettransform.hpp": {
       "benchmark": [],

@@ -6,6 +6,39 @@
 
 namespace poe {
 
+/// O(limit^(3/4))時間・O(sqrt(limit))領域。一様な1..facesを掛け、limitを超えるまでの期待回数を返す。
+template<class T>
+T uniform_multiplicative_stopping_expectation(long long faces, long long limit) {
+    assert(faces >= 2);
+    assert(limit >= 0);
+    if (limit == 0) return T{};
+    long long root = std::sqrt(static_cast<long double>(limit));
+    while ((root + 1) <= limit / (root + 1)) ++root;
+    while (root > limit / root) --root;
+    std::vector<T> low(root + 1), high(root + 1);
+    std::vector<char> low_seen(root + 1), high_seen(root + 1);
+    auto solve = [&](auto&& self, long long maximum_product) -> T {
+        if (maximum_product == 0) return T{};
+        const bool is_low = maximum_product <= root;
+        const long long index = is_low ? maximum_product : limit / maximum_product;
+        T& memo = is_low ? low[index] : high[index];
+        char& seen = is_low ? low_seen[index] : high_seen[index];
+        if (seen) return memo;
+        T sum{};
+        const long long maximum_face = std::min(faces, maximum_product);
+        for (long long left = 2; left <= maximum_face;) {
+            const long long quotient = maximum_product / left;
+            const long long right = std::min(maximum_face, maximum_product / quotient);
+            sum += T{right - left + 1} * self(self, quotient);
+            left = right + 1;
+        }
+        memo = (T{faces} + sum) / T{faces - 1};
+        seen = true;
+        return memo;
+    };
+    return solve(solve, limit);
+}
+
 /// O(n^2)時間・O(n)追加領域。上方向へ高々1だけ進むMarkov連鎖のh[i]=reward[i]+E[h[next]]をh[0]=0から解く。
 template<class T>
 std::vector<T> upward_skipfree_potential(
