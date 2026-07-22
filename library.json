@@ -348,6 +348,17 @@
       "tests": ["tests/api/dp/dp.cpp", "tests/property/dp/dp.cpp"],
       "verify": ["verify/atcoder_dp_n.cpp"]
     },
+    "cp/dp/rectanglepartition.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/rectanglepartition.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "矩形の直接処理と水平・垂直分割の最小費用DP",
+      "symbols": ["poe::minimum_rectangle_partition_cost"],
+      "tags": ["dynamic-programming", "rectangle", "partition", "guillotine-cut", "grid"],
+      "tests": ["tests/api/dp/rectanglepartition.cpp", "tests/property/dp/rectanglepartition.cpp"],
+      "verify": ["verify/atcoder_abc233_g.cpp"]
+    },
     "cp/dp/partition.hpp": {
       "benchmark": [],
       "docs": "docs/dp/partition.md",

@@ -14,6 +14,7 @@
 #include "dp/partition.hpp"
 #include "dp/permutationthreshold.hpp"
 #include "dp/profile.hpp"
+#include "dp/rectanglepartition.hpp"
 #include "dp/rangeknapsack.hpp"
 #include "dp/segments.hpp"
 #include "dp/sequence.hpp"
