@@ -1536,6 +1536,17 @@
       "tests": ["tests/api/math/floorproduct.cpp", "tests/property/math/floorproduct.cpp"],
       "verify": ["verify/atcoder_abc429_g.cpp"]
     },
+    "cp/math/floorsqrtchain.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/floorsqrtchain.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "平方根以下へ値を移し続ける列の高速数え上げ",
+      "symbols": ["poe::floorsqrtchaincounter"],
+      "tags": ["math", "dynamic-programming", "integer-root", "prefix-sum"],
+      "tests": ["tests/api/math/floorsqrtchain.cpp", "tests/property/math/floorsqrtchain.cpp"],
+      "verify": ["verify/atcoder_abc243_g.cpp"]
+    },
     "cp/math/fraction.hpp": {
       "benchmark": [],
       "docs": "docs/math/fraction.md",

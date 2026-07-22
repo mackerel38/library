@@ -91,6 +91,7 @@
 | 状態が上へ高々1進むMarkov連鎖、ポテンシャル | [`math/randomwalk.hpp`](math/randomwalk.md) | 状態順に期待値方程式を解く |
 | Gaussian二項係数、有限体の部分空間 | [`math/qanalog.hpp`](math/qanalog.md) | $q$階乗と行空間の制約付き計数 |
 | 等差数列のpopcount和 | [`math/bitcountsum.hpp`](math/bitcountsum.md) | 各bitをfloor sumで数える |
+| 平方根以下へ値を移す列の数え上げ | [`math/floorsqrtchain.hpp`](math/floorsqrtchain.md) | $O(X^{1/4})$前計算・$O(1)$クエリ |
 | 番号付け替えを同一視、Burnside | [`math/burnside.hpp`](math/burnside.md) | 対称群のcycle typeによる軌道計数 |
 | 素数、素因数分解 | [`math/prime.hpp`](math/prime.md) | primality / factorization |
 | XORを固定したtuple・multiset計数 | [`math/xorcount.hpp`](math/xorcount.md) | bounded tuple、distinct tuple、非減少列の変換 |
