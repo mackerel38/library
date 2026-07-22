@@ -909,6 +909,17 @@
       "tests": ["tests/api/geometry/convexpath.cpp", "tests/property/geometry/convexpath.cpp"],
       "verify": ["verify/atcoder_abc286_h.cpp"]
     },
+    "cp/geometry/distancepairs.hpp": {
+      "benchmark": ["ABC234 Ex n=200000・出力0組で0.99秒・28MB"],
+      "docs": "docs/geometry/distancepairs.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "二次元整数点から指定Euclid距離以内の全点番号対を空間hashで列挙",
+      "symbols": ["poe::pairs_within_distance"],
+      "tags": ["geometry", "points", "pair-enumeration", "spatial-hashing", "euclidean-distance", "output-sensitive"],
+      "tests": ["tests/api/geometry/distancepairs.cpp", "tests/property/geometry/distancepairs.cpp"],
+      "verify": ["verify/atcoder_abc234_h.cpp"]
+    },
     "cp/geometry/latticemove.hpp": {
       "benchmark": [],
       "docs": "docs/geometry/latticemove.md",

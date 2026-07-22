@@ -3,6 +3,7 @@
 #include "geometry/circle.hpp"
 #include "geometry/closestpair.hpp"
 #include "geometry/convexpath.hpp"
+#include "geometry/distancepairs.hpp"
 #include "geometry/incrementalhull.hpp"
 #include "geometry/latticemove.hpp"
 #include "geometry/line.hpp"
