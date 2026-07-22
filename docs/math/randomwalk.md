@@ -9,7 +9,8 @@ documentation_of: //cp/math/randomwalk.hpp
 ## 概要
 
 独立な一次元ランダムウォークが同一点へ集まる確率列と、正のstepを加えるwalkが周期剰余へ
-初到達するまでの期待step数を扱う。
+初到達するまでの期待step数を扱う。状態$i$から上方向へは$i+1$までしか進まないMarkov連鎖の
+ポテンシャル方程式も、状態番号順に解ける。
 
 ## 厳密な定義
 
@@ -23,6 +24,17 @@ documentation_of: //cp/math/randomwalk.hpp
 
 正の整数stepを独立に選んで累積和へ加え、累積和が`remaining (mod period)`へ初めて到達するまでの
 step回数の期待値を返す。
+
+### `upward_skipfree_potential`
+
+状態$0,1,\ldots,n$を持ち、状態$i<n$からの遷移先が$0,1,\ldots,i+1$に限られるMarkov連鎖で、
+$h_0=0$かつ
+
+$$
+h_i=r_i+\sum_{j=0}^{i+1}P_{i,j}h_j
+$$
+
+を満たすポテンシャル$h_0,\ldots,h_n$を返す。
 
 ## Include
 
@@ -38,6 +50,7 @@ mint answer = poe::cyclic_hitting_expectation(
     std::vector<mint>{mint{1} / 6, mint{1} / 6, mint{1} / 6,
                       mint{1} / 6, mint{1} / 6, mint{1} / 6}
 );
+auto potential = poe::upward_skipfree_potential(transition, reward);
 ```
 
 ## 合流確率列
@@ -66,10 +79,27 @@ $$
 Gauss消去で決定する。計算量は`O(d^3 log period)`、領域は`O(d^2)`。
 法上の期待値では境界方程式が一意解を持つ必要がある。
 
+## 上方向skip-free Markov連鎖
+
+`transition[i]`は長さ`i+2`で、`transition[i][j]`が$P_{i,j}$を表す。
+$P_{i,i+1}\ne0$が必要である。各行の総和が1であることは関数内では検査しないため、通常の
+確率遷移として使う場合は呼び出し側で保証する。`T`は四則演算と等値比較を持つ体の要素とする。
+
+既知の$h_0,\ldots,h_i$を式へ代入し、唯一の未知数$h_{i+1}$を順に解く。
+時間計算量は$O(n^2)$、返り値を除く追加領域は$O(n)$である。
+
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
 
 この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。
+
+### `upward_skipfree_potential`
+
+```cpp
+template<class T> std::vector<T> upward_skipfree_potential( const std::vector<std::vector<T>>& transition, const std::vector<T>& reward )
+```
+
+O(n^2)時間・O(n)追加領域。上方向へ高々1だけ進むMarkov連鎖のh[i]=reward[i]+E[h[next]]をh[0]=0から解く。
 
 ### `symmetric_walk_meeting_probabilities`
 
@@ -100,7 +130,11 @@ $F(x)H(x)=G(x)$を満たすので、既存`fps::div`で求める。
 `period=10^9`、`remaining=R`、step 1から6を各確率`1/6`として渡す。
 `verify/atcoder_abc299_h.cpp`で公式sample 2件を確認済み。
 
+[AtCoder ABC249 Ex - Dye Color](https://atcoder.jp/contests/abc249/tasks/abc249_h)では、一色の個数だけを
+状態とする上方向skip-free連鎖を作り、全色のポテンシャル和から吸収までの期待操作回数を求める。
+`verify/atcoder_abc249_h.cpp`に提出用コードを用意し、公式sampleを確認している。
+
 ## 検証
 
 - `tests/api/math/randomwalk.cpp`: 一歩walkと公平サイコロの基本例
-- `tests/property/math/randomwalk.cpp`: 少人数walkの直接分布DP、および小周期の全剰余連立方程式との比較
+- `tests/property/math/randomwalk.cpp`: 少人数walkの直接分布DP、小周期の全剰余連立方程式、skip-free方程式のGauss消去との比較

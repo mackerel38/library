@@ -1691,15 +1691,15 @@
       "verify": ["verify/atcoder_abc276_h.cpp"]
     },
     "cp/math/randomwalk.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC249 Ex N=2000で0.21秒・12MB"],
       "docs": "docs/math/randomwalk.md",
       "layer": 4,
       "status": "experimental",
-      "summary_ja": "独立対称walkの合流確率列と正のstep和の周期剰余初到達期待値",
-      "symbols": ["poe::symmetric_walk_meeting_probabilities", "poe::cyclic_hitting_expectation"],
-      "tags": ["math", "probability", "random-walk", "meeting", "convolution", "expectation", "linear-recurrence", "matrix-exponentiation"],
+      "summary_ja": "独立対称walk・周期初到達期待値・上方向skip-free Markovポテンシャル",
+      "symbols": ["poe::upward_skipfree_potential", "poe::symmetric_walk_meeting_probabilities", "poe::cyclic_hitting_expectation"],
+      "tags": ["math", "probability", "markov-chain", "potential", "skip-free", "random-walk", "meeting", "convolution", "expectation", "linear-recurrence", "matrix-exponentiation"],
       "tests": ["tests/api/math/randomwalk.cpp", "tests/property/math/randomwalk.cpp"],
-      "verify": ["verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
+      "verify": ["verify/atcoder_abc249_h.cpp", "verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
     },
     "cp/math/subsettransform.hpp": {
       "benchmark": [],
@@ -1735,15 +1735,15 @@
       "verify": []
     },
     "cp/math/xorbasis.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC249 G N=1000・30bitで0.01秒・4MB"],
       "docs": "docs/math/xorbasis.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "XOR線形基底の挿入・所属・最小最大・k番目",
-      "symbols": ["poe::xorbasis"],
-      "tags": ["math", "xor", "linear-basis"],
+      "summary_ja": "XOR線形基底と第一成分上限付き二成分XOR最大化",
+      "symbols": ["poe::xorbasis", "poe::maximum_paired_xor_under"],
+      "tags": ["math", "xor", "linear-basis", "linear-system", "constrained-optimization"],
       "tests": ["tests/api/math/xorbasis.cpp", "tests/property/math/xorbasis.cpp"],
-      "verify": ["verify/atcoder_abc141_f.cpp", "verify/atcoder_abc236_f.cpp"]
+      "verify": ["verify/atcoder_abc141_f.cpp", "verify/atcoder_abc236_f.cpp", "verify/atcoder_abc249_g.cpp"]
     },
     "cp/math/xorcount.hpp": {
       "benchmark": [],

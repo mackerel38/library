@@ -81,4 +81,98 @@ private:
     int rank_ = 0;
 };
 
+/// O(n bits+bits^3)時間・O(bits^2)領域。非空部分集合のfirst XOR<=upperでsecond XORを最大化し、存在しなければnullopt。
+template<std::unsigned_integral UInt, int Bits = std::numeric_limits<UInt>::digits / 2>
+std::optional<UInt> maximum_paired_xor_under(
+    const std::vector<std::pair<UInt, UInt>>& values,
+    UInt upper
+) {
+    static_assert(1 <= Bits && 2 * Bits <= 64 && Bits <= std::numeric_limits<UInt>::digits);
+    if constexpr (Bits < std::numeric_limits<UInt>::digits) {
+        assert(upper < (UInt{1} << Bits));
+        for (const auto& [first, second] : values) {
+            assert(first < (UInt{1} << Bits) && second < (UInt{1} << Bits));
+        }
+    }
+
+    xorbasis<unsigned long long> combined;
+    for (const auto& [first, second] : values) {
+        combined.add((static_cast<unsigned long long>(first) << Bits) | second);
+    }
+    const auto basis = combined.vectors();
+    const int rank = static_cast<int>(basis.size());
+    const bool dependent = static_cast<int>(values.size()) > rank;
+
+    const auto optimize = [&](int lowest_fixed_bit, UInt fixed) -> std::optional<UInt> {
+        std::array<unsigned long long, 64> equation{};
+        std::array<unsigned char, 64> right{};
+        bool inconsistent = false;
+        for (int bit = Bits - 1; bit >= lowest_fixed_bit; --bit) {
+            unsigned long long mask = 0;
+            for (int variable = 0; variable < rank; ++variable) {
+                if ((basis[variable] >> (Bits + bit)) & 1ULL) mask |= 1ULL << variable;
+            }
+            unsigned char value = (fixed >> bit) & 1;
+            while (mask != 0) {
+                const int pivot = std::bit_width(mask) - 1;
+                if (equation[pivot] == 0) {
+                    equation[pivot] = mask;
+                    right[pivot] = value;
+                    break;
+                }
+                mask ^= equation[pivot];
+                value ^= right[pivot];
+            }
+            if (mask == 0 && value != 0) inconsistent = true;
+        }
+        if (inconsistent) return std::nullopt;
+
+        unsigned long long particular = 0;
+        for (int pivot = 0; pivot < rank; ++pivot) {
+            if (equation[pivot] == 0) continue;
+            const int parity = std::popcount(equation[pivot] & particular) & 1;
+            if (parity != right[pivot]) particular |= 1ULL << pivot;
+        }
+        const auto second_value = [&](unsigned long long coefficient) {
+            UInt result = 0;
+            for (int variable = 0; variable < rank; ++variable) {
+                if ((coefficient >> variable) & 1ULL) {
+                    result ^= static_cast<UInt>(basis[variable]);
+                }
+            }
+            if constexpr (Bits < std::numeric_limits<UInt>::digits) {
+                result &= (UInt{1} << Bits) - 1;
+            }
+            return result;
+        };
+
+        xorbasis<UInt> second_basis;
+        bool has_free = false;
+        for (int free = 0; free < rank; ++free) {
+            if (equation[free] != 0) continue;
+            has_free = true;
+            unsigned long long coefficient = 1ULL << free;
+            for (int pivot = 0; pivot < rank; ++pivot) {
+                if (equation[pivot] == 0) continue;
+                if (std::popcount(equation[pivot] & coefficient) & 1) {
+                    coefficient |= 1ULL << pivot;
+                }
+            }
+            second_basis.add(second_value(coefficient));
+        }
+        const UInt best = second_basis.max(second_value(particular));
+        if (best != 0 || particular != 0 || has_free || dependent) return best;
+        return std::nullopt;
+    };
+
+    std::optional<UInt> answer = optimize(0, upper);
+    for (int bit = Bits - 1; bit >= 0; --bit) {
+        if (((upper >> bit) & 1) == 0) continue;
+        const UInt fixed = upper ^ (UInt{1} << bit);
+        const auto candidate = optimize(bit, fixed);
+        if (candidate && (!answer || *answer < *candidate)) answer = candidate;
+    }
+    return answer;
+}
+
 }

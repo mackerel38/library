@@ -82,11 +82,13 @@
 | mod整数 | [`math/modint.hpp`](math/modint.md) | 静的・動的modint |
 | 小さい素数法の巨大二項係数、Lucas | [`math/lucas.hpp`](math/lucas.md) | $n,k$が巨大な$\binom nk\bmod p$ |
 | RLE列を隣接和で大量に縮約、小さい素数法 | [`math/binomialsequence.hpp`](math/binomialsequence.md) | 素数冪距離のskip |
+| 状態が上へ高々1進むMarkov連鎖、ポテンシャル | [`math/randomwalk.hpp`](math/randomwalk.md) | 状態順に期待値方程式を解く |
 | Gaussian二項係数、有限体の部分空間 | [`math/qanalog.hpp`](math/qanalog.md) | $q$階乗と行空間の制約付き計数 |
 | 等差数列のpopcount和 | [`math/bitcountsum.hpp`](math/bitcountsum.md) | 各bitをfloor sumで数える |
 | 番号付け替えを同一視、Burnside | [`math/burnside.hpp`](math/burnside.md) | 対称群のcycle typeによる軌道計数 |
 | 素数、素因数分解 | [`math/prime.hpp`](math/prime.md) | primality / factorization |
 | XORを固定したtuple・multiset計数 | [`math/xorcount.hpp`](math/xorcount.md) | bounded tuple、distinct tuple、非減少列の変換 |
+| 二成分の部分集合XOR、第一成分に上限、第二成分を最大化 | [`math/xorbasis.hpp`](math/xorbasis.md) | prefix制約付きGF(2)解空間最適化 |
 | Nim積、XORを加法とする体 | [`math/nimber.hpp`](math/nimber.md) | 64-bit nimber演算 |
 | Stern–Brocot木、既約分数の仮想木 | [`math/sternbrocot.hpp`](math/sternbrocot.md) | 巨大深さをrun-length圧縮 |
 | 列和固定、各行に奇数要素 | [`math/paritymatrix.hpp`](math/paritymatrix.md) | 全成分偶数の行を包除する行列計数 |

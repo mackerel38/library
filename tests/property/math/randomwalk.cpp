@@ -9,6 +9,32 @@ int main() {
     mt19937 random(20260716);
     using mint = modint998244353;
     const mint half = mint{1} / 2;
+    for (int trial = 0; trial < 1000; ++trial) {
+        const int size = 1 + random() % 8;
+        vector<vector<mint>> transition(size);
+        vector<mint> reward(size);
+        matrix<mint> coefficients(size + 1, size + 1);
+        vector<mint> right(size + 1);
+        coefficients[0][0] = 1;
+        for (int state = 0; state < size; ++state) {
+            transition[state].resize(state + 2);
+            mint sum = 0;
+            for (mint& probability : transition[state]) {
+                probability = 1 + random() % 20;
+                sum += probability;
+            }
+            for (mint& probability : transition[state]) probability /= sum;
+            reward[state] = random() % 20;
+            coefficients[state + 1][state] += 1;
+            for (int next = 0; next <= state + 1; ++next) {
+                coefficients[state + 1][next] -= transition[state][next];
+            }
+            right[state + 1] = reward[state];
+        }
+        const auto expected = solve_linear(coefficients, right);
+        assert(expected.status == linearstatus::unique);
+        assert(upward_skipfree_potential(transition, reward) == expected.solution);
+    }
     for (int people = 1; people <= 4; ++people) {
         for (int trial = 0; trial < 100; ++trial) {
             vector<int> positions(people);

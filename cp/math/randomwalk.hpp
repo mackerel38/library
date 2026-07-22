@@ -6,6 +6,27 @@
 
 namespace poe {
 
+/// O(n^2)時間・O(n)追加領域。上方向へ高々1だけ進むMarkov連鎖のh[i]=reward[i]+E[h[next]]をh[0]=0から解く。
+template<class T>
+std::vector<T> upward_skipfree_potential(
+    const std::vector<std::vector<T>>& transition,
+    const std::vector<T>& reward
+) {
+    const int size = static_cast<int>(transition.size());
+    assert(static_cast<int>(reward.size()) == size);
+    std::vector<T> potential(size + 1);
+    for (int state = 0; state < size; ++state) {
+        assert(static_cast<int>(transition[state].size()) == state + 2);
+        assert(transition[state][state + 1] != T{});
+        T known = reward[state];
+        for (int next = 0; next <= state; ++next) {
+            known += transition[state][next] * potential[next];
+        }
+        potential[state + 1] = (potential[state] - known) / transition[state][state + 1];
+    }
+    return potential;
+}
+
 /// O(pn+n log p+M(n))。同parityの各位置から独立な±1 walkを始め、時刻0..nに全員が同一点にいる確率を返す。
 template<int mod>
 std::vector<staticmodint<mod>> symmetric_walk_meeting_probabilities(

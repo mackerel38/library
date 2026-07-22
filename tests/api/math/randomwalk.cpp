@@ -13,4 +13,7 @@ int main() {
     assert(cyclic_hitting_expectation<mint>(100, 37, {1}) == 37);
     const mint half = mint{1} / 2;
     assert(cyclic_hitting_expectation<mint>(5, 1, {half, half}) == mint{34} / 11);
+    const auto potential = upward_skipfree_potential<mint>(
+        {{0, 1}, {half, 0, half}}, {1, 1});
+    assert(potential == vector<mint>({0, -1, -4}));
 }

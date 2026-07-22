@@ -5,6 +5,27 @@
 
 int main() {
     std::mt19937 random(20260723);
+    for (int test = 0; test < 3000; ++test) {
+        const int count = 1 + random() % 15;
+        const unsigned upper = random() % 32;
+        std::vector<std::pair<unsigned, unsigned>> paired(count);
+        for (auto& [first, second] : paired) {
+            first = random() % 32;
+            second = random() % 32;
+        }
+        std::optional<unsigned> expected;
+        for (int mask = 1; mask < (1 << count); ++mask) {
+            unsigned first = 0, second = 0;
+            for (int index = 0; index < count; ++index) {
+                if (mask >> index & 1) {
+                    first ^= paired[index].first;
+                    second ^= paired[index].second;
+                }
+            }
+            if (first <= upper && (!expected || *expected < second)) expected = second;
+        }
+        assert((poe::maximum_paired_xor_under<unsigned, 5>(paired, upper) == expected));
+    }
     for (int test = 0; test < 500; ++test) {
         const int count = random() % 12;
         std::vector<unsigned long long> values(count);

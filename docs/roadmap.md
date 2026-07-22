@@ -229,6 +229,10 @@ ABC251 Gからは、平行移動した同一凸多角形群の共通部分を表
 追加した。辺方向ごとに全平行移動の半平面下限を集約し、各点を$O(n)$で判定する。
 ABC250 Exからは、terminalでのみ区切れる一回上限付き移動queryをまとめる
 `terminal_hop_connectivity`を追加した。多点Dijkstraで各辺の必要上限を作り、閾値順DSUへ落とす。
+ABC249 Exからは、上方向へ高々1だけ進むMarkov連鎖の方程式を状態順に解く
+`upward_skipfree_potential`を追加した。巨大な連立方程式を$O(n^2)$の逐次代入へ落とせる。
+ABC249 Gからは、第一成分の部分集合XORに上限を課し、第二成分XORを最大化する
+`maximum_paired_xor_under`を追加した。prefix制約ごとのGF(2)解空間上で第二成分を最大化する。
 ABC317 Exからは、低次多項式を要素に持つ小正方行列列を分割統治で掛ける
 `polynomial_matrix_product`を追加した。局所walk漸化式をまとめ、有理型母関数の巨大係数へ接続する。
 ABC315 Exからは、両方の入力列を左から確定しながら積の現在係数を返す
