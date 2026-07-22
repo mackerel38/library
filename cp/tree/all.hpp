@@ -5,6 +5,7 @@
 #include "tree/constrainedpath.hpp"
 #include "tree/diameter.hpp"
 #include "tree/difference.hpp"
+#include "tree/demand.hpp"
 #include "tree/dp.hpp"
 #include "tree/dsuontree.hpp"
 #include "tree/eulertour.hpp"

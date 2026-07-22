@@ -2701,6 +2701,17 @@
       "tests": ["tests/api/utility/presetsegtree.cpp"],
       "verify": []
     },
+    "cp/tree/demand.hpp": {
+      "benchmark": ["ABC246 G N=200000 のランダム値・二分木で0.67秒・30MB"],
+      "docs": "docs/tree/demand.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "木上で子部分木の需要から処理可能量を引く残余DPと閾値探索",
+      "symbols": ["poe::tree_demand_residual", "poe::maximum_tree_demand_threshold"],
+      "tags": ["tree", "dp", "demand", "residual", "threshold", "binary-search"],
+      "tests": ["tests/api/tree/demand.cpp", "tests/property/tree/demand.cpp"],
+      "verify": ["verify/atcoder_abc246_g.cpp"]
+    },
     "cp/utility/presetsegtree.hpp": {
       "benchmark": [],
       "docs": "docs/utility/presetsegtree.md",

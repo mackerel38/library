@@ -54,6 +54,7 @@
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |
 | 部分木更新、パス和 | [`tree/eulertour.hpp`](tree/eulertour.md)、[`tree/pathsum.hpp`](tree/pathsum.md) | 木を列・差分へ変換 |
 | パス上の値による頂点対集計 | [`tree/pathfold.hpp`](tree/pathfold.md) | gcd・min・bitwise ANDなどを値別に集約 |
+| 子部分木から上がる需要と頂点処理量 | [`tree/demand.hpp`](tree/demand.md) | 残余DPと頂点値の閾値探索 |
 | 仮想木 | [`tree/virtualtree.hpp`](tree/virtualtree.md) | 指定頂点だけを含む圧縮木 |
 | 全部分列の根パス和集合 | [`tree/subarrayunion.hpp`](tree/subarrayunion.md) | 各部分木の出現位置をsmall-to-large集約 |
 | 互いに祖先・子孫でない頂点集合 | [`tree/antichain.hpp`](tree/antichain.md) | antichainを大きさ別に高速計数 |
