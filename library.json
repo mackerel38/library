@@ -436,6 +436,17 @@
       "tests": ["tests/api/dp/intervalmaximum.cpp", "tests/property/dp/intervalmaximum.cpp"],
       "verify": ["verify/atcoder_abc262_h.cpp"]
     },
+    "cp/dp/intervalinsertion.hpp": {
+      "benchmark": ["ABC238 Ex n=300の混合方向で1.49秒・5.5MB"],
+      "docs": "docs/dp/intervalinsertion.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "区間への再帰的挿入順の重み・費用集約と円環最近傍削除期待値",
+      "symbols": ["poe::intervalinsertionchoice", "poe::intervalinsertionaggregate", "poe::interval_insertion_aggregate", "poe::circular_directional_removal_expectation"],
+      "tags": ["dp", "interval-dp", "insertion-order", "interleaving", "expectation", "circle"],
+      "tests": ["tests/api/dp/intervalinsertion.cpp", "tests/property/dp/intervalinsertion.cpp"],
+      "verify": ["verify/atcoder_abc238_h.cpp"]
+    },
     "cp/dp/decreasingconvex.hpp": {
       "benchmark": [],
       "docs": "docs/dp/decreasingconvex.md",

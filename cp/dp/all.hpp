@@ -6,6 +6,7 @@
 #include "dp/frontier.hpp"
 #include "dp/gridpath.hpp"
 #include "dp/groupassignment.hpp"
+#include "dp/intervalinsertion.hpp"
 #include "dp/intervalmaximum.hpp"
 #include "dp/knapsack.hpp"
 #include "dp/linearinequality.hpp"
