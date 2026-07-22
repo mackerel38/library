@@ -734,15 +734,15 @@
       "verify": ["verify/atcoder_fps_24_a.cpp", "verify/atcoder_fps_24_g.cpp"]
     },
     "cp/fps/stirling.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC247 Ex N=200000 の単一blockで0.34秒・10MB"],
       "docs": "docs/fps/stirling.md",
       "layer": 6,
       "status": "experimental",
-      "summary_ja": "Taylor shiftと畳み込みによる第一種・第二種Stirling数の一行",
-      "symbols": ["poe::falling_factorial_polynomial", "poe::signed_stirling_first_row", "poe::stirling_second_row"],
-      "tags": ["formal-power-series", "stirling-number", "falling-factorial", "set-partition", "taylor-shift"],
+      "summary_ja": "Stirling数、上昇・下降階乗、block内置換のcycle数分布",
+      "symbols": ["poe::falling_factorial_polynomial", "poe::rising_factorial_polynomial", "poe::signed_stirling_first_row", "poe::unsigned_stirling_first_row", "poe::block_permutation_cycle_counts", "poe::stirling_second_row"],
+      "tags": ["formal-power-series", "stirling-number", "falling-factorial", "rising-factorial", "permutation-cycle", "set-partition", "taylor-shift"],
       "tests": ["tests/api/fps/stirling.cpp", "tests/property/fps/stirling.cpp"],
-      "verify": ["verify/stirling_number_of_the_first_kind.test.cpp", "verify/stirling_number_of_the_second_kind.test.cpp", "verify/atcoder_abc278_h.cpp"]
+      "verify": ["verify/stirling_number_of_the_first_kind.test.cpp", "verify/stirling_number_of_the_second_kind.test.cpp", "verify/atcoder_abc247_h.cpp", "verify/atcoder_abc278_h.cpp"]
     },
     "cp/fps/transform.hpp": {
       "benchmark": [],
@@ -954,15 +954,15 @@
       "verify": ["verify/atcoder_abc285_g.cpp"]
     },
     "cp/flow/matching.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC247 G N=30000・左右150頂点で0.17秒・7MB"],
       "docs": "docs/flow/matching.md",
       "layer": 2,
       "status": "experimental",
-      "summary_ja": "負辺を許す任意サイズ重み付き二部matchingの最小化",
-      "symbols": ["poe::weightedbipartiteedge", "poe::minimum_weight_bipartite_matching"],
+      "summary_ja": "重み付き二部matchingのサイズ別最小値・最大値",
+      "symbols": ["poe::weightedbipartiteedge", "poe::minimum_weight_bipartite_matching", "poe::minimum_weight_bipartite_matching_values", "poe::maximum_weight_bipartite_matching_values"],
       "tags": ["flow", "bipartite", "matching", "minimum-cost-flow", "weighted"],
       "tests": ["tests/api/flow/matching.cpp", "tests/property/flow/matching.cpp"],
-      "verify": ["verify/atcoder_abc407_g.cpp"]
+      "verify": ["verify/atcoder_abc247_g.cpp", "verify/atcoder_abc407_g.cpp"]
     },
     "cp/flow/maxflow.hpp": {
       "benchmark": [],

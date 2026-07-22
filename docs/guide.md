@@ -49,6 +49,7 @@
 | 頂点数が小さい、森を辺数別に数える | [`graph/spanningforest.hpp`](graph/spanningforest.md) | 行列木定理と集合分割DP |
 | 子をlabel昇順に辿るDFS、行きがけ順から木を数える | [`tree/preorder.hpp`](tree/preorder.md) | preorder区間DP |
 | 最大流、最小費用流 | [`flow/maxflow.hpp`](flow/maxflow.md)、[`flow/mincostflow.hpp`](flow/mincostflow.md) | flowgraph上の探索 |
+| 重み付き二部matching | [`flow/matching.hpp`](flow/matching.md) | matchingサイズ別の最小・最大重み |
 | LCA、パス分解 | [`tree/lca.hpp`](tree/lca.md)、[`tree/heavylightdecomposition.hpp`](tree/heavylightdecomposition.md) | 木上queryの基礎 |
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |
 | 部分木更新、パス和 | [`tree/eulertour.hpp`](tree/eulertour.md)、[`tree/pathsum.hpp`](tree/pathsum.md) | 木を列・差分へ変換 |
@@ -104,7 +105,7 @@
 | 多項式、形式的冪級数 | [`fps/fps.hpp`](fps/fps.md)、[`fps/polynomial.hpp`](fps/polynomial.md) | inv、log、exp、補間など |
 | 係数確定ごとに一次因子を追加 | [`fps/online.hpp`](fps/online.md) | 動的な$\prod(1+a_ix)$の係数再帰 |
 | 整数分割、一般五角数、Euler積 | [`fps/partition.hpp`](fps/partition.md) | 分割数列と巨大次数の疎な係数抽出 |
-| Stirling数、集合分割、cycle数 | [`fps/stirling.hpp`](fps/stirling.md) | 第一種・第二種の固定した一行 |
+| Stirling数、集合分割、cycle数 | [`fps/stirling.hpp`](fps/stirling.md) | 第一種・第二種とblock内置換のcycle数分布 |
 | 線形漸化式の第N項 | [`fps/bostanmori.hpp`](fps/bostanmori.md)、[`math/linearecurrence.hpp`](math/linearecurrence.md) | Bostan-Moriなど |
 | 値ごとの重み付き冪和を全次数について求める | [`fps/rational.hpp`](fps/rational.md) | $\sum_i w_i v_i^k$を有理型母関数で一括計算 |
 | 色別個数固定の順列、隣接色変化数 | [`fps/combinatorial.hpp`](fps/combinatorial.md) | ラベル付き順列を変化回数別に数える |
