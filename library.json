@@ -1800,6 +1800,17 @@
       "tests": ["tests/api/math/nimber.cpp", "tests/property/math/nimber.cpp"],
       "verify": []
     },
+    "cp/math/occupancy.hpp": {
+      "benchmark": ["ABC235 G n=5000000で0.63秒・42MB"],
+      "docs": "docs/math/occupancy.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "label付き各箱へ非空な種類集合を容量上限付きで配置する包除計数",
+      "symbols": ["poe::count_nonempty_subset_occupancies"],
+      "tags": ["math", "combinatorics", "occupancy", "inclusion-exclusion", "binomial", "capacity"],
+      "tests": ["tests/api/math/occupancy.cpp", "tests/property/math/occupancy.cpp"],
+      "verify": ["verify/atcoder_abc235_g.cpp"]
+    },
     "cp/math/modularproduct.hpp": {
       "benchmark": ["ABC245 Ex K=1000000000・M=10^12で0.01秒未満・4MB"],
       "docs": "docs/math/modularproduct.md",

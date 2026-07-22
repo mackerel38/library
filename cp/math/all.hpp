@@ -24,6 +24,7 @@
 #include "math/modularsum.hpp"
 #include "math/multiconvolution.hpp"
 #include "math/nimber.hpp"
+#include "math/occupancy.hpp"
 #include "math/paritymatrix.hpp"
 #include "math/prime.hpp"
 #include "math/qanalog.hpp"
