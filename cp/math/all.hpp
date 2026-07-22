@@ -28,6 +28,7 @@
 #include "math/prime.hpp"
 #include "math/qanalog.hpp"
 #include "math/randomwalk.hpp"
+#include "math/rangeproductpower.hpp"
 #include "math/rectangleparity.hpp"
 #include "math/sternbrocot.hpp"
 #include "math/subsettransform.hpp"

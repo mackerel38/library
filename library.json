@@ -1822,6 +1822,17 @@
       "tests": ["tests/api/math/randomwalk.cpp", "tests/property/math/randomwalk.cpp"],
       "verify": ["verify/atcoder_abc239_h.cpp", "verify/atcoder_abc249_h.cpp", "verify/atcoder_abc289_h.cpp", "verify/atcoder_abc299_h.cpp"]
     },
+    "cp/math/rangeproductpower.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/rangeproductpower.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "静的区間積が完全k乗かを厳密に一括判定",
+      "symbols": ["poe::range_product_power_queries"],
+      "tags": ["math", "range-query", "perfect-power", "prime-factorization", "mo"],
+      "tests": ["tests/api/math/rangeproductpower.cpp", "tests/property/math/rangeproductpower.cpp"],
+      "verify": ["verify/atcoder_abc238_g.cpp"]
+    },
     "cp/math/subsettransform.hpp": {
       "benchmark": [],
       "docs": "docs/math/subsettransform.md",
