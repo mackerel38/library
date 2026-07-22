@@ -1041,6 +1041,17 @@
       "tests": ["tests/api/flow/acl_flow.cpp", "tests/property/flow/advanced.cpp"],
       "verify": ["verify/atcoder_arc085_c.cpp"]
     },
+    "cp/flow/tournament.hpp": {
+      "benchmark": ["n=50・既知結果なしの全候補列挙で0.01秒・4.0MB"],
+      "docs": "docs/flow/tournament.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "既知結果付き総当たり戦の単独優勝可能性と結果構成",
+      "symbols": ["poe::roundrobincompletion", "poe::complete_roundrobin_for_unique_winner", "poe::possible_unique_roundrobin_winners"],
+      "tags": ["flow", "tournament", "round-robin", "sports-elimination", "assignment", "construction"],
+      "tests": ["tests/api/flow/tournament.cpp", "tests/property/flow/tournament.cpp"],
+      "verify": ["verify/atcoder_abc241_g.cpp"]
+    },
     "cp/graph/activation.hpp": {
       "benchmark": [],
       "docs": "docs/graph/activation.md",

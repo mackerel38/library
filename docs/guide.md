@@ -53,6 +53,7 @@
 | 子をlabel昇順に辿るDFS、行きがけ順から木を数える | [`tree/preorder.hpp`](tree/preorder.md) | preorder区間DP |
 | 最大流、最小費用流 | [`flow/maxflow.hpp`](flow/maxflow.md)、[`flow/mincostflow.hpp`](flow/mincostflow.md) | flowgraph上の探索 |
 | 重み付き二部matching | [`flow/matching.hpp`](flow/matching.md) | matchingサイズ別の最小・最大重み |
+| 総当たり戦、一部結果確定、単独優勝可能性 | [`flow/tournament.hpp`](flow/tournament.md) | 勝者割当てと勝数上限の最大流 |
 | LCA、パス分解 | [`tree/lca.hpp`](tree/lca.md)、[`tree/heavylightdecomposition.hpp`](tree/heavylightdecomposition.md) | 木上queryの基礎 |
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |
 | 部分木更新、パス和 | [`tree/eulertour.hpp`](tree/eulertour.md)、[`tree/pathsum.hpp`](tree/pathsum.md) | 木を列・差分へ変換 |
