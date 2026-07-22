@@ -1943,6 +1943,17 @@
       "tests": ["tests/api/string/fibonacciword.cpp", "tests/property/string/fibonacciword.cpp"],
       "verify": ["verify/atcoder_abc450_e.cpp"]
     },
+    "cp/string/increasingsubstrings.hpp": {
+      "benchmark": ["n=25000のランダム二進文字列で4.80秒・4.3MB、全0で0.24秒・48.9MB"],
+      "docs": "docs/string/increasingsubstrings.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "位置順・辞書順とも真に増加する非重複substring列の最大長",
+      "symbols": ["poe::maximum_increasing_disjoint_substrings"],
+      "tags": ["string", "substring", "lexicographic-order", "dynamic-programming", "trie", "fenwick-tree"],
+      "tests": ["tests/api/string/increasingsubstrings.cpp", "tests/property/string/increasingsubstrings.cpp"],
+      "verify": ["verify/atcoder_abc240_h.cpp"]
+    },
     "cp/string/lcp.hpp": {
       "benchmark": [],
       "docs": "docs/string/lcp.md",

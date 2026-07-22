@@ -6,6 +6,7 @@
 #include "string/distinctsubstring.hpp"
 #include "string/dynamicsubsequence.hpp"
 #include "string/fibonacciword.hpp"
+#include "string/increasingsubstrings.hpp"
 #include "string/lcp.hpp"
 #include "string/manacher.hpp"
 #include "string/matching.hpp"

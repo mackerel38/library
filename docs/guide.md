@@ -78,6 +78,7 @@
 | suffix array、部分文字列比較 | [`string/suffixarray.hpp`](string/suffixarray.md)、[`string/lcp.hpp`](string/lcp.md) | suffix順とLCP |
 | 全部分文字列を重複込みで辞書順に並べる | [`string/substringorder.hpp`](string/substringorder.md) | 順位から元文字列上の出現位置を取得 |
 | 異なる部分文字列、オンライン追加 | [`string/suffixautomaton.hpp`](string/suffixautomaton.md) | suffix automaton |
+| 非重複substringを位置順・辞書順とも増加 | [`string/increasingsubstrings.hpp`](string/increasingsubstrings.md) | 最大個数をtrie順DPで計算 |
 | palindrome | [`string/manacher.hpp`](string/manacher.md)、[`string/palindromictree.hpp`](string/palindromictree.md) | 回文半径・回文木 |
 | 辞書、prefix | [`string/trie.hpp`](string/trie.md) | Trie |
 | hashで部分文字列比較 | [`string/rollinghash.hpp`](string/rollinghash.md) | Rolling Hash |

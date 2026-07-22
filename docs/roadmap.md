@@ -270,6 +270,9 @@ ABC241 Gからは、既知結果を保って指定選手を単独優勝させる
 未決定試合の勝者割当てを勝数上限付き最大流へ変換する。
 ABC240 Gからは、軸方向へ一座標だけ$1$増減する格子walkを数える
 `axiswalkcounter`を追加した。一次元・二次元は$O(1)$、三次元は$O(N)$で答える。
+ABC240 Exからは、非重複substringを位置順・辞書順とも真に増加させる最大個数を返す
+`maximum_increasing_disjoint_substrings`を追加した。最適解の長さ上限$O(\sqrt n)$、
+trieの辞書順走査、Fenwick最大値DPを一つのAPIへまとめる。
 ABC317 Exからは、低次多項式を要素に持つ小正方行列列を分割統治で掛ける
 `polynomial_matrix_product`を追加した。局所walk漸化式をまとめ、有理型母関数の巨大係数へ接続する。
 ABC315 Exからは、両方の入力列を左から確定しながら積の現在係数を返す
