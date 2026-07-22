@@ -2,9 +2,72 @@
 #include <bits/stdc++.h>
 #include "graph/graph.hpp"
 #include "graph/lowlink.hpp"
+#include "graph/shortestpath.hpp"
 #include "structure/dsu.hpp"
 
 namespace poe {
+
+/// terminal間を一回limit以下のpathで何度でも移動する到達可能性query。
+template<class Cost>
+struct terminalhopquery {
+    int from;
+    int to;
+    Cost limit;
+};
+
+/// O((n+m)log n+(m+q)log(m+q))時間・O(n+m+q)領域。terminalでのみ区切れる上限付き移動queryを一括判定する。
+template<weighted_graph_type Graph>
+    requires (!Graph::is_directed)
+std::vector<bool> terminal_hop_connectivity(
+    const Graph& graph,
+    const std::vector<int>& terminals,
+    const std::vector<terminalhopquery<typename Graph::cost_type>>& queries
+) {
+    using cost_type = typename Graph::cost_type;
+    assert(!terminals.empty());
+    std::vector<char> is_terminal(graph.size());
+    for (const int terminal : terminals) {
+        assert(0 <= terminal && terminal < graph.size());
+        is_terminal[terminal] = true;
+    }
+    for (int id = 0; id < graph.edge_count(); ++id) assert(graph.edge_at(id).cost >= cost_type{});
+
+    const auto nearest = dijkstra(graph, terminals);
+    struct weightededge {
+        int from, to;
+        cost_type limit;
+    };
+    std::vector<weightededge> edges;
+    edges.reserve(graph.edge_count());
+    for (int id = 0; id < graph.edge_count(); ++id) {
+        const auto& edge = graph.edge_at(id);
+        const cost_type limit = detail::add_distance(
+            detail::add_distance(nearest[edge.from], edge.cost, nearest.inf),
+            nearest[edge.to], nearest.inf);
+        edges.push_back({edge.from, edge.to, limit});
+    }
+    std::ranges::sort(edges, {}, &weightededge::limit);
+
+    std::vector<int> order(queries.size());
+    std::iota(order.begin(), order.end(), 0);
+    std::ranges::sort(order, [&](int left, int right) {
+        return queries[left].limit < queries[right].limit;
+    });
+    std::vector<bool> answer(queries.size());
+    dsu components(graph.size());
+    std::size_t edge_index = 0;
+    for (const int index : order) {
+        const auto& [from, to, limit] = queries[index];
+        assert(0 <= from && from < graph.size() && 0 <= to && to < graph.size());
+        assert(is_terminal[from] && is_terminal[to]);
+        while (edge_index < edges.size() && edges[edge_index].limit <= limit) {
+            components.merge(edges[edge_index].from, edges[edge_index].to);
+            ++edge_index;
+        }
+        answer[index] = components.same(from, to);
+    }
+    return answer;
+}
 
 /// O(n^3/64+nq+n log n)。各queryのpath上最大頂点costの最小値を返す。到達不能ならnullopt。
 template<graph_type Graph, class Cost>

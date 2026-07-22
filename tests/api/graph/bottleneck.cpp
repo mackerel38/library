@@ -33,4 +33,8 @@ int main() {
     bottlenecksensitivity duplicate(parallel);
     assert(!duplicate.increases(0, 0, 1));
     assert(!duplicate.increases(1, 0, 1));
+
+    const vector<terminalhopquery<int>> rest_queries{{0, 2, 2}, {0, 2, 3}};
+    assert((terminal_hop_connectivity(graph, vector<int>{0, 2}, rest_queries)
+            == vector<bool>{false, true}));
 }

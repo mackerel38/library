@@ -881,11 +881,11 @@
       "docs": "docs/geometry/polygon.md",
       "layer": 2,
       "status": "experimental",
-      "summary_ja": "面積・凸包・点包含・凸性判定",
-      "symbols": ["poe::area2", "poe::convex_hull", "poe::containment", "poe::polygon_contains", "poe::is_convex"],
-      "tags": ["geometry", "polygon", "convex-hull"],
+      "summary_ja": "面積・凸包・点包含・凸性判定・平行移動した凸多角形の共通部分",
+      "symbols": ["poe::area2", "poe::convex_hull", "poe::containment", "poe::polygon_contains", "poe::is_convex", "poe::translatedpolygonintersection"],
+      "tags": ["geometry", "polygon", "convex-hull", "translation", "intersection", "half-plane"],
       "tests": ["tests/api/geometry/geometry.cpp", "tests/property/geometry/geometry.cpp"],
-      "verify": ["verify/atcoder_abc266_c.cpp"]
+      "verify": ["verify/atcoder_abc251_g.cpp", "verify/atcoder_abc266_c.cpp"]
     },
     "cp/geometry/rectangleunion.hpp": {
       "benchmark": [],
@@ -1020,15 +1020,15 @@
       "verify": []
     },
     "cp/graph/bottleneck.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC250 Ex最大N=200000,M=199999,Q=200000で0.51秒・37MB"],
       "docs": "docs/graph/bottleneck.md",
       "layer": 3,
       "status": "experimental",
-      "summary_ja": "頂点bottleneck path queryと辺重み増加に対するminimax距離の感度判定",
-      "symbols": ["poe::minimum_vertex_bottleneck_paths", "poe::bottlenecksensitivity"],
-      "tags": ["graph", "bottleneck-path", "bitset", "warshall-floyd", "minimum-spanning-tree", "minimax-path", "kruskal", "bridge", "sensitivity"],
+      "summary_ja": "頂点・辺bottleneck pathとterminalで区切る上限付き移動query",
+      "symbols": ["poe::terminalhopquery", "poe::terminal_hop_connectivity", "poe::minimum_vertex_bottleneck_paths", "poe::bottlenecksensitivity"],
+      "tags": ["graph", "bottleneck-path", "terminal", "multi-source-dijkstra", "offline-query", "bitset", "warshall-floyd", "minimum-spanning-tree", "minimax-path", "kruskal", "bridge", "sensitivity"],
       "tests": ["tests/api/graph/bottleneck.cpp", "tests/property/graph/bottleneck.cpp"],
-      "verify": ["verify/atcoder_abc287_h.cpp", "verify/atcoder_abc301_h.cpp"]
+      "verify": ["verify/atcoder_abc250_h.cpp", "verify/atcoder_abc287_h.cpp", "verify/atcoder_abc301_h.cpp"]
     },
     "cp/graph/coloring.hpp": {
       "benchmark": [],

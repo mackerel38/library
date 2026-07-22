@@ -23,4 +23,9 @@ int main() {
 
     const auto enclosing = poe::minimum_enclosing_circle(std::vector<point>{{0, 0}, {2, 0}, {0, 2}});
     assert(std::abs(enclosing.radius - std::sqrt(2.0L)) < 1e-10L);
+
+    const std::vector<point> square{{0, 0}, {3, 0}, {3, 3}, {0, 3}};
+    const poe::translatedpolygonintersection region(square, std::vector<point>{{0, 1}, {1, 0}});
+    assert(region.contains({1, 1}));
+    assert(!region.contains({0, 0}));
 }

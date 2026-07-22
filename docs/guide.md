@@ -36,7 +36,9 @@
 | --- | --- | --- |
 | 有向・無向グラフ、入力 | [`graph/graph.hpp`](graph/graph.md) | adjacency listと`read` |
 | 隣接行列、全点対変換 | [`graph/matrixgraph.hpp`](graph/matrixgraph.md) | matrix形式とlist形式の相互変換 |
+| 同じ凸多角形を複数回平行移動、全ての共通部分 | [`geometry/polygon.hpp`](geometry/polygon.md) | 辺ごとの半平面下限を前計算 |
 | 単一始点最短路 | [`graph/shortestpath.hpp`](graph/shortestpath.md) | BFS、0-1 BFS、Dijkstra、Bellman-Ford |
+| 指定地点でのみ休憩、一回の移動上限、到達可能性 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | 多点Dijkstraと閾値順DSU |
 | 全点対最短路 | [`graph/warshallfloyd.hpp`](graph/warshallfloyd.md) | Warshall-Floyd |
 | path上の最大頂点costを最小化 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | bitset一括bottleneck query |
 | 強連結成分 | [`graph/scc.hpp`](graph/scc.md) | SCC分解と縮約 |
