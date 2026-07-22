@@ -3,6 +3,7 @@
 #include "dp/concave.hpp"
 #include "dp/decreasingconvex.hpp"
 #include "dp/digit.hpp"
+#include "dp/distinctrepresentatives.hpp"
 #include "dp/frontier.hpp"
 #include "dp/gridpath.hpp"
 #include "dp/groupassignment.hpp"

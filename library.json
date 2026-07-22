@@ -315,6 +315,17 @@
       "tests": ["tests/api/dp/reusable.cpp", "tests/property/dp/reusable.cpp"],
       "verify": ["verify/atcoder_dp_s.cpp"]
     },
+    "cp/dp/distinctrepresentatives.hpp": {
+      "benchmark": ["ABC236 Ex n=16・limit=10^18で0.57秒・4.4MB"],
+      "docs": "docs/dp/distinctrepresentatives.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "集合族から互いに異なる代表元を選ぶ方法数と倍数集合shortcut",
+      "symbols": ["poe::count_distinct_representatives", "poe::count_distinct_bounded_multiples"],
+      "tags": ["dynamic-programming", "set-partition", "mobius-inversion", "distinct-representatives", "inclusion-exclusion", "lcm"],
+      "tests": ["tests/api/dp/distinctrepresentatives.cpp", "tests/property/dp/distinctrepresentatives.cpp"],
+      "verify": ["verify/atcoder_abc236_h.cpp"]
+    },
     "cp/dp/knapsack.hpp": {
       "benchmark": [],
       "docs": "docs/dp/knapsack.md",
