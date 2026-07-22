@@ -6,7 +6,45 @@
 #include "math/matrix.hpp"
 #include "math/modint.hpp"
 
+using namespace std;
+using namespace poe;
+
 int main() {
+    {
+        mt19937 random(236);
+        constexpr int infinity = 1'000'000;
+        for (int trial = 0; trial < 1000; ++trial) {
+            const int n = 1 + random() % 6;
+            const int length = random() % 8;
+            matrix<int> edges(n, n);
+            for (int from = 0; from < n; ++from) {
+                for (int to = 0; to < n; ++to) {
+                    edges[from][to] = random() % 3 ? 1 + random() % 20 : infinity;
+                }
+            }
+            vector dp(length + 1, vector(n, vector<int>(n, infinity)));
+            for (int vertex = 0; vertex < n; ++vertex) dp[0][vertex][vertex] = 0;
+            for (int step = 0; step < length; ++step) {
+                for (int from = 0; from < n; ++from) {
+                    for (int middle = 0; middle < n; ++middle) {
+                        for (int to = 0; to < n; ++to) {
+                            dp[step + 1][from][to] = min(
+                                dp[step + 1][from][to],
+                                max(dp[step][from][middle], edges[middle][to])
+                            );
+                        }
+                    }
+                }
+            }
+            const auto actual = minmax_matrix_power(edges, length, infinity, 0);
+            for (int from = 0; from < n; ++from) {
+                for (int to = 0; to < n; ++to) {
+                    assert(actual[from][to] == dp[length][from][to]);
+                }
+            }
+        }
+    }
+
     std::mt19937 random(20260716);
     for (int n = 1; n <= 7; ++n) {
         for (int repetition = 0; repetition < 100; ++repetition) {

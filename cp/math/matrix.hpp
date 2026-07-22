@@ -250,4 +250,39 @@ matrix<T> minplus_matrix_power(
     );
 }
 
+/// O(hwk)。min-max半環で、経路の最大辺値を最小化する行列積を返す。
+template<class T>
+matrix<T> minmax_matrix_product(
+    const matrix<T>& left,
+    const matrix<T>& right,
+    T infinity = std::numeric_limits<T>::max()
+) {
+    const auto add = [](const T& first, const T& second) {
+        return std::min(first, second);
+    };
+    const auto multiply = [](const T& first, const T& second) {
+        return std::max(first, second);
+    };
+    return semiring_matrix_product(left, right, infinity, add, multiply);
+}
+
+/// O(n^3 log exponent)。ちょうどexponent辺のボトルネック最小値を表すmin-max行列累乗を返す。
+template<class T>
+matrix<T> minmax_matrix_power(
+    matrix<T> base,
+    unsigned long long exponent,
+    T infinity = std::numeric_limits<T>::max(),
+    T identity = std::numeric_limits<T>::lowest()
+) {
+    const auto add = [](const T& first, const T& second) {
+        return std::min(first, second);
+    };
+    const auto multiply = [](const T& first, const T& second) {
+        return std::max(first, second);
+    };
+    return semiring_matrix_power(
+        std::move(base), exponent, infinity, identity, add, multiply
+    );
+}
+
 }

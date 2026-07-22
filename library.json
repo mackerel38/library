@@ -1728,11 +1728,11 @@
       "docs": "docs/math/matrix.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "通常・任意半環・min-plus行列と疎イベント付き線形遷移",
-      "symbols": ["poe::matrix", "poe::matrix_vector_product", "poe::sparse_matrix_events", "poe::sparse_matrix_transitions", "poe::semiring_matrix_product", "poe::semiring_matrix_power", "poe::minplus_matrix_product", "poe::minplus_matrix_power"],
-      "tags": ["math", "matrix", "dynamic-programming", "sparse-events", "semiring", "min-plus"],
+      "summary_ja": "通常・任意半環・min-plus・min-max行列と疎イベント付き線形遷移",
+      "symbols": ["poe::matrix", "poe::matrix_vector_product", "poe::sparse_matrix_events", "poe::sparse_matrix_transitions", "poe::semiring_matrix_product", "poe::semiring_matrix_power", "poe::minplus_matrix_product", "poe::minplus_matrix_power", "poe::minmax_matrix_product", "poe::minmax_matrix_power"],
+      "tags": ["math", "matrix", "dynamic-programming", "sparse-events", "semiring", "min-plus", "min-max", "bottleneck"],
       "tests": ["tests/api/dp/advanced.cpp", "tests/api/math/matrix.cpp", "tests/property/math/matrix.cpp"],
-      "verify": ["verify/atcoder_dp_r.cpp", "verify/atcoder_tdpc_house.cpp", "verify/atcoder_abc258_h.cpp", "verify/atcoder_abc445_f.cpp"]
+      "verify": ["verify/atcoder_abc236_g.cpp", "verify/atcoder_dp_r.cpp", "verify/atcoder_tdpc_house.cpp", "verify/atcoder_abc258_h.cpp", "verify/atcoder_abc445_f.cpp"]
     },
     "cp/math/math.hpp": {
       "benchmark": [],

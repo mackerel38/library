@@ -20,6 +20,8 @@ documentation_of: //cp/math/matrix.hpp
 - `semiring_matrix_power`: O(n^3 log exponent)。zero・one・演算を指定した半環上の正方行列累乗を返す。
 - `minplus_matrix_product`: O(hwk)。min-plus半環で行列積を返す。infinity以上は到達不能として扱う。
 - `minplus_matrix_power`: O(n^3 log exponent)。ちょうどexponent辺の最小費用を表すmin-plus行列累乗を返す。
+- `minmax_matrix_product`: O(hwk)。min-max半環で経路上の最大値を最小化する行列積を返す。
+- `minmax_matrix_power`: O(n^3 log exponent)。ちょうどexponent辺のボトルネック最小値を返す。
 - `matrix_vector_product`: 行列を列vectorへ作用させる。
 - `sparse_matrix_events`: 通常遷移を繰り返し、指定時刻だけcallbackを適用する。
 - `sparse_matrix_transitions`: 指定時刻だけ共通の例外行列へ置き換える。
@@ -48,11 +50,16 @@ auto powered = semiring_matrix_power(base, exponent, zero, one, add, multiply);
 // 固定長walkの最小費用では短いmin-plus版を使う。
 auto cost = minplus_matrix_power(matrix<long long>(values), steps);
 long long return_cost = cost[start][start];
+
+// 固定長walkで使う辺の最大値を最小化する。
+auto bottleneck = minmax_matrix_power(edge_values, steps, infinity, 0);
 ```
 
 - `semiring_matrix_product`: `O(hwk)`。任意の半環演算を指定する。
 - `semiring_matrix_power`: `O(k^3 log exponent)`。`zero`と`one`も明示する。
 - `minplus_matrix_product`, `minplus_matrix_power`: 加算を最小値、乗算を飽和加算として扱う。
+- `minmax_matrix_product`, `minmax_matrix_power`: 加算を最小値、乗算を最大値として扱う。
+  `power`の`identity`は空のwalkの値で、非負の辺値なら`0`を指定できる。
 
 ### 疎な例外時刻を持つ線形DP
 
@@ -229,6 +236,22 @@ template <class T> matrix<T> minplus_matrix_power( matrix<T> base, unsigned long
 ```
 
 O(n^3 log exponent)。ちょうどexponent辺の最小費用を表すmin-plus行列累乗を返す。
+
+### `minmax_matrix_product`
+
+```cpp
+template<class T> matrix<T> minmax_matrix_product( const matrix<T>& left, const matrix<T>& right, T infinity = std::numeric_limits<T>::max() )
+```
+
+O(hwk)。min-max半環で、経路の最大辺値を最小化する行列積を返す。
+
+### `minmax_matrix_power`
+
+```cpp
+template<class T> matrix<T> minmax_matrix_power( matrix<T> base, unsigned long long exponent, T infinity = std::numeric_limits<T>::max(), T identity = std::numeric_limits<T>::lowest() )
+```
+
+O(n^3 log exponent)。ちょうどexponent辺のボトルネック最小値を表すmin-max行列累乗を返す。
 
 <!-- END AUTO-GENERATED API REFERENCE -->
 
