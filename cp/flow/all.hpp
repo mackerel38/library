@@ -8,3 +8,4 @@
 #include "flow/mincostflow.hpp"
 #include "flow/submodular.hpp"
 #include "flow/tournament.hpp"
+#include "flow/vertexcut.hpp"

@@ -1052,6 +1052,17 @@
       "tests": ["tests/api/flow/tournament.cpp", "tests/property/flow/tournament.cpp"],
       "verify": ["verify/atcoder_abc241_g.cpp"]
     },
+    "cp/flow/vertexcut.hpp": {
+      "benchmark": [],
+      "docs": "docs/flow/vertexcut.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "頂点削除費用付き最小s-t頂点cutと削除集合復元",
+      "symbols": ["poe::vertexcutresult", "poe::minimum_vertex_cut"],
+      "tags": ["flow", "mincut", "vertex-cut", "vertex-splitting"],
+      "tests": ["tests/api/flow/vertexcut.cpp", "tests/property/flow/vertexcut.cpp"],
+      "verify": ["verify/atcoder_abc239_g.cpp"]
+    },
     "cp/graph/activation.hpp": {
       "benchmark": [],
       "docs": "docs/graph/activation.md",
