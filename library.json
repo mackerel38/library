@@ -1393,6 +1393,17 @@
       "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp", "tests/api/graph/boundedtopological.cpp", "tests/property/graph/boundedtopological.cpp"],
       "verify": ["verify/aoj_grl_4_b.cpp", "verify/atcoder_abc304_h.cpp"]
     },
+    "cp/graph/thresholdcomponents.hpp": {
+      "benchmark": ["ABC235 Ex n=m=100000・K=500のchainで2.25秒・19MB"],
+      "docs": "docs/graph/thresholdcomponents.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "重み閾値連結成分のunionを最少選択数別に数えるKruskal merge DP",
+      "symbols": ["poe::threshold_component_union_counts"],
+      "tags": ["graph", "weighted-graph", "kruskal", "merge-tree", "polynomial-dp", "component-union"],
+      "tests": ["tests/api/graph/thresholdcomponents.cpp", "tests/property/graph/thresholdcomponents.cpp"],
+      "verify": ["verify/atcoder_abc235_h.cpp"]
+    },
     "cp/recipe/translation.hpp": {
       "benchmark": [],
       "docs": "docs/recipe/translation.md",

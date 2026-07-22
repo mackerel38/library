@@ -28,6 +28,7 @@
 #include "graph/shortestpath.hpp"
 #include "graph/simplepath.hpp"
 #include "graph/spanningforest.hpp"
+#include "graph/thresholdcomponents.hpp"
 #include "graph/topologicalsort.hpp"
 #include "graph/travelingsalesman.hpp"
 #include "graph/twosat.hpp"
