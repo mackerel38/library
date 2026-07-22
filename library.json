@@ -353,11 +353,11 @@
       "docs": "docs/dp/partition.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "連続フェーズ分割と任意括弧付け二項演算の区間DP",
-      "symbols": ["poe::max_phase_partition", "poe::parenthesized_results"],
-      "tags": ["dynamic-programming", "partition", "phase", "sequence", "interval-dp", "parenthesization"],
+      "summary_ja": "連続分割の得点最適化・値域積総和と任意括弧付け二項演算",
+      "symbols": ["poe::max_phase_partition", "poe::sum_partition_range_products", "poe::parenthesized_results"],
+      "tags": ["dynamic-programming", "partition", "phase", "sequence", "monotone-stack", "interval-dp", "parenthesization"],
       "tests": ["tests/api/dp/partition.cpp", "tests/property/dp/partition.cpp"],
-      "verify": ["verify/atcoder_abc438_d.cpp", "verify/atcoder_abc418_g.cpp"]
+      "verify": ["verify/atcoder_abc438_d.cpp", "verify/atcoder_abc418_g.cpp", "verify/atcoder_abc234_g.cpp"]
     },
     "cp/recipe/insertioncomponents.hpp": {
       "benchmark": [],

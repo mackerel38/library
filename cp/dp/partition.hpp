@@ -26,6 +26,36 @@ T max_phase_partition(const std::vector<std::vector<T>>& score) {
     return dp.back();
 }
 
+/// O(n)時間・O(n)領域。全連続分割について各区間の(max-min)を掛けた値の総和を返す。
+template <class T, class Value>
+T sum_partition_range_products(const std::vector<Value>& values) {
+    std::vector<T> dp(values.size() + 1);
+    dp[0] = T{1};
+    std::vector<std::pair<Value, T>> maximum_stack, minimum_stack;
+    T maximum_sum{}, minimum_sum{};
+    for (int index = 0; index < static_cast<int>(values.size()); ++index) {
+        T maximum_weight = dp[index];
+        while (!maximum_stack.empty() && !(values[index] < maximum_stack.back().first)) {
+            maximum_sum -= T{maximum_stack.back().first} * maximum_stack.back().second;
+            maximum_weight += maximum_stack.back().second;
+            maximum_stack.pop_back();
+        }
+        maximum_stack.emplace_back(values[index], maximum_weight);
+        maximum_sum += T{values[index]} * maximum_weight;
+
+        T minimum_weight = dp[index];
+        while (!minimum_stack.empty() && !(minimum_stack.back().first < values[index])) {
+            minimum_sum -= T{minimum_stack.back().first} * minimum_stack.back().second;
+            minimum_weight += minimum_stack.back().second;
+            minimum_stack.pop_back();
+        }
+        minimum_stack.emplace_back(values[index], minimum_weight);
+        minimum_sum += T{values[index]} * minimum_weight;
+        dp[index + 1] = maximum_sum - minimum_sum;
+    }
+    return dp.back();
+}
+
 /// O(n^3 s^2)。二項演算を全ての括弧付けで適用して到達できる状態をbit集合で返す。s<=64。
 inline unsigned long long parenthesized_results(
     const std::vector<int>& values,
