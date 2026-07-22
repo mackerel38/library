@@ -1371,6 +1371,17 @@
       "tests": ["tests/api/graph/grid.cpp", "tests/api/graph/layeredgrid.cpp", "tests/property/graph/layeredgrid.cpp", "tests/property/graph/sparsegrid.cpp"],
       "verify": ["verify/atcoder_abc413_g.cpp", "verify/atcoder_abc440_g.cpp", "verify/atcoder_abc450_c.cpp", "verify/atcoder_abc460_d.cpp"]
     },
+    "cp/graph/gridseparator.hpp": {
+      "benchmark": ["100x100全マス指定可能で0.27秒・6.4MB"],
+      "docs": "docs/graph/gridseparator.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "4近傍グリッドの最小頂点separatorと最適集合数",
+      "symbols": ["poe::gridseparatorresult", "poe::minimum_grid_vertex_separator"],
+      "tags": ["graph", "grid", "vertex-cut", "separator", "planar-dual", "counting"],
+      "tests": ["tests/api/graph/gridseparator.cpp", "tests/property/graph/gridseparator.cpp"],
+      "verify": ["verify/atcoder_abc243_h.cpp"]
+    },
     "cp/recipe/monotonegridshortestpath.hpp": {
       "benchmark": [],
       "docs": "docs/recipe/monotonegridshortestpath.md",

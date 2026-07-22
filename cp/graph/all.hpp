@@ -9,6 +9,7 @@
 #include "graph/generalmatching.hpp"
 #include "graph/graph.hpp"
 #include "graph/grid.hpp"
+#include "graph/gridseparator.hpp"
 #include "graph/hyperedge.hpp"
 #include "graph/incrementalreachability.hpp"
 #include "graph/integerconstraints.hpp"
