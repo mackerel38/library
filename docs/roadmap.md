@@ -245,6 +245,8 @@ ABC246 Exからは、小alphabetで各位置の許容文字集合を更新し、
 `dynamicsubsequencecount`を追加した。affine変換の積を内部Segment Treeで管理する。
 ABC246 Gからは、子部分木の需要残余を合計し、頂点ごとの処理可能量を引く
 `tree_demand_residual`と頂点値の閾値探索を追加した。深い木でも再帰を使わない。
+ABC245 Gからは、非負重みgraphの指定始点をラベル別に近い順で保持するDijkstraと、
+各頂点から自身と異なるラベルの最寄り始点距離を返す短縮APIを追加した。
 ABC317 Exからは、低次多項式を要素に持つ小正方行列列を分割統治で掛ける
 `polynomial_matrix_product`を追加した。局所walk漸化式をまとめ、有理型母関数の巨大係数へ接続する。
 ABC315 Exからは、両方の入力列を左から確定しながら積の現在係数を返す

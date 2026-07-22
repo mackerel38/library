@@ -1240,15 +1240,15 @@
       "verify": ["verify/scc.test.cpp"]
     },
     "cp/graph/shortestpath.hpp": {
-      "benchmark": [],
+      "benchmark": ["ABC245 G N=M=L=100000で0.61秒・26MB"],
       "docs": "docs/graph/shortestpath.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "明示・暗黙graphの最短路と各頂点に近い異なる複数始点",
-      "symbols": ["poe::shortestpathresult", "poe::nearestsource", "poe::nearestsourcesresult", "poe::bfs", "poe::nearest_sources_bfs", "poe::zero_one_bfs", "poe::dijkstra", "poe::bellmanfordresult", "poe::bellman_ford"],
-      "tags": ["graph", "implicit-graph", "shortest-path", "bfs", "multi-source", "zero-one-bfs", "dijkstra", "bellman-ford"],
-      "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp", "tests/api/graph/nearestsources.cpp", "tests/property/graph/nearestsources.cpp"],
-      "verify": ["verify/shortestpath.test.cpp", "verify/atcoder_abc429_e.cpp", "verify/atcoder_abc431_e.cpp", "verify/atcoder_abc424_c.cpp"]
+      "summary_ja": "明示・暗黙graphの最短路と始点・ラベル別の近傍",
+      "symbols": ["poe::shortestpathresult", "poe::nearestsource", "poe::nearestsourcesresult", "poe::nearestlabeledsource", "poe::nearestlabeledsourcesresult", "poe::bfs", "poe::nearest_sources_bfs", "poe::nearest_labeled_sources_dijkstra", "poe::distance_to_nearest_different_label_source", "poe::zero_one_bfs", "poe::dijkstra", "poe::bellmanfordresult", "poe::bellman_ford"],
+      "tags": ["graph", "implicit-graph", "shortest-path", "bfs", "multi-source", "labeled-source", "zero-one-bfs", "dijkstra", "bellman-ford"],
+      "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp", "tests/api/graph/nearestsources.cpp", "tests/property/graph/nearestsources.cpp", "tests/api/graph/nearestlabeledsources.cpp", "tests/property/graph/nearestlabeledsources.cpp"],
+      "verify": ["verify/shortestpath.test.cpp", "verify/atcoder_abc245_g.cpp", "verify/atcoder_abc429_e.cpp", "verify/atcoder_abc431_e.cpp", "verify/atcoder_abc424_c.cpp"]
     },
     "cp/graph/simplepath.hpp": {
       "benchmark": [],
