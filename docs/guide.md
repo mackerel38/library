@@ -60,6 +60,7 @@
 | 互いに祖先・子孫でない頂点集合 | [`tree/antichain.hpp`](tree/antichain.md) | antichainを大きさ別に高速計数 |
 | 頂点prefixごとに完全二分木・完全多分木を数える | [`tree/perfectsubtree.hpp`](tree/perfectsubtree.md) | 基本対称式の祖先差分DP |
 | 凸多角形を避ける最短路 | [`geometry/convexpath.hpp`](geometry/convexpath.md) | 凸障害物の左右を回る最短距離 |
+| 点追加と内積最大化 | [`geometry/incrementalhull.hpp`](geometry/incrementalhull.md) | incremental convex hullのsupport query |
 | 整数格子、二種類までの移動ベクトル | [`geometry/latticemove.hpp`](geometry/latticemove.md) | 非負整数結合で目的地へ着く最小手数 |
 | 直線交点、円内の交点数、k番目の交点距離 | [`geometry/line.hpp`](geometry/line.md) | 直線配置を弦の交差へ変換 |
 | 同型を除いた単純グラフ数 | [`graph/unlabeledcount.hpp`](graph/unlabeledcount.md) | 全色使用の頂点彩色付き無ラベルグラフ |

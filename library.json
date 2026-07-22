@@ -942,6 +942,17 @@
       "tests": ["tests/api/flow/acl_flow.cpp"],
       "verify": []
     },
+    "cp/geometry/incrementalhull.hpp": {
+      "benchmark": ["ABC244 Ex Q=200000 のランダム点・方向で2.01秒・10MB"],
+      "docs": "docs/geometry/incrementalhull.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "点追加と任意方向の内積最大値を扱うincremental convex hull",
+      "symbols": ["poe::incrementalconvexhull"],
+      "tags": ["geometry", "convex-hull", "incremental", "support-function", "dot-product", "binary-merge"],
+      "tests": ["tests/api/geometry/incrementalhull.cpp", "tests/property/geometry/incrementalhull.cpp"],
+      "verify": ["verify/atcoder_abc244_h.cpp"]
+    },
     "cp/flow/lowerbound.hpp": {
       "benchmark": [],
       "docs": "docs/flow/lowerbound.md",
