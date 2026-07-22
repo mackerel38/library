@@ -11,12 +11,14 @@ documentation_of: //cp/structure/xortrie.hpp
 非負整数のmultisetに対し、値の追加・削除・個数取得と、指定値とのXORが上限未満・以下になる
 要素数を上位bitから数える。指定値との最小XOR、整数区間全体に対する最小XORの総和、列内の
 二要素のXORが上限以下となる組数も求められる。
+二つの列から一要素ずつ選んだXORの、重複込み順位も線形bit走査で求められる。
 
 ## 厳密な定義
 
 - `xortrie`: 整数multisetのXOR検索: xortrie<unsigned,30> trie; 各操作O(bits)。
 - `sum_min_xor`: O(n bits)前計算・O(bits)集約。x=0..upper-1についてmin_a(x xor a)の総和を返す。
 - `count_pairs_xor_at_most`: O(n bits)。i<jかつvalues[i] xor values[j]<=limitとなる組数を返す。
+- `kth_largest_cross_xor`: 二列から一要素ずつ選ぶ全組について、XORのk番目に大きい値を返す。
 
 ## Include
 
@@ -29,12 +31,18 @@ long long count = trie.count_xor_at_most(y, limit);
 unsigned minimum = trie.min_xor(y);
 unsigned long long total = sum_min_xor<unsigned, 30>(values, left, right);
 long long pairs = count_pairs_xor_at_most<unsigned, 30>(values, limit);
+unsigned kth = kth_largest_cross_xor<unsigned, 30>(left, right, k);
 ```
 
 各操作`O(bits)`、領域`O(追加された相異prefix数)`。値と上限は指定bit数に収まること。
 `sum_min_xor(values,upper)`は`0<=x<upper`、三引数版は`left<=x<right`について
 `min_a(x xor a)`を合計する。静的Trieと各部分木の全域和を`O(n bits)`で作り、集約自体は`O(bits)`。
 返り値を64bitに収めるため`Bits<=32`とする。
+
+`kth_largest_cross_xor(left,right,k)`は、$left_i\mathbin{\mathrm{xor}}right_j$を全ての
+$0\le i<n,0\le j<m$について重複込みで大きい順に並べたときの$k$番目を返す。
+`k`は1-indexedで、両方の列が空でなく、$1\le k\le nm$である必要がある。
+時間計算量は$O((n+m)(\log(n+m)+Bits))$、領域計算量は$O(n+m)$である。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -144,6 +152,14 @@ template <std::unsigned_integral UInt, int Bits = std::numeric_limits<UInt>::dig
 ```
 
 O(n bits)。i<jかつvalues[i] xor values[j]<=limitとなる組数を返す。
+
+### `kth_largest_cross_xor`
+
+```cpp
+template<std::unsigned_integral UInt, int Bits = std::numeric_limits<UInt>::digits> UInt kth_largest_cross_xor( const std::vector<UInt>& left, const std::vector<UInt>& right, unsigned long long k )
+```
+
+O((n+m)(log(n+m)+bits))時間・O(n+m)領域。left[i] xor right[j]のk番目に大きい値を返す。kは1-indexed。
 
 <!-- END AUTO-GENERATED API REFERENCE -->
 

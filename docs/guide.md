@@ -26,6 +26,8 @@
 | 三つの座標が全て非減少な最大重み列 | [`algorithm/dominance.hpp`](algorithm/dominance.md) | 三次元dominance DPと復元 |
 | 多重集合を2倍・2で切り捨て除算して一致 | [`algorithm/multisettransform.hpp`](algorithm/multisettransform.md) | 二進prefix木上の最小移動matching |
 | word多重集合、末尾削除、prefixまで移動 | [`algorithm/multisettransform.hpp`](algorithm/multisettransform.md) | 左右別の辺制約を持つprefix matching |
+| 各グループから一つ選ぶXOR、k番目 | [`algorithm/groupxor.hpp`](algorithm/groupxor.md) | 積を均衡化する半分全列挙とXOR順位統計 |
+| 二列から一つずつ選ぶXOR、k番目 | [`structure/xortrie.hpp`](structure/xortrie.md) | 二つのbinary trieを同時に降りる順位統計 |
 | ちょうどk個を選択、総和の二乗を含む最大化 | [`algorithm/quadraticselection.hpp`](algorithm/quadraticselection.md) | $(\sum x)^2+\sum y$の固定個数選択 |
 
 ## グラフ・木
@@ -41,6 +43,7 @@
 | 有界整数、二変数の和の上下限 | [`graph/integerconstraints.hpp`](graph/integerconstraints.md) | $L\leq x_i+x_j\leq R$を満たす整数割当て |
 | 橋、関節点、二重連結成分 | [`graph/lowlink.hpp`](graph/lowlink.md) | LowLink |
 | 最小全域木 | [`graph/minimumspanningtree.hpp`](graph/minimumspanningtree.md) | Kruskalなど |
+| 頂点数が小さい、森を辺数別に数える | [`graph/spanningforest.hpp`](graph/spanningforest.md) | 行列木定理と集合分割DP |
 | 最大流、最小費用流 | [`flow/maxflow.hpp`](flow/maxflow.md)、[`flow/mincostflow.hpp`](flow/mincostflow.md) | flowgraph上の探索 |
 | LCA、パス分解 | [`tree/lca.hpp`](tree/lca.md)、[`tree/heavylightdecomposition.hpp`](tree/heavylightdecomposition.md) | 木上queryの基礎 |
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |

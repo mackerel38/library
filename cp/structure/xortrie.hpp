@@ -203,4 +203,71 @@ long long count_pairs_xor_at_most(const std::vector<UInt>& values, UInt limit) {
     return answer;
 }
 
+/// O((n+m)(log(n+m)+bits))時間・O(n+m)領域。left[i] xor right[j]のk番目に大きい値を返す。kは1-indexed。
+template<std::unsigned_integral UInt, int Bits = std::numeric_limits<UInt>::digits>
+UInt kth_largest_cross_xor(
+    const std::vector<UInt>& left,
+    const std::vector<UInt>& right,
+    unsigned long long k
+) {
+    static_assert(1 <= Bits && Bits <= std::numeric_limits<UInt>::digits);
+    assert(!left.empty() && !right.empty());
+    assert(static_cast<unsigned __int128>(k)
+        <= static_cast<unsigned __int128>(left.size()) * right.size());
+    if constexpr (Bits < std::numeric_limits<UInt>::digits) {
+        for (const UInt value : left) assert(value < (UInt{1} << Bits));
+        for (const UInt value : right) assert(value < (UInt{1} << Bits));
+    }
+
+    std::vector<UInt> sorted_left = left;
+    std::vector<UInt> sorted_right = right;
+    std::ranges::sort(sorted_left);
+    std::ranges::sort(sorted_right);
+    struct rangepair {
+        std::size_t left_begin, left_end, right_begin, right_end;
+    };
+    std::vector<rangepair> pairs{{0, left.size(), 0, right.size()}};
+    UInt answer = 0;
+    for (int bit = Bits - 1; bit >= 0; --bit) {
+        unsigned __int128 one_count = 0;
+        std::vector<std::array<std::size_t, 6>> split;
+        split.reserve(pairs.size());
+        for (const auto [left_begin, left_end, right_begin, right_end] : pairs) {
+            const auto left_middle = std::ranges::partition_point(
+                std::ranges::subrange(sorted_left.begin() + left_begin,
+                                      sorted_left.begin() + left_end),
+                [bit](UInt value) { return ((value >> bit) & 1) == 0; });
+            const auto right_middle = std::ranges::partition_point(
+                std::ranges::subrange(sorted_right.begin() + right_begin,
+                                      sorted_right.begin() + right_end),
+                [bit](UInt value) { return ((value >> bit) & 1) == 0; });
+            const std::size_t lm = left_middle - sorted_left.begin();
+            const std::size_t rm = right_middle - sorted_right.begin();
+            split.push_back({left_begin, lm, left_end, right_begin, rm, right_end});
+            one_count += static_cast<unsigned __int128>(lm - left_begin) * (right_end - rm)
+                       + static_cast<unsigned __int128>(left_end - lm) * (rm - right_begin);
+        }
+
+        const bool choose_one = static_cast<unsigned __int128>(k) <= one_count;
+        if (choose_one) answer |= UInt{1} << bit;
+        else k -= static_cast<unsigned long long>(one_count);
+
+        std::vector<rangepair> next;
+        next.reserve(pairs.size() * 2);
+        for (const auto [lb, lm, le, rb, rm, re] : split) {
+            const std::array<std::pair<std::size_t, std::size_t>, 2> left_range{{{lb, lm}, {lm, le}}};
+            const std::array<std::pair<std::size_t, std::size_t>, 2> right_range{{{rb, rm}, {rm, re}}};
+            for (int direction = 0; direction < 2; ++direction) {
+                const auto [a_begin, a_end] = left_range[direction];
+                const auto [b_begin, b_end] = right_range[direction ^ choose_one];
+                if (a_begin != a_end && b_begin != b_end) {
+                    next.push_back({a_begin, a_end, b_begin, b_end});
+                }
+            }
+        }
+        pairs = std::move(next);
+    }
+    return answer;
+}
+
 }

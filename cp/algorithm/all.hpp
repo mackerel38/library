@@ -4,6 +4,7 @@
 #include "algorithm/binarysearch.hpp"
 #include "algorithm/dominance.hpp"
 #include "algorithm/groupreduce.hpp"
+#include "algorithm/groupxor.hpp"
 #include "algorithm/intervalcrossing.hpp"
 #include "algorithm/isotonic.hpp"
 #include "algorithm/modularrange.hpp"

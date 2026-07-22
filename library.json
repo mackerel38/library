@@ -99,6 +99,17 @@
       "tests": ["tests/api/algorithm/groupreduce.cpp", "tests/property/algorithm/groupreduce.cpp"],
       "verify": ["verify/atcoder_abc438_c.cpp"]
     },
+    "cp/algorithm/groupxor.hpp": {
+      "benchmark": ["ABC252 Ex最大積相当のランダム60bit値で0.15秒・33MB"],
+      "docs": "docs/algorithm/groupxor.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "各グループから一つ選ぶXORの順位統計",
+      "symbols": ["poe::kth_largest_group_xor"],
+      "tags": ["algorithm", "xor", "meet-in-the-middle", "order-statistics"],
+      "tests": ["tests/api/algorithm/groupxor.cpp", "tests/property/algorithm/groupxor.cpp"],
+      "verify": ["verify/atcoder_abc252_h.cpp"]
+    },
     "cp/algorithm/topenumeration.hpp": {
       "benchmark": [],
       "docs": "docs/algorithm/topenumeration.md",
@@ -1239,6 +1250,17 @@
       "tests": ["tests/api/graph/simplepath.cpp", "tests/property/graph/simplepath.cpp"],
       "verify": ["verify/atcoder_abc419_g.cpp"]
     },
+    "cp/graph/spanningforest.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/spanningforest.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "重み付き無向グラフの全域森を辺数別に計数",
+      "symbols": ["poe::spanning_forest_counts"],
+      "tags": ["graph", "spanning-forest", "matrix-tree-theorem", "subset-dp"],
+      "tests": ["tests/api/graph/spanningforest.cpp", "tests/property/graph/spanningforest.cpp"],
+      "verify": ["verify/atcoder_abc253_h.cpp"]
+    },
     "cp/graph/topologicalsort.hpp": {
       "benchmark": [],
       "docs": "docs/graph/topologicalsort.md",
@@ -2332,11 +2354,11 @@
       "docs": "docs/structure/xortrie.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "整数multisetのXOR値域・最小値・区間最近傍和とXOR pair counting",
-      "symbols": ["poe::xortrie", "poe::sum_min_xor", "poe::count_pairs_xor_at_most"],
+      "summary_ja": "整数multisetのXOR検索・区間最近傍和・二列間XOR順位統計",
+      "symbols": ["poe::xortrie", "poe::sum_min_xor", "poe::count_pairs_xor_at_most", "poe::kth_largest_cross_xor"],
       "tags": ["structure", "binary-trie", "xor", "nearest-neighbor", "pair-counting"],
       "tests": ["tests/api/structure/xortrie.cpp", "tests/property/structure/xortrie.cpp"],
-      "verify": ["verify/atcoder_abc425_g.cpp", "verify/atcoder_abc451_g.cpp"]
+      "verify": ["verify/atcoder_abc252_h.cpp", "verify/atcoder_abc425_g.cpp", "verify/atcoder_abc451_g.cpp"]
     },
     "cp/tree/all.hpp": {
       "benchmark": [],
