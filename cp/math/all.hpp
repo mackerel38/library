@@ -1,5 +1,6 @@
 #pragma once
 #include "math/bitcountsum.hpp"
+#include "math/binomialsequence.hpp"
 #include "math/burnside.hpp"
 #include "math/combination.hpp"
 #include "math/convolution.hpp"

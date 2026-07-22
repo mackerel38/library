@@ -1404,6 +1404,17 @@
       "tests": ["tests/api/math/bitcountsum.cpp", "tests/property/math/bitcountsum.cpp"],
       "verify": ["verify/atcoder_abc283_h.cpp"]
     },
+    "cp/math/binomialsequence.hpp": {
+      "benchmark": [],
+      "docs": "docs/math/binomialsequence.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "小さい素数法でRLE列の隣接和縮約を巨大回数適用",
+      "symbols": ["poe::adjacent_sum_reduce_rle"],
+      "tags": ["math", "binomial", "run-length-encoding", "frobenius", "sequence"],
+      "tests": ["tests/api/math/binomialsequence.cpp", "tests/property/math/binomialsequence.cpp"],
+      "verify": ["verify/atcoder_abc251_h.cpp"]
+    },
     "cp/math/burnside.hpp": {
       "benchmark": [],
       "docs": "docs/math/burnside.md",
@@ -2535,6 +2546,17 @@
       "tags": ["tree", "dynamic-programming", "incremental", "perfect-tree", "elementary-symmetric-polynomial"],
       "tests": ["tests/api/tree/perfectsubtree.cpp", "tests/property/tree/perfectsubtree.cpp"],
       "verify": ["verify/atcoder_abc264_h.cpp"]
+    },
+    "cp/tree/preorder.hpp": {
+      "benchmark": [],
+      "docs": "docs/tree/preorder.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "子をlabel昇順に辿るDFSの行きがけ順から根付き木を計数",
+      "symbols": ["poe::count_sorted_child_preorder_trees"],
+      "tags": ["tree", "preorder", "interval-dp", "counting"],
+      "tests": ["tests/api/tree/preorder.cpp", "tests/property/tree/preorder.cpp"],
+      "verify": ["verify/atcoder_abc252_g.cpp"]
     },
     "cp/tree/rerooting.hpp": {
       "benchmark": [],

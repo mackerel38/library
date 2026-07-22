@@ -44,6 +44,7 @@
 | 橋、関節点、二重連結成分 | [`graph/lowlink.hpp`](graph/lowlink.md) | LowLink |
 | 最小全域木 | [`graph/minimumspanningtree.hpp`](graph/minimumspanningtree.md) | Kruskalなど |
 | 頂点数が小さい、森を辺数別に数える | [`graph/spanningforest.hpp`](graph/spanningforest.md) | 行列木定理と集合分割DP |
+| 子をlabel昇順に辿るDFS、行きがけ順から木を数える | [`tree/preorder.hpp`](tree/preorder.md) | preorder区間DP |
 | 最大流、最小費用流 | [`flow/maxflow.hpp`](flow/maxflow.md)、[`flow/mincostflow.hpp`](flow/mincostflow.md) | flowgraph上の探索 |
 | LCA、パス分解 | [`tree/lca.hpp`](tree/lca.md)、[`tree/heavylightdecomposition.hpp`](tree/heavylightdecomposition.md) | 木上queryの基礎 |
 | 全方位木DP | [`tree/rerooting.hpp`](tree/rerooting.md) | rerooting DP |
@@ -78,6 +79,7 @@
 | --- | --- | --- |
 | mod整数 | [`math/modint.hpp`](math/modint.md) | 静的・動的modint |
 | 小さい素数法の巨大二項係数、Lucas | [`math/lucas.hpp`](math/lucas.md) | $n,k$が巨大な$\binom nk\bmod p$ |
+| RLE列を隣接和で大量に縮約、小さい素数法 | [`math/binomialsequence.hpp`](math/binomialsequence.md) | 素数冪距離のskip |
 | Gaussian二項係数、有限体の部分空間 | [`math/qanalog.hpp`](math/qanalog.md) | $q$階乗と行空間の制約付き計数 |
 | 等差数列のpopcount和 | [`math/bitcountsum.hpp`](math/bitcountsum.md) | 各bitをfloor sumで数える |
 | 番号付け替えを同一視、Burnside | [`math/burnside.hpp`](math/burnside.md) | 対称群のcycle typeによる軌道計数 |

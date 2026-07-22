@@ -13,6 +13,7 @@
 #include "tree/lca.hpp"
 #include "tree/pathsum.hpp"
 #include "tree/perfectsubtree.hpp"
+#include "tree/preorder.hpp"
 #include "tree/rerooting.hpp"
 #include "tree/rootedtree.hpp"
 #include "tree/rootpath.hpp"
