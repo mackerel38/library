@@ -107,6 +107,7 @@
 | 総和とXORを同時に畳み込み、べき乗 | [`math/multiconvolution.hpp`](math/multiconvolution.md) | 二次元分布DPの高速化 |
 | min-plus / max-plus畳み込み | [`math/tropicalconvolution.hpp`](math/tropicalconvolution.md) | 凸性を使う場合を含む |
 | 行列、巨大時刻の線形遷移、疎な例外時刻 | [`math/matrix.hpp`](math/matrix.md) | 行列累乗と疎イベント付き線形DP |
+| 軸方向に1ずつ動く1・2・3次元格子walk | [`math/latticewalk.hpp`](math/latticewalk.md) | 指定歩数後の到達経路数 |
 | 0/1行列、長方形XOR制約 | [`math/rectangleparity.hpp`](math/rectangleparity.md) | 長方形の四隅だけを使うGF(2)連立方程式 |
 | ランダムウォークの合流・初到達 | [`math/randomwalk.hpp`](math/randomwalk.md) | 合流確率列・周期剰余への初到達期待値 |
 | 多項式、形式的冪級数 | [`fps/fps.hpp`](fps/fps.md)、[`fps/polynomial.hpp`](fps/polynomial.md) | inv、log、exp、補間など |

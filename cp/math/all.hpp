@@ -14,6 +14,7 @@
 #include "math/gaussian.hpp"
 #include "math/gaussianinteger.hpp"
 #include "math/interpolation.hpp"
+#include "math/latticewalk.hpp"
 #include "math/linearecurrence.hpp"
 #include "math/lucas.hpp"
 #include "math/math.hpp"

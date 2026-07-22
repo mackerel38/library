@@ -1646,6 +1646,17 @@
       "tests": ["tests/api/dp/advanced.cpp"],
       "verify": []
     },
+    "cp/math/latticewalk.hpp": {
+      "benchmark": ["N=10000000の三次元queryで0.99秒・81.5MB"],
+      "docs": "docs/math/latticewalk.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "1・2・3次元の軸方向単位格子walk数え上げ",
+      "symbols": ["poe::axiswalkcounter"],
+      "tags": ["math", "combinatorics", "lattice-walk", "binomial-coefficient", "coordinate-transform"],
+      "tests": ["tests/api/math/latticewalk.cpp", "tests/property/math/latticewalk.cpp"],
+      "verify": ["verify/atcoder_abc240_g.cpp"]
+    },
     "cp/math/lucas.hpp": {
       "benchmark": [],
       "docs": "docs/math/lucas.md",
