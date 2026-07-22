@@ -75,4 +75,40 @@ bool is_convex(const std::vector<point<T>>& polygon, bool strict = true) {
     return direction != 0;
 }
 
+/// 平行移動した同一凸多角形すべての共通部分: translatedpolygonintersection<T> region(polygon,shifts); 構築O(nm)、contains O(n)。
+template<class T>
+struct translatedpolygonintersection {
+    /// O(nm)。反時計回りの狭義凸polygonと、一つ以上の平行移動量から共通部分の半平面制約を作る。
+    translatedpolygonintersection(
+        const std::vector<point<T>>& polygon,
+        const std::vector<point<T>>& shifts
+    ) {
+        assert(polygon.size() >= 3 && is_convex(polygon, true));
+        assert(!shifts.empty());
+        directions_.reserve(polygon.size());
+        lower_.reserve(polygon.size());
+        for (int index = 0; index < static_cast<int>(polygon.size()); ++index) {
+            const point<T> direction = polygon[(index + 1) % polygon.size()] - polygon[index];
+            geometrywide<T> bound = cross(direction, polygon[index] + shifts[0]);
+            for (const point<T>& shift : shifts) {
+                bound = std::max(bound, cross(direction, polygon[index] + shift));
+            }
+            directions_.push_back(direction);
+            lower_.push_back(bound);
+        }
+    }
+
+    /// O(n)。targetが全ての平行移動後polygonの内部または境界にあればtrueを返す。
+    bool contains(const point<T>& target) const {
+        for (int index = 0; index < static_cast<int>(directions_.size()); ++index) {
+            if (cross(directions_[index], target) < lower_[index]) return false;
+        }
+        return true;
+    }
+
+private:
+    std::vector<point<T>> directions_;
+    std::vector<geometrywide<T>> lower_;
+};
+
 }

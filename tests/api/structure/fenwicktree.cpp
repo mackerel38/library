@@ -43,4 +43,15 @@ int main() {
     assert(empty.sum(0, 0) == 0);
     assert(empty.lower_bound(1) == 0);
     assert(empty.upper_bound(0) == 0);
+
+    const auto maximum = [](int left, int right) { return std::max(left, right); };
+    const auto zero = [] { return 0; };
+    poe::fenwicktree2d<int, int, maximum, zero> sparse({{1, 4}, {2, 3}, {5, 1}});
+    sparse.apply(1, 4, 7);
+    sparse.apply(2, 3, 5);
+    sparse.apply(5, 1, 9);
+    assert(sparse.x_size() == 3);
+    assert(sparse.prod(2, 4) == 7);
+    assert(sparse.prod(5, 2) == 9);
+    assert(sparse.prod(0, 10) == 0);
 }

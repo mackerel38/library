@@ -1,4 +1,9 @@
-#include "string/string.hpp"
+#include "string/lcp.hpp"
+#include "string/manacher.hpp"
+#include "string/prefix.hpp"
+#include "string/suffixarray.hpp"
+#include "string/suffixquery.hpp"
+#include "string/zalgorithm.hpp"
 
 std::vector<int> naive_suffix_array(const std::string& text) {
     std::vector<int> result(text.size());

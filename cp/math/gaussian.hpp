@@ -218,4 +218,73 @@ inline linearsystemresult<int> solve_binary_linear(
     return result;
 }
 
+/// O(mn(min(m,n)/64+1))。GF(2)上の疎な方程式から特殊解を一つ返す。解なしならnullopt。
+inline std::optional<std::vector<int>> solve_sparse_binary_linear_one(
+    int variables,
+    const std::vector<std::vector<int>>& nonzero_columns,
+    const std::vector<int>& right
+) {
+    assert(variables >= 0 && nonzero_columns.size() == right.size());
+    const int equations = static_cast<int>(right.size());
+    const int words = (variables + 1 + 63) / 64;
+    std::vector<std::vector<std::uint64_t>> rows(
+        equations, std::vector<std::uint64_t>(words));
+    for (int row = 0; row < equations; ++row) {
+        assert(right[row] == 0 || right[row] == 1);
+        for (int column : nonzero_columns[row]) {
+            assert(0 <= column && column < variables);
+            rows[row][column >> 6] ^= std::uint64_t{1} << (column & 63);
+        }
+        if (right[row]) {
+            rows[row][variables >> 6] |= std::uint64_t{1} << (variables & 63);
+        }
+    }
+
+    std::vector<int> pivot_row(variables, -1);
+    int rank = 0;
+    for (int column = 0; column < variables && rank < equations; ++column) {
+        int pivot = rank;
+        while (pivot < equations &&
+               ((rows[pivot][column >> 6] >> (column & 63)) & 1U) == 0) {
+            ++pivot;
+        }
+        if (pivot == equations) continue;
+        std::swap(rows[pivot], rows[rank]);
+        for (int row = rank + 1; row < equations; ++row) {
+            if (((rows[row][column >> 6] >> (column & 63)) & 1U) == 0) continue;
+            for (int word = column >> 6; word < words; ++word) {
+                rows[row][word] ^= rows[rank][word];
+            }
+        }
+        pivot_row[column] = rank++;
+    }
+    for (int row = rank; row < equations; ++row) {
+        bool has_coefficient = false;
+        for (int word = 0; word < (variables + 63) / 64; ++word) {
+            std::uint64_t value = rows[row][word];
+            if (word == variables >> 6 && (variables & 63) != 0) {
+                value &= (std::uint64_t{1} << (variables & 63)) - 1;
+            }
+            has_coefficient |= value != 0;
+        }
+        const bool value =
+            (rows[row][variables >> 6] >> (variables & 63)) & 1U;
+        if (!has_coefficient && value) return std::nullopt;
+    }
+
+    std::vector<int> solution(variables);
+    for (int column = variables - 1; column >= 0; --column) {
+        if (pivot_row[column] == -1) continue;
+        const int row = pivot_row[column];
+        int value =
+            (rows[row][variables >> 6] >> (variables & 63)) & 1U;
+        for (int next = column + 1; next < variables; ++next) {
+            value ^= solution[next] &
+                     static_cast<int>((rows[row][next >> 6] >> (next & 63)) & 1U);
+        }
+        solution[column] = value;
+    }
+    return solution;
+}
+
 }

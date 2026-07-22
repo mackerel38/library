@@ -10,6 +10,7 @@ int main() {
     const std::vector<mint> right = {5, 6, 7, 8};
     const auto product = poe::subset_convolution(left, right);
     assert((product == std::vector<mint>{5, 16, 22, 60}));
+    assert((poe::xor_convolution(left, right) == std::vector<mint>{70, 68, 62, 60}));
 
     const std::vector<mint> unit = {1, 2, 3, 4};
     const auto square = poe::subset_convolution_unit_power(unit, 2);

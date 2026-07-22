@@ -1,6 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc427/tasks/abc427_g"
 #include <bits/stdc++.h>
-#include "structure/thresholdsequence.hpp"
+#include "recipe/thresholdsequence.hpp"
 
 using namespace std;
 using namespace poe;

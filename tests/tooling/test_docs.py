@@ -79,6 +79,19 @@ class TitleTest(unittest.TestCase):
 
 
 class ApiReferenceTest(unittest.TestCase):
+    def test_public_section_after_private_section_is_documented(self) -> None:
+        lines = [
+            "struct sample {",
+            "private:",
+            "    void hidden();",
+            "public:",
+            "    void visible();",
+            "};",
+        ]
+        excluded = DOCS_TOOL.excluded_lines(lines)
+        self.assertIn(2, excluded)
+        self.assertNotIn(4, excluded)
+
     def test_constructor_name_ignores_leading_requires_clause(self) -> None:
         declaration = (
             "template<graph_type Graph> requires (Graph::is_directed) "

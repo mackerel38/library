@@ -13,12 +13,16 @@ documentation_of: //cp/math/subsettransform.hpp
 
 状態がbitmaskで、全部分集合または全上位集合から値を集める問題に使う。包含関係に沿った一括集約、
 SOS DP、包除の前処理に向く。配列長は2冪で、演算は加減算可能でなければならない。
+`xor_transform`と`xor_convolution`は、二つのmaskをbitwise XORで合成する分布を扱う。
 `subset_convolution(left, right)`は
 `result[S] = sum_{T subset S} left[T] right[S-T]`を全`S`について返す。
 `subset_convolution_unit_power(values, exponent)`は`values[0]=1`の列をsubset convolutionで
 `exponent`乗する。指数は巨大でもよく、ranked zeta後の各多項式を微分関係で直接冪乗する。
 
 ## 厳密な定義
+
+- `xor_transform`: 列$f$を$F_s=\sum_x(-1)^{\mathrm{popcount}(s\mathbin{\&}x)}f_x$へ変換する。
+- `xor_convolution`: $C_k=\sum_{i\mathbin{\mathrm{xor}}j=k}A_iB_j$で定義される列$C$を返す。
 
 - `subset_zeta`: O(n 2^n)。subset_zeta(values): values[S]をsum_{T subset S} values[T]へ変換する。
 - `subset_mobius`: O(n 2^n)。subset_mobius(values): subset_zetaの逆変換を行う。
@@ -46,6 +50,8 @@ poe::subset_zeta(values);
 // values[S] = sum_{T subset S} original[T]
 poe::subset_mobius(values);
 
+auto xor_product = poe::xor_convolution(left, right);
+
 auto product = poe::subset_convolution(left, right);
 auto power = poe::subset_convolution_unit_power(unit, exponent);
 
@@ -60,7 +66,8 @@ long long answer = by_divisors[required];
 
 ## 計算量
 
-変換は`O(n 2^n)`時間、追加領域`O(1)`。部分集合畳み込みとunit powerは
+zeta・Möbius・Walsh--Hadamard変換とXOR畳み込みは`O(n 2^n)`時間。
+部分集合畳み込みとunit powerは
 `O(n^2 2^n)`時間、`O(n 2^n)`領域。`exact_match_counts`と
 `divisibility_match_counts`は`O(n 2^n)`時間、`O(2^n)`領域。条件数を`n`とする。
 
@@ -68,6 +75,22 @@ long long answer = by_divisors[required];
 ## APIリファレンス
 
 この節はheaderの公開補完コメントと宣言から生成している。引数の区間は、個別に断らない限り半開区間`[left, right)`である。
+
+### `xor_transform`
+
+```cpp
+template <class T> void xor_transform(std::vector<T>& values, bool inverse = false)
+```
+
+O(n 2^n)。xor_transform(values,inverse): Walsh-Hadamard変換または逆変換を行う。
+
+### `xor_convolution`
+
+```cpp
+template <class T> std::vector<T> xor_convolution(std::vector<T> left, std::vector<T> right)
+```
+
+O(n 2^n)。result[k]=sum_(i xor j=k) left[i]right[j]を返す。
 
 ### `subset_zeta`
 

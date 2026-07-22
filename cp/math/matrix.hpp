@@ -73,6 +73,84 @@ private:
     std::vector<std::vector<T>> data_;
 };
 
+/// O(hw)。matrixと列vectorの積を返す。
+template <class T>
+std::vector<T> matrix_vector_product(
+    const matrix<T>& coefficients,
+    const std::vector<T>& values
+) {
+    assert(coefficients.width() == static_cast<int>(values.size()));
+    std::vector<T> result(coefficients.height());
+    for (int row = 0; row < coefficients.height(); ++row) {
+        for (int column = 0; column < coefficients.width(); ++column) {
+            result[row] += coefficients[row][column] * values[column];
+        }
+    }
+    return result;
+}
+
+/// O(d^3 log target+q d^2 log target)。通常行列で進み、指定時刻だけevent(state,time)を適用する。
+template <class T, class Event>
+requires std::invocable<Event&, std::vector<T>&, unsigned long long>
+std::vector<T> sparse_matrix_events(
+    std::vector<T> initial,
+    const matrix<T>& transition,
+    unsigned long long target,
+    const std::vector<unsigned long long>& event_positions,
+    Event event
+) {
+    const int dimension = static_cast<int>(initial.size());
+    assert(transition.height() == dimension && transition.width() == dimension);
+    unsigned long long previous = 0;
+    for (const auto position : event_positions) {
+        assert(previous < position && position <= target);
+        previous = position;
+    }
+
+    std::vector<matrix<T>> powers;
+    if (target > 0) {
+        powers.push_back(transition);
+        for (unsigned long long length = 1; length <= target / 2; length <<= 1) {
+            powers.push_back(powers.back() * powers.back());
+            if (length > std::numeric_limits<unsigned long long>::max() / 2) break;
+        }
+    }
+    const auto advance = [&](std::vector<T>& state, unsigned long long steps) {
+        for (int bit = 0; steps > 0; ++bit, steps >>= 1) {
+            if (steps & 1) state = matrix_vector_product(powers[bit], state);
+        }
+    };
+
+    std::vector<T> state = std::move(initial);
+    previous = 0;
+    for (const auto position : event_positions) {
+        advance(state, position - previous - 1);
+        std::invoke(event, state, position);
+        previous = position;
+    }
+    advance(state, target - previous);
+    return state;
+}
+
+/// O(d^3 log target+q d^2 log target)。指定時刻だけexception_transitionへ置き換えてtargetまで進む。
+template <class T>
+std::vector<T> sparse_matrix_transitions(
+    std::vector<T> initial,
+    const matrix<T>& transition,
+    const matrix<T>& exception_transition,
+    unsigned long long target,
+    const std::vector<unsigned long long>& exception_positions
+) {
+    assert(exception_transition.height() == transition.height()
+           && exception_transition.width() == transition.width());
+    return sparse_matrix_events(
+        std::move(initial), transition, target, exception_positions,
+        [&](std::vector<T>& state, unsigned long long) {
+            state = matrix_vector_product(exception_transition, state);
+        }
+    );
+}
+
 /// O(hwk)。zero・add・multiplyで定めた半環上の行列積を返す。
 template <class T, class Add, class Multiply>
 matrix<T> semiring_matrix_product(const matrix<T>& left,

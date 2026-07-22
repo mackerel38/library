@@ -17,4 +17,5 @@ int main() {
     assert((poe::count_pairs_xor_at_most<unsigned, 4>({1, 2, 3}, 1) == 1));
     assert((poe::sum_min_xor<unsigned, 2>({1, 2}, 4) == 2));
     assert((poe::sum_min_xor<unsigned, 2>({1, 2}, 1, 4) == 1));
+    assert((poe::kth_largest_cross_xor<unsigned, 3>({1, 2}, {4, 7}, 2) == 5));
 }

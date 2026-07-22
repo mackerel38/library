@@ -131,4 +131,79 @@ private:
     std::vector<T> data_;
 };
 
+/// 登録した二次元点への可換monoid更新と左下prefix集約を扱う疎Fenwick Tree。
+/// fenwicktree2d<Coord,S,op,e> fw(points); 構築O(n log n)、各操作O(log^2 n)。
+template <class Coordinate, class S, auto op, auto e>
+struct fenwicktree2d {
+    /// O(n log n)。updateを行う可能性がある座標を全て登録する。
+    explicit fenwicktree2d(
+        const std::vector<std::pair<Coordinate, Coordinate>>& points
+    ) {
+        xs_.reserve(points.size());
+        for (const auto& [x, y] : points) xs_.push_back(x);
+        std::ranges::sort(xs_);
+        xs_.erase(std::unique(xs_.begin(), xs_.end()), xs_.end());
+        ys_.resize(xs_.size() + 1);
+        for (const auto& [x, y] : points) {
+            const int x_index = exact_x(x) + 1;
+            for (int node = x_index; node <= static_cast<int>(xs_.size());
+                 node += node & -node) {
+                ys_[node].push_back(y);
+            }
+        }
+        data_.resize(xs_.size() + 1);
+        for (int node = 1; node <= static_cast<int>(xs_.size()); ++node) {
+            std::ranges::sort(ys_[node]);
+            ys_[node].erase(std::unique(ys_[node].begin(), ys_[node].end()), ys_[node].end());
+            data_[node].assign(ys_[node].size() + 1, e());
+        }
+    }
+
+    /// O(log^2 n)。登録点(x,y)の値へvalueをmonoid演算で加える。
+    void apply(const Coordinate& x, const Coordinate& y, const S& value) {
+        const int x_index = exact_x(x) + 1;
+        for (int x_node = x_index; x_node <= static_cast<int>(xs_.size());
+             x_node += x_node & -x_node) {
+            const auto iterator = std::lower_bound(ys_[x_node].begin(), ys_[x_node].end(), y);
+            assert(iterator != ys_[x_node].end() && *iterator == y);
+            const int y_index = static_cast<int>(iterator - ys_[x_node].begin()) + 1;
+            for (int y_node = y_index; y_node < static_cast<int>(data_[x_node].size());
+                 y_node += y_node & -y_node) {
+                data_[x_node][y_node] = op(data_[x_node][y_node], value);
+            }
+        }
+    }
+
+    /// O(log^2 n)。登録済み更新のうち座標が(x以下,y以下)の値のmonoid積を返す。
+    S prod(const Coordinate& x, const Coordinate& y) const {
+        int x_node = static_cast<int>(std::upper_bound(xs_.begin(), xs_.end(), x) - xs_.begin());
+        S result = e();
+        for (; x_node > 0; x_node -= x_node & -x_node) {
+            int y_node = static_cast<int>(
+                std::upper_bound(ys_[x_node].begin(), ys_[x_node].end(), y) - ys_[x_node].begin()
+            );
+            for (; y_node > 0; y_node -= y_node & -y_node) {
+                result = op(result, data_[x_node][y_node]);
+            }
+        }
+        return result;
+    }
+
+    /// O(1)。登録された異なるx座標数を返す。
+    int x_size() const noexcept {
+        return static_cast<int>(xs_.size());
+    }
+
+private:
+    int exact_x(const Coordinate& x) const {
+        const auto iterator = std::lower_bound(xs_.begin(), xs_.end(), x);
+        assert(iterator != xs_.end() && *iterator == x);
+        return static_cast<int>(iterator - xs_.begin());
+    }
+
+    std::vector<Coordinate> xs_;
+    std::vector<std::vector<Coordinate>> ys_;
+    std::vector<std::vector<S>> data_;
+};
+
 }

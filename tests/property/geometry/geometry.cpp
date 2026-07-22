@@ -6,6 +6,24 @@
 int main() {
     using point = poe::point<long long>;
     std::mt19937 random(20260722);
+    const std::vector<point> base{{-3, -2}, {2, -2}, {4, 1}, {1, 4}, {-3, 3}};
+    for (int test = 0; test < 1000; ++test) {
+        std::vector<point> shifts(1 + random() % 8);
+        for (auto& shift : shifts) {
+            shift = {static_cast<int>(random() % 11) - 5,
+                     static_cast<int>(random() % 11) - 5};
+        }
+        const poe::translatedpolygonintersection region(base, shifts);
+        for (int query = 0; query < 100; ++query) {
+            const point target{static_cast<int>(random() % 31) - 15,
+                               static_cast<int>(random() % 31) - 15};
+            bool expected = true;
+            for (const point shift : shifts) {
+                expected &= poe::polygon_contains(base, target - shift) != poe::containment::outside;
+            }
+            assert(region.contains(target) == expected);
+        }
+    }
     for (int test = 0; test < 200; ++test) {
         std::vector<point> points(1 + random() % 12);
         for (auto& value : points) value = {static_cast<int>(random() % 21) - 10, static_cast<int>(random() % 21) - 10};

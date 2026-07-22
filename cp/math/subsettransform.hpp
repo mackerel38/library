@@ -3,6 +3,38 @@
 
 namespace poe {
 
+/// O(n 2^n)。xor_transform(values,inverse): Walsh-Hadamard変換または逆変換を行う。
+template <class T>
+void xor_transform(std::vector<T>& values, bool inverse = false) {
+    assert(std::has_single_bit(values.size()));
+    for (std::size_t length = 1; length < values.size(); length <<= 1) {
+        for (std::size_t start = 0; start < values.size(); start += length << 1) {
+            for (std::size_t offset = 0; offset < length; ++offset) {
+                const T left = values[start + offset];
+                const T right = values[start + length + offset];
+                values[start + offset] = left + right;
+                values[start + length + offset] = left - right;
+            }
+        }
+    }
+    if (inverse) {
+        const T inverse_size = T{1} / T{values.size()};
+        for (T& value : values) value *= inverse_size;
+    }
+}
+
+/// O(n 2^n)。result[k]=sum_(i xor j=k) left[i]right[j]を返す。
+template <class T>
+std::vector<T> xor_convolution(std::vector<T> left, std::vector<T> right) {
+    assert(left.size() == right.size());
+    assert(std::has_single_bit(left.size()));
+    xor_transform(left);
+    xor_transform(right);
+    for (std::size_t index = 0; index < left.size(); ++index) left[index] *= right[index];
+    xor_transform(left, true);
+    return left;
+}
+
 /// O(n 2^n)。subset_zeta(values): values[S]をsum_{T subset S} values[T]へ変換する。
 template <class T>
 void subset_zeta(std::vector<T>& values) {

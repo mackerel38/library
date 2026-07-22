@@ -1,4 +1,4 @@
-#include "string/string.hpp"
+#include "string/all.hpp"
 
 int main() {
     const std::string text = "mississippi";

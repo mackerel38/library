@@ -1,8 +1,8 @@
 # String
 
-個別文書: [string](string.md)、[suffixarray](suffixarray.md)、[lcp](lcp.md)、
+個別文書: [suffixarray](suffixarray.md)、[lcp](lcp.md)、
 [suffixquery](suffixquery.md)、[prefix](prefix.md)、[zalgorithm](zalgorithm.md)、
-[manacher](manacher.md)。
+[manacher](manacher.md)、[substringorder](substringorder.md)。
 
 ## `suffix_array`
 
@@ -29,3 +29,8 @@
 
 文字列からsuffix array、rank、LCPのRMQを構築する。構築`O(n log n)`、
 suffix間LCPと部分文字列比較は`O(1)`、pattern検索は`O(|pattern| log n)`。
+
+## `substringorder`
+
+一つまたは複数の文字列に現れる全部分文字列を、出現の重複を区別して辞書順に並べる。
+合計長を`L`として構築`O(L)`、順位から出現位置を引くqueryは`O(log L)`。

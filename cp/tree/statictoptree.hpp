@@ -107,9 +107,9 @@ private:
         assert(!nodes.empty());
         if (nodes.size() == 1) return nodes[0];
         int balance = 0;
-        for (const auto [node, weight] : nodes) { (void)node; balance += weight; }
+        for (const auto& [node, weight] : nodes) { (void)node; balance += weight; }
         std::vector<weighted_node> left_nodes, right_nodes;
-        for (const auto item : nodes) {
+        for (const auto& item : nodes) {
             (balance > item.second ? left_nodes : right_nodes).push_back(item);
             balance -= item.second * 2;
         }

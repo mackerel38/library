@@ -129,4 +129,45 @@ std::vector<staticmodint<mod>> convolution_recurrence(
     return online_convolution<mod>(std::move(source), kernel, [](int, auto value) { return value; });
 }
 
+/// O(M(n) log n)。a[i]=[x^i]base(x)prod_{start<=j<i}(1+a[j]x)で定まる係数列を返す。
+template<int mod>
+std::vector<staticmodint<mod>> online_factor_product_coefficients(
+    std::vector<staticmodint<mod>> base,
+    int start
+) {
+    using mint = staticmodint<mod>;
+    const int size = static_cast<int>(base.size());
+    assert(0 <= start && start <= size);
+    if (start == size) return base;
+
+    std::vector<mint> result = base;
+    auto solve = [&](auto&& self, int left, int right, std::vector<mint> current)
+        -> std::vector<mint> {
+        assert(static_cast<int>(current.size()) == right - left);
+        if (right - left == 1) {
+            result[left] = current[0];
+            return {mint{1}, result[left]};
+        }
+        const int middle = (left + right) / 2;
+        std::vector<mint> left_current(
+            current.begin(), current.begin() + (middle - left));
+        auto left_product = self(self, left, middle, std::move(left_current));
+
+        const auto updated = convolution(current, left_product);
+        std::vector<mint> right_current(right - middle);
+        for (int degree = middle; degree < right; ++degree) {
+            right_current[degree - middle] = updated[degree - left];
+        }
+        auto right_product = self(
+            self, middle, right, std::move(right_current));
+        auto product = convolution(std::move(left_product), std::move(right_product));
+        product.resize(right - left + 1);
+        return product;
+    };
+
+    std::vector<mint> current(base.begin() + start, base.end());
+    solve(solve, start, size, std::move(current));
+    return result;
+}
+
 }

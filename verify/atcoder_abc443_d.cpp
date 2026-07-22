@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "algorithm/lipschitz.hpp"
+#include "algorithm/slopeconstraint.hpp"
 
 using namespace std;
 using namespace poe;
@@ -16,7 +16,7 @@ int main() {
         vector<long long> row(n);
         long long answer = 0;
         for (long long& value : row) cin >> value, answer += value;
-        for (long long value : lipschitz_minorant(row, 1LL)) answer -= value;
+        for (long long value : slope_minorant(row, 1LL)) answer -= value;
         cout << answer << '\n';
     }
 }

@@ -30,5 +30,20 @@ int main() {
                 }
             }
         }
+
+        const int m = 1 + random() % 12;
+        std::vector<unsigned> other(m);
+        for (auto& value : other) value = random() % 256;
+        if (!values.empty()) {
+            std::vector<unsigned> brute;
+            for (const unsigned a : values)
+                for (const unsigned b : other) brute.push_back(a ^ b);
+            std::ranges::sort(brute, std::greater{});
+            for (int query = 0; query < 10; ++query) {
+                const unsigned long long k = 1 + random() % brute.size();
+                assert((poe::kth_largest_cross_xor<unsigned, 8>(values, other, k)
+                    == brute[k - 1]));
+            }
+        }
     }
 }

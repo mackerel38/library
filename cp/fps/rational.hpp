@@ -141,14 +141,39 @@ staticmodint<mod> count_weighted_sum(
     return weighted_sum_rational<mod>(variables).coeff(target);
 }
 
-/// O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
+/// O(n+d log d+M(d)log d+M(size))。weighted_power_sums(values,weights,size)[k]=sum weights[i]*values[i]^k。
+template<int mod>
+fps<mod> weighted_power_sums(
+    const std::vector<staticmodint<mod>>& values,
+    const std::vector<staticmodint<mod>>& weights,
+    int size
+) {
+    using mint = staticmodint<mod>;
+    using series = fps<mod>;
+    assert(values.size() == weights.size() && size >= 0);
+    std::map<int, mint> combined;
+    for (int index = 0; index < static_cast<int>(values.size()); ++index) {
+        combined[values[index].val()] += weights[index];
+    }
+    std::vector<rationalfps<mod>> terms;
+    terms.reserve(combined.size());
+    for (const auto [value, weight] : combined) {
+        if (weight != mint{}) {
+            terms.push_back({series{weight}, series{1, -mint{value}}});
+        }
+    }
+    if (terms.empty()) return series(static_cast<std::size_t>(size));
+    return rational_sum(std::move(terms)).prefix(size);
+}
+
+/// O(n+d log d+M(d)log d+M(size))。power_sums(values,size)[k]=sum values[i]^kを返す。
 template<int mod>
 fps<mod> power_sums(const std::vector<staticmodint<mod>>& values, int size) {
-    using series = fps<mod>;
-    std::vector<rationalfps<mod>> terms;
-    terms.reserve(values.size());
-    for (const auto value : values) terms.push_back({series{1}, series{1, -value}});
-    return rational_sum(std::move(terms)).prefix(size);
+    return weighted_power_sums<mod>(
+        values,
+        std::vector<staticmodint<mod>>(values.size(), staticmodint<mod>{1}),
+        size
+    );
 }
 
 }

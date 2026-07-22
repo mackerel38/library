@@ -1,6 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc429/tasks/abc429_f"
 #include <bits/stdc++.h>
-#include "graph/monotonegridshortestpath.hpp"
+#include "recipe/monotonegridshortestpath.hpp"
 
 using namespace std;
 using namespace poe;

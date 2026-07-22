@@ -5,12 +5,14 @@ documentation_of: //cp/fps/rational.hpp
 
 # 有理型母関数
 
-  `poe::weightedsumvariable`, `poe::weighted_sum_rational`, `poe::count_weighted_sum`, `poe::power_sums`
+  `poe::weightedsumvariable`, `poe::weighted_sum_rational`, `poe::count_weighted_sum`,
+  `poe::power_sums`, `poe::weighted_power_sums`
 
 ## 概要
 
 母関数が`P(x)/Q(x)`で表せるとき、複数の有理式の和・積、先頭項展開、非常に遠い一係数を扱う。
 `power_sums(values,n)`は`sum_i 1/(1-values[i]x)`を構築し、各値の0乗から`n-1`乗までの総和を返す。
+項ごとに係数を掛ける場合は`weighted_power_sums(values,weights,n)`を使う。
 
 ## 厳密な定義
 
@@ -20,7 +22,8 @@ documentation_of: //cp/fps/rational.hpp
 - `weightedsumvariable`: weighted_sum_rationalへ渡す変数。weight*xを加え、limit<0ならx>=0、他は0<=x<=limit。
 - `weighted_sum_rational`: O(M(S) log k)。独立な非負整数変数の重み付き和を数える母関数を制約から構築する。
 - `count_weighted_sum`: O(M(S) log k + M(S) log target)。sum weight[i]*x[i]=targetとなる制約付き非負整数組を数える。
-- `power_sums`: O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
+- `weighted_power_sums`: `result[k]`として $\sum_i w_i v_i^k$ を返す。
+- `power_sums`: 全ての重みを1とした`weighted_power_sums`。
 
 ## Include
 
@@ -32,6 +35,7 @@ poe::rationalfps<998244353> f{{1}, {1, -1, -1}};
 mint far = f.coeff(1000000000000000000LL);
 mint subset_total = f.submask_sum(mask);
 auto sums = poe::power_sums<998244353>(values, k + 1);
+auto weighted = poe::weighted_power_sums<998244353>(values, weights, k + 1);
 ```
 
 分母の定数項は非0であること。`coeff`はBostan–Mori法を使う。多数の分母を足すと分母次数も増えるため、
@@ -54,6 +58,23 @@ mint answer = poe::count_weighted_sum<998244353>(
 全因子の分子・分母次数の和を`S`、変数数を`k`として構築は`O(M(S) log k)`が目安であり、
 巨大な重みや有限上限を
 密な多項式として作る用途には向かない。
+
+### 重み付き冪和
+
+値 $v_i$ と重み $w_i$ に対し、`weighted_power_sums(values, weights, size)`は
+
+$$
+S_k=\sum_i w_i v_i^k\qquad(0\le k<\mathrm{size})
+$$
+
+を一括して返す。内部では
+
+$$
+\sum_{k\ge0}S_kx^k=\sum_i\frac{w_i}{1-v_ix}
+$$
+
+を構築する。同じ値は自動的に重みをまとめる。入力数を $n$、異なる値の数を $d$ とすると、
+時間計算量は $O(n+d\log d+M(d)\log d+M(\mathrm{size}))$。
 
 <!-- BEGIN AUTO-GENERATED API REFERENCE -->
 ## APIリファレンス
@@ -148,13 +169,21 @@ template<int mod> staticmodint<mod> count_weighted_sum( long long target, const 
 
 O(M(S) log k + M(S) log target)。sum weight[i]*x[i]=targetとなる制約付き非負整数組を数える。
 
+### `weighted_power_sums`
+
+```cpp
+template<int mod> fps<mod> weighted_power_sums( const std::vector<staticmodint<mod>>& values, const std::vector<staticmodint<mod>>& weights, int size )
+```
+
+O(n+d log d+M(d)log d+M(size))。weighted_power_sums(values,weights,size)[k]=sum weights[i]*values[i]^k。
+
 ### `power_sums`
 
 ```cpp
 template<int mod> fps<mod> power_sums(const std::vector<staticmodint<mod>>& values, int size)
 ```
 
-O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
+O(n+d log d+M(d)log d+M(size))。power_sums(values,size)[k]=sum values[i]^kを返す。
 
 <!-- END AUTO-GENERATED API REFERENCE -->
 
@@ -166,5 +195,7 @@ O(M(n) log n)。power_sums(values,n)[k]=sum value^kをk=0..n-1で返す。
 - [FPS 24題 T - カラフル](https://atcoder.jp/contests/fps-24/tasks/fps_24_t): 有理式の構築と遠い係数。
 - [AtCoder ABC300 Ex - Fibonacci: Revisited](https://atcoder.jp/contests/abc300/tasks/abc300_h):
   K-bonacci母関数のsubmask係数和。
+- [AtCoder ABC260 Ex - Colorfulness](https://atcoder.jp/contests/abc260/tasks/abc260_h):
+  隣接色変化数の分布を重みにして、全ての冪の重み付き総和を求める。
 
 小次数の直接展開と比較するproperty testを行う。

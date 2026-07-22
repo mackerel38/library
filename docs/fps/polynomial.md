@@ -14,6 +14,9 @@ documentation_of: //cp/fps/polynomial.hpp
 ## 厳密な定義
 
 - `polynomial_product`: O(M(S) log k)。polynomial_product(polynomials, limit): 多項式列の積を返す。 limit>=0なら各段階でx^limit未満へ切り詰める。空積は1。
+
+`limit`は返り値の長さを強制しない。次数が`limit - 1`未満なら、不要な0を末尾へ追加せず短いまま返す。
+- `polynomial_from_roots`: $\prod_i(x-r_i)$を$O(M(n)\log n)$で構築する。根の重複を許す。
 - `polynomial_matrix_product`: O(d^3 M(S) log k)。polynomial_matrix_product(matrices,limit): 行列列を先頭から掛ける。 各要素は多項式で、limit>=0なら各段階でx^limit未満へ切り詰める。行列列は空でないこと。
 - `polynomial_divmod`: O(M(n) log n)。polynomial_divmod(f,g): 多項式除算の商と余りを返す。g!=0。
 - `multipoint_evaluation`: O(M(n) log^2 n)。multipoint_evaluation(f, points): 全pointsでfを評価する。
@@ -27,6 +30,7 @@ documentation_of: //cp/fps/polynomial.hpp
 
 using fps = poe::fps998244353;
 fps product = poe::polynomial_product<998244353>(factors, limit);
+fps from_roots = poe::polynomial_from_roots<998244353>(roots);
 auto matrix_product = poe::polynomial_matrix_product<998244353>(matrices, limit);
 auto values = poe::multipoint_evaluation(product, points);
 fps restored = poe::polynomial_interpolation<998244353>(points, values);
@@ -56,6 +60,14 @@ template<int mod> fps<mod> polynomial_product(std::vector<fps<mod>> polynomials,
 
 O(M(S) log k)。polynomial_product(polynomials, limit): 多項式列の積を返す。
 limit>=0なら各段階でx^limit未満へ切り詰める。空積は1。
+
+### `polynomial_from_roots`
+
+```cpp
+template <int mod> fps<mod> polynomial_from_roots( const std::vector<staticmodint<mod>>& roots )
+```
+
+O(M(n) log n)。rootsを重複込みで根に持つmonic多項式prod(x-roots[i])を返す。
 
 ### `polynomial_matrix_product`
 

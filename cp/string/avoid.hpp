@@ -5,6 +5,31 @@
 
 namespace poe {
 
+/// O((|text|+sum|pattern|) log sigma+states sigma)。全pattern出現を壊す最小文字位置集合を返す。
+template <std::ranges::input_range Text, std::ranges::input_range Patterns>
+std::vector<int> minimum_pattern_replacements(
+    const Text& text,
+    const Patterns& patterns
+) {
+    using symbol = std::ranges::range_value_t<Text>;
+    ahocorasick<symbol> automaton;
+    for (const auto& pattern : patterns) automaton.add(pattern);
+    automaton.build();
+
+    std::vector<int> result;
+    int state = 0;
+    int position = 0;
+    for (const auto& raw_symbol : text) {
+        state = automaton.next(state, static_cast<symbol>(raw_symbol));
+        if (automaton.shortest_match_length(state)) {
+            result.push_back(position);
+            state = 0;
+        }
+        ++position;
+    }
+    return result;
+}
+
 /// 禁止patternを含まない長さlengthの語数を数える。O(states^3 log length + states sigma log sigma)。
 template <class T, std::ranges::input_range Patterns, std::integral Symbol>
 T count_avoiding_words(long long length, const Patterns& patterns, Symbol first, Symbol last) {
@@ -16,7 +41,7 @@ T count_avoiding_words(long long length, const Patterns& patterns, Symbol first,
     const int states = automaton.size();
     std::vector<char> forbidden(states);
     for (int state = 0; state < states; ++state) {
-        forbidden[state] = !automaton.patterns(state).empty();
+        forbidden[state] = automaton.shortest_match_length(state).has_value();
     }
     matrix<T> transition(states, states);
     for (int state = 0; state < states; ++state) {

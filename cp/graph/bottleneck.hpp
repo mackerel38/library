@@ -2,9 +2,130 @@
 #include <bits/stdc++.h>
 #include "graph/graph.hpp"
 #include "graph/lowlink.hpp"
+#include "graph/shortestpath.hpp"
 #include "structure/dsu.hpp"
 
 namespace poe {
+
+/// terminal間を一回limit以下のpathで何度でも移動する到達可能性query。
+template<class Cost>
+struct terminalhopquery {
+    int from;
+    int to;
+    Cost limit;
+};
+
+/// O((n+m)log n+(m+q)log(m+q))時間・O(n+m+q)領域。terminalでのみ区切れる上限付き移動queryを一括判定する。
+template<weighted_graph_type Graph>
+    requires (!Graph::is_directed)
+std::vector<bool> terminal_hop_connectivity(
+    const Graph& graph,
+    const std::vector<int>& terminals,
+    const std::vector<terminalhopquery<typename Graph::cost_type>>& queries
+) {
+    using cost_type = typename Graph::cost_type;
+    assert(!terminals.empty());
+    std::vector<char> is_terminal(graph.size());
+    for (const int terminal : terminals) {
+        assert(0 <= terminal && terminal < graph.size());
+        is_terminal[terminal] = true;
+    }
+    for (int id = 0; id < graph.edge_count(); ++id) assert(graph.edge_at(id).cost >= cost_type{});
+
+    const auto nearest = dijkstra(graph, terminals);
+    struct weightededge {
+        int from, to;
+        cost_type limit;
+    };
+    std::vector<weightededge> edges;
+    edges.reserve(graph.edge_count());
+    for (int id = 0; id < graph.edge_count(); ++id) {
+        const auto& edge = graph.edge_at(id);
+        const cost_type limit = detail::add_distance(
+            detail::add_distance(nearest[edge.from], edge.cost, nearest.inf),
+            nearest[edge.to], nearest.inf);
+        edges.push_back({edge.from, edge.to, limit});
+    }
+    std::ranges::sort(edges, {}, &weightededge::limit);
+
+    std::vector<int> order(queries.size());
+    std::iota(order.begin(), order.end(), 0);
+    std::ranges::sort(order, [&](int left, int right) {
+        return queries[left].limit < queries[right].limit;
+    });
+    std::vector<bool> answer(queries.size());
+    dsu components(graph.size());
+    std::size_t edge_index = 0;
+    for (const int index : order) {
+        const auto& [from, to, limit] = queries[index];
+        assert(0 <= from && from < graph.size() && 0 <= to && to < graph.size());
+        assert(is_terminal[from] && is_terminal[to]);
+        while (edge_index < edges.size() && edges[edge_index].limit <= limit) {
+            components.merge(edges[edge_index].from, edges[edge_index].to);
+            ++edge_index;
+        }
+        answer[index] = components.same(from, to);
+    }
+    return answer;
+}
+
+/// O(n^3/64+nq+n log n)。各queryのpath上最大頂点costの最小値を返す。到達不能ならnullopt。
+template<graph_type Graph, class Cost>
+std::vector<std::optional<Cost>> minimum_vertex_bottleneck_paths(
+    const Graph& graph,
+    const std::vector<Cost>& vertex_cost,
+    const std::vector<std::pair<int, int>>& queries
+) {
+    const int size = graph.size();
+    assert(static_cast<int>(vertex_cost.size()) == size);
+    const int words = (size + 63) / 64;
+    std::vector reachable(size, std::vector<std::uint64_t>(words));
+    const auto set_reachable = [&](int from, int to) {
+        reachable[from][to / 64] |= 1ULL << (to % 64);
+    };
+    const auto is_reachable = [&](int from, int to) {
+        return (reachable[from][to / 64] >> (to % 64) & 1ULL) != 0;
+    };
+    for (int vertex = 0; vertex < size; ++vertex) {
+        set_reachable(vertex, vertex);
+        for (const auto& edge : graph[vertex]) set_reachable(vertex, edge.to);
+    }
+    for (const auto& [source, target] : queries) {
+        assert(0 <= source && source < size && 0 <= target && target < size);
+    }
+
+    std::vector<int> order(size);
+    std::iota(order.begin(), order.end(), 0);
+    std::ranges::sort(order, [&](int left, int right) {
+        if (vertex_cost[left] != vertex_cost[right]) {
+            return vertex_cost[left] < vertex_cost[right];
+        }
+        return left < right;
+    });
+    std::vector<std::optional<Cost>> answer(queries.size());
+    for (int left = 0; left < size;) {
+        int right = left + 1;
+        while (right < size && vertex_cost[order[right]] == vertex_cost[order[left]]) ++right;
+        for (int index = left; index < right; ++index) {
+            const int middle = order[index];
+            for (int source = 0; source < size; ++source) {
+                if (!is_reachable(source, middle)) continue;
+                for (int word = 0; word < words; ++word) {
+                    reachable[source][word] |= reachable[middle][word];
+                }
+            }
+        }
+        for (int query = 0; query < static_cast<int>(queries.size()); ++query) {
+            if (answer[query].has_value()) continue;
+            const auto [source, target] = queries[query];
+            if (!is_reachable(source, target)) continue;
+            answer[query] = std::max({vertex_cost[order[left]],
+                                      vertex_cost[source], vertex_cost[target]});
+        }
+        left = right;
+    }
+    return answer;
+}
 
 /// minimax距離に指定辺が不可欠かを判定する: bottlenecksensitivity sensitivity(graph)。
 template<weighted_graph_type Graph>

@@ -171,16 +171,18 @@ struct ahocorasick {
         const int states = size();
         failure_.assign(states, 0);
         output_.assign(states, -1);
-        go_.assign(states, {});
+        shortest_match_length_.assign(states, no_match);
+        go_.assign(states, std::vector<int>(alphabet_.size()));
         order_.clear();
         order_.reserve(states);
         order_.push_back(0);
 
         std::queue<int> queue;
-        for (const Symbol& symbol : alphabet_) {
+        for (int index = 0; index < static_cast<int>(alphabet_.size()); ++index) {
+            const Symbol& symbol = alphabet_[index];
             const auto iterator = nodes_[0].next.find(symbol);
             const int child = iterator == nodes_[0].next.end() ? 0 : iterator->second;
-            go_[0][symbol] = child;
+            go_[0][index] = child;
             if (child != 0) {
                 failure_[child] = 0;
                 output_[child] = -1;
@@ -191,17 +193,22 @@ struct ahocorasick {
             const int node = queue.front();
             queue.pop();
             order_.push_back(node);
-            for (const Symbol& symbol : alphabet_) {
+            shortest_match_length_[node] = shortest_match_length_[failure_[node]];
+            for (int id : nodes_[node].terminal) {
+                shortest_match_length_[node] = std::min(shortest_match_length_[node], length_[id]);
+            }
+            for (int index = 0; index < static_cast<int>(alphabet_.size()); ++index) {
+                const Symbol& symbol = alphabet_[index];
                 const auto iterator = nodes_[node].next.find(symbol);
                 if (iterator == nodes_[node].next.end()) {
-                    go_[node][symbol] = go_[failure_[node]][symbol];
+                    go_[node][index] = go_[failure_[node]][index];
                     continue;
                 }
                 const int child = iterator->second;
-                failure_[child] = go_[failure_[node]][symbol];
+                failure_[child] = go_[failure_[node]][index];
                 const int failed = failure_[child];
                 output_[child] = !nodes_[failed].terminal.empty() ? failed : output_[failed];
-                go_[node][symbol] = child;
+                go_[node][index] = child;
                 queue.push(child);
             }
         }
@@ -213,8 +220,17 @@ struct ahocorasick {
     int next(int state, const Symbol& symbol) const {
         assert_built();
         assert_state(state);
-        const auto iterator = go_[state].find(symbol);
-        return iterator == go_[state].end() ? 0 : iterator->second;
+        const auto iterator = std::lower_bound(alphabet_.begin(), alphabet_.end(), symbol);
+        if (iterator == alphabet_.end() || *iterator != symbol) return 0;
+        return go_[state][iterator - alphabet_.begin()];
+    }
+
+    /// O(1)。stateで終わる追加済みpatternの最短長を返し、なければnullopt。
+    std::optional<int> shortest_match_length(int state) const {
+        assert_built();
+        assert_state(state);
+        const int length = shortest_match_length_[state];
+        return length == no_match ? std::nullopt : std::optional<int>{length};
     }
 
     /// O(一致pattern数)。stateで終わるpattern番号を返す。
@@ -322,6 +338,8 @@ struct ahocorasick {
     const std::vector<Symbol>& alphabet() const noexcept { return alphabet_; }
 
 private:
+    static constexpr int no_match = std::numeric_limits<int>::max();
+
     struct node {
         std::map<Symbol, int> next;
         std::vector<int> terminal;
@@ -345,8 +363,9 @@ private:
     std::vector<int> length_;
     std::vector<int> failure_;
     std::vector<int> output_;
-    std::vector<std::map<Symbol, int>> go_;
+    std::vector<std::vector<int>> go_;
     std::vector<int> order_;
+    std::vector<int> shortest_match_length_;
     bool built_ = false;
 };
 

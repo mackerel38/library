@@ -255,6 +255,32 @@ int main() {
         }
 
         {
+            std::vector<long long> values(n);
+            for (auto& value : values) value = random() % 1001;
+            poe::range_divide_set_range_sum<long long> data(values);
+            for (int step = 0; step < 800; ++step) {
+                int left = random() % (n + 1), right = random() % (n + 1);
+                if (left > right) std::swap(left, right);
+                const int operation = random() % 4;
+                if (operation == 0) {
+                    const long long divisor = 2 + random() % 20;
+                    for (int i = left; i < right; ++i) values[i] /= divisor;
+                    data.divide(left, right, divisor);
+                } else if (operation == 1) {
+                    const long long value = random() % 1001;
+                    for (int i = left; i < right; ++i) values[i] = value;
+                    data.set(left, right, value);
+                } else if (operation == 2) {
+                    assert(data.sum(left, right) == sum_of(values, left, right));
+                } else {
+                    const int index = random() % n;
+                    assert(data[index] == values[index]);
+                }
+                assert(data.sum() == sum_of(values, 0, n));
+            }
+        }
+
+        {
             auto values = initial;
             poe::range_chmin_chmax_add_range_sum<long long> data(values);
             for (int step = 0; step < 1200; ++step) {

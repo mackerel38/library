@@ -33,6 +33,24 @@ int main() {
             assert(relaxed.append(left[i], right[i]) == expected);
         }
 
+        const int factor_start = random() % (size + 1);
+        std::vector<mint> factor_base(size), factor_expected(size);
+        for (auto& value : factor_base) value = random() % 1000;
+        factor_expected = factor_base;
+        std::vector<mint> product(size, mint{});
+        product[0] = 1;
+        for (int index = factor_start; index < size; ++index) {
+            factor_expected[index] = 0;
+            for (int degree = 0; degree <= index; ++degree) {
+                factor_expected[index] += factor_base[index - degree] * product[degree];
+            }
+            for (int degree = size - 1; degree >= 1; --degree) {
+                product[degree] += product[degree - 1] * factor_expected[index];
+            }
+        }
+        assert(poe::online_factor_product_coefficients<998244353>(
+                   factor_base, factor_start) == factor_expected);
+
         const int count = 1 + random() % 30;
         std::vector<mint> values(count);
         for (auto& value : values) value = random() % 1000;
@@ -41,6 +59,16 @@ int main() {
             mint expected{};
             for (mint value : values) expected += value.pow(exponent);
             assert(sums[exponent] == expected);
+        }
+        std::vector<mint> weights(count);
+        for (auto& weight : weights) weight = random() % 1000;
+        const auto weighted = poe::weighted_power_sums<998244353>(values, weights, 40);
+        for (int exponent = 0; exponent < 40; ++exponent) {
+            mint expected{};
+            for (int index = 0; index < count; ++index) {
+                expected += weights[index] * values[index].pow(exponent);
+            }
+            assert(weighted[exponent] == expected);
         }
 
         const int variable_count = random() % 6;

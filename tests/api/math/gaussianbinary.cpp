@@ -16,4 +16,9 @@ int main() {
 
     matrix<int> impossible(vector<vector<int>>{{1}, {1}});
     assert(solve_binary_linear(impossible, {0, 1}).status == linearstatus::none);
+
+    auto one = solve_sparse_binary_linear_one(3, {{0, 1}, {1, 2}}, {1, 0});
+    assert(one && ((*one)[0] ^ (*one)[1]) == 1);
+    assert(((*one)[1] ^ (*one)[2]) == 0);
+    assert(!solve_sparse_binary_linear_one(1, {{0}, {0}}, {0, 1}));
 }

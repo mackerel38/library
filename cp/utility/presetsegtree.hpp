@@ -1349,6 +1349,191 @@ private:
     tree data_;
 };
 
+/// 非負整数列の区間切り捨て除算・区間代入・区間和: range_divide_set_range_sum<long long> data(values)。
+template<class T>
+struct range_divide_set_range_sum {
+    static_assert(std::is_integral_v<T> && std::is_signed_v<T>);
+
+    /// O(n)。n個の0から構築する。
+    explicit range_divide_set_range_sum(int n)
+        : range_divide_set_range_sum(std::vector<T>(n)) {
+        assert(n >= 0);
+    }
+
+    /// O(n)。非負整数valuesから構築する。
+    explicit range_divide_set_range_sum(const std::vector<T>& values)
+        : n_(static_cast<int>(values.size())), nodes_(std::max(1, 4 * n_)) {
+        assert(std::ranges::all_of(values, [](T value) { return value >= 0; }));
+        if (n_ != 0) build(1, 0, n_, values);
+    }
+
+    /// 償却O(log n log V)。[left,right)の各a[i]をfloor(a[i]/divisor)へ更新する。divisor>=2。
+    void divide(int left, int right, T divisor) {
+        assert_range(left, right);
+        assert(divisor >= 2);
+        if (left != right) range_divide(1, 0, n_, left, right, divisor);
+    }
+
+    /// O(log n)。[left,right)の各a[i]を非負整数valueへ代入する。
+    void set(int left, int right, T value) {
+        assert_range(left, right);
+        assert(value >= 0);
+        if (left != right) range_set(1, 0, n_, left, right, value);
+    }
+
+    /// O(log n)。a[index]を非負整数valueへ代入する。
+    void set(int index, T value) {
+        set(index, index + 1, value);
+    }
+
+    /// O(log n)。[left,right)の和を返す。
+    T sum(int left, int right) {
+        assert_range(left, right);
+        if (left == right) return T{};
+        return range_sum(1, 0, n_, left, right);
+    }
+
+    /// O(1)。全要素の和を返す。
+    T sum() const {
+        return n_ == 0 ? T{} : nodes_[1].sum;
+    }
+
+    /// O(log n)。data[index]はa[index]を値で返す。
+    T operator[](int index) {
+        assert(0 <= index && index < n_);
+        return point_get(1, 0, n_, index);
+    }
+
+    /// O(1)。要素数を返す。
+    int size() const noexcept {
+        return n_;
+    }
+
+private:
+    struct node {
+        T sum{};
+        T minimum{};
+        T maximum{};
+        T lazy_add{};
+        std::optional<T> lazy_set;
+        int length = 1;
+    };
+
+    void build(int position, int left, int right, const std::vector<T>& values) {
+        if (right - left == 1) {
+            nodes_[position] = {values[left], values[left], values[left], T{}, std::nullopt, 1};
+            return;
+        }
+        const int middle = (left + right) / 2;
+        build(position * 2, left, middle, values);
+        build(position * 2 + 1, middle, right, values);
+        pull(position);
+    }
+
+    void pull(int position) {
+        const node& left = nodes_[position * 2];
+        const node& right = nodes_[position * 2 + 1];
+        nodes_[position] = {
+            left.sum + right.sum,
+            std::min(left.minimum, right.minimum),
+            std::max(left.maximum, right.maximum),
+            T{}, std::nullopt, left.length + right.length
+        };
+    }
+
+    void apply_set(int position, T value) {
+        node& current = nodes_[position];
+        current.sum = value * T(current.length);
+        current.minimum = current.maximum = value;
+        current.lazy_add = T{};
+        current.lazy_set = value;
+    }
+
+    void apply_add(int position, T value) {
+        node& current = nodes_[position];
+        current.sum += value * T(current.length);
+        current.minimum += value;
+        current.maximum += value;
+        if (current.lazy_set) *current.lazy_set += value;
+        else current.lazy_add += value;
+    }
+
+    void push(int position) {
+        node& current = nodes_[position];
+        if (current.length == 1) return;
+        if (current.lazy_set) {
+            apply_set(position * 2, *current.lazy_set);
+            apply_set(position * 2 + 1, *current.lazy_set);
+            current.lazy_set.reset();
+        }
+        if (current.lazy_add != T{}) {
+            apply_add(position * 2, current.lazy_add);
+            apply_add(position * 2 + 1, current.lazy_add);
+            current.lazy_add = T{};
+        }
+    }
+
+    void range_divide(int position, int left, int right, int query_left, int query_right,
+                      T divisor) {
+        if (query_right <= left || right <= query_left) return;
+        node& current = nodes_[position];
+        if (query_left <= left && right <= query_right) {
+            const T minimum_quotient = current.minimum / divisor;
+            const T maximum_quotient = current.maximum / divisor;
+            if (minimum_quotient == maximum_quotient) {
+                apply_set(position, minimum_quotient);
+                return;
+            }
+            if (current.minimum - minimum_quotient == current.maximum - maximum_quotient) {
+                apply_add(position, minimum_quotient - current.minimum);
+                return;
+            }
+        }
+        push(position);
+        const int middle = (left + right) / 2;
+        range_divide(position * 2, left, middle, query_left, query_right, divisor);
+        range_divide(position * 2 + 1, middle, right, query_left, query_right, divisor);
+        pull(position);
+    }
+
+    void range_set(int position, int left, int right, int query_left, int query_right, T value) {
+        if (query_right <= left || right <= query_left) return;
+        if (query_left <= left && right <= query_right) {
+            apply_set(position, value);
+            return;
+        }
+        push(position);
+        const int middle = (left + right) / 2;
+        range_set(position * 2, left, middle, query_left, query_right, value);
+        range_set(position * 2 + 1, middle, right, query_left, query_right, value);
+        pull(position);
+    }
+
+    T range_sum(int position, int left, int right, int query_left, int query_right) {
+        if (query_right <= left || right <= query_left) return T{};
+        if (query_left <= left && right <= query_right) return nodes_[position].sum;
+        push(position);
+        const int middle = (left + right) / 2;
+        return range_sum(position * 2, left, middle, query_left, query_right)
+            + range_sum(position * 2 + 1, middle, right, query_left, query_right);
+    }
+
+    T point_get(int position, int left, int right, int index) {
+        if (right - left == 1) return nodes_[position].sum;
+        push(position);
+        const int middle = (left + right) / 2;
+        if (index < middle) return point_get(position * 2, left, middle, index);
+        return point_get(position * 2 + 1, middle, right, index);
+    }
+
+    void assert_range(int left, int right) const {
+        assert(0 <= left && left <= right && right <= n_);
+    }
+
+    int n_;
+    std::vector<node> nodes_;
+};
+
 /// 区間chmin・chmax・加算・一点代入・区間和: Segment Tree Beatsで各操作を償却O(log n)で行う。
 template<class T>
 struct range_chmin_chmax_add_range_sum {

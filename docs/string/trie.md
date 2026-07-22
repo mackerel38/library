@@ -68,10 +68,11 @@ pattern追加後に`build()`が必要で、空patternは追加できない。
 - `find_all(text)`: patternごとの出現開始位置。
 - `count(text)`: patternごとの重なりを含む出現回数。全一致を列挙しない。
 - `patterns(state)` / `pattern_mask<UInt>(state)`: その状態で終わるpattern集合。
+- `shortest_match_length(state)`: その状態で終わる最短pattern長。存在しなければ`nullopt`。
 - `failure(state)`: failure link。
 
 状態数を`states`、alphabet幅を`sigma`とすると、`build`は
-`O(states sigma log sigma)`、領域`O(states sigma)`。構築後の一遷移は`O(log sigma)`。
+`O(states sigma log sigma)`、領域`O(states sigma)`。全遷移は密な整数表で保持し、構築後の一遷移はalphabet上の二分探索により`O(log sigma)`です。
 全文検索は`O(text log sigma + occurrences)`、`count`は
 `O(text log sigma + states + patterns)`。
 
@@ -243,6 +244,14 @@ int next(int state, const Symbol& symbol) const
 
 O(log sigma)。stateからsymbolを読んだ次状態を返す。build後に使う。
 
+### `shortest_match_length`
+
+```cpp
+std::optional<int> shortest_match_length(int state) const
+```
+
+O(1)。stateで終わる追加済みpatternの最短長を返し、なければnullopt。
+
 ### `patterns`
 
 ```cpp
@@ -331,8 +340,10 @@ O(1)。使用するalphabetを返す。build後は昇順かつ重複なし。
   trieの各nodeを通るword数から、他のwordと共有する最長prefixを求める。
 - [AtCoder ABC419 F - All Included](https://atcoder.jp/contests/abc419/tasks/abc419_f):
   Aho--Corasick状態と「既に含んだpattern集合」のbit maskをDP状態にする。
+- [AtCoder ABC268 Ex - Taboo](https://atcoder.jp/contests/abc268/tasks/abc268_h):
+  `shortest_match_length`により、各位置で終わる禁止patternがあるかを出現数に依存せず判定する。
 
-`verify/atcoder_abc287_e.cpp`と`verify/atcoder_abc419_f.cpp`を収録した。
+`verify/atcoder_abc287_e.cpp`、`verify/atcoder_abc419_f.cpp`、`verify/atcoder_abc268_h.cpp`を収録した。
 ABC419 FでAho--Corasickを用いる方針は公式解説にも掲載されている。
 
 ## 検証

@@ -7,7 +7,8 @@ documentation_of: //cp/graph/shortestpath.hpp
 
 ## 概要
 
-明示・暗黙graphの最短路と各頂点に近い異なる複数始点を扱う。
+明示・暗黙graphの最短路と、各頂点に近い複数の始点を扱う。
+始点をラベル別にまとめ、自分と異なるラベルの最寄り始点を求めることもできる。
 
 ## 厳密な定義
 
@@ -16,6 +17,8 @@ documentation_of: //cp/graph/shortestpath.hpp
 - `nearestsourcesresult`: 各頂点に近い異なる始点を近い順にCount個まで持つ。
 - `bfs`: O(n+m)。辺数を距離として、多点始点BFSを行う。重み付きグラフでは重みを無視する。
 - `nearest_sources_bfs`: O(Count*(n+m))。各頂点について異なる始点の近い方からCount個をBFSで求める。
+- `nearest_labeled_sources_dijkstra`: 非負重みgraphで、異なるラベルの始点を近い順に保持する。
+- `distance_to_nearest_different_label_source`: 各頂点と異なるラベルを持つ最寄り指定始点への距離を返す。
 - `zero_one_bfs`: O(n+m)。辺重みが0または1のグラフで、多点始点最短路を求める。
 - `dijkstra`: O((n+m)log n)。非負重みグラフで、多点始点Dijkstra法を行う。
 - `bellmanfordresult`: Bellman-Ford法の結果。negative[v]は負閉路からvへ到達できることを表す。
@@ -45,6 +48,33 @@ int through_v = nearest[v][0].distance + nearest[v][1].distance;
 
 各要素は`source`と`distance`を持ち、候補が足りなければ`source == -1`となる。
 辺重みは無視し、`O(Count(n+m))`時間、`O(Count n)`領域を使う。同距離の始点間の順序は規定しない。
+
+## ラベルの異なる最寄り始点
+
+各指定始点$s$にラベル$L_s$があるとする。`nearest_labeled_sources_dijkstra<Count>`は、各頂点$v$で
+ラベルが相異なる候補を距離順に高々`Count`個保持する。各候補は始点番号、ラベル、距離を持つ。
+
+```cpp
+auto nearest = nearest_labeled_sources_dijkstra<2>(
+    graph, vector<pair<int, int>>{{source, label}});
+```
+
+各頂点$v$にもラベル$L_v$があり、求めたいものが
+
+$$
+\min_{s\in S,\ L_s\ne L_v}\operatorname{dist}(v,s)
+$$
+
+だけなら、次の短縮APIを使う。
+
+```cpp
+auto distance = distance_to_nearest_different_label_source(
+    graph, labels, sources);
+```
+
+該当する始点がない頂点には`std::numeric_limits<Cost>::max()`が入る。辺重みは非負である必要がある。
+時間計算量は基礎APIが$O(\mathrm{Count}(n+m)\log(\mathrm{Count}\,n))$、短縮APIが
+$O((n+m)\log n)$、領域計算量は$O(\mathrm{Count}\,n+m)$である。
 
 頂点数だけ既知で辺をその場で列挙したい場合は、暗黙graph版を使える。
 
@@ -135,6 +165,30 @@ const std::array<nearestsource<Distance>, Count>& operator[](int vertex) const
 
 O(1)。vertexに近い始点列を返す。
 
+### `nearestlabeledsource`
+
+```cpp
+template<class Distance, class Label> struct nearestlabeledsource
+```
+
+ある頂点に近い指定ラベルの始点・ラベル・距離。
+
+### `nearestlabeledsourcesresult`
+
+```cpp
+template<class Distance, class Label, int Count> struct nearestlabeledsourcesresult
+```
+
+各頂点について異なるラベルの近い始点をCount個まで持つ。
+
+### `operator[]`
+
+```cpp
+const std::array<nearestlabeledsource<Distance, Label>, Count>& operator[]( int vertex ) const
+```
+
+O(1)。vertexに記録したラベル別の近い始点列を返す。
+
 ### `bfs`
 
 ```cpp
@@ -158,6 +212,22 @@ template <int Count, graph_type Graph> nearestsourcesresult<int, Count> nearest_
 ```
 
 O(Count*(n+m))。各頂点について異なる始点の近い方からCount個をBFSで求める。
+
+### `nearest_labeled_sources_dijkstra`
+
+```cpp
+template<int Count, weighted_graph_type Graph, class Label> nearestlabeledsourcesresult<typename Graph::cost_type, Label, Count> nearest_labeled_sources_dijkstra( const Graph& graph, const std::vector<std::pair<int, Label>>& sources )
+```
+
+O(Count(m+n)log(Count n))。非負重みgraphで異なるラベルの近い始点をCount個求める。
+
+### `distance_to_nearest_different_label_source`
+
+```cpp
+template<weighted_graph_type Graph, class Label> std::vector<typename Graph::cost_type> distance_to_nearest_different_label_source( const Graph& graph, const std::vector<Label>& labels, const std::vector<int>& sources )
+```
+
+O((m+n)log n)。各頂点から自身と異なるラベルを持つ最寄り指定始点への距離を返す。
 
 ### `zero_one_bfs`
 
@@ -291,3 +361,7 @@ else for (int id : result.edge_path(target)) {
 [AtCoder ABC424 C - New Skill Acquired](https://atcoder.jp/contests/abc424/tasks/abc424_c)では、
 前提skillから新skillへの有向辺を張り、仮想skill 0からの`bfs`到達頂点を数える。
 `verify/atcoder_abc424_c.cpp`に使用例を収録した。
+
+[AtCoder ABC245 G - Foreign Friends](https://atcoder.jp/contests/abc245/tasks/abc245_g)では、
+国番号を頂点ラベル、人気者を指定始点として`distance_to_nearest_different_label_source`へ渡す。
+無限大の要素だけ`-1`へ置き換える。`verify/atcoder_abc245_g.cpp`に提出用コードを用意している。

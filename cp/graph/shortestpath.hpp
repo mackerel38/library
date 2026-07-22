@@ -128,6 +128,29 @@ private:
     }
 };
 
+/// ある頂点に近い指定ラベルの始点・ラベル・距離。
+template<class Distance, class Label>
+struct nearestlabeledsource {
+    int source = -1;
+    Label label{};
+    Distance distance = std::numeric_limits<Distance>::max();
+};
+
+/// 各頂点について異なるラベルの近い始点をCount個まで持つ。
+template<class Distance, class Label, int Count>
+struct nearestlabeledsourcesresult {
+    static_assert(Count > 0);
+    std::vector<std::array<nearestlabeledsource<Distance, Label>, Count>> nearest;
+
+    /// O(1)。vertexに記録したラベル別の近い始点列を返す。
+    const std::array<nearestlabeledsource<Distance, Label>, Count>& operator[](
+        int vertex
+    ) const {
+        assert(0 <= vertex && vertex < static_cast<int>(nearest.size()));
+        return nearest[vertex];
+    }
+};
+
 /// O(n+m)。辺数を距離として、多点始点BFSを行う。重み付きグラフでは重みを無視する。
 template<graph_type Graph>
 shortestpathresult<int> bfs(const Graph& graph, const std::vector<int>& starts) {
@@ -196,6 +219,88 @@ nearestsourcesresult<int, Count> nearest_sources_bfs(
         for (const auto& current : graph[vertex]) {
             if (!insert(current.to, source, distance + 1)) continue;
             queue.push({current.to, source, distance + 1});
+        }
+    }
+    return result;
+}
+
+/// O(Count(m+n)log(Count n))。非負重みgraphで異なるラベルの近い始点をCount個求める。
+template<int Count, weighted_graph_type Graph, class Label>
+nearestlabeledsourcesresult<typename Graph::cost_type, Label, Count>
+nearest_labeled_sources_dijkstra(
+    const Graph& graph,
+    const std::vector<std::pair<int, Label>>& sources
+) {
+    static_assert(Count > 0);
+    using distance_type = typename Graph::cost_type;
+    using result_type = nearestlabeledsourcesresult<distance_type, Label, Count>;
+    result_type result;
+    result.nearest.resize(graph.size());
+    struct state {
+        distance_type distance;
+        int vertex;
+        int source;
+        Label label;
+    };
+    const auto greater = [](const state& left, const state& right) {
+        return left.distance > right.distance;
+    };
+    std::priority_queue<state, std::vector<state>, decltype(greater)> queue(greater);
+    for (const auto& [source, label] : sources) {
+        assert(0 <= source && source < graph.size());
+        queue.push({distance_type{}, source, source, label});
+    }
+    while (!queue.empty()) {
+        const auto current = queue.top();
+        queue.pop();
+        auto& nearest = result.nearest[current.vertex];
+        bool duplicate = false;
+        int empty = -1;
+        for (int index = 0; index < Count; ++index) {
+            if (nearest[index].source == -1 && empty == -1) empty = index;
+            if (nearest[index].source != -1 && nearest[index].label == current.label) {
+                duplicate = true;
+            }
+        }
+        if (duplicate || empty == -1) continue;
+        nearest[empty] = {current.source, current.label, current.distance};
+        for (const auto& edge : graph[current.vertex]) {
+            assert(edge.cost >= distance_type{});
+            queue.push({
+                detail::add_distance(
+                    current.distance, edge.cost,
+                    std::numeric_limits<distance_type>::max()),
+                edge.to, current.source, current.label
+            });
+        }
+    }
+    return result;
+}
+
+/// O((m+n)log n)。各頂点から自身と異なるラベルを持つ最寄り指定始点への距離を返す。
+template<weighted_graph_type Graph, class Label>
+std::vector<typename Graph::cost_type> distance_to_nearest_different_label_source(
+    const Graph& graph,
+    const std::vector<Label>& labels,
+    const std::vector<int>& sources
+) {
+    using distance_type = typename Graph::cost_type;
+    assert(static_cast<int>(labels.size()) == graph.size());
+    std::vector<std::pair<int, Label>> labeled_sources;
+    labeled_sources.reserve(sources.size());
+    for (const int source : sources) {
+        assert(0 <= source && source < graph.size());
+        labeled_sources.emplace_back(source, labels[source]);
+    }
+    const auto nearest = nearest_labeled_sources_dijkstra<2>(graph, labeled_sources);
+    std::vector<distance_type> result(
+        graph.size(), std::numeric_limits<distance_type>::max());
+    for (int vertex = 0; vertex < graph.size(); ++vertex) {
+        for (const auto& candidate : nearest[vertex]) {
+            if (candidate.source != -1 && candidate.label != labels[vertex]) {
+                result[vertex] = candidate.distance;
+                break;
+            }
         }
     }
     return result;
