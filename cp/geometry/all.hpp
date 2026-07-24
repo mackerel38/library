@@ -6,6 +6,7 @@
 #include "geometry/incrementalhull.hpp"
 #include "geometry/latticemove.hpp"
 #include "geometry/line.hpp"
+#include "geometry/manhattan.hpp"
 #include "geometry/point.hpp"
 #include "geometry/polygon.hpp"
 #include "geometry/rectangleunion.hpp"

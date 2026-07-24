@@ -15,6 +15,7 @@
 | 区間更新、区間取得 | [`structure/lazysegtree.hpp`](structure/lazysegtree.md) | 遅延伝播Segment Tree |
 | 区間切り捨て除算、区間代入、区間和 | [`utility/presetsegtree.hpp`](utility/presetsegtree.md) | 非負整数列の除算更新を償却高速化 |
 | kth、順位、頻度 | [`structure/waveletmatrix.hpp`](structure/waveletmatrix.md) | 静的列の順序統計 |
+| 二次元点、軸平行長方形内の点数 | [`structure/pointcount2d.hpp`](structure/pointcount2d.md) | 静的直交範囲数え上げ |
 | 動的な順位、k番目 | [`structure/orderstatistic.hpp`](structure/orderstatistic.md) | 順序付き集合・多重集合 |
 | sliding windowの集約 | [`structure/swag.hpp`](structure/swag.md) | queue全体のmonoid積 |
 | 直線の最小・最大 | [`structure/linecontainer.hpp`](structure/linecontainer.md) | Convex Hull Trick / Li Chao Tree |
@@ -43,6 +44,7 @@
 | 指定地点でのみ休憩、一回の移動上限、到達可能性 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | 多点Dijkstraと閾値順DSU |
 | 全点対最短路 | [`graph/warshallfloyd.hpp`](graph/warshallfloyd.md) | Warshall-Floyd |
 | path上の最大頂点costを最小化 | [`graph/bottleneck.hpp`](graph/bottleneck.md) | bitset一括bottleneck query |
+| 完全有向グラフ、辺重みが$(A_i+B_j)\bmod M$ | [`graph/modularcomplete.hpp`](graph/modularcomplete.md) | 剰余円周へ圧縮した最短路 |
 | 強連結成分 | [`graph/scc.hpp`](graph/scc.md) | SCC分解と縮約 |
 | 有界整数、二変数の和の上下限 | [`graph/integerconstraints.hpp`](graph/integerconstraints.md) | $L\leq x_i+x_j\leq R$を満たす整数割当て |
 | 橋、関節点、二重連結成分 | [`graph/lowlink.hpp`](graph/lowlink.md) | LowLink |
@@ -64,6 +66,7 @@
 | 点追加と内積最大化 | [`geometry/incrementalhull.hpp`](geometry/incrementalhull.md) | incremental convex hullのsupport query |
 | 整数格子、二種類までの移動ベクトル | [`geometry/latticemove.hpp`](geometry/latticemove.md) | 非負整数結合で目的地へ着く最小手数 |
 | 直線交点、円内の交点数、k番目の交点距離 | [`geometry/line.hpp`](geometry/line.md) | 直線配置を弦の交差へ変換 |
+| Manhattan距離以内の点数、k番目に近い点 | [`geometry/manhattan.hpp`](geometry/manhattan.md) | 静的点集合の近傍検索 |
 | 同型を除いた単純グラフ数 | [`graph/unlabeledcount.hpp`](graph/unlabeledcount.md) | 全色使用の頂点彩色付き無ラベルグラフ |
 
 ## 文字列

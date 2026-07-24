@@ -348,16 +348,27 @@
       "tests": ["tests/api/dp/dp.cpp", "tests/property/dp/dp.cpp"],
       "verify": ["verify/atcoder_dp_n.cpp"]
     },
+    "cp/dp/rectanglepartition.hpp": {
+      "benchmark": [],
+      "docs": "docs/dp/rectanglepartition.md",
+      "layer": 1,
+      "status": "experimental",
+      "summary_ja": "矩形の直接処理と水平・垂直分割の最小費用DP",
+      "symbols": ["poe::minimum_rectangle_partition_cost"],
+      "tags": ["dynamic-programming", "rectangle", "partition", "guillotine-cut", "grid"],
+      "tests": ["tests/api/dp/rectanglepartition.cpp", "tests/property/dp/rectanglepartition.cpp"],
+      "verify": ["verify/atcoder_abc233_g.cpp"]
+    },
     "cp/dp/partition.hpp": {
       "benchmark": [],
       "docs": "docs/dp/partition.md",
       "layer": 1,
       "status": "experimental",
-      "summary_ja": "連続フェーズ分割と任意括弧付け二項演算の区間DP",
-      "symbols": ["poe::max_phase_partition", "poe::parenthesized_results"],
-      "tags": ["dynamic-programming", "partition", "phase", "sequence", "interval-dp", "parenthesization"],
+      "summary_ja": "連続分割の得点最適化・値域積総和と任意括弧付け二項演算",
+      "symbols": ["poe::max_phase_partition", "poe::sum_partition_range_products", "poe::parenthesized_results"],
+      "tags": ["dynamic-programming", "partition", "phase", "sequence", "monotone-stack", "interval-dp", "parenthesization"],
       "tests": ["tests/api/dp/partition.cpp", "tests/property/dp/partition.cpp"],
-      "verify": ["verify/atcoder_abc438_d.cpp", "verify/atcoder_abc418_g.cpp"]
+      "verify": ["verify/atcoder_abc438_d.cpp", "verify/atcoder_abc418_g.cpp", "verify/atcoder_abc234_g.cpp"]
     },
     "cp/recipe/insertioncomponents.hpp": {
       "benchmark": [],
@@ -876,6 +887,17 @@
       "tests": ["tests/api/geometry/line.cpp", "tests/property/geometry/line.cpp"],
       "verify": ["verify/atcoder_abc263_h.cpp"]
     },
+    "cp/geometry/manhattan.hpp": {
+      "benchmark": [],
+      "docs": "docs/geometry/manhattan.md",
+      "layer": 3,
+      "status": "experimental",
+      "summary_ja": "静的点集合のManhattan距離内点数とk番目近傍距離",
+      "symbols": ["poe::manhattannearest"],
+      "tags": ["geometry", "manhattan-distance", "nearest-neighbor", "range-counting", "binary-search"],
+      "tests": ["tests/api/geometry/manhattan.cpp", "tests/property/geometry/manhattan.cpp"],
+      "verify": ["verify/atcoder_abc233_h.cpp"]
+    },
     "cp/geometry/point.hpp": {
       "benchmark": [],
       "docs": "docs/geometry/point.md",
@@ -1216,6 +1238,17 @@
       "tags": ["graph", "minimum-spanning-tree", "kruskal"],
       "tests": ["tests/api/graph/graph.cpp", "tests/property/graph/graph.cpp"],
       "verify": ["verify/minimumspanningtree.test.cpp"]
+    },
+    "cp/graph/modularcomplete.hpp": {
+      "benchmark": [],
+      "docs": "docs/graph/modularcomplete.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "剰余和重みの完全有向グラフを線形辺数へ圧縮した最短路",
+      "symbols": ["poe::modular_complete_distances"],
+      "tags": ["graph", "complete-graph", "shortest-path", "modulo", "implicit-graph"],
+      "tests": ["tests/api/graph/modularcomplete.cpp", "tests/property/graph/modularcomplete.cpp"],
+      "verify": ["verify/atcoder_abc232_g.cpp"]
     },
     "cp/graph/orientation.hpp": {
       "benchmark": [],
@@ -2337,6 +2370,17 @@
       "tags": ["structure", "persistent", "segment-tree", "version"],
       "tests": ["tests/api/structure/persistentsegtree.cpp", "tests/property/structure/persistentsegtree.cpp"],
       "verify": ["verify/atcoder_abc453_g.cpp"]
+    },
+    "cp/structure/pointcount2d.hpp": {
+      "benchmark": [],
+      "docs": "docs/structure/pointcount2d.md",
+      "layer": 2,
+      "status": "experimental",
+      "summary_ja": "静的二次元点集合の半開・閉長方形内点数",
+      "symbols": ["poe::pointcount2d"],
+      "tags": ["structure", "two-dimensional", "orthogonal-range-counting", "wavelet-matrix"],
+      "tests": ["tests/api/structure/pointcount2d.cpp", "tests/property/structure/pointcount2d.cpp"],
+      "verify": ["verify/atcoder_abc233_h.cpp"]
     },
     "cp/structure/prefixsum.hpp": {
       "benchmark": [],

@@ -18,6 +18,7 @@
 #include "structure/orderstatistic.hpp"
 #include "structure/persistentlichaotree.hpp"
 #include "structure/persistentsegtree.hpp"
+#include "structure/pointcount2d.hpp"
 #include "structure/prefixsum.hpp"
 #include "structure/segtree.hpp"
 #include "structure/sparsetable.hpp"
